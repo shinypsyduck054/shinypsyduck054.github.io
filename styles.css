@@ -111,9 +111,26 @@ a { color: inherit; text-decoration: none; }
 .boot-text {
   font-family: var(--font-vt);
   font-size: 1.4rem;
-  color: var(--green);
   white-space: pre;
   line-height: 1.5;
+  background: linear-gradient(
+    90deg,
+    var(--green) 0%,
+    var(--green) 30%,
+    #b0f0ff 50%,
+    var(--green) 70%,
+    var(--green) 100%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: boot-shimmer 3.2s ease-in-out infinite;
+}
+
+@keyframes boot-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -100% 0; }
 }
 
 .boot-cursor {
