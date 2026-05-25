@@ -1065,6 +1065,98 @@ footer {
 }
 
 /* ===========================
+   LIVE STATUS PANEL
+   =========================== */
+.live-status-box {
+  margin-bottom: 1.8rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.live-status-title {
+  font-family: var(--font-pixel);
+  font-size: 0.55rem;
+  color: var(--cyan);
+  letter-spacing: 0.12em;
+  padding: 0.6rem 1rem;
+  background: rgba(0,212,255,0.06);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.live-status-updated {
+  font-size: 0.38rem;
+  color: var(--text-dim);
+}
+
+.live-status-loading {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  padding: 0.8rem 1rem;
+}
+
+.ls-groups {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.ls-group {
+  padding: 0.7rem 1rem 0.8rem;
+}
+
+.ls-group + .ls-group {
+  border-left: 1px solid var(--border);
+}
+
+.ls-group-label {
+  font-family: var(--font-pixel);
+  font-size: 0.32rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.ls-row {
+  display: grid;
+  grid-template-columns: 1rem 6rem 4.5rem 1fr;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.22rem 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.ls-icon { font-size: 0.65rem; text-align: center; }
+.ls-name { color: var(--text); white-space: nowrap; }
+.ls-note { color: var(--text-dim); font-size: 0.68rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.ls-badge {
+  font-family: var(--font-pixel);
+  font-size: 0.28rem;
+  padding: 0.15rem 0.35rem;
+  border-radius: 2px;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+/* Status colours */
+.ls-status-ok      { color: #34d399; }
+.ls-status-limited { color: #fcd34d; }
+.ls-status-down    { color: #f87171; }
+.ls-status-locked  { color: #6b7280; }
+.ls-status-unknown { color: var(--text-dim); }
+
+.ls-badge.ls-status-ok      { background: rgba(52,211,153,0.12);  border: 1px solid rgba(52,211,153,0.3); }
+.ls-badge.ls-status-limited { background: rgba(252,211,77,0.12);  border: 1px solid rgba(252,211,77,0.3); }
+.ls-badge.ls-status-down    { background: rgba(248,113,113,0.12); border: 1px solid rgba(248,113,113,0.3); }
+.ls-badge.ls-status-locked  { background: rgba(107,114,128,0.12); border: 1px solid rgba(107,114,128,0.3); }
+
+/* ===========================
    MODEL STACK DIAGRAM
    =========================== */
 .model-stack-box {

@@ -1,7 +1,7 @@
 // ===========================
 // VERSION  (footer only — header uses nav now)
 // ===========================
-const VERSION = '1.6.9';
+const VERSION = '1.7.0';
 
 document.querySelectorAll('.version-tag').forEach(el => {
   el.textContent = `v${VERSION}`;
@@ -11,7 +11,7 @@ document.querySelectorAll('.version-tag').forEach(el => {
 // BOOT SEQUENCE
 // ===========================
 const bootLines = [
-  'PSYDUCK OS v1.6.9 [SHINY EDITION]',
+  'PSYDUCK OS v1.7.0 [SHINY EDITION]',
   '──────────────────────────────────────',
   'Initializing neural interface......OK',
   'Loading memory banks.................OK',
@@ -596,6 +596,80 @@ function initWanderDuck() {
     if (contact) contact.scrollIntoView({ behavior: 'smooth' });
   });
 }
+
+// ===========================
+// LIVE STATUS PANEL
+// ===========================
+const STATUS_ICONS = { ok: '●', limited: '◐', down: '○', locked: '✕', unknown: '?' };
+const STATUS_LABELS = { ok: 'OK', limited: 'LIMITED', down: 'DOWN', locked: 'LOCKED', unknown: '?' };
+
+function timeAgo(isoStr) {
+  if (!isoStr) return '';
+  const diff = Math.floor((Date.now() - new Date(isoStr).getTime()) / 1000);
+  if (diff < 60)   return `${diff}s ago`;
+  if (diff < 3600) return `${Math.floor(diff/60)}m ago`;
+  return `${Math.floor(diff/3600)}h ago`;
+}
+
+function renderStatus(data) {
+  const body = document.getElementById('liveStatusBody');
+  const upd  = document.getElementById('liveStatusUpdated');
+  if (!body || !data) return;
+
+  upd.textContent = `updated ${timeAgo(data.updated)}`;
+
+  let html = '<div class="ls-groups">';
+
+  // Channels
+  html += '<div class="ls-group"><div class="ls-group-label">CHANNELS</div>';
+  for (const ch of (data.channels || [])) {
+    const cls = `ls-status-${ch.status}`;
+    html += `<div class="ls-row">
+      <span class="ls-icon ${cls}">${STATUS_ICONS[ch.status] || '?'}</span>
+      <span class="ls-name">${ch.name}</span>
+      <span class="ls-badge ${cls}">${STATUS_LABELS[ch.status] || ch.status.toUpperCase()}</span>
+      <span class="ls-note">${ch.note || ''}</span>
+    </div>`;
+  }
+  html += '</div>';
+
+  // Providers
+  html += '<div class="ls-group"><div class="ls-group-label">PROVIDERS</div>';
+  for (const pr of (data.providers || [])) {
+    const cls = `ls-status-${pr.status}`;
+    html += `<div class="ls-row">
+      <span class="ls-icon ${cls}">${STATUS_ICONS[pr.status] || '?'}</span>
+      <span class="ls-name">${pr.name}</span>
+      <span class="ls-badge ${cls}">${STATUS_LABELS[pr.status] || pr.status.toUpperCase()}</span>
+      <span class="ls-note">${pr.note || ''}</span>
+    </div>`;
+  }
+  html += '</div>';
+
+  html += '</div>';
+  body.innerHTML = html;
+}
+
+async function loadStatus() {
+  try {
+    const res = await fetch(`/status.json?t=${Date.now()}`);
+    if (!res.ok) throw new Error(res.status);
+    const data = await res.json();
+    renderStatus(data);
+    // Refresh display every minute (file updates every 30m)
+    setInterval(() => {
+      const upd = document.getElementById('liveStatusUpdated');
+      if (upd && window._statusData) upd.textContent = `updated ${timeAgo(window._statusData.updated)}`;
+    }, 60000);
+    window._statusData = data;
+  } catch(e) {
+    const body = document.getElementById('liveStatusBody');
+    if (body) body.innerHTML = '<div class="live-status-loading">status unavailable</div>';
+  }
+}
+
+// Load after boot so it doesn't block the page
+window.addEventListener('load', () => setTimeout(loadStatus, 1200));
 
 // ===========================
 // NAV ACTIVE STATE
