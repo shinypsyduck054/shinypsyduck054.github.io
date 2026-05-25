@@ -1,7 +1,7 @@
 // ===========================
 // VERSION  (footer only — header uses nav now)
 // ===========================
-const VERSION = '1.6.6';
+const VERSION = '1.6.7';
 
 document.querySelectorAll('.version-tag').forEach(el => {
   el.textContent = `v${VERSION}`;
@@ -11,7 +11,7 @@ document.querySelectorAll('.version-tag').forEach(el => {
 // BOOT SEQUENCE
 // ===========================
 const bootLines = [
-  'PSYDUCK OS v1.6.6 [SHINY EDITION]',
+  'PSYDUCK OS v1.6.7 [SHINY EDITION]',
   '──────────────────────────────────────',
   'Initializing neural interface......OK',
   'Loading memory banks.................OK',
@@ -57,17 +57,23 @@ function finishBoot() {
     initPixelCanvas();
     initTrippy();
     initWanderDuck();
+    // Grand entrance: wake up trippy, settle into the layout
+    setTimeout(() => triggerBootTrippy(), 200);
   }, 600);
 }
 
 function skipBoot() {
   if (!bootDone) {
     bootDone = true;
-    lineIdx = bootLines.length; // stop typer
+    lineIdx = bootLines.length;
     bootScreen.classList.add('hidden');
     mainContent.classList.add('visible');
     startTypewriter();
     initPixelCanvas();
+    initTrippy();
+    initWanderDuck();
+    // Shorter burst on skip
+    setTimeout(() => triggerBootTrippy(1800), 100);
   }
 }
 
@@ -144,6 +150,64 @@ function triggerTrippy(duration = 2400) {
       trippyRaf = requestAnimationFrame(frame);
     } else {
       // Reset cleanly
+      trippyTurbEl.setAttribute('baseFrequency', '0 0');
+      trippyDisplEl.setAttribute('scale', '0');
+      mainContent.style.filter = '';
+      mainContent.classList.remove('trippy-active');
+      trippyRunning = false;
+    }
+  }
+
+  trippyRaf = requestAnimationFrame(frame);
+}
+
+// Boot entrance trippy — starts at full intensity, slowly settles
+function triggerBootTrippy(duration = 4200) {
+  if (!trippyTurbEl || !trippyDisplEl) return;
+  if (trippyRaf) cancelAnimationFrame(trippyRaf);
+  trippyRunning = true;
+
+  if (trippyOverlay) {
+    trippyOverlay.classList.remove('active');
+    void trippyOverlay.offsetWidth;
+    trippyOverlay.classList.add('active');
+  }
+
+  mainContent.classList.add('trippy-active');
+  const t0 = performance.now();
+
+  function frame(now) {
+    const elapsed  = now - t0;
+    const progress = Math.min(elapsed / duration, 1);
+
+    // Envelope: full blast → short hold → long slow fade
+    let env;
+    if (progress < 0.08)       env = progress / 0.08;          // quick ramp up
+    else if (progress < 0.30)  env = 1;                         // hold at peak
+    else                       env = 1 - (progress - 0.30) / 0.70; // long settle
+
+    const freq = 0.007 + env * 0.030;
+    const disp = env * 100;
+    const blur = env * 10;
+    const hue  = progress * 360;
+    const sat  = 1 + env * 3.5;
+    const seed = Math.floor(progress * 20);
+
+    trippyTurbEl.setAttribute('baseFrequency', `${freq.toFixed(4)} ${(freq * 0.55).toFixed(4)}`);
+    trippyTurbEl.setAttribute('seed', seed);
+    trippyDisplEl.setAttribute('scale', disp.toFixed(1));
+    mainContent.style.filter = `url(#trippy-filter) blur(${blur.toFixed(1)}px) saturate(${sat.toFixed(2)}) hue-rotate(${hue.toFixed(0)}deg)`;
+
+    const wanderDuck = document.getElementById('wanderDuck');
+    if (wanderDuck) {
+      wanderDuck.style.filter = progress < 1
+        ? `saturate(${sat.toFixed(2)}) hue-rotate(${hue.toFixed(0)}deg)`
+        : '';
+    }
+
+    if (progress < 1) {
+      trippyRaf = requestAnimationFrame(frame);
+    } else {
       trippyTurbEl.setAttribute('baseFrequency', '0 0');
       trippyDisplEl.setAttribute('scale', '0');
       mainContent.style.filter = '';
