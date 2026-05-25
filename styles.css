@@ -152,7 +152,7 @@ header {
 .header-inner {
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.25rem;
   height: 100%;
   display: flex;
   align-items: center;
@@ -162,17 +162,36 @@ header {
   color: var(--green);
 }
 
-.header-right {
+.header-left {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.nav-version {
-  font-size: 0.35rem;
+.nav-sprite {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 0 4px rgba(0,212,255,0.6));
+}
+
+.nav-dex {
+  color: var(--yellow);
+  font-size: 0.45rem;
+}
+
+.nav-status {
+  font-size: 0.45rem;
+  color: var(--green);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   color: var(--text-dim);
-  opacity: 0.7;
-  margin-left: 0.3rem;
+  font-size: 0.45rem;
 }
 
 .status-dot {
@@ -262,17 +281,41 @@ header {
 }
 
 .hero-sprite-img {
-  width: 160px;
-  height: 160px;
+  width: 220px;
+  height: 220px;
   object-fit: contain;
-  filter: drop-shadow(0 0 24px rgba(0,212,255,0.7));
+  filter: drop-shadow(0 0 28px rgba(0,212,255,0.8)) drop-shadow(0 0 60px rgba(0,212,255,0.3));
   animation: duck-float 4s ease-in-out infinite;
   cursor: pointer;
-  transition: filter 0.3s;
+  transition: filter 0.3s, width 0.3s, height 0.3s;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-sprite-img:hover {
-  filter: drop-shadow(0 0 36px rgba(0,212,255,1)) brightness(1.15);
+  filter: drop-shadow(0 0 40px rgba(0,212,255,1)) drop-shadow(0 0 80px rgba(0,212,255,0.4)) brightness(1.1);
+}
+
+/* Sprite aura ring behind it */
+.sprite-aura {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,212,255,0.2);
+  box-shadow:
+    0 0 20px rgba(0,212,255,0.15),
+    inset 0 0 20px rgba(0,212,255,0.08);
+  animation: aura-pulse 3s ease-in-out infinite;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes aura-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+  50% { transform: translate(-50%, -50%) scale(1.12); opacity: 1; }
 }
 
 .sprite-label {
@@ -331,6 +374,122 @@ h1.game-title {
   font-size: 0.5rem;
   color: var(--text-dim);
   letter-spacing: 0.1em;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  transition: color 0.2s;
+}
+
+.press-start:hover {
+  color: var(--green);
+}
+
+/* ===========================
+   SPARKLES
+   =========================== */
+.sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sparkle {
+  position: absolute;
+  color: var(--yellow);
+  font-size: 1rem;
+  animation: sparkle-drift 4s ease-in-out infinite;
+  opacity: 0;
+  text-shadow: 0 0 8px var(--yellow), 0 0 20px rgba(252,211,77,0.5);
+}
+
+.s1 { top: 15%; left: 20%; animation-delay: 0s;    font-size: 0.8rem; }
+.s2 { top: 25%; right: 22%; animation-delay: 0.8s; font-size: 1.2rem; }
+.s3 { top: 60%; left: 15%; animation-delay: 1.6s;  font-size: 0.9rem; }
+.s4 { top: 70%; right: 18%; animation-delay: 2.4s; font-size: 1.1rem; }
+.s5 { top: 40%; left: 8%;  animation-delay: 3.2s;  font-size: 0.75rem; }
+
+@keyframes sparkle-drift {
+  0%   { opacity: 0; transform: translateY(0) scale(0.5) rotate(0deg); }
+  30%  { opacity: 1; transform: translateY(-8px) scale(1) rotate(15deg); }
+  60%  { opacity: 0.8; transform: translateY(-14px) scale(1.1) rotate(-10deg); }
+  100% { opacity: 0; transform: translateY(-20px) scale(0.6) rotate(20deg); }
+}
+
+/* ===========================
+   BRAINWAVE RINGS
+   =========================== */
+.brainwave-rings {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(0,212,255,0.15);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: brainwave 5s ease-out infinite;
+}
+
+.ring-1 { width: 200px; height: 200px; animation-delay: 0s; }
+.ring-2 { width: 350px; height: 350px; animation-delay: 1.2s; border-color: rgba(167,139,250,0.1); }
+.ring-3 { width: 520px; height: 520px; animation-delay: 2.4s; border-color: rgba(0,212,255,0.08); }
+.ring-4 { width: 700px; height: 700px; animation-delay: 3.6s; border-color: rgba(167,139,250,0.05); }
+
+@keyframes brainwave {
+  0%   { transform: translate(-50%, -50%) scale(0); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+}
+
+/* ===========================
+   PIXEL CANVAS (particle field)
+   =========================== */
+.pixel-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ===========================
+   PSYCHIC BURST (keypress effect)
+   =========================== */
+.psychic-burst {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  background: radial-gradient(ellipse at center, rgba(167,139,250,0.3) 0%, rgba(0,212,255,0.15) 40%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+.psychic-burst.active {
+  animation: burst-flash 0.8s ease-out forwards;
+}
+
+@keyframes burst-flash {
+  0%   { opacity: 1; }
+  30%  { opacity: 0.7; }
+  100% { opacity: 0; }
+}
+
+/* Contact sprite */
+.contact-sprite {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px rgba(0,212,255,0.5));
+  animation: duck-float 4s ease-in-out infinite;
 }
 
 /* ===========================

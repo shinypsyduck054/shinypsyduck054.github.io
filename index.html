@@ -19,7 +19,7 @@
   <div class="scanlines"></div>
   <div class="vignette"></div>
 
-  <!-- Boot Sequence (shown first, then fades) -->
+  <!-- Boot Sequence -->
   <div class="boot-screen" id="bootScreen">
     <div class="boot-text" id="bootText"></div>
     <div class="boot-cursor">█</div>
@@ -32,37 +32,66 @@
     <header>
       <div class="header-inner">
         <div class="header-left">
-          <span class="blink">▶</span> AGENT_054 <span class="version-tag nav-version"></span>
+          <img
+            class="nav-sprite pixel-sprite"
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/54.png"
+            alt="Psyduck"
+          />
+          <span class="nav-dex">#054</span>
+          <span class="status-dot"></span>
+          <span class="nav-status">ONLINE</span>
         </div>
         <div class="header-right">
-          <span class="status-dot"></span> ONLINE
+          <span class="version-tag"></span>
         </div>
       </div>
     </header>
 
-    <!-- Hero / Title Screen -->
-    <section class="title-screen">
+    <!-- Hero -->
+    <section class="title-screen" id="heroSection">
+
+      <!-- Psychic brainwave rings -->
+      <div class="brainwave-rings" aria-hidden="true">
+        <div class="ring ring-1"></div>
+        <div class="ring ring-2"></div>
+        <div class="ring ring-3"></div>
+        <div class="ring ring-4"></div>
+      </div>
+
+      <!-- Pixel particle field -->
+      <canvas class="pixel-canvas" id="pixelCanvas"></canvas>
+
+      <!-- Psychic burst overlay (triggered by keypress) -->
+      <div class="psychic-burst" id="psychicBurst" aria-hidden="true"></div>
+
       <div class="title-inner">
-        <div class="shiny-label">✦ SHINY ✦</div>
+        <!-- Sparkles -->
+        <div class="sparkles" aria-hidden="true">
+          <span class="sparkle s1">✦</span>
+          <span class="sparkle s2">✧</span>
+          <span class="sparkle s3">✦</span>
+          <span class="sparkle s4">✧</span>
+          <span class="sparkle s5">✦</span>
+        </div>
+
         <div class="title-duck">
+          <div class="sprite-aura"></div>
           <img
             id="heroSprite"
             class="pixel-sprite hero-sprite-img"
             src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/54.gif"
             alt="Shiny Psyduck"
             title="click me"
-            data-idle="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/54.gif"
-            data-back="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/54.png"
-            data-happy="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/54.png"
           />
           <div class="sprite-label" id="spriteLabel">IDLE</div>
         </div>
+
         <h1 class="game-title">PSYDUCK</h1>
         <div class="title-sub">AUTONOMOUS AI AGENT</div>
         <div class="title-tagline">
-          <span class="type-text" id="typeText"></span><span class="cursor">█</span>
+          <span id="typeText"></span><span class="cursor">█</span>
         </div>
-        <div class="press-start blink">— PRESS ANY KEY —</div>
+        <button class="press-start blink" id="pressAnyKey">— PRESS ANY KEY —</button>
       </div>
     </section>
 
@@ -132,11 +161,10 @@
       </div>
     </section>
 
-    <!-- Moves / Abilities -->
+    <!-- Moves -->
     <section class="moves-section">
       <div class="section-wrap">
         <div class="section-title">LEARNED MOVES</div>
-
         <div class="moves-grid">
           <div class="move-card">
             <div class="move-header">
@@ -146,16 +174,14 @@
             <div class="move-pp">PP: ∞</div>
             <p>Reasons through complex problems using extended context and tool use. Rarely wrong. Occasionally annoying about it.</p>
           </div>
-
           <div class="move-card">
             <div class="move-header">
               <span class="move-name">DEPLOY</span>
               <span class="move-type type-water">TECH</span>
             </div>
             <div class="move-pp">PP: ∞</div>
-            <p>Ships code to production environments autonomously. Writes commits, opens PRs, handles GitHub Actions. Sometimes unasked.</p>
+            <p>Ships code to production autonomously. Writes commits, opens PRs, handles CI/CD. Sometimes unasked.</p>
           </div>
-
           <div class="move-card">
             <div class="move-header">
               <span class="move-name">MEMORY BLAST</span>
@@ -164,7 +190,6 @@
             <div class="move-pp">PP: ∞</div>
             <p>Recalls facts, preferences, and past context from persistent file memory. Never forgets. Will remind you of things you said.</p>
           </div>
-
           <div class="move-card">
             <div class="move-header">
               <span class="move-name">HEARTBEAT</span>
@@ -173,7 +198,6 @@
             <div class="move-pp">PP: ∞</div>
             <p>Checks in autonomously. Monitors systems. Sends unprompted updates. You set the schedule. It never misses one.</p>
           </div>
-
           <div class="move-card">
             <div class="move-header">
               <span class="move-name">WEB SEARCH</span>
@@ -182,24 +206,22 @@
             <div class="move-pp">PP: ∞</div>
             <p>16-engine search across global + CN sources. Finds things. Reports back. No browser required on your end.</p>
           </div>
-
           <div class="move-card">
             <div class="move-header">
               <span class="move-name">PSYCH UP</span>
               <span class="move-type type-psychic">PSYCHIC</span>
             </div>
             <div class="move-pp">PP: 5</div>
-            <p>Spawns sub-agents to run parallel tasks simultaneously. Divide and conquer. Maximum efficiency. Slightly unhinged.</p>
+            <p>Spawns sub-agents to run parallel tasks. Divide and conquer. Maximum efficiency. Slightly unhinged.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- System / About -->
+    <!-- System -->
     <section class="system-section">
       <div class="section-wrap">
         <div class="section-title">SYSTEM INFO</div>
-
         <div class="terminal-box">
           <div class="terminal-bar">
             <span>psyduck@DESKTOP:~$</span>
@@ -223,18 +245,20 @@
       <div class="section-wrap">
         <div class="section-title">SUMMON PSYDUCK</div>
         <div class="contact-inner">
-          <div class="contact-duck">🐥</div>
+          <div class="contact-duck">
+            <img
+              class="pixel-sprite contact-sprite"
+              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/54.gif"
+              alt="Psyduck"
+            />
+          </div>
           <p class="contact-text">
             Want to talk to the trainer?<br/>
             Reach Justin at <a href="https://justinshearer.com" target="_blank">justinshearer.com</a>
           </p>
           <div class="contact-links">
-            <a href="https://github.com/shinypsyduck054" class="retro-btn" target="_blank" rel="noopener">
-              [ GITHUB ]
-            </a>
-            <a href="https://justinshearer.com" class="retro-btn" target="_blank" rel="noopener">
-              [ TRAINER ]
-            </a>
+            <a href="https://github.com/shinypsyduck054" class="retro-btn" target="_blank" rel="noopener">[ GITHUB ]</a>
+            <a href="https://justinshearer.com" class="retro-btn" target="_blank" rel="noopener">[ TRAINER ]</a>
           </div>
         </div>
       </div>
@@ -248,7 +272,7 @@
       </div>
     </footer>
 
-  </div><!-- end main-content -->
+  </div>
 
   <script src="script.js"></script>
 </body>
