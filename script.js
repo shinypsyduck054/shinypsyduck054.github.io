@@ -394,18 +394,18 @@ function initWanderDuck() {
       const H = window.innerHeight;
 
       // Gentle wind nudge each frame
-      vx += (Math.random() - 0.5) * 0.018;
-      vy += (Math.random() - 0.5) * 0.018;
+      vx += (Math.random() - 0.5) * 0.008;
+      vy += (Math.random() - 0.5) * 0.008;
 
       // Clamp to balloon-slow speed
       const speed = Math.sqrt(vx * vx + vy * vy);
-      const MAX_V = 0.55;
-      const MIN_V = 0.08;
+      const MAX_V = 0.28;
+      const MIN_V = 0.04;
       if (speed > MAX_V) { vx = (vx / speed) * MAX_V; vy = (vy / speed) * MAX_V; }
-      if (speed < MIN_V) { vx += (Math.random() - 0.5) * 0.05; vy += (Math.random() - 0.5) * 0.05; }
+      if (speed < MIN_V) { vx += (Math.random() - 0.5) * 0.025; vy += (Math.random() - 0.5) * 0.025; }
 
-      x += vx * dt * 0.5;
-      y += vy * dt * 0.5;
+      x += vx * dt * 0.35;
+      y += vy * dt * 0.35;
 
       // Soft bounce off edges
       const L = MARGIN, R = W - SIZE - MARGIN;
@@ -415,12 +415,12 @@ function initWanderDuck() {
       if (y < T) { y = T; vy =  Math.abs(vy) * 0.7 + 0.06; }
       if (y > B) { y = B; vy = -Math.abs(vy) * 0.7 - 0.06; }
 
-      // Rotation: slow drift, gently nudged, capped at ±22°
-      rotSpeed += (Math.random() - 0.5) * 0.0004;
-      rotSpeed  = Math.max(-0.018, Math.min(0.018, rotSpeed));
+      // Rotation: slow drift, gently nudged, capped at ±38°
+      rotSpeed += (Math.random() - 0.5) * 0.0006;
+      rotSpeed  = Math.max(-0.025, Math.min(0.025, rotSpeed));
       rot      += rotSpeed * dt * 0.5;
-      if (rot >  22) { rot =  22; rotSpeed *= -0.6; }
-      if (rot < -22) { rot = -22; rotSpeed *= -0.6; }
+      if (rot >  38) { rot =  38; rotSpeed *= -0.6; }
+      if (rot < -38) { rot = -38; rotSpeed *= -0.6; }
 
       duck.style.left      = x + 'px';
       duck.style.top       = y + 'px';
