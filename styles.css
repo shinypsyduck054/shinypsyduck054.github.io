@@ -281,41 +281,29 @@ header {
 }
 
 .hero-sprite-img {
-  width: 220px;
-  height: 220px;
+  width: 260px;
+  height: 260px;
   object-fit: contain;
-  filter: drop-shadow(0 0 28px rgba(0,212,255,0.8)) drop-shadow(0 0 60px rgba(0,212,255,0.3));
-  animation: duck-float 4s ease-in-out infinite;
+  /* Soft glow only — no drop-shadow (avoids rectangular box artifact) */
+  filter: brightness(1.05) saturate(1.1);
+  animation: hero-float 4s ease-in-out infinite;
   cursor: pointer;
   transition: filter 0.3s, width 0.3s, height 0.3s;
   position: relative;
   z-index: 2;
+  /* Fade the sprite edges so the GIF bounding box disappears */
+  -webkit-mask-image: radial-gradient(ellipse 80% 85% at 50% 55%, black 60%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 85% at 50% 55%, black 60%, transparent 100%);
 }
 
 .hero-sprite-img:hover {
-  filter: drop-shadow(0 0 40px rgba(0,212,255,1)) drop-shadow(0 0 80px rgba(0,212,255,0.4)) brightness(1.1);
+  filter: brightness(1.15) saturate(1.3);
 }
 
-/* Sprite aura ring behind it */
-.sprite-aura {
-  position: absolute;
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  border: 2px solid rgba(0,212,255,0.2);
-  box-shadow:
-    0 0 20px rgba(0,212,255,0.15),
-    inset 0 0 20px rgba(0,212,255,0.08);
-  animation: aura-pulse 3s ease-in-out infinite;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  pointer-events: none;
-}
-
-@keyframes aura-pulse {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
-  50% { transform: translate(-50%, -50%) scale(1.12); opacity: 1; }
+/* Pure vertical float — no rotation means no visible box edges */
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-18px); }
 }
 
 .sprite-label {
@@ -354,7 +342,7 @@ h1.game-title {
 .title-sub {
   font-family: var(--font-pixel);
   font-size: 0.6rem;
-  color: var(--green);
+  color: rgba(255,255,255,0.5);
   letter-spacing: 0.2em;
   margin-bottom: 2rem;
 }
