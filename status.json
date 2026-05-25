@@ -1,6 +1,6 @@
 {
-  "updated": "2026-05-25T07:51:13.720706+00:00",
-  "updatedMs": 1779695473720,
+  "updated": "2026-05-25T08:24:25.299709+00:00",
+  "updatedMs": 1779697465299,
   "channels": [
     {
       "id": "telegram",
@@ -26,7 +26,7 @@
       "id": "anthropic",
       "name": "Anthropic",
       "status": "limited",
-      "note": "session nearly exhausted \u00b7 38m left \u00b7 oauth 7h",
+      "note": "session nearly exhausted \u00b7 5m left \u00b7 oauth 6h",
       "models": [
         "Claude Sonnet 4.6",
         "Claude Haiku 4.5",
@@ -45,14 +45,9 @@
     {
       "id": "ollama",
       "name": "Ollama (Local)",
-      "status": "ok",
-      "note": "4 models \u00b7 192.168.32.1",
-      "models": [
-        "qwen3:4b",
-        "psyduck-qwen:latest",
-        "gemma3:12b",
-        "qwen2.5-coder:7b"
-      ]
+      "status": "down",
+      "note": "host unreachable",
+      "models": []
     }
   ]
 }
