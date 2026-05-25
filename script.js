@@ -1,7 +1,7 @@
 // ===========================
 // VERSION  (footer only — header uses nav now)
 // ===========================
-const VERSION = '1.6.8';
+const VERSION = '1.6.9';
 
 document.querySelectorAll('.version-tag').forEach(el => {
   el.textContent = `v${VERSION}`;
@@ -11,7 +11,7 @@ document.querySelectorAll('.version-tag').forEach(el => {
 // BOOT SEQUENCE
 // ===========================
 const bootLines = [
-  'PSYDUCK OS v1.6.8 [SHINY EDITION]',
+  'PSYDUCK OS v1.6.9 [SHINY EDITION]',
   '──────────────────────────────────────',
   'Initializing neural interface......OK',
   'Loading memory banks.................OK',
@@ -73,7 +73,7 @@ function skipBoot() {
     initTrippy();
     initWanderDuck();
     // Shorter burst on skip
-    setTimeout(() => triggerBootTrippy(1800), 100);
+    setTimeout(() => triggerBootTrippy(1400), 100);
   }
 }
 
@@ -162,7 +162,7 @@ function triggerTrippy(duration = 2400) {
 }
 
 // Boot entrance trippy — starts at full intensity, slowly settles
-function triggerBootTrippy(duration = 4200) {
+function triggerBootTrippy(duration = 2600) {
   if (!trippyTurbEl || !trippyDisplEl) return;
   if (trippyRaf) cancelAnimationFrame(trippyRaf);
   trippyRunning = true;
@@ -180,18 +180,19 @@ function triggerBootTrippy(duration = 4200) {
     const elapsed  = now - t0;
     const progress = Math.min(elapsed / duration, 1);
 
-    // Envelope: full blast → short hold → long slow fade
+    // Envelope: quick ramp → brief hold → immediate long settle
     let env;
-    if (progress < 0.08)       env = progress / 0.08;          // quick ramp up
-    else if (progress < 0.30)  env = 1;                         // hold at peak
-    else                       env = 1 - (progress - 0.30) / 0.70; // long settle
+    if (progress < 0.08)       env = progress / 0.08;               // ramp (0–8%)
+    else if (progress < 0.18)  env = 1;                              // brief hold (8–18%)
+    else                       env = 1 - (progress - 0.18) / 0.82;  // long settle (18–100%)
 
-    const freq = 0.007 + env * 0.030;
-    const disp = env * 100;
-    const blur = env * 10;
-    const hue  = progress * 360;
-    const sat  = 1 + env * 3.5;
-    const seed = Math.floor(progress * 20);
+    // Moderate peak — noticeable but not full chaos
+    const freq = 0.007 + env * 0.018;
+    const disp = env * 58;
+    const blur = env * 6;
+    const hue  = progress * 260;
+    const sat  = 1 + env * 2.2;
+    const seed = Math.floor(progress * 14);
 
     trippyTurbEl.setAttribute('baseFrequency', `${freq.toFixed(4)} ${(freq * 0.55).toFixed(4)}`);
     trippyTurbEl.setAttribute('seed', seed);
