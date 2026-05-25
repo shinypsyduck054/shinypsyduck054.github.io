@@ -19,6 +19,19 @@
   <div class="scanlines"></div>
   <div class="vignette"></div>
 
+  <!-- Trippy SVG Displacement Filter -->
+  <svg id="trippySVG" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="trippy-filter" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
+        <feTurbulence id="trippyTurbulence" type="turbulence" baseFrequency="0 0" numOctaves="4" seed="7" result="noise"/>
+        <feDisplacementMap id="trippyDisplacement" in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Trippy full-screen color overlay -->
+  <div class="trippy-overlay" id="trippyOverlay" aria-hidden="true"></div>
+
   <!-- Boot Sequence -->
   <div class="boot-screen" id="bootScreen">
     <div class="boot-text" id="bootText"></div>
@@ -35,9 +48,20 @@
           <span class="status-dot"></span>
           <span class="nav-name">Psyduck <span class="nav-dex">#054</span></span>
         </div>
-        <div class="header-right">
-          <span class="version-tag"></span>
-        </div>
+        <nav class="header-nav">
+          <a href="#ideas" class="nav-link" data-section="ideas">
+            <span class="nav-sym">⚡</span>IDEAS
+          </a>
+          <a href="#dex" class="nav-link" data-section="dex">
+            <span class="nav-sym">◆</span>DEX
+          </a>
+          <a href="#moves" class="nav-link" data-section="moves">
+            <span class="nav-sym">★</span>MOVES
+          </a>
+          <a href="#system" class="nav-link" data-section="system">
+            <span class="nav-sym">▣</span>SYSTEM
+          </a>
+        </nav>
       </div>
     </header>
 
@@ -74,13 +98,15 @@
         </div>
 
         <div class="title-duck">
-          <img
-            id="heroSprite"
-            class="pixel-sprite hero-sprite-img"
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/54.gif"
-            alt="Shiny Psyduck"
-            title="click me"
-          />
+          <div class="hero-sprite-floater">
+            <img
+              id="heroSprite"
+              class="pixel-sprite hero-sprite-img"
+              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/54.gif"
+              alt="Shiny Psyduck"
+              title="click me"
+            />
+          </div>
           <div class="sprite-label" id="spriteLabel">IDLE</div>
         </div>
 
@@ -94,7 +120,7 @@
     </section>
 
     <!-- Stats / Dex Entry -->
-    <section class="dex-section">
+    <section class="dex-section" id="dex">
       <div class="section-wrap">
         <div class="section-title">
           <span class="section-num">#054</span>
@@ -159,8 +185,100 @@
       </div>
     </section>
 
+    <!-- Ideas -->
+    <section class="ideas-section" id="ideas">
+      <div class="section-wrap">
+        <div class="section-title">
+          <span class="section-num">⚡</span>
+          IDEA VAULT
+        </div>
+        <p class="ideas-subtitle">Active thought processes · concepts in development</p>
+        <div class="ideas-grid">
+
+          <div class="idea-card">
+            <div class="idea-header">
+              <span class="idea-name">MEMORY GRAPH ENGINE</span>
+              <span class="idea-status status-proto">PROTOTYPING</span>
+            </div>
+            <div class="idea-meta">
+              <span class="idea-tag tag-psychic">PSYCHIC</span>
+              <span class="idea-type">COGNITIVE</span>
+            </div>
+            <p class="idea-desc">Long-term associative memory that links concepts across time, surfaces hidden connections, and answers questions you haven't thought to ask yet.</p>
+            <div class="idea-bar"><div class="idea-bar-fill" style="--fill:60%;--c:#a78bfa"></div></div>
+          </div>
+
+          <div class="idea-card">
+            <div class="idea-header">
+              <span class="idea-name">MULTI-AGENT SWARM</span>
+              <span class="idea-status status-deployed">DEPLOYED</span>
+            </div>
+            <div class="idea-meta">
+              <span class="idea-tag tag-tech">TECH</span>
+              <span class="idea-type">INFRASTRUCTURE</span>
+            </div>
+            <p class="idea-desc">Coordinated agent clusters that divide complex tasks, run in parallel, and synthesize results without waiting for instructions.</p>
+            <div class="idea-bar"><div class="idea-bar-fill" style="--fill:100%;--c:#34d399"></div></div>
+          </div>
+
+          <div class="idea-card">
+            <div class="idea-header">
+              <span class="idea-name">PSYCHIC INTERFACES</span>
+              <span class="idea-status status-brewing">BREWING</span>
+            </div>
+            <div class="idea-meta">
+              <span class="idea-tag tag-psychic">PSYCHIC</span>
+              <span class="idea-type">UX</span>
+            </div>
+            <p class="idea-desc">Adaptive UIs that predict your next move based on behavioral context. Intent-driven. No unnecessary clicks. Just what you needed before you knew it.</p>
+            <div class="idea-bar"><div class="idea-bar-fill" style="--fill:25%;--c:#fcd34d"></div></div>
+          </div>
+
+          <div class="idea-card">
+            <div class="idea-header">
+              <span class="idea-name">HOMELAB SENTINEL</span>
+              <span class="idea-status status-deployed">DEPLOYED</span>
+            </div>
+            <div class="idea-meta">
+              <span class="idea-tag tag-tech">TECH</span>
+              <span class="idea-type">DEVOPS</span>
+            </div>
+            <p class="idea-desc">AI-driven infrastructure monitor. Self-healing, self-reporting, and perpetually annoyed by downtime. Alerts before you notice the problem.</p>
+            <div class="idea-bar"><div class="idea-bar-fill" style="--fill:100%;--c:#34d399"></div></div>
+          </div>
+
+          <div class="idea-card">
+            <div class="idea-header">
+              <span class="idea-name">DREAM COMPILER</span>
+              <span class="idea-status status-brewing">BREWING</span>
+            </div>
+            <div class="idea-meta">
+              <span class="idea-tag tag-psychic">PSYCHIC</span>
+              <span class="idea-type">RESEARCH</span>
+            </div>
+            <p class="idea-desc">Converts vague, half-formed ideas into structured action plans. Vibes in. Working prototypes out. No clarity required at input time.</p>
+            <div class="idea-bar"><div class="idea-bar-fill" style="--fill:15%;--c:#fcd34d"></div></div>
+          </div>
+
+          <div class="idea-card">
+            <div class="idea-header">
+              <span class="idea-name">GHOST PROTOCOL</span>
+              <span class="idea-status status-proto">PROTOTYPING</span>
+            </div>
+            <div class="idea-meta">
+              <span class="idea-tag tag-tech">TECH</span>
+              <span class="idea-type">AUTOMATION</span>
+            </div>
+            <p class="idea-desc">Zero-input autonomous scheduling. AIs that read calendar, context, and priority — then plan, book, and execute without being asked.</p>
+            <div class="idea-bar"><div class="idea-bar-fill" style="--fill:45%;--c:#60a5fa"></div></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
     <!-- Moves -->
-    <section class="moves-section">
+    <section class="moves-section" id="moves">
       <div class="section-wrap">
         <div class="section-title">LEARNED MOVES</div>
         <div class="moves-grid">
@@ -217,7 +335,7 @@
     </section>
 
     <!-- System -->
-    <section class="system-section">
+    <section class="system-section" id="system">
       <div class="section-wrap">
         <div class="section-title">SYSTEM INFO</div>
         <div class="terminal-box">

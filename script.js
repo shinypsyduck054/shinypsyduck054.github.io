@@ -1,5 +1,5 @@
 // ===========================
-// VERSION
+// VERSION  (footer only — header uses nav now)
 // ===========================
 const VERSION = '1.4.0';
 
@@ -55,6 +55,7 @@ function finishBoot() {
     mainContent.classList.add('visible');
     startTypewriter();
     initPixelCanvas();
+    initTrippy();
   }, 600);
 }
 
@@ -77,6 +78,73 @@ document.addEventListener('keydown', (e) => { if (!bootDone) skipBoot(); });
 setTimeout(typeBoot, 400);
 
 // ===========================
+// TRIPPY EFFECT ENGINE
+// ===========================
+let trippyTurbEl    = null;
+let trippyDisplEl   = null;
+let trippyRaf       = null;
+let trippyRunning   = false;
+const trippyOverlay = document.getElementById('trippyOverlay');
+
+function initTrippy() {
+  trippyTurbEl  = document.getElementById('trippyTurbulence');
+  trippyDisplEl = document.getElementById('trippyDisplacement');
+}
+
+function triggerTrippy(duration = 2400) {
+  if (!trippyTurbEl || !trippyDisplEl) return;
+  if (trippyRaf) cancelAnimationFrame(trippyRaf);
+  trippyRunning = true;
+
+  // Fire color overlay
+  if (trippyOverlay) {
+    trippyOverlay.classList.remove('active');
+    void trippyOverlay.offsetWidth;
+    trippyOverlay.classList.add('active');
+  }
+
+  mainContent.classList.add('trippy-active');
+  const t0 = performance.now();
+
+  function frame(now) {
+    const elapsed  = now - t0;
+    const progress = Math.min(elapsed / duration, 1);
+
+    // Smooth envelope: fast ramp-up, plateau, slow fade
+    let env;
+    if (progress < 0.12)      env = progress / 0.12;
+    else if (progress < 0.55) env = 1;
+    else                      env = 1 - (progress - 0.55) / 0.45;
+
+    const freq  = 0.008 + env * 0.038;
+    const disp  = env * 140;
+    const blur  = env * 16;
+    const hue   = progress * 480;
+    const sat   = 1 + env * 5.5;
+    const seed  = Math.floor(progress * 30); // animates turbulence seed for extra chaos
+
+    trippyTurbEl.setAttribute('baseFrequency', `${freq.toFixed(4)} ${(freq * 0.55).toFixed(4)}`);
+    trippyTurbEl.setAttribute('seed', seed);
+    trippyDisplEl.setAttribute('scale', disp.toFixed(1));
+
+    mainContent.style.filter = `url(#trippy-filter) blur(${blur.toFixed(1)}px) saturate(${sat.toFixed(2)}) hue-rotate(${hue.toFixed(0)}deg)`;
+
+    if (progress < 1) {
+      trippyRaf = requestAnimationFrame(frame);
+    } else {
+      // Reset cleanly
+      trippyTurbEl.setAttribute('baseFrequency', '0 0');
+      trippyDisplEl.setAttribute('scale', '0');
+      mainContent.style.filter = '';
+      mainContent.classList.remove('trippy-active');
+      trippyRunning = false;
+    }
+  }
+
+  trippyRaf = requestAnimationFrame(frame);
+}
+
+// ===========================
 // PRESS ANY KEY — psychic burst
 // ===========================
 const pressBtn    = document.getElementById('pressAnyKey');
@@ -89,15 +157,14 @@ function triggerPsychicBurst() {
   void psychicBurst.offsetWidth;
   psychicBurst.classList.add('active');
 
-  // Sprite reacts
-  setSprite('happy', 'PSYCH!');
+  // Sprite GROWS on keypress (never shrinks)
   if (heroSprite) {
-    heroSprite.style.filter = 'drop-shadow(0 0 60px rgba(167,139,250,1)) brightness(1.3)';
-    setTimeout(() => {
-      heroSprite.style.filter = '';
-      setSprite('idle', 'IDLE');
-    }, 900);
+    heroSprite.classList.add('burst-grow');
+    setTimeout(() => { heroSprite.classList.remove('burst-grow'); }, 700);
   }
+
+  setSprite('happy', 'PSYCH!');
+  setTimeout(() => { setSprite('idle', 'IDLE'); }, 900);
 
   // Temporarily boost brainwave rings
   document.querySelectorAll('.ring').forEach(r => {
@@ -277,45 +344,92 @@ if (heroSprite) {
     if (raveActive) return;
     duckClicks++;
 
-    if (duckClicks === 1) { setSprite('back', 'SHY'); setTimeout(() => setSprite('idle', 'IDLE'), 1200); }
-    if (duckClicks === 3) { setSprite('happy', 'HAPPY'); setTimeout(() => setSprite('idle', 'IDLE'), 1000); }
+    // 🌀 Every click = trippy screen
+    triggerTrippy(2600);
+
+    if (duckClicks === 1 && spriteLabel) { spriteLabel.textContent = 'SHY~'; spriteLabel.style.color = '#a78bfa'; setTimeout(() => { if (spriteLabel) { spriteLabel.textContent = 'IDLE'; spriteLabel.style.color = ''; } }, 1200); }
+    if (duckClicks === 3 && spriteLabel) { spriteLabel.textContent = 'HAPPY!'; spriteLabel.style.color = '#fcd34d'; setTimeout(() => { if (spriteLabel) { spriteLabel.textContent = 'IDLE'; spriteLabel.style.color = ''; } }, 1000); }
 
     if (duckClicks >= 7) {
       raveActive = true;
       setSprite('rave', 'RAVE MODE 🕺');
-      heroSprite.style.width = '280px';
-      heroSprite.style.height = '280px';
+      // Rave: grow slightly, sustained trippy
+      heroSprite.style.width = '290px';
+      heroSprite.style.height = '290px';
 
-      let hue = 0;
-      const raveInterval = setInterval(() => {
-        hue = (hue + 25) % 360;
-        document.body.style.filter = `hue-rotate(${hue}deg) saturate(1.8)`;
-      }, 80);
+      // Sustained rave trippy loop
+      let raveTrippyLoop;
+      function keepTrippy() {
+        if (!raveActive) return;
+        triggerTrippy(1200);
+        raveTrippyLoop = setTimeout(keepTrippy, 900);
+      }
+      keepTrippy();
 
       setTimeout(() => {
-        clearInterval(raveInterval);
-        document.body.style.filter = '';
-        heroSprite.style.width = '';
+        clearTimeout(raveTrippyLoop);
+        raveActive = false;
+        // Let final trippy fade, then clean up
+        setTimeout(() => {
+          if (trippyRaf) cancelAnimationFrame(trippyRaf);
+          mainContent.style.filter = '';
+          if (trippyTurbEl)  trippyTurbEl.setAttribute('baseFrequency', '0 0');
+          if (trippyDisplEl) trippyDisplEl.setAttribute('scale', '0');
+          trippyRunning = false;
+        }, 2400);
+        heroSprite.style.width  = '';
         heroSprite.style.height = '';
         setSprite('idle', 'IDLE');
         duckClicks = 0;
-        raveActive = false;
       }, 3500);
     }
   });
 
   heroSprite.addEventListener('mouseenter', () => {
-    if (!raveActive && duckClicks === 0) setSprite('happy', 'HI :)');
+    // Don't swap sprite — keep the animated GIF running. Just update label.
+    if (!raveActive && spriteLabel) {
+      spriteLabel.textContent = 'HI :)';
+      spriteLabel.style.color = 'var(--green)';
+    }
   });
   heroSprite.addEventListener('mouseleave', () => {
-    if (!raveActive) setSprite('idle', 'IDLE');
+    if (!raveActive && spriteLabel) {
+      spriteLabel.textContent = 'IDLE';
+      spriteLabel.style.color = '';
+    }
   });
 }
+
+// ===========================
+// NAV ACTIVE STATE
+// ===========================
+const navLinks = document.querySelectorAll('.nav-link[data-section]');
+const sections = {
+  ideas:  document.getElementById('ideas'),
+  dex:    document.getElementById('dex'),
+  moves:  document.getElementById('moves'),
+  system: document.getElementById('system'),
+};
+
+function updateNav() {
+  const scrollY = window.scrollY + 80;
+  let active = null;
+  for (const [id, el] of Object.entries(sections)) {
+    if (el && el.offsetTop <= scrollY && el.offsetTop + el.offsetHeight > scrollY) {
+      active = id;
+    }
+  }
+  navLinks.forEach(link => {
+    link.classList.toggle('active', link.dataset.section === active);
+  });
+}
+window.addEventListener('scroll', updateNav, { passive: true });
 
 // ===========================
 // CONSOLE
 // ===========================
 console.log(`%c🐥 PSYDUCK OPERATIONAL — v${VERSION}`, 'color: #fcd34d; font-family: monospace; font-size: 18px; font-weight: bold;');
+console.log('%c >> Click the duck for a trippy ride.', 'color: #a78bfa; font-family: monospace; font-size: 12px;');
 console.log('%c >> Press any key for psychic burst.', 'color: #00d4ff; font-family: monospace; font-size: 12px;');
-console.log('%c >> Click the duck 7x for rave mode.', 'color: #a78bfa; font-family: monospace; font-size: 12px;');
+console.log('%c >> Click the duck 7x for rave mode.', 'color: #f87171; font-family: monospace; font-size: 12px;');
 console.log('%c >> github.com/shinypsyduck054', 'color: #6a9ab8; font-family: monospace; font-size: 11px;');
