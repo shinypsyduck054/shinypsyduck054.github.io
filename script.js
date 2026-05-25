@@ -1,7 +1,7 @@
 // ===========================
 // VERSION  (footer only — header uses nav now)
 // ===========================
-const VERSION = '1.6.1';
+const VERSION = '1.6.2';
 
 document.querySelectorAll('.version-tag').forEach(el => {
   el.textContent = `v${VERSION}`;
@@ -11,7 +11,7 @@ document.querySelectorAll('.version-tag').forEach(el => {
 // BOOT SEQUENCE
 // ===========================
 const bootLines = [
-  'PSYDUCK OS v1.6.1 [SHINY EDITION]',
+  'PSYDUCK OS v1.6.2 [SHINY EDITION]',
   '──────────────────────────────────────',
   'Initializing neural interface......OK',
   'Loading memory banks.................OK',
@@ -394,18 +394,18 @@ function initWanderDuck() {
       const H = window.innerHeight;
 
       // Gentle wind nudge each frame
-      vx += (Math.random() - 0.5) * 0.008;
-      vy += (Math.random() - 0.5) * 0.008;
+      vx += (Math.random() - 0.5) * 0.005;
+      vy += (Math.random() - 0.5) * 0.005;
 
       // Clamp to balloon-slow speed
       const speed = Math.sqrt(vx * vx + vy * vy);
-      const MAX_V = 0.28;
-      const MIN_V = 0.04;
+      const MAX_V = 0.18;
+      const MIN_V = 0.03;
       if (speed > MAX_V) { vx = (vx / speed) * MAX_V; vy = (vy / speed) * MAX_V; }
-      if (speed < MIN_V) { vx += (Math.random() - 0.5) * 0.025; vy += (Math.random() - 0.5) * 0.025; }
+      if (speed < MIN_V) { vx += (Math.random() - 0.5) * 0.015; vy += (Math.random() - 0.5) * 0.015; }
 
-      x += vx * dt * 0.35;
-      y += vy * dt * 0.35;
+      x += vx * dt * 0.25;
+      y += vy * dt * 0.25;
 
       // Soft bounce off edges
       const L = MARGIN, R = W - SIZE - MARGIN;
@@ -416,8 +416,8 @@ function initWanderDuck() {
       if (y > B) { y = B; vy = -Math.abs(vy) * 0.7 - 0.06; }
 
       // Rotation: slow drift, gently nudged, capped at ±38°
-      rotSpeed += (Math.random() - 0.5) * 0.0006;
-      rotSpeed  = Math.max(-0.025, Math.min(0.025, rotSpeed));
+      rotSpeed += (Math.random() - 0.5) * 0.001;
+      rotSpeed  = Math.max(-0.04, Math.min(0.04, rotSpeed));
       rot      += rotSpeed * dt * 0.5;
       if (rot >  38) { rot =  38; rotSpeed *= -0.6; }
       if (rot < -38) { rot = -38; rotSpeed *= -0.6; }
