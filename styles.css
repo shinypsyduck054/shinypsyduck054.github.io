@@ -320,7 +320,6 @@ header {
   width: 240px;
   height: 240px;
   object-fit: contain;
-  filter: drop-shadow(0 0 14px rgba(0,212,255,0.5));
   /* Static — no animation */
 }
 
@@ -530,7 +529,6 @@ h1.game-title {
 
 .dex-sprite {
   flex-shrink: 0;
-  filter: drop-shadow(0 0 16px rgba(252,211,77,0.5));
   display: flex;
   align-items: center;
   justify-content: center;
