@@ -242,11 +242,46 @@ header {
 }
 
 .title-duck {
-  font-size: 6rem;
-  display: block;
-  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.pixel-sprite {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.hero-sprite-img {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 24px rgba(0,212,255,0.7));
   animation: duck-float 4s ease-in-out infinite;
-  filter: drop-shadow(0 0 30px rgba(252,211,77,0.6));
+  cursor: pointer;
+  transition: filter 0.3s;
+}
+
+.hero-sprite-img:hover {
+  filter: drop-shadow(0 0 36px rgba(0,212,255,1)) brightness(1.15);
+}
+
+.sprite-label {
+  font-family: var(--font-pixel);
+  font-size: 0.35rem;
+  color: var(--text-dim);
+  letter-spacing: 0.15em;
+  transition: color 0.3s;
+}
+
+.dex-sprite-img {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(0,212,255,0.5));
+  animation: duck-float 4s ease-in-out infinite;
 }
 
 @keyframes duck-float {
@@ -257,10 +292,11 @@ header {
 h1.game-title {
   font-family: var(--font-pixel);
   font-size: clamp(2.5rem, 8vw, 5rem);
-  color: var(--yellow);
+  color: var(--green);
   text-shadow:
-    4px 4px 0 #b45309,
-    0 0 40px rgba(252,211,77,0.5);
+    4px 4px 0 #005f80,
+    0 0 40px rgba(0,212,255,0.6),
+    0 0 80px rgba(0,212,255,0.2);
   letter-spacing: 0.05em;
   margin-bottom: 1rem;
 }

@@ -164,41 +164,80 @@ const statObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('.stats-card').forEach(el => statObserver.observe(el));
 
 // ===========================
-// DUCK EASTER EGG
-// Click the hero duck 7 times → full rave mode
+// SPRITE EMOTIONS + EASTER EGG
 // ===========================
-let duckClicks = 0;
-const titleDuck = document.querySelector('.title-duck');
+const heroSprite = document.getElementById('heroSprite');
+const spriteLabel = document.getElementById('spriteLabel');
 
-if (titleDuck) {
-  titleDuck.style.cursor = 'pointer';
-  titleDuck.addEventListener('click', (e) => {
-    e.stopPropagation(); // don't trigger boot skip
+const SPRITES = {
+  idle:    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/54.gif',
+  back:    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/54.png',
+  happy:   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/54.png',
+  rave:    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/54.gif',
+};
+
+function setSprite(state, label) {
+  if (!heroSprite) return;
+  heroSprite.src = SPRITES[state] || SPRITES.idle;
+  if (spriteLabel) {
+    spriteLabel.textContent = label || state.toUpperCase();
+    spriteLabel.style.color = state === 'rave' ? '#fcd34d' : '';
+  }
+}
+
+let duckClicks = 0;
+let raveActive = false;
+
+if (heroSprite) {
+  heroSprite.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (raveActive) return;
     duckClicks++;
 
+    if (duckClicks === 1) {
+      setSprite('back', 'SHY');
+      setTimeout(() => setSprite('idle', 'IDLE'), 1200);
+    }
+
     if (duckClicks === 3) {
-      titleDuck.textContent = '🤯';
-      setTimeout(() => { titleDuck.textContent = '🐥'; }, 800);
+      setSprite('happy', 'HAPPY');
+      setTimeout(() => setSprite('idle', 'IDLE'), 1000);
     }
 
     if (duckClicks >= 7) {
+      raveActive = true;
+      setSprite('rave', 'RAVE MODE 🕺');
+      heroSprite.style.width = '220px';
+      heroSprite.style.height = '220px';
+
       document.body.style.transition = 'filter 0.2s';
       let hue = 0;
-      const rave = setInterval(() => {
-        hue = (hue + 30) % 360;
-        document.body.style.filter = `hue-rotate(${hue}deg) saturate(1.5)`;
-      }, 100);
-
-      titleDuck.textContent = '🕺🐥🕺';
-      titleDuck.style.fontSize = '10rem';
+      const raveInterval = setInterval(() => {
+        hue = (hue + 25) % 360;
+        document.body.style.filter = `hue-rotate(${hue}deg) saturate(1.8)`;
+      }, 80);
 
       setTimeout(() => {
-        clearInterval(rave);
+        clearInterval(raveInterval);
         document.body.style.filter = '';
-        titleDuck.textContent = '🐥';
-        titleDuck.style.fontSize = '';
+        heroSprite.style.width = '';
+        heroSprite.style.height = '';
+        setSprite('idle', 'IDLE');
         duckClicks = 0;
-      }, 3000);
+        raveActive = false;
+      }, 3500);
+    }
+  });
+
+  // Hover emotion
+  heroSprite.addEventListener('mouseenter', () => {
+    if (!raveActive && duckClicks === 0) {
+      setSprite('happy', 'HI :)');
+    }
+  });
+  heroSprite.addEventListener('mouseleave', () => {
+    if (!raveActive) {
+      setSprite('idle', 'IDLE');
     }
   });
 }
