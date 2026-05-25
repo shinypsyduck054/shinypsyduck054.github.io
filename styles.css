@@ -858,15 +858,20 @@ footer {
   font-size: 0.75rem;
   opacity: 0.75;
   line-height: 1;
-  display: flex;
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
   transition: opacity 0.2s, transform 0.2s;
 }
 
 .nav-label {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   line-height: 1;
+  vertical-align: middle;
 }
 
 .nav-link:hover .nav-sym,
@@ -965,6 +970,20 @@ footer {
 .idea-card:hover {
   border-color: var(--border-bright);
   box-shadow: 0 0 24px rgba(0,212,255,0.08), 0 8px 32px rgba(0,0,0,0.3);
+  transform: translateY(-3px);
+}
+
+/* clickable idea cards on /ideas page */
+a.idea-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+a.idea-card-link:hover {
+  border-color: #fcd34d55;
+  box-shadow: 0 0 24px rgba(252,211,77,0.08), 0 8px 32px rgba(0,0,0,0.3);
   transform: translateY(-3px);
 }
 

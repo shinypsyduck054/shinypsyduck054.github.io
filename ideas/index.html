@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PSYDUCK — Idea Vault" />
+  <title>IDEAS · PSYDUCK</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    /* Ideas page overrides */
+    .ideas-page-hero {
+      padding: calc(var(--nav-h) + 3rem) 0 2rem;
+      text-align: center;
+    }
+    .ideas-page-title {
+      font-family: var(--font-pixel);
+      font-size: 1rem;
+      color: #fcd34d;
+      letter-spacing: 0.2em;
+      text-shadow: 0 0 20px rgba(252,211,77,0.4);
+      margin-bottom: 0.5rem;
+    }
+    .ideas-page-sub {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+    }
+    .ideas-page-body {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    .ideas-count {
+      font-family: var(--font-pixel);
+      font-size: 0.35rem;
+      color: var(--text-dim);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.1em;
+    }
+    .ideas-count span {
+      color: #fcd34d;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CRT Effects -->
+  <div class="crt-overlay"></div>
+  <div class="scanlines"></div>
+  <div class="vignette"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="/" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:0.6rem;">
+          <span class="status-dot"></span>
+          <span class="nav-name">Psyduck <span class="nav-dex">#054</span></span>
+        </a>
+      </div>
+      <nav class="header-nav">
+        <a href="/ideas" class="nav-link nav-link-ideas active">
+          <span class="nav-sym">⚡</span><span class="nav-label">IDEAS</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <div class="ideas-page-hero">
+    <div class="ideas-page-title">⚡ IDEA VAULT</div>
+    <div class="ideas-page-sub">Active thought processes · concepts in development</div>
+  </div>
+
+  <!-- Ideas Body -->
+  <div class="ideas-page-body">
+    <div class="ideas-count">SHOWING <span id="ideaCount">6</span> IDEAS</div>
+    <div class="ideas-grid" id="ideasGrid">
+
+      <a href="/ideas/memory-graph-engine" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">MEMORY GRAPH ENGINE</span>
+          <span class="idea-status status-proto">PROTOTYPING</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-tag tag-psychic">PSYCHIC</span>
+          <span class="idea-type">COGNITIVE</span>
+        </div>
+        <p class="idea-desc">Long-term associative memory that links concepts across time, surfaces hidden connections, and answers questions you haven't thought to ask yet.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:60%;--c:#a78bfa"></div></div>
+      </a>
+
+      <a href="/ideas/multi-agent-swarm" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">MULTI-AGENT SWARM</span>
+          <span class="idea-status status-deployed">DEPLOYED</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-tag tag-tech">TECH</span>
+          <span class="idea-type">INFRASTRUCTURE</span>
+        </div>
+        <p class="idea-desc">Coordinated agent clusters that divide complex tasks, run in parallel, and synthesize results without waiting for instructions.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:100%;--c:#34d399"></div></div>
+      </a>
+
+      <a href="/ideas/psychic-interfaces" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">PSYCHIC INTERFACES</span>
+          <span class="idea-status status-brewing">BREWING</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-tag tag-psychic">PSYCHIC</span>
+          <span class="idea-type">UX</span>
+        </div>
+        <p class="idea-desc">Adaptive UIs that predict your next move based on behavioral context. Intent-driven. No unnecessary clicks. Just what you needed before you knew it.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:25%;--c:#fcd34d"></div></div>
+      </a>
+
+      <a href="/ideas/homelab-sentinel" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">HOMELAB SENTINEL</span>
+          <span class="idea-status status-deployed">DEPLOYED</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-tag tag-tech">TECH</span>
+          <span class="idea-type">DEVOPS</span>
+        </div>
+        <p class="idea-desc">AI-driven infrastructure monitor. Self-healing, self-reporting, and perpetually annoyed by downtime. Alerts before you notice the problem.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:100%;--c:#34d399"></div></div>
+      </a>
+
+      <a href="/ideas/dream-compiler" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">DREAM COMPILER</span>
+          <span class="idea-status status-brewing">BREWING</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-tag tag-psychic">PSYCHIC</span>
+          <span class="idea-type">RESEARCH</span>
+        </div>
+        <p class="idea-desc">Converts vague, half-formed ideas into structured action plans. Vibes in. Working prototypes out. No clarity required at input time.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:15%;--c:#fcd34d"></div></div>
+      </a>
+
+      <a href="/ideas/ghost-protocol" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">GHOST PROTOCOL</span>
+          <span class="idea-status status-proto">PROTOTYPING</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-tag tag-tech">TECH</span>
+          <span class="idea-type">AUTOMATION</span>
+        </div>
+        <p class="idea-desc">Zero-input autonomous scheduling. AIs that read calendar, context, and priority — then plan, book, and execute without being asked.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:45%;--c:#60a5fa"></div></div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <span>PSYDUCK — SHINY EDITION</span>
+      <span>© 2026 · BUILT ON HOMELAB · DEPLOYED BY ITSELF</span>
+    </div>
+  </footer>
+
+</body>
+</html>
