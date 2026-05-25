@@ -1,7 +1,7 @@
 // ===========================
 // VERSION  (footer only — header uses nav now)
 // ===========================
-const VERSION = '1.6.5';
+const VERSION = '1.6.6';
 
 document.querySelectorAll('.version-tag').forEach(el => {
   el.textContent = `v${VERSION}`;
@@ -11,7 +11,7 @@ document.querySelectorAll('.version-tag').forEach(el => {
 // BOOT SEQUENCE
 // ===========================
 const bootLines = [
-  'PSYDUCK OS v1.6.5 [SHINY EDITION]',
+  'PSYDUCK OS v1.6.6 [SHINY EDITION]',
   '──────────────────────────────────────',
   'Initializing neural interface......OK',
   'Loading memory banks.................OK',
@@ -385,6 +385,22 @@ function initWanderDuck() {
   let unlocked = false;
   let rafId    = null;
 
+  // Pixel trail canvas (sits just behind the duck, z-index 199)
+  const trailCanvas = document.createElement('canvas');
+  trailCanvas.style.cssText = 'position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:199;';
+  document.body.appendChild(trailCanvas);
+  const trailCtx = trailCanvas.getContext('2d');
+  const TRAIL_COLORS = ['#00d4ff', '#a78bfa', '#fcd34d'];
+  let trailParticles = [];
+  let trailTick = 0;
+
+  function resizeTrail() {
+    trailCanvas.width  = window.innerWidth;
+    trailCanvas.height = window.innerHeight;
+  }
+  resizeTrail();
+  window.addEventListener('resize', resizeTrail);
+
   // Park it off the bottom of the screen initially
   x = MARGIN + Math.random() * (window.innerWidth - SIZE - MARGIN * 2);
   y = window.innerHeight + SIZE + 40;
@@ -433,6 +449,35 @@ function initWanderDuck() {
       duck.style.left      = x + 'px';
       duck.style.top       = y + 'px';
       duck.style.transform = `rotate(${rot.toFixed(2)}deg)`;
+
+      // Pixel trail — spawn a few pixels at duck center every 2 frames
+      trailTick++;
+      if (trailTick % 2 === 0) {
+        const cx = x + SIZE / 2, cy = y + SIZE / 2;
+        for (let i = 0; i < 3; i++) {
+          trailParticles.push({
+            x:     cx + (Math.random() - 0.5) * SIZE * 0.55,
+            y:     cy + (Math.random() - 0.5) * SIZE * 0.55,
+            size:  Math.random() < 0.6 ? 2 : 4,
+            alpha: 0.45 + Math.random() * 0.45,
+            decay: 0.003 + Math.random() * 0.02, // random dissipation rate
+            color: TRAIL_COLORS[Math.floor(Math.random() * TRAIL_COLORS.length)],
+          });
+        }
+      }
+
+      // Draw and age trail particles
+      trailCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+      trailParticles = trailParticles.filter(p => {
+        p.alpha -= p.decay;
+        if (p.alpha <= 0) return false;
+        trailCtx.globalAlpha = p.alpha;
+        trailCtx.fillStyle   = p.color;
+        // Snap to 2px grid for pixel-art feel
+        trailCtx.fillRect(Math.round(p.x / 2) * 2, Math.round(p.y / 2) * 2, p.size, p.size);
+        return true;
+      });
+      trailCtx.globalAlpha = 1;
 
       rafId = requestAnimationFrame(frame);
     }

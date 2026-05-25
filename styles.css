@@ -1268,7 +1268,7 @@ footer {
 }
 
 #wanderDuck.visible {
-  opacity: 0.85;
+  opacity: 1;
   pointer-events: auto;
 }
 
