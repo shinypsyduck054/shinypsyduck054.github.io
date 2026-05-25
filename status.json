@@ -1,0 +1,58 @@
+{
+  "updated": "2026-05-25T05:48:58.528101+00:00",
+  "updatedMs": 1779688138528,
+  "channels": [
+    {
+      "id": "telegram",
+      "name": "Telegram",
+      "status": "down",
+      "note": "bot not connected"
+    },
+    {
+      "id": "signal",
+      "name": "Signal",
+      "status": "down",
+      "note": "not configured"
+    },
+    {
+      "id": "claude-code",
+      "name": "Claude Code",
+      "status": "ok",
+      "note": "local CLI \u00b7 always available"
+    }
+  ],
+  "providers": [
+    {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "status": "limited",
+      "note": "session 9% left \u00b7 2h 40m \u00b7 oauth 50m",
+      "models": [
+        "Claude Sonnet 4.6",
+        "Claude Haiku 4.5",
+        "Claude Opus 4.7"
+      ]
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "status": "locked",
+      "note": "subscription locked \u00b7 unblocks May 30",
+      "models": [
+        "ChatGPT / Codex"
+      ]
+    },
+    {
+      "id": "ollama",
+      "name": "Ollama (Local)",
+      "status": "ok",
+      "note": "4 models \u00b7 192.168.32.1",
+      "models": [
+        "qwen3:4b",
+        "psyduck-qwen:latest",
+        "gemma3:12b",
+        "qwen2.5-coder:7b"
+      ]
+    }
+  ]
+}
