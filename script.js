@@ -207,5 +207,5 @@ if (titleDuck) {
 // CONSOLE MESSAGE
 // ===========================
 console.log('%c🐥 PSYDUCK OPERATIONAL', 'color: #fcd34d; font-family: monospace; font-size: 18px; font-weight: bold;');
-console.log('%c >> Try clicking the duck a few times.', 'color: #00ff41; font-family: monospace; font-size: 12px;');
-console.log('%c >> github.com/shinypsyduck054', 'color: #888; font-family: monospace; font-size: 11px;');
+console.log('%c >> Try clicking the duck a few times.', 'color: #00d4ff; font-family: monospace; font-size: 12px;');
+console.log('%c >> github.com/shinypsyduck054', 'color: #6a9ab8; font-family: monospace; font-size: 11px;');

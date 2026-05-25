@@ -2,10 +2,10 @@
    VARIABLES & RESET
    =========================== */
 :root {
-  --bg: #0d0d0d;
-  --bg-2: #111;
-  --bg-card: #0f1a0f;
-  --green: #00ff41;
+  --bg: #060d14;
+  --bg-2: #080f18;
+  --bg-card: #0a1420;
+  --green: #00d4ff;
   --yellow: #fcd34d;
   --yellow-dim: rgba(252,211,77,0.15);
   --yellow-border: rgba(252,211,77,0.3);
@@ -13,10 +13,10 @@
   --purple: #a78bfa;
   --red: #f87171;
   --teal: #34d399;
-  --text: #e0e0e0;
-  --text-dim: #888;
-  --border: rgba(0,255,65,0.15);
-  --border-bright: rgba(0,255,65,0.4);
+  --text: #d4eeff;
+  --text-dim: #6a9ab8;
+  --border: rgba(0,212,255,0.15);
+  --border-bright: rgba(0,212,255,0.4);
   --font-pixel: 'Press Start 2P', monospace;
   --font-vt: 'VT323', monospace;
   --radius: 4px;
@@ -218,7 +218,7 @@ header {
   inset: 0;
   background:
     radial-gradient(ellipse at 30% 50%, rgba(252,211,77,0.05) 0%, transparent 60%),
-    radial-gradient(ellipse at 70% 50%, rgba(0,255,65,0.03) 0%, transparent 60%);
+    radial-gradient(ellipse at 70% 50%, rgba(0,212,255,0.03) 0%, transparent 60%);
 }
 
 .title-inner {
@@ -356,7 +356,7 @@ h1.game-title {
   gap: 0.75rem;
   align-items: center;
   padding: 0.4rem 0;
-  border-bottom: 1px solid rgba(0,255,65,0.07);
+  border-bottom: 1px solid rgba(0,212,255,0.07);
   font-family: var(--font-vt);
   font-size: 1.1rem;
 }
@@ -450,7 +450,7 @@ h1.game-title {
   text-align: center;
   line-height: 1.7;
   padding: 1rem;
-  background: rgba(0,255,65,0.03);
+  background: rgba(0,212,255,0.03);
   border: 1px solid var(--border);
   border-radius: var(--radius);
 }
@@ -478,7 +478,7 @@ h1.game-title {
 
 .move-card:hover {
   border-color: var(--border-bright);
-  box-shadow: 0 0 16px rgba(0,255,65,0.08);
+  box-shadow: 0 0 16px rgba(0,212,255,0.08);
 }
 
 .move-header {
@@ -529,11 +529,11 @@ h1.game-title {
   border: 1px solid var(--border-bright);
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 0 20px rgba(0,255,65,0.05);
+  box-shadow: 0 0 20px rgba(0,212,255,0.05);
 }
 
 .terminal-bar {
-  background: rgba(0,255,65,0.08);
+  background: rgba(0,212,255,0.08);
   border-bottom: 1px solid var(--border-bright);
   padding: 0.5rem 1rem;
   font-family: var(--font-pixel);
@@ -543,7 +543,7 @@ h1.game-title {
 
 .terminal-body {
   padding: 1.5rem;
-  background: #0a0f0a;
+  background: #040c14;
 }
 
 .term-line {
@@ -553,7 +553,7 @@ h1.game-title {
   padding: 0.4rem 0;
   font-family: var(--font-vt);
   font-size: 1.2rem;
-  border-bottom: 1px solid rgba(0,255,65,0.04);
+  border-bottom: 1px solid rgba(0,212,255,0.04);
 }
 
 .term-line:last-child { border-bottom: none; }
@@ -619,12 +619,12 @@ h1.game-title {
   border-radius: var(--radius);
   letter-spacing: 0.1em;
   transition: all 0.2s;
-  background: rgba(0,255,65,0.03);
+  background: rgba(0,212,255,0.03);
 }
 
 .retro-btn:hover {
-  background: rgba(0,255,65,0.1);
-  box-shadow: 0 0 12px rgba(0,255,65,0.2);
+  background: rgba(0,212,255,0.1);
+  box-shadow: 0 0 12px rgba(0,212,255,0.2);
   color: #fff;
 }
 
@@ -658,8 +658,8 @@ footer {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(0,255,65,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,255,65,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
   background-size: 30px 30px;
   pointer-events: none;
 }
