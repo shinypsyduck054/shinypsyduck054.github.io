@@ -260,6 +260,8 @@ header {
 .title-inner {
   position: relative;
   z-index: 1;
+  width: 100%;        /* pin to section width — prevents typewriter reflow rippling out */
+  min-width: 0;
 }
 
 .shiny-label {
@@ -396,6 +398,8 @@ h1.game-title {
   color: var(--text-dim);
   margin-bottom: 3rem;
   min-height: 2rem;
+  width: 100%;        /* fixed container — text content changes don't shift parent width */
+  display: block;
 }
 
 .cursor { animation: blink-cursor 0.7s step-end infinite; }
