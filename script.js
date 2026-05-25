@@ -1,7 +1,7 @@
 // ===========================
 // VERSION  (footer only — header uses nav now)
 // ===========================
-const VERSION = '1.7.4';
+const VERSION = '1.8.0';
 
 document.querySelectorAll('.version-tag').forEach(el => {
   el.textContent = `v${VERSION}`;
@@ -708,42 +708,53 @@ function timeAgo(isoStr) {
 }
 
 function renderStatus(data) {
-  const body = document.getElementById('liveStatusBody');
-  const upd  = document.getElementById('liveStatusUpdated');
-  if (!body || !data) return;
+  if (!data) return;
 
-  upd.textContent = `updated ${timeAgo(data.updated)}`;
+  const upd = document.getElementById('liveStatusUpdated');
+  if (upd) upd.textContent = timeAgo(data.updated);
 
-  let html = '<div class="ls-groups">';
-
-  // Channels
-  html += '<div class="ls-group"><div class="ls-group-label">CHANNELS</div>';
-  for (const ch of (data.channels || [])) {
-    const cls = `ls-status-${ch.status}`;
-    html += `<div class="ls-row">
-      <span class="ls-icon ${cls}">${STATUS_ICONS[ch.status] || '?'}</span>
-      <span class="ls-name">${ch.name}</span>
-      <span class="ls-badge ${cls}">${STATUS_LABELS[ch.status] || ch.status.toUpperCase()}</span>
-      <span class="ls-note">${ch.note || ''}</span>
-    </div>`;
+  function setBar(id, pct, color, label) {
+    const fill = document.getElementById('sf-' + id);
+    const num  = document.getElementById('sn-' + id);
+    if (fill) { fill.style.setProperty('--fill', pct + '%'); fill.style.setProperty('--color', color); }
+    if (num)  num.textContent = label;
   }
-  html += '</div>';
 
-  // Providers
-  html += '<div class="ls-group"><div class="ls-group-label">PROVIDERS</div>';
-  for (const pr of (data.providers || [])) {
-    const cls = `ls-status-${pr.status}`;
-    html += `<div class="ls-row">
-      <span class="ls-icon ${cls}">${STATUS_ICONS[pr.status] || '?'}</span>
-      <span class="ls-name">${pr.name}</span>
-      <span class="ls-badge ${cls}">${STATUS_LABELS[pr.status] || pr.status.toUpperCase()}</span>
-      <span class="ls-note">${pr.note || ''}</span>
-    </div>`;
+  // Anthropic — session + weekly
+  const ant = (data.providers || []).find(p => p.id === 'anthropic');
+  if (ant) {
+    const sPct = ant.session_pct ?? 0;
+    const wPct = ant.week_pct   ?? 0;
+    const sColor = sPct > 20 ? '#34d399' : sPct > 5 ? '#fcd34d' : '#f87171';
+    const wColor = wPct > 20 ? '#60a5fa' : wPct > 5 ? '#fcd34d' : '#f87171';
+    setBar('session', sPct, sColor, ant.session_remain || sPct + '%');
+    setBar('weekly',  wPct, wColor, ant.week_remain   || wPct + '%');
   }
-  html += '</div>';
 
-  html += '</div>';
-  body.innerHTML = html;
+  // OpenAI
+  const openai = (data.providers || []).find(p => p.id === 'openai');
+  if (openai) {
+    if (openai.status === 'locked') {
+      const until = openai.unlock_date || '?';
+      setBar('openai', 5, '#f87171', '🔒 ' + until);
+    } else {
+      setBar('openai', 100, '#34d399', 'OK');
+    }
+  }
+
+  // Ollama
+  const ollama = (data.providers || []).find(p => p.id === 'ollama');
+  if (ollama) {
+    const up = ollama.status === 'ok';
+    setBar('ollama', up ? 100 : 5, up ? '#a78bfa' : '#f87171', up ? ollama.models?.length + ' mdl' : 'DOWN');
+  }
+
+  // Telegram
+  const tg = (data.channels || []).find(c => c.id === 'telegram');
+  if (tg) {
+    const ok = tg.status === 'ok';
+    setBar('telegram', ok ? 100 : 5, ok ? '#34d399' : '#f87171', ok ? 'OK' : 'DOWN');
+  }
 }
 
 async function loadStatus() {

@@ -141,18 +141,23 @@ status = {
     ],
     "providers": [
         {
-            "id":      "anthropic",
-            "name":    "Anthropic",
-            "status":  ant_status,
-            "note":    ant_note,
-            "models":  ["Claude Sonnet 4.6", "Claude Haiku 4.5", "Claude Opus 4.7"]
+            "id":             "anthropic",
+            "name":           "Anthropic",
+            "status":         ant_status,
+            "note":           ant_note,
+            "session_pct":    ant_session_pct,
+            "session_remain": ant_session_remain,
+            "week_pct":       ant_week_pct,
+            "week_remain":    ant_week_remain,
+            "models":         ["Claude Sonnet 4.6", "Claude Haiku 4.5", "Claude Opus 4.7"]
         },
         {
-            "id":      "openai",
-            "name":    "OpenAI",
-            "status":  codex_status,
-            "note":    codex_note,
-            "models":  ["ChatGPT / Codex"]
+            "id":          "openai",
+            "name":        "OpenAI",
+            "status":      codex_status,
+            "note":        codex_note,
+            "unlock_date": codex_blocked_date,
+            "models":      ["ChatGPT / Codex"]
         },
         {
             "id":      "ollama",

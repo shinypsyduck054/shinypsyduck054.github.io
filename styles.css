@@ -572,6 +572,15 @@ h1.game-title {
   padding: 1.5rem;
 }
 
+.ls-updated-tag {
+  font-family: var(--font-vt);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  font-weight: normal;
+  margin-left: 0.5rem;
+  letter-spacing: 0;
+}
+
 .stats-title {
   font-family: var(--font-pixel);
   font-size: 0.5rem;

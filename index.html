@@ -105,13 +105,6 @@
 
         <div class="dex-grid">
           <div class="dex-card">
-            <div class="dex-sprite">
-              <img
-                class="pixel-sprite dex-sprite-img"
-                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/54.png"
-                alt="Shiny Psyduck Dex Sprite"
-              />
-            </div>
             <div class="dex-info">
               <div class="dex-row"><span class="dex-label">NAME</span><span>PSYDUCK (SHINY)</span></div>
               <div class="dex-row"><span class="dex-label">TYPE</span><span class="type-badge type-psychic">PSYCHIC</span><span class="type-badge type-water">WATER</span></div>
@@ -121,32 +114,32 @@
             </div>
           </div>
 
-          <div class="stats-card">
-            <div class="stats-title">BASE STATS</div>
+          <div class="stats-card" id="liveStatsCard">
+            <div class="stats-title">LIVE STATUS <span class="ls-updated-tag" id="liveStatusUpdated"></span></div>
             <div class="stat-row">
-              <span class="stat-name">INTELLIGENCE</span>
-              <div class="stat-bar"><div class="stat-fill" style="--fill: 95%; --color: #fcd34d;"></div></div>
-              <span class="stat-num">95</span>
+              <span class="stat-name">SESSION</span>
+              <div class="stat-bar"><div class="stat-fill" id="sf-session" style="--fill:0%;--color:#34d399"></div></div>
+              <span class="stat-num" id="sn-session">…</span>
             </div>
             <div class="stat-row">
-              <span class="stat-name">SPEED</span>
-              <div class="stat-bar"><div class="stat-fill" style="--fill: 88%; --color: #60a5fa;"></div></div>
-              <span class="stat-num">88</span>
+              <span class="stat-name">WEEKLY</span>
+              <div class="stat-bar"><div class="stat-fill" id="sf-weekly" style="--fill:0%;--color:#60a5fa"></div></div>
+              <span class="stat-num" id="sn-weekly">…</span>
             </div>
             <div class="stat-row">
-              <span class="stat-name">AUTONOMY</span>
-              <div class="stat-bar"><div class="stat-fill" style="--fill: 92%; --color: #a78bfa;"></div></div>
-              <span class="stat-num">92</span>
+              <span class="stat-name">OPENAI</span>
+              <div class="stat-bar"><div class="stat-fill" id="sf-openai" style="--fill:0%;--color:#fcd34d"></div></div>
+              <span class="stat-num" id="sn-openai">…</span>
             </div>
             <div class="stat-row">
-              <span class="stat-name">MEMORY</span>
-              <div class="stat-bar"><div class="stat-fill" style="--fill: 79%; --color: #34d399;"></div></div>
-              <span class="stat-num">79</span>
+              <span class="stat-name">OLLAMA</span>
+              <div class="stat-bar"><div class="stat-fill" id="sf-ollama" style="--fill:0%;--color:#a78bfa"></div></div>
+              <span class="stat-num" id="sn-ollama">…</span>
             </div>
             <div class="stat-row">
-              <span class="stat-name">SASS</span>
-              <div class="stat-bar"><div class="stat-fill" style="--fill: 100%; --color: #f87171;"></div></div>
-              <span class="stat-num">??</span>
+              <span class="stat-name">TELEGRAM</span>
+              <div class="stat-bar"><div class="stat-fill" id="sf-telegram" style="--fill:0%;--color:#34d399"></div></div>
+              <span class="stat-num" id="sn-telegram">…</span>
             </div>
           </div>
         </div>
@@ -157,63 +150,6 @@
           Powered by Claude. Responds via Telegram. Has opinions.
           Cannot be caught. Already deployed.
           <span class="flavor-bracket">]</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Moves -->
-    <section class="moves-section" id="moves">
-      <div class="section-wrap">
-        <div class="section-title">LEARNED MOVES</div>
-        <div class="moves-grid">
-          <div class="move-card">
-            <div class="move-header">
-              <span class="move-name">THINK</span>
-              <span class="move-type type-psychic">PSYCHIC</span>
-            </div>
-            <div class="move-pp">PP: ∞</div>
-            <p>Reasons through complex problems using extended context and tool use. Rarely wrong. Occasionally annoying about it.</p>
-          </div>
-          <div class="move-card">
-            <div class="move-header">
-              <span class="move-name">DEPLOY</span>
-              <span class="move-type type-water">TECH</span>
-            </div>
-            <div class="move-pp">PP: ∞</div>
-            <p>Ships code to production autonomously. Writes commits, opens PRs, handles CI/CD. Sometimes unasked.</p>
-          </div>
-          <div class="move-card">
-            <div class="move-header">
-              <span class="move-name">MEMORY BLAST</span>
-              <span class="move-type type-psychic">PSYCHIC</span>
-            </div>
-            <div class="move-pp">PP: ∞</div>
-            <p>Recalls facts, preferences, and past context from persistent file memory. Never forgets. Will remind you of things you said.</p>
-          </div>
-          <div class="move-card">
-            <div class="move-header">
-              <span class="move-name">HEARTBEAT</span>
-              <span class="move-type type-normal">NORMAL</span>
-            </div>
-            <div class="move-pp">PP: ∞</div>
-            <p>Checks in autonomously. Monitors systems. Sends unprompted updates. You set the schedule. It never misses one.</p>
-          </div>
-          <div class="move-card">
-            <div class="move-header">
-              <span class="move-name">WEB SEARCH</span>
-              <span class="move-type type-water">TECH</span>
-            </div>
-            <div class="move-pp">PP: ∞</div>
-            <p>16-engine search across global + CN sources. Finds things. Reports back. No browser required on your end.</p>
-          </div>
-          <div class="move-card">
-            <div class="move-header">
-              <span class="move-name">PSYCH UP</span>
-              <span class="move-type type-psychic">PSYCHIC</span>
-            </div>
-            <div class="move-pp">PP: 5</div>
-            <p>Spawns sub-agents to run parallel tasks. Divide and conquer. Maximum efficiency. Slightly unhinged.</p>
-          </div>
         </div>
       </div>
     </section>
@@ -237,19 +173,8 @@
           </div>
         </div>
 
-        <!-- Live status panel — populated by JS from status.json -->
-        <div class="live-status-box" id="liveStatusBox">
-          <div class="live-status-title">
-            <span>📡 LIVE STATUS</span>
-            <span class="live-status-updated" id="liveStatusUpdated">loading…</span>
-          </div>
-          <div class="live-status-body" id="liveStatusBody">
-            <div class="live-status-loading">fetching…</div>
-          </div>
-        </div>
-
         <div class="model-stack-box">
-          <div class="model-stack-title">⚡ MODEL STACK</div>
+          <div class="model-stack-title">MODEL STACK</div>
           <div class="model-stack-diagram">
 
             <div class="model-tier tier-primary">
