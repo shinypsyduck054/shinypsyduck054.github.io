@@ -56,6 +56,7 @@ function finishBoot() {
     startTypewriter();
     initPixelCanvas();
     initTrippy();
+    initWanderDuck();
   }, 600);
 }
 
@@ -116,12 +117,12 @@ function triggerTrippy(duration = 2400) {
     else if (progress < 0.55) env = 1;
     else                      env = 1 - (progress - 0.55) / 0.45;
 
-    const freq  = 0.008 + env * 0.038;
-    const disp  = env * 140;
-    const blur  = env * 16;
-    const hue   = progress * 480;
-    const sat   = 1 + env * 5.5;
-    const seed  = Math.floor(progress * 30); // animates turbulence seed for extra chaos
+    const freq  = 0.007 + env * 0.034;
+    const disp  = env * 126;
+    const blur  = env * 14;
+    const hue   = progress * 432;
+    const sat   = 1 + env * 4.9;
+    const seed  = Math.floor(progress * 27); // animates turbulence seed for extra chaos
 
     trippyTurbEl.setAttribute('baseFrequency', `${freq.toFixed(4)} ${(freq * 0.55).toFixed(4)}`);
     trippyTurbEl.setAttribute('seed', seed);
@@ -397,6 +398,66 @@ if (heroSprite) {
       spriteLabel.textContent = 'IDLE';
       spriteLabel.style.color = '';
     }
+  });
+}
+
+// ===========================
+// WANDERING DUCK
+// ===========================
+function initWanderDuck() {
+  const duck = document.getElementById('wanderDuck');
+  if (!duck) return;
+
+  const margin = 90;
+
+  function randPos() {
+    return {
+      x: margin + Math.random() * (window.innerWidth  - margin * 2),
+      y: margin + Math.random() * (window.innerHeight - margin * 2),
+    };
+  }
+
+  // Set initial position instantly (no transition yet)
+  const start = randPos();
+  duck.style.transition = 'opacity 1.2s ease';
+  duck.style.left = start.x + 'px';
+  duck.style.top  = start.y + 'px';
+
+  // Fade in after a moment
+  setTimeout(() => {
+    duck.classList.add('visible');
+    // Restore full transition after fade-in settles
+    setTimeout(() => {
+      duck.style.transition = '';
+    }, 1300);
+  }, 1200);
+
+  let wanderTimer;
+
+  function wander() {
+    const pos = randPos();
+    duck.style.left = pos.x + 'px';
+    duck.style.top  = pos.y + 'px';
+
+    // Vary interval so movement feels organic: 2.5–5.5s
+    const delay = 2500 + Math.random() * 3000;
+    wanderTimer = setTimeout(wander, delay);
+  }
+
+  // Start wandering shortly after appearing
+  wanderTimer = setTimeout(wander, 2000 + Math.random() * 1000);
+
+  // Recalc on resize so it never drifts off-screen
+  window.addEventListener('resize', () => {
+    const pos = randPos();
+    duck.style.left = pos.x + 'px';
+    duck.style.top  = pos.y + 'px';
+  });
+
+  // Click → scroll to contact
+  duck.addEventListener('click', () => {
+    const contact = document.getElementById('contact');
+    if (contact) contact.scrollIntoView({ behavior: 'smooth' });
   });
 }
 
