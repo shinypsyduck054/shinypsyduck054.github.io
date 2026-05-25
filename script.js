@@ -84,7 +84,14 @@ bootScreen.addEventListener('keydown', skipBoot);
 bootScreen.addEventListener('click', skipBoot);
 document.addEventListener('keydown', (e) => { if (!bootDone) skipBoot(); });
 
-setTimeout(typeBoot, 400);
+// Skip boot if ?skip is in the URL (e.g. navigating back from /ideas)
+if (location.search.includes('skip')) {
+  skipBoot();
+  // Clean the URL so back/forward doesn't carry ?skip
+  history.replaceState(null, '', location.pathname);
+} else {
+  setTimeout(typeBoot, 400);
+}
 
 // ===========================
 // TRIPPY EFFECT ENGINE
