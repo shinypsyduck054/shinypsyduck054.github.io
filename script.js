@@ -1,7 +1,7 @@
 // ===========================
 // VERSION  (footer only — header uses nav now)
 // ===========================
-const VERSION = '1.6.3';
+const VERSION = '1.6.4';
 
 document.querySelectorAll('.version-tag').forEach(el => {
   el.textContent = `v${VERSION}`;
@@ -11,7 +11,7 @@ document.querySelectorAll('.version-tag').forEach(el => {
 // BOOT SEQUENCE
 // ===========================
 const bootLines = [
-  'PSYDUCK OS v1.6.3 [SHINY EDITION]',
+  'PSYDUCK OS v1.6.4 [SHINY EDITION]',
   '──────────────────────────────────────',
   'Initializing neural interface......OK',
   'Loading memory banks.................OK',
