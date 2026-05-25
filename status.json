@@ -1,12 +1,12 @@
 {
-  "updated": "2026-05-25T05:48:58.528101+00:00",
-  "updatedMs": 1779688138528,
+  "updated": "2026-05-25T05:49:53.324159+00:00",
+  "updatedMs": 1779688193324,
   "channels": [
     {
       "id": "telegram",
       "name": "Telegram",
-      "status": "down",
-      "note": "bot not connected"
+      "status": "ok",
+      "note": "bot connected \u00b7 primary channel"
     },
     {
       "id": "signal",
@@ -26,7 +26,7 @@
       "id": "anthropic",
       "name": "Anthropic",
       "status": "limited",
-      "note": "session 9% left \u00b7 2h 40m \u00b7 oauth 50m",
+      "note": "session 9% left \u00b7 2h 39m \u00b7 oauth 49m",
       "models": [
         "Claude Sonnet 4.6",
         "Claude Haiku 4.5",
