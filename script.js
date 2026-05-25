@@ -1,7 +1,7 @@
 // ===========================
 // VERSION  (footer only — header uses nav now)
 // ===========================
-const VERSION = '1.6.4';
+const VERSION = '1.6.5';
 
 document.querySelectorAll('.version-tag').forEach(el => {
   el.textContent = `v${VERSION}`;
@@ -11,7 +11,7 @@ document.querySelectorAll('.version-tag').forEach(el => {
 // BOOT SEQUENCE
 // ===========================
 const bootLines = [
-  'PSYDUCK OS v1.6.4 [SHINY EDITION]',
+  'PSYDUCK OS v1.6.5 [SHINY EDITION]',
   '──────────────────────────────────────',
   'Initializing neural interface......OK',
   'Loading memory banks.................OK',
@@ -129,6 +129,16 @@ function triggerTrippy(duration = 2400) {
     trippyDisplEl.setAttribute('scale', disp.toFixed(1));
 
     mainContent.style.filter = `url(#trippy-filter) blur(${blur.toFixed(1)}px) saturate(${sat.toFixed(2)}) hue-rotate(${hue.toFixed(0)}deg)`;
+
+    // Drag the wandering duck into the chaos too
+    const wanderDuck = document.getElementById('wanderDuck');
+    if (wanderDuck) {
+      if (progress < 1) {
+        wanderDuck.style.filter = `saturate(${sat.toFixed(2)}) hue-rotate(${hue.toFixed(0)}deg) blur(${(blur * 0.4).toFixed(1)}px)`;
+      } else {
+        wanderDuck.style.filter = '';
+      }
+    }
 
     if (progress < 1) {
       trippyRaf = requestAnimationFrame(frame);

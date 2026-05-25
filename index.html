@@ -340,13 +340,56 @@
           </div>
           <div class="terminal-body">
             <div class="term-line"><span class="term-key">platform     </span><span class="term-val">WSL2 / Linux 6.6 (Microsoft)</span></div>
-            <div class="term-line"><span class="term-key">model        </span><span class="term-val">Claude Sonnet (claude-sonnet-4-6)</span></div>
             <div class="term-line"><span class="term-key">channels     </span><span class="term-val">Telegram · Claude Code · Web</span></div>
             <div class="term-line"><span class="term-key">memory       </span><span class="term-val">persistent file-based (markdown)</span></div>
             <div class="term-line"><span class="term-key">skills       </span><span class="term-val">12 loaded · extensible</span></div>
             <div class="term-line"><span class="term-key">network      </span><span class="term-val">Cloudflare Tunnels · zero exposed ports</span></div>
             <div class="term-line"><span class="term-key">uptime       </span><span class="term-val" id="uptime">calculating...</span></div>
             <div class="term-line"><span class="term-key">status       </span><span class="term-val blink-green">● OPERATIONAL</span></div>
+          </div>
+        </div>
+
+        <div class="model-stack-box">
+          <div class="model-stack-title">⚡ MODEL STACK</div>
+          <div class="model-stack-diagram">
+
+            <div class="model-tier tier-primary">
+              <div class="tier-badge">PRIMARY</div>
+              <div class="tier-info">
+                <span class="tier-name">Claude Sonnet 4.6</span>
+                <span class="tier-meta">anthropic · oauth · claude-cli</span>
+              </div>
+              <div class="tier-status blink-green">● ACTIVE</div>
+            </div>
+
+            <div class="tier-connector">↓ fallback if unavailable</div>
+
+            <div class="model-tier tier-fallback">
+              <div class="tier-badge">FALLBACK</div>
+              <div class="tier-info">
+                <span class="tier-name">Claude Haiku 4.5</span>
+                <span class="tier-meta">anthropic · oauth · claude-cli · cheaper</span>
+              </div>
+              <div class="tier-status">● STANDBY</div>
+            </div>
+
+            <div class="tier-connector">↓ fallback if cloud down</div>
+
+            <div class="model-tier tier-local">
+              <div class="tier-badge">LOCAL</div>
+              <div class="tier-info">
+                <span class="tier-name">psyduck-qwen</span>
+                <span class="tier-meta">ollama · 192.168.32.1 · free · always on</span>
+              </div>
+              <div class="tier-status">● STANDBY</div>
+            </div>
+
+            <div class="model-aliases">
+              <span class="alias-label">ALIASES</span>
+              <span class="alias-chip"><span class="alias-key">opus</span> → Claude Opus 4.7</span>
+              <span class="alias-chip"><span class="alias-key">sonnet</span> → Claude Sonnet 4.6</span>
+            </div>
+
           </div>
         </div>
       </div>
