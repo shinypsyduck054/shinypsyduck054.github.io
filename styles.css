@@ -1127,16 +1127,15 @@ footer {
   cursor: pointer;
   opacity: 0;
   pointer-events: none;
-  transition:
-    left 4s cubic-bezier(0.45, 0.05, 0.55, 0.95),
-    top 4s cubic-bezier(0.45, 0.05, 0.55, 0.95),
-    opacity 1.2s ease;
+  /* position + rotation handled by JS physics — no CSS transition on those */
+  transition: opacity 1.4s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2px;
   filter: drop-shadow(0 4px 14px rgba(0,212,255,0.35));
-  animation: wander-bob 2.8s ease-in-out infinite;
+  transform-origin: center center;
+  will-change: transform, left, top;
 }
 
 #wanderDuck.visible {
@@ -1173,10 +1172,7 @@ footer {
   opacity: 1;
 }
 
-@keyframes wander-bob {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-7px); }
-}
+/* wander-bob removed — rotation + float handled by JS physics */
 
 /* ===========================
    RESPONSIVE

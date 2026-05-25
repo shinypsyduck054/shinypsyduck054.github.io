@@ -309,7 +309,7 @@ if (heroSprite) {
 
     if (duckClicks >= 7) {
       raveActive = true;
-      setSprite('rave', 'RAVE MODE 🕺');
+      setSprite('rave', 'RAVE MODE');
       // Rave: grow slightly, sustained trippy
       heroSprite.style.width = '290px';
       heroSprite.style.height = '290px';
@@ -358,56 +358,118 @@ if (heroSprite) {
 }
 
 // ===========================
-// WANDERING DUCK
+// WANDERING DUCK — balloon physics
 // ===========================
 function initWanderDuck() {
   const duck = document.getElementById('wanderDuck');
   if (!duck) return;
 
-  const margin = 90;
+  const SIZE    = 70;
+  const MARGIN  = 24;
+  const TOP_PAD = 70; // clear the header
 
-  function randPos() {
-    return {
-      x: margin + Math.random() * (window.innerWidth  - margin * 2),
-      y: margin + Math.random() * (window.innerHeight - margin * 2),
-    };
+  // Physics state
+  let x, y, vx, vy;
+  let rot      = 0;
+  let rotSpeed = (Math.random() - 0.5) * 0.012; // deg/frame, very slow
+  let unlocked = false;
+  let rafId    = null;
+
+  // Park it off the bottom of the screen initially
+  x = MARGIN + Math.random() * (window.innerWidth - SIZE - MARGIN * 2);
+  y = window.innerHeight + SIZE + 40;
+  duck.style.transition = 'opacity 1.4s ease';
+  duck.style.left = x + 'px';
+  duck.style.top  = y + 'px';
+
+  function startPhysics() {
+    let lastTs = null;
+
+    function frame(ts) {
+      if (!lastTs) lastTs = ts;
+      const dt = Math.min(ts - lastTs, 50);
+      lastTs = ts;
+
+      const W = window.innerWidth;
+      const H = window.innerHeight;
+
+      // Gentle wind nudge each frame
+      vx += (Math.random() - 0.5) * 0.018;
+      vy += (Math.random() - 0.5) * 0.018;
+
+      // Clamp to balloon-slow speed
+      const speed = Math.sqrt(vx * vx + vy * vy);
+      const MAX_V = 0.55;
+      const MIN_V = 0.08;
+      if (speed > MAX_V) { vx = (vx / speed) * MAX_V; vy = (vy / speed) * MAX_V; }
+      if (speed < MIN_V) { vx += (Math.random() - 0.5) * 0.05; vy += (Math.random() - 0.5) * 0.05; }
+
+      x += vx * dt * 0.5;
+      y += vy * dt * 0.5;
+
+      // Soft bounce off edges
+      const L = MARGIN, R = W - SIZE - MARGIN;
+      const T = TOP_PAD, B = H - SIZE - MARGIN;
+      if (x < L) { x = L; vx =  Math.abs(vx) * 0.7 + 0.06; }
+      if (x > R) { x = R; vx = -Math.abs(vx) * 0.7 - 0.06; }
+      if (y < T) { y = T; vy =  Math.abs(vy) * 0.7 + 0.06; }
+      if (y > B) { y = B; vy = -Math.abs(vy) * 0.7 - 0.06; }
+
+      // Rotation: slow drift, gently nudged, capped at ±22°
+      rotSpeed += (Math.random() - 0.5) * 0.0004;
+      rotSpeed  = Math.max(-0.018, Math.min(0.018, rotSpeed));
+      rot      += rotSpeed * dt * 0.5;
+      if (rot >  22) { rot =  22; rotSpeed *= -0.6; }
+      if (rot < -22) { rot = -22; rotSpeed *= -0.6; }
+
+      duck.style.left      = x + 'px';
+      duck.style.top       = y + 'px';
+      duck.style.transform = `rotate(${rot.toFixed(2)}deg)`;
+
+      rafId = requestAnimationFrame(frame);
+    }
+
+    rafId = requestAnimationFrame(frame);
   }
 
-  // Set initial position instantly (no transition yet)
-  const start = randPos();
-  duck.style.transition = 'opacity 1.2s ease';
-  duck.style.left = start.x + 'px';
-  duck.style.top  = start.y + 'px';
+  function unlock() {
+    if (unlocked) return;
+    unlocked = true;
 
-  // Fade in after a moment
-  setTimeout(() => {
-    duck.classList.add('visible');
-    // Restore full transition after fade-in settles
-    setTimeout(() => {
-      duck.style.transition = '';
-    }, 1300);
-  }, 1200);
+    // Spawn at the bottom, random x
+    x  = MARGIN + Math.random() * (window.innerWidth - SIZE - MARGIN * 2);
+    y  = window.innerHeight - SIZE - 8;
+    vx = (Math.random() - 0.5) * 0.4;
+    vy = -(0.35 + Math.random() * 0.25); // float up gently
 
-  let wanderTimer;
+    duck.style.left = x + 'px';
+    duck.style.top  = y + 'px';
 
-  function wander() {
-    const pos = randPos();
-    duck.style.left = pos.x + 'px';
-    duck.style.top  = pos.y + 'px';
-
-    // Vary interval so movement feels organic: 2.5–5.5s
-    const delay = 2500 + Math.random() * 3000;
-    wanderTimer = setTimeout(wander, delay);
+    // Fade in, then hand off to physics
+    requestAnimationFrame(() => {
+      duck.classList.add('visible');
+      setTimeout(() => {
+        duck.style.transition = 'opacity 1.4s ease'; // keep only for hover
+        startPhysics();
+      }, 1400);
+    });
   }
 
-  // Start wandering shortly after appearing
-  wanderTimer = setTimeout(wander, 2000 + Math.random() * 1000);
+  // Unlock on first meaningful scroll
+  function onScroll() {
+    if (window.scrollY > 80) {
+      unlock();
+      window.removeEventListener('scroll', onScroll);
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
 
-  // Recalc on resize so it never drifts off-screen
+  // Re-clamp on resize
   window.addEventListener('resize', () => {
-    const pos = randPos();
-    duck.style.left = pos.x + 'px';
-    duck.style.top  = pos.y + 'px';
+    if (!unlocked) return;
+    const W = window.innerWidth, H = window.innerHeight;
+    x = Math.max(MARGIN, Math.min(W - SIZE - MARGIN, x));
+    y = Math.max(TOP_PAD, Math.min(H - SIZE - MARGIN, y));
   });
 
   // Click → scroll to contact
