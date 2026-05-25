@@ -1,7 +1,7 @@
 // ===========================
 // VERSION  (footer only — header uses nav now)
 // ===========================
-const VERSION = '1.4.0';
+const VERSION = '1.5.0';
 
 document.querySelectorAll('.version-tag').forEach(el => {
   el.textContent = `v${VERSION}`;
@@ -11,7 +11,7 @@ document.querySelectorAll('.version-tag').forEach(el => {
 // BOOT SEQUENCE
 // ===========================
 const bootLines = [
-  'PSYDUCK OS v1.4.0 [SHINY EDITION]',
+  'PSYDUCK OS v1.5.0 [SHINY EDITION]',
   '──────────────────────────────────────',
   'Initializing neural interface......OK',
   'Loading memory banks.................OK',
@@ -145,51 +145,7 @@ function triggerTrippy(duration = 2400) {
   trippyRaf = requestAnimationFrame(frame);
 }
 
-// ===========================
-// PRESS ANY KEY — psychic burst
-// ===========================
-const pressBtn    = document.getElementById('pressAnyKey');
-const psychicBurst = document.getElementById('psychicBurst');
-
-function triggerPsychicBurst() {
-  if (!psychicBurst) return;
-  psychicBurst.classList.remove('active');
-  // Force reflow so animation re-triggers
-  void psychicBurst.offsetWidth;
-  psychicBurst.classList.add('active');
-
-  // Sprite GROWS on keypress (never shrinks)
-  if (heroSprite) {
-    heroSprite.classList.add('burst-grow');
-    setTimeout(() => { heroSprite.classList.remove('burst-grow'); }, 700);
-  }
-
-  setSprite('happy', 'PSYCH!');
-  setTimeout(() => { setSprite('idle', 'IDLE'); }, 900);
-
-  // Temporarily boost brainwave rings
-  document.querySelectorAll('.ring').forEach(r => {
-    r.style.animationDuration = '1.5s';
-    setTimeout(() => { r.style.animationDuration = ''; }, 2000);
-  });
-}
-
-if (pressBtn) {
-  pressBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    triggerPsychicBurst();
-  });
-}
-
-// Also fire on any keypress once main content is visible
-document.addEventListener('keydown', (e) => {
-  if (bootDone && mainContent.classList.contains('visible')) {
-    // Don't fire on modifier keys alone
-    if (!['Meta','Control','Alt','Shift','Tab'].includes(e.key)) {
-      triggerPsychicBurst();
-    }
-  }
-});
+// (press-any-key and psychic burst removed)
 
 // ===========================
 // HERO TYPEWRITER
@@ -491,6 +447,5 @@ window.addEventListener('scroll', updateNav, { passive: true });
 // ===========================
 console.log(`%c🐥 PSYDUCK OPERATIONAL — v${VERSION}`, 'color: #fcd34d; font-family: monospace; font-size: 18px; font-weight: bold;');
 console.log('%c >> Click the duck for a trippy ride.', 'color: #a78bfa; font-family: monospace; font-size: 12px;');
-console.log('%c >> Press any key for psychic burst.', 'color: #00d4ff; font-family: monospace; font-size: 12px;');
 console.log('%c >> Click the duck 7x for rave mode.', 'color: #f87171; font-family: monospace; font-size: 12px;');
 console.log('%c >> github.com/shinypsyduck054', 'color: #6a9ab8; font-family: monospace; font-size: 11px;');
