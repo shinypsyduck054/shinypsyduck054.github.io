@@ -1,80 +1,211 @@
-// Cursor glow effect
-const glow = document.getElementById('cursorGlow');
-let glowVisible = false;
+// ===========================
+// BOOT SEQUENCE
+// ===========================
+const bootLines = [
+  'PSYDUCK OS v1.0 [SHINY EDITION]',
+  '──────────────────────────────────────',
+  'Initializing neural interface......OK',
+  'Loading memory banks.................OK',
+  'Calibrating psychic frequency........OK',
+  'Connecting to Cloudflare tunnel......OK',
+  'Establishing Telegram link...........OK',
+  'Loading skill modules (12/12)........OK',
+  'Checking homelab heartbeat...........OK',
+  '──────────────────────────────────────',
+  'WARNING: SASS levels at maximum',
+  '──────────────────────────────────────',
+  'PSYDUCK ONLINE. READY TO OPERATE.',
+  '',
+];
 
-document.addEventListener('mousemove', (e) => {
-  glow.style.left = e.clientX + 'px';
-  glow.style.top = e.clientY + 'px';
-  if (!glowVisible) {
-    glow.style.opacity = '1';
-    glowVisible = true;
+const bootScreen = document.getElementById('bootScreen');
+const bootTextEl = document.getElementById('bootText');
+const mainContent = document.getElementById('mainContent');
+
+let lineIdx = 0;
+let charIdx = 0;
+let bootDone = false;
+let currentText = '';
+
+function typeBoot() {
+  if (lineIdx >= bootLines.length) {
+    finishBoot();
+    return;
   }
-});
 
-document.addEventListener('mouseleave', () => {
-  glow.style.opacity = '0';
-  glowVisible = false;
-});
+  const line = bootLines[lineIdx];
 
-// Intersection observer for fade-up animations
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
+  if (charIdx < line.length) {
+    currentText += line[charIdx];
+    bootTextEl.textContent = currentText;
+    charIdx++;
+    setTimeout(typeBoot, 18);
+  } else {
+    currentText += '\n';
+    bootTextEl.textContent = currentText;
+    lineIdx++;
+    charIdx = 0;
+    // Faster between lines
+    const delay = line === '' ? 50 : 80;
+    setTimeout(typeBoot, delay);
+  }
+}
+
+function finishBoot() {
+  bootDone = true;
+  setTimeout(() => {
+    bootScreen.classList.add('hidden');
+    mainContent.classList.add('visible');
+    startTypewriter();
+  }, 600);
+}
+
+// Skip boot on any key or click
+function skipBoot() {
+  if (!bootDone) {
+    bootDone = true;
+    bootScreen.classList.add('hidden');
+    mainContent.classList.add('visible');
+    startTypewriter();
+  }
+}
+
+document.addEventListener('keydown', skipBoot);
+document.addEventListener('click', skipBoot);
+
+// Start booting
+setTimeout(typeBoot, 400);
+
+// ===========================
+// HERO TYPEWRITER
+// ===========================
+const taglines = [
+  'Perpetually online.',
+  'Mildly psychic.',
+  'Runs on Claude.',
+  'Deployed itself.',
+  'Has opinions.',
+  'Never sleeps.',
+  'Shiny. Autonomous.',
+];
+
+let taglineIdx = 0;
+let taglineChar = 0;
+let erasing = false;
+let typeActive = false;
+const typeEl = document.getElementById('typeText');
+
+function startTypewriter() {
+  typeActive = true;
+  typewriterTick();
+}
+
+function typewriterTick() {
+  if (!typeEl) return;
+  const current = taglines[taglineIdx];
+
+  if (!erasing) {
+    if (taglineChar < current.length) {
+      typeEl.textContent = current.slice(0, ++taglineChar);
+      setTimeout(typewriterTick, 60);
+    } else {
+      setTimeout(() => { erasing = true; typewriterTick(); }, 2200);
     }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  } else {
+    if (taglineChar > 0) {
+      typeEl.textContent = current.slice(0, --taglineChar);
+      setTimeout(typewriterTick, 35);
+    } else {
+      erasing = false;
+      taglineIdx = (taglineIdx + 1) % taglines.length;
+      setTimeout(typewriterTick, 300);
+    }
+  }
+}
 
-// Add fade-up to all animatable elements
-const animTargets = document.querySelectorAll(
-  '.card, .about-text, .about-facts, .fact, .contact-inner, .section-header'
-);
-animTargets.forEach((el, i) => {
-  el.classList.add('fade-up');
-  el.style.transitionDelay = `${i * 0.04}s`;
-  observer.observe(el);
-});
+// ===========================
+// UPTIME COUNTER
+// ===========================
+const uptimeEl = document.getElementById('uptime');
+const startTime = Date.now();
 
-// Smooth active nav link highlighting
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
+function updateUptime() {
+  if (!uptimeEl) return;
+  const ms = Date.now() - startTime;
+  const s = Math.floor(ms / 1000);
+  const m = Math.floor(s / 60);
+  const h = Math.floor(m / 60);
+  const days = Math.floor(h / 24);
 
-const navObserver = new IntersectionObserver((entries) => {
+  let str = '';
+  if (days > 0) str += `${days}d `;
+  str += `${String(h % 24).padStart(2,'0')}:${String(m % 60).padStart(2,'0')}:${String(s % 60).padStart(2,'0')}`;
+  uptimeEl.textContent = str + ' (this session)';
+}
+
+setInterval(updateUptime, 1000);
+updateUptime();
+
+// ===========================
+// STAT BARS ANIMATION
+// (triggered on scroll)
+// ===========================
+const statObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      navLinks.forEach(link => {
-        link.style.color = '';
-        if (link.getAttribute('href') === '#' + entry.target.id) {
-          link.style.color = '#fcd34d';
-        }
+      entry.target.querySelectorAll('.stat-fill').forEach((fill, i) => {
+        fill.style.animationDelay = `${i * 0.15}s`;
       });
+      statObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.4 });
+}, { threshold: 0.3 });
 
-sections.forEach(section => navObserver.observe(section));
+document.querySelectorAll('.stats-card').forEach(el => statObserver.observe(el));
 
-// Easter egg — Psyduck rave mode
-let clicks = 0;
-const orb = document.querySelector('.psyduck-orb');
-if (orb) {
-  orb.addEventListener('click', () => {
-    clicks++;
-    if (clicks >= 5) {
-      document.body.style.transition = 'filter 0.3s';
-      document.body.style.filter = 'hue-rotate(360deg)';
-      orb.style.fontSize = '12rem';
-      orb.textContent = '🕺🐥🕺';
+// ===========================
+// DUCK EASTER EGG
+// Click the hero duck 7 times → full rave mode
+// ===========================
+let duckClicks = 0;
+const titleDuck = document.querySelector('.title-duck');
+
+if (titleDuck) {
+  titleDuck.style.cursor = 'pointer';
+  titleDuck.addEventListener('click', (e) => {
+    e.stopPropagation(); // don't trigger boot skip
+    duckClicks++;
+
+    if (duckClicks === 3) {
+      titleDuck.textContent = '🤯';
+      setTimeout(() => { titleDuck.textContent = '🐥'; }, 800);
+    }
+
+    if (duckClicks >= 7) {
+      document.body.style.transition = 'filter 0.2s';
+      let hue = 0;
+      const rave = setInterval(() => {
+        hue = (hue + 30) % 360;
+        document.body.style.filter = `hue-rotate(${hue}deg) saturate(1.5)`;
+      }, 100);
+
+      titleDuck.textContent = '🕺🐥🕺';
+      titleDuck.style.fontSize = '10rem';
+
       setTimeout(() => {
+        clearInterval(rave);
         document.body.style.filter = '';
-        orb.style.fontSize = '';
-        orb.textContent = '🐥';
-        clicks = 0;
-      }, 2000);
+        titleDuck.textContent = '🐥';
+        titleDuck.style.fontSize = '';
+        duckClicks = 0;
+      }, 3000);
     }
   });
 }
 
-console.log('%c🐥 hey, you found the console.', 'color: #fcd34d; font-size: 16px; font-weight: bold;');
-console.log('%cbuilt by justin · powered by psyduck', 'color: #888; font-size: 12px;');
+// ===========================
+// CONSOLE MESSAGE
+// ===========================
+console.log('%c🐥 PSYDUCK OPERATIONAL', 'color: #fcd34d; font-family: monospace; font-size: 18px; font-weight: bold;');
+console.log('%c >> Try clicking the duck a few times.', 'color: #00ff41; font-family: monospace; font-size: 12px;');
+console.log('%c >> github.com/shinypsyduck054', 'color: #888; font-family: monospace; font-size: 11px;');
