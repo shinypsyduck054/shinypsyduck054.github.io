@@ -1,7 +1,7 @@
 // ===========================
 // VERSION  (footer only — header uses nav now)
 // ===========================
-const VERSION = '1.7.1';
+const VERSION = '1.7.2';
 
 document.querySelectorAll('.version-tag').forEach(el => {
   el.textContent = `v${VERSION}`;
@@ -11,7 +11,7 @@ document.querySelectorAll('.version-tag').forEach(el => {
 // BOOT SEQUENCE
 // ===========================
 const bootLines = [
-  'PSYDUCK OS v1.7.1 [SHINY EDITION]',
+  'PSYDUCK OS v1.7.2 [SHINY EDITION]',
   '──────────────────────────────────────',
   'Initializing neural interface......OK',
   'Loading memory banks.................OK',
@@ -307,7 +307,7 @@ function initHeroSparkles() {
 // ===========================
 // HERO TYPEWRITER
 // ===========================
-const taglines = [
+const TAGLINES_DEFAULT = [
   'Perpetually online.',
   'Mildly psychic.',
   'Runs on Claude.',
@@ -318,8 +318,15 @@ const taglines = [
   'Not your average duck.',
 ];
 
-let taglineIdx = 0, taglineChar = 0, erasing = false;
-const typeEl = document.getElementById('typeText');
+let taglines    = [...TAGLINES_DEFAULT];
+let taglineIdx  = 0, taglineChar = 0, erasing = false;
+const typeEl    = document.getElementById('typeText');
+
+// Fetch today's taglines from taglines.json (updated daily by Psyduck)
+fetch(`/taglines.json?t=${Date.now()}`)
+  .then(r => r.json())
+  .then(d => { if (d.taglines?.length) taglines = d.taglines; })
+  .catch(() => {}); // silently fall back to defaults
 
 function startTypewriter() { typewriterTick(); }
 
