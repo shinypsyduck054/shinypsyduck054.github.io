@@ -1,7 +1,7 @@
 // ===========================
 // VERSION  (footer only — header uses nav now)
 // ===========================
-const VERSION = '1.7.0';
+const VERSION = '1.7.1';
 
 document.querySelectorAll('.version-tag').forEach(el => {
   el.textContent = `v${VERSION}`;
@@ -11,7 +11,7 @@ document.querySelectorAll('.version-tag').forEach(el => {
 // BOOT SEQUENCE
 // ===========================
 const bootLines = [
-  'PSYDUCK OS v1.7.0 [SHINY EDITION]',
+  'PSYDUCK OS v1.7.1 [SHINY EDITION]',
   '──────────────────────────────────────',
   'Initializing neural interface......OK',
   'Loading memory banks.................OK',
@@ -55,6 +55,7 @@ function finishBoot() {
     mainContent.classList.add('visible');
     startTypewriter();
     initPixelCanvas();
+    initHeroSparkles();
     initTrippy();
     initWanderDuck();
     // Grand entrance: wake up trippy, settle into the layout
@@ -70,6 +71,7 @@ function skipBoot() {
     mainContent.classList.add('visible');
     startTypewriter();
     initPixelCanvas();
+    initHeroSparkles();
     initTrippy();
     initWanderDuck();
     // Shorter burst on skip
@@ -221,6 +223,86 @@ function triggerBootTrippy(duration = 2600) {
 }
 
 // (press-any-key and psychic burst removed)
+
+// ===========================
+// PIXEL SPARKLES (hero section)
+// ===========================
+function initHeroSparkles() {
+  const canvas = document.getElementById('heroSparkles');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  const COLORS = ['#00d4ff','#00d4ff','#a78bfa','#fcd34d','#ffffff','#a78bfa'];
+  const PIXEL  = 2; // base pixel size
+
+  function resize() {
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // 30 sparkles — weighted toward center where the duck is
+  const sparkles = Array.from({ length: 30 }, () => {
+    // gaussian-ish spread: pull toward center with some reaching the edges
+    const spread = Math.random() < 0.5 ? 0.35 : 0.7;
+    const cx = 0.5 + (Math.random() - 0.5) * spread * 2;
+    const cy = 0.4 + (Math.random() - 0.5) * spread;
+    return {
+      nx:      Math.max(0.04, Math.min(0.96, cx)),
+      ny:      Math.max(0.04, Math.min(0.96, cy)),
+      armLen:  [2, 3, 3, 4, 5][Math.floor(Math.random() * 5)], // pixel arm length
+      color:   COLORS[Math.floor(Math.random() * COLORS.length)],
+      phase:   Math.random() * Math.PI * 2,
+      speed:   0.35 + Math.random() * 1.1,
+      maxAlpha: 0.45 + Math.random() * 0.55,
+    };
+  });
+
+  function drawCross(cx, cy, armLen, color, alpha) {
+    if (alpha <= 0) return;
+    const ax = Math.round(cx / PIXEL) * PIXEL;
+    const ay = Math.round(cy / PIXEL) * PIXEL;
+
+    // Center pixel
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle   = color;
+    ctx.fillRect(ax, ay, PIXEL, PIXEL);
+
+    // Arms — fade toward tips
+    for (let i = 1; i <= armLen; i++) {
+      const a = alpha * Math.max(0, 1 - (i / armLen) * 0.75);
+      ctx.globalAlpha = a;
+      const d = i * PIXEL;
+      ctx.fillRect(ax + d, ay, PIXEL, PIXEL);
+      ctx.fillRect(ax - d, ay, PIXEL, PIXEL);
+      ctx.fillRect(ax, ay + d, PIXEL, PIXEL);
+      ctx.fillRect(ax, ay - d, PIXEL, PIXEL);
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const t = Date.now() / 1000;
+
+    sparkles.forEach(sp => {
+      // Use abs(sin) so sparkles pulse in then out cleanly
+      const alpha = sp.maxAlpha * Math.abs(Math.sin(t * sp.speed + sp.phase));
+      drawCross(
+        sp.nx * canvas.width,
+        sp.ny * canvas.height,
+        sp.armLen,
+        sp.color,
+        alpha
+      );
+    });
+
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+}
 
 // ===========================
 // HERO TYPEWRITER
