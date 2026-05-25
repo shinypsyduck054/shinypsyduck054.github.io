@@ -1,7 +1,7 @@
 // ===========================
 // VERSION  (footer only — header uses nav now)
 // ===========================
-const VERSION = '1.6.2';
+const VERSION = '1.6.3';
 
 document.querySelectorAll('.version-tag').forEach(el => {
   el.textContent = `v${VERSION}`;
@@ -11,7 +11,7 @@ document.querySelectorAll('.version-tag').forEach(el => {
 // BOOT SEQUENCE
 // ===========================
 const bootLines = [
-  'PSYDUCK OS v1.6.2 [SHINY EDITION]',
+  'PSYDUCK OS v1.6.3 [SHINY EDITION]',
   '──────────────────────────────────────',
   'Initializing neural interface......OK',
   'Loading memory banks.................OK',
@@ -371,7 +371,7 @@ function initWanderDuck() {
   // Physics state
   let x, y, vx, vy;
   let rot      = 0;
-  let rotSpeed = (Math.random() - 0.5) * 0.012; // deg/frame, very slow
+  let rotSpeed = 0.009 + Math.random() * 0.006; // slow continuous spin, always positive
   let unlocked = false;
   let rafId    = null;
 
@@ -415,12 +415,10 @@ function initWanderDuck() {
       if (y < T) { y = T; vy =  Math.abs(vy) * 0.7 + 0.06; }
       if (y > B) { y = B; vy = -Math.abs(vy) * 0.7 - 0.06; }
 
-      // Rotation: slow drift, gently nudged, capped at ±38°
-      rotSpeed += (Math.random() - 0.5) * 0.001;
-      rotSpeed  = Math.max(-0.04, Math.min(0.04, rotSpeed));
+      // Rotation: slow continuous spin with slight organic variation
+      rotSpeed += (Math.random() - 0.5) * 0.0002;
+      rotSpeed  = Math.max(0.006, Math.min(0.018, rotSpeed)); // always spinning, never reverses
       rot      += rotSpeed * dt * 0.5;
-      if (rot >  38) { rot =  38; rotSpeed *= -0.6; }
-      if (rot < -38) { rot = -38; rotSpeed *= -0.6; }
 
       duck.style.left      = x + 'px';
       duck.style.top       = y + 'px';
