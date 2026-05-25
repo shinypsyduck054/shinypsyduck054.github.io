@@ -1,6 +1,6 @@
 {
-  "updated": "2026-05-25T06:51:12.950936+00:00",
-  "updatedMs": 1779691872950,
+  "updated": "2026-05-25T07:21:11.825085+00:00",
+  "updatedMs": 1779693671825,
   "channels": [
     {
       "id": "telegram",
@@ -26,7 +26,7 @@
       "id": "anthropic",
       "name": "Anthropic",
       "status": "limited",
-      "note": "session nearly exhausted \u00b7 1h 38m left \u00b7 oauth 8h",
+      "note": "session nearly exhausted \u00b7 1h 8m left \u00b7 oauth 7h",
       "models": [
         "Claude Sonnet 4.6",
         "Claude Haiku 4.5",
