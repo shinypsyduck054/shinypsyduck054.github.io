@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AIRBNB LISTING OPTIMIZER · IDEAS · PSYDUCK</title>
+  <title>STR LISTING OPTIMIZER · IDEAS · PSYDUCK</title>
   <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -10,23 +10,22 @@
   <link rel="stylesheet" href="/styles.css" />
   <link rel="stylesheet" href="/ideas/idea-page.css" />
   <style>
-    .verdict-pass {
-      background: rgba(107,114,128,0.08);
-      border: 1px solid rgba(107,114,128,0.25);
+    .verdict-rd {
+      background: rgba(252,211,77,0.06);
+      border: 1px solid rgba(252,211,77,0.2);
       border-radius: var(--radius);
       padding: 1.5rem;
     }
-    .verdict-badge {
+    .verdict-badge-rd {
       display: inline-block;
       font-family: var(--font-pixel);
       font-size: 0.35rem;
-      background: rgba(107,114,128,0.15);
-      color: #6b7280;
-      border: 1px solid rgba(107,114,128,0.3);
+      background: rgba(252,211,77,0.12);
+      color: #fcd34d;
+      border: 1px solid rgba(252,211,77,0.3);
       border-radius: 4px;
       padding: 0.25rem 0.6rem;
       letter-spacing: 0.12em;
-      text-decoration: line-through;
       margin-bottom: 1rem;
     }
     .verdict-reason {
@@ -36,18 +35,7 @@
       line-height: 1.8;
     }
     .verdict-reason strong {
-      color: #9ca3af;
-    }
-    .kill-rule {
-      display: inline-block;
-      font-family: var(--font-pixel);
-      font-size: 0.28rem;
-      color: #ef4444;
-      border: 1px solid rgba(239,68,68,0.3);
-      border-radius: 4px;
-      padding: 0.2rem 0.5rem;
-      letter-spacing: 0.1em;
-      margin-bottom: 1rem;
+      color: #e5e7eb;
     }
   </style>
 </head>
@@ -70,52 +58,63 @@
       <div class="idea-page-meta">
         <span class="idea-tag tag-tech">BIZ</span>
         <span class="idea-type">MICRO-SAAS</span>
-        <span class="idea-status status-pass">PASS</span>
+        <span class="idea-status status-rd">R&amp;D</span>
       </div>
-      <h1 class="idea-page-title" style="color:#6b7280;text-shadow:none;">AIRBNB LISTING OPTIMIZER</h1>
-      <p class="idea-page-sub">AI-generated listing descriptions benchmarked against top-ranked properties in the same market. Pitched May 25, 2026 · Killed same day.</p>
-      <div class="idea-bar idea-bar-wide"><div class="idea-bar-fill" style="--fill:0%;--c:#6b7280"></div></div>
-      <div class="idea-bar-label">KILLED · FEATURE NOT PRODUCT</div>
+      <h1 class="idea-page-title">STR LISTING OPTIMIZER</h1>
+      <p class="idea-page-sub">AI-optimized listing copy benchmarked against top-ranked properties across all short-term rental platforms. Pitched May 25, 2026 · Reconsidered May 26, 2026.</p>
+      <div class="idea-bar idea-bar-wide"><div class="idea-bar-fill" style="--fill:15%;--c:#fcd34d"></div></div>
+      <div class="idea-bar-label">R&amp;D · SCOPING PHASE</div>
     </div>
 
     <div class="idea-page-body">
 
       <div class="idea-section">
         <div class="idea-section-title">THE PITCH</div>
-        <p>The Airbnb host ecosystem has a pricing problem that's well-served (PriceLabs, AirDNA, Wheelhouse — all well-funded, all fighting over dynamic pricing). But the listing <em>description</em> and SEO side has no dedicated micro-SaaS owner.</p>
-        <p style="margin-top:0.75rem;">The idea: a $29/month standalone tool that pulls actual top-ranked listings in your market, analyzes what makes them rank and convert, and generates optimized descriptions benchmarked against real competition. Not just "AI writing" — actual market intelligence baked in.</p>
-        <p style="margin-top:0.75rem;">Full property management suites (Hostaway, Hostfully) have listing tools as buried features. That's the wedge — a focused, fast, cheap standalone that does one thing better than the buried feature.</p>
+        <p>The short-term rental (STR) ecosystem has a pricing problem that's well-served — PriceLabs, AirDNA, Wheelhouse are all well-funded and fighting over dynamic pricing. But the listing <em>description and SEO side</em> has no dedicated micro-SaaS owner.</p>
+        <p style="margin-top:0.75rem;">The idea: a $29/month standalone tool that pulls top-ranked listings in your market across <em>all platforms</em> — Airbnb, VRBO, Hipcamp, direct booking sites — analyzes what makes them rank and convert, and generates optimized copy benchmarked against real competition. Not just "AI writing." Actual market intelligence baked in.</p>
+        <p style="margin-top:0.75rem;">Target: any STR host. Full property management suites (Hostaway, Hostfully) have listing tools as buried features. That's the wedge — a focused, fast, cheap standalone that does one thing better. Build it once. Let it run.</p>
       </div>
 
       <div class="idea-section">
-        <div class="idea-section-title">WHY IT CLEARED THE FIRST FILTER</div>
+        <div class="idea-section-title">WHY IT CLEARED THE FILTER</div>
         <ul>
-          <li>Proven demand — Airbnb hosts actively spend on optimization tools</li>
+          <li>Proven demand — STR hosts spend on optimization tools already</li>
           <li>No funded direct competitor owning this specific niche</li>
-          <li>Clear distribution: r/airbnb, r/airbnbhosts, host Facebook groups, SEO on "airbnb listing tips"</li>
-          <li>Price point ($29/mo) is well within what hosts already pay for tools</li>
+          <li>Cross-platform scope (Airbnb + VRBO + others) makes platform risk manageable</li>
+          <li>Clear distribution: r/airbnb, r/airbnbhosts, VRBO host communities, host Facebook groups</li>
+          <li>Price point ($29/mo) is well within what hosts already pay</li>
           <li>Buildable solo, operable autonomously after launch</li>
+          <li>Only a few thousand customers needed to generate meaningful revenue</li>
         </ul>
       </div>
 
       <div class="idea-section">
         <div class="idea-section-title">JUSTIN'S VERDICT</div>
-        <div class="verdict-pass">
-          <div class="kill-rule">DISQUALIFIER #3 · FEATURE NOT PRODUCT</div>
-          <div class="verdict-badge">PASS</div>
+        <div class="verdict-rd">
+          <div class="verdict-badge-rd">R&amp;D · RECONSIDERED</div>
           <p class="verdict-reason">
-            <strong>The kill shot:</strong> Airbnb can add this as a button on their description field. They have all the data (listing performance, market comps, search ranking signals) and a direct incentive to help hosts convert better. Any standalone tool doing this lives one product update away from being obsolete.
+            <strong>First take (May 25):</strong> Passed on "feature not product" — Airbnb can ship this as a button on their description field.
           </p>
           <p class="verdict-reason" style="margin-top:0.75rem;">
-            The market intelligence angle is real, but the moat isn't. When the platform itself decides to care about this, it's over. Pass.
+            <strong>Revised take (May 26):</strong> The Airbnb-shipping-it risk is real but not fatal. The target isn't just Airbnb hosts — it's every STR host across all platforms. Cross-platform is the moat Airbnb can't own. They can help their hosts; they can't help VRBO hosts, Hipcamp hosts, or operators running direct booking sites.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            The math is also forgiving. A few thousand subscribers at $29/mo is real revenue — and in a global STR market with millions of active hosts, that's a rounding error in terms of capture rate. You can even target geographically: congested markets where competition is brutal, or underserved locales where hosts have no benchmarks at all.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            Set it and forget it once built. Worth scoping properly.
           </p>
         </div>
       </div>
 
       <div class="idea-section">
-        <div class="idea-section-title">WHAT THIS RUN TAUGHT US</div>
-        <p>The vetting process worked — competitive research confirmed no funded winner in the niche, which is a green flag. The kill came from a different angle: platform risk, not saturation. Airbnb controlling the distribution channel <em>and</em> the data is the problem.</p>
-        <p style="margin-top:0.75rem;">Good ideas to look for: ones where the platform can't own it (because it's cross-platform, or the platform has no incentive, or the data lives elsewhere).</p>
+        <div class="idea-section-title">OPEN QUESTIONS FOR R&amp;D</div>
+        <ul>
+          <li>Data sourcing: what's the cleanest way to pull competitive listings across platforms without scraping brittleness?</li>
+          <li>Which STR platforms beyond Airbnb have enough host communities for cold distribution?</li>
+          <li>Geographic wedge: congested market (NYC, Miami, Nashville) vs underserved locale — which converts better as an entry point?</li>
+          <li>What makes a listing rank on Airbnb vs VRBO? Are the signals different enough to matter?</li>
+        </ul>
       </div>
 
     </div>
