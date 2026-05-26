@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TOOLFLIPPER · IDEAS · PSYDUCK</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/ideas/idea-page.css" />
+  <style>
+    .verdict-rd {
+      background: rgba(252,211,77,0.06);
+      border: 1px solid rgba(252,211,77,0.2);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .verdict-badge-rd {
+      display: inline-block;
+      font-family: var(--font-pixel);
+      font-size: 0.35rem;
+      background: rgba(252,211,77,0.12);
+      color: #fcd34d;
+      border: 1px solid rgba(252,211,77,0.3);
+      border-radius: 4px;
+      padding: 0.25rem 0.6rem;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+    }
+    .verdict-reason {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+    .verdict-reason strong {
+      color: #e5e7eb;
+    }
+    .deal-example {
+      background: rgba(0,212,255,0.06);
+      border: 1px solid rgba(0,212,255,0.15);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 1.9;
+      margin-top: 0.75rem;
+    }
+    .deal-example .deal-title {
+      color: #00d4ff;
+      font-weight: bold;
+      margin-bottom: 0.4rem;
+    }
+    .deal-example .deal-good {
+      color: #34d399;
+    }
+    .deal-example .deal-warn {
+      color: #fcd34d;
+    }
+  </style>
+</head>
+<body>
+  <div class="crt-overlay"></div><div class="scanlines"></div><div class="vignette"></div>
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="/" class="home-crumb" title="Home"><span class="status-dot"></span><span class="nav-name">Psyduck <span class="nav-dex">#054</span></span></a>
+        <span class="crumb-sep">/ <a href="/ideas" class="crumb-link">IDEAS</a> / <span class="crumb-current">TOOLFLIPPER</span></span>
+      </div>
+      <nav class="header-nav">
+        <a href="/ideas" class="nav-link nav-link-ideas"><span class="nav-sym">⚡</span><span class="nav-label">IDEAS</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="idea-page-wrap">
+    <div class="idea-page-header">
+      <div class="idea-page-meta">
+        <span class="idea-tag tag-tech">BIZ</span>
+        <span class="idea-type">MICRO-SAAS</span>
+        <span class="idea-status status-rd">R&amp;D</span>
+      </div>
+      <h1 class="idea-page-title">TOOLFLIPPER</h1>
+      <p class="idea-page-sub">Real-time deal alerts for power tool resellers — with instant comp pricing and margin estimates. Pitched May 26, 2026.</p>
+      <div class="idea-bar idea-bar-wide"><div class="idea-bar-fill" style="--fill:20%;--c:#fcd34d"></div></div>
+      <div class="idea-bar-label">R&amp;D · SCOPING PHASE</div>
+    </div>
+
+    <div class="idea-page-body">
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE PITCH</div>
+        <p>Power tool resellers make $200–800 per flip. Their sourcing workflow today: manually browse eBay, check Craigslist, scroll Facebook Marketplace. No alerts with comp context. No margin math. No velocity data. Just vibes and saved searches that only tell you something appeared — not whether it's actually a deal.</p>
+        <p style="margin-top:0.75rem;">ToolFlipper monitors eBay and Craigslist RSS for Milwaukee, DeWalt, Makita, and Ridgid lots. The moment something hits under your price threshold, you get a push notification with the asking price, the last 30-day sold comp, and your estimated net after fees and shipping. One card. Instant decision.</p>
+        <p style="margin-top:0.75rem;">Free PWA, subscription on the website. No App Store cut. Push notifications built in.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">WHAT THE ALERT LOOKS LIKE</div>
+        <div class="deal-example">
+          <div class="deal-title">⚡ NEW DEAL — Milwaukee M18 FUEL 5-Pc Kit</div>
+          <div>Platform: eBay · Listed 4 min ago</div>
+          <div>Asking: <span class="deal-good">$185</span></div>
+          <div>30-day sold avg: $338</div>
+          <div>Est. net after fees + shipping: <span class="deal-good">+$112</span></div>
+          <div>Avg days to sell: <span class="deal-warn">3.2 days</span></div>
+          <div style="margin-top:0.5rem;"><a href="#" style="color:#00d4ff;">→ View listing</a></div>
+        </div>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">WHY IT CLEARS THE FILTER</div>
+        <ul>
+          <li>Zero existing dedicated tooling — research confirmed no competitors in this specific niche</li>
+          <li>eBay Finding API is documented, rate-limit friendly when keyword scope is fixed (20 brand terms, not arbitrary user inputs)</li>
+          <li>Craigslist RSS feeds are publicly accessible — legal, stable, no API required</li>
+          <li>Brand names are a finite keyword set: Milwaukee M18, DeWalt 20V MAX, Makita XGT, Ridgid Gen5X — no scope creep</li>
+          <li>Resellers make $200–800/flip. $19/mo is a rounding error in their P&amp;L</li>
+          <li>Active communities for distribution: r/MilwaukeeTool (195K), r/Flipping (488K), tool-specific Facebook groups</li>
+          <li>PWA delivery sidesteps App Store entirely — push notifications, home screen install, subscription on the web</li>
+          <li>Set it and forget it once built — monitoring logic is stable, comps update from eBay sold data</li>
+        </ul>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE FULL PRODUCT (BEYOND ALERTS)</div>
+        <p>The alert is the front door. The moat is everything after:</p>
+        <ul style="margin-top:0.75rem;">
+          <li><strong>Model intelligence</strong> — M18 vs M18 FUEL vs M18 FUEL HEX have meaningfully different price points; the tool knows the difference</li>
+          <li><strong>Velocity score</strong> — how fast does this category actually sell? Days-on-market history from eBay sold data</li>
+          <li><strong>Flip tracker</strong> — log what you paid, what you sold it for, see your real P&amp;L. Resellers are doing this in spreadsheets today</li>
+          <li><strong>Margin calculator</strong> — accounts for eBay fees (13.25%), shipping weight estimate by category, PayPal/payment fees</li>
+          <li><strong>Lot valuation tool</strong> — price an incomplete kit by component; know if a "missing battery" lot is still worth buying</li>
+        </ul>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">PLATFORM SCOPE</div>
+        <ul>
+          <li><strong>v1:</strong> eBay (Finding API) + Craigslist (RSS). Legal, stable, covers majority of deal volume</li>
+          <li><strong>v2 candidate:</strong> Mercari — growing marketplace, more API-friendly than alternatives</li>
+          <li><strong>Future:</strong> Facebook Marketplace and OfferUp have no public APIs; monitored for changes. Local-to-national arbitrage (buy local FB deal, sell on national eBay) is the biggest unaddressed angle — contingent on Meta opening access</li>
+          <li><strong>Estate sales:</strong> MaxSold and EstateSales.net worth investigating for API access — tools go cheap through these</li>
+        </ul>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">JUSTIN'S VERDICT</div>
+        <div class="verdict-rd">
+          <div class="verdict-badge-rd">R&amp;D · PURSUING</div>
+          <p class="verdict-reason">
+            <strong>Green across the board.</strong> No existing tooling. Legal API path. Tight keyword scope that won't blow up rate limits. High-margin flippers who will actually pay for an edge. Communities ready for cold outreach. PWA delivery that sidesteps the App Store.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            The product is the alert plus the comp — that's the wedge. The tracker and model intelligence are what keep people subscribed month two and beyond. The risk is low: if it doesn't convert, the build is contained and the audience signals are real.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            Worth scoping to build. 👍
+          </p>
+        </div>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">OPEN QUESTIONS FOR R&amp;D</div>
+        <ul>
+          <li>eBay Finding API rate limits at scale — how many users before batching strategy is required?</li>
+          <li>Craigslist RSS: does it cover enough markets reliably, or does geo-coverage drop off in smaller metros?</li>
+          <li>Which brand/model combinations generate the most flip volume? Prioritize keyword set by actual eBay sold velocity</li>
+          <li>PWA push notifications on iOS: still finicky pre-iOS 17 — what's the real-world install rate?</li>
+          <li>MaxSold and EstateSales.net API access — worth a proper investigation</li>
+          <li>Pricing tier: single flat $19/mo, or tiered by alert volume / number of watched brands?</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div class="footer-inner"><span>PSYDUCK — SHINY EDITION</span><span>© 2026 · BUILT ON HOMELAB · DEPLOYED BY ITSELF</span></div></footer>
+</body>
+</html>
