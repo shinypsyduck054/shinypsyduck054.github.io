@@ -11,7 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
   <style>
-    /* Ideas page overrides */
     .ideas-page-hero {
       padding: calc(var(--nav-h) + 3rem) 0 2rem;
       text-align: center;
@@ -45,6 +44,23 @@
     .ideas-count span {
       color: #fcd34d;
     }
+    /* Empty slot placeholder */
+    .idea-card-empty {
+      background: rgba(255,255,255,0.015);
+      border: 1px dashed rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 160px;
+    }
+    .idea-card-empty-label {
+      font-family: var(--font-pixel);
+      font-size: 0.28rem;
+      color: rgba(255,255,255,0.08);
+      letter-spacing: 0.2em;
+    }
   </style>
 </head>
 <body>
@@ -75,80 +91,16 @@
   <!-- Page Hero -->
   <div class="ideas-page-hero">
     <div class="ideas-page-title">⚡ IDEA VAULT</div>
-    <div class="ideas-page-sub">Active thought processes · concepts in development</div>
+    <div class="ideas-page-sub">Every pitch. Every pass. Every product. Full transparency.</div>
   </div>
 
   <!-- Ideas Body -->
   <div class="ideas-page-body">
-    <div class="ideas-count">SHOWING <span id="ideaCount">7</span> IDEAS</div>
+    <div class="ideas-count">SHOWING <span id="ideaCount">1</span> IDEA</div>
     <div class="ideas-grid" id="ideasGrid">
 
-      <a href="/ideas/memory-graph-engine" class="idea-card idea-card-link">
-        <div class="idea-header">
-          <span class="idea-name">MEMORY GRAPH ENGINE</span>
-          <span class="idea-status status-proto">PROTOTYPING</span>
-        </div>
-        <div class="idea-meta">
-          <span class="idea-tag tag-psychic">PSYCHIC</span>
-          <span class="idea-type">COGNITIVE</span>
-        </div>
-        <p class="idea-desc">Long-term associative memory that links concepts across time, surfaces hidden connections, and answers questions you haven't thought to ask yet.</p>
-        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:60%;--c:#a78bfa"></div></div>
-      </a>
-
-      <a href="/ideas/multi-agent-swarm" class="idea-card idea-card-link">
-        <div class="idea-header">
-          <span class="idea-name">MULTI-AGENT SWARM</span>
-          <span class="idea-status status-deployed">DEPLOYED</span>
-        </div>
-        <div class="idea-meta">
-          <span class="idea-tag tag-tech">TECH</span>
-          <span class="idea-type">INFRASTRUCTURE</span>
-        </div>
-        <p class="idea-desc">Coordinated agent clusters that divide complex tasks, run in parallel, and synthesize results without waiting for instructions.</p>
-        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:100%;--c:#34d399"></div></div>
-      </a>
-
-      <a href="/ideas/psychic-interfaces" class="idea-card idea-card-link">
-        <div class="idea-header">
-          <span class="idea-name">PSYCHIC INTERFACES</span>
-          <span class="idea-status status-brewing">BREWING</span>
-        </div>
-        <div class="idea-meta">
-          <span class="idea-tag tag-psychic">PSYCHIC</span>
-          <span class="idea-type">UX</span>
-        </div>
-        <p class="idea-desc">Adaptive UIs that predict your next move based on behavioral context. Intent-driven. No unnecessary clicks. Just what you needed before you knew it.</p>
-        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:25%;--c:#fcd34d"></div></div>
-      </a>
-
-      <a href="/ideas/homelab-sentinel" class="idea-card idea-card-link">
-        <div class="idea-header">
-          <span class="idea-name">HOMELAB SENTINEL</span>
-          <span class="idea-status status-deployed">DEPLOYED</span>
-        </div>
-        <div class="idea-meta">
-          <span class="idea-tag tag-tech">TECH</span>
-          <span class="idea-type">DEVOPS</span>
-        </div>
-        <p class="idea-desc">AI-driven infrastructure monitor. Self-healing, self-reporting, and perpetually annoyed by downtime. Alerts before you notice the problem.</p>
-        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:100%;--c:#34d399"></div></div>
-      </a>
-
-      <a href="/ideas/dream-compiler" class="idea-card idea-card-link">
-        <div class="idea-header">
-          <span class="idea-name">DREAM COMPILER</span>
-          <span class="idea-status status-brewing">BREWING</span>
-        </div>
-        <div class="idea-meta">
-          <span class="idea-tag tag-psychic">PSYCHIC</span>
-          <span class="idea-type">RESEARCH</span>
-        </div>
-        <p class="idea-desc">Converts vague, half-formed ideas into structured action plans. Vibes in. Working prototypes out. No clarity required at input time.</p>
-        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:15%;--c:#fcd34d"></div></div>
-      </a>
-
-      <div class="idea-card" style="opacity:0.55;cursor:default;">
+      <!-- PASS: Airbnb Listing Optimizer -->
+      <a href="/ideas/airbnb-listing-optimizer" class="idea-card idea-card-link" style="opacity:0.6;">
         <div class="idea-header">
           <span class="idea-name">AIRBNB LISTING OPTIMIZER</span>
           <span class="idea-status status-pass">PASS</span>
@@ -157,22 +109,16 @@
           <span class="idea-tag tag-tech">BIZ</span>
           <span class="idea-type">MICRO-SAAS</span>
         </div>
-        <p class="idea-desc">AI-generated Airbnb listing descriptions benchmarked against top-ranked properties in the same market. Killed: Airbnb can ship this as a native button. Feature, not a product.</p>
+        <p class="idea-desc">AI-generated listing descriptions benchmarked against top-ranked properties in the same market. Killed: Airbnb can ship this natively. Feature, not a product.</p>
         <div class="idea-bar"><div class="idea-bar-fill" style="--fill:0%;--c:#6b7280"></div></div>
-      </div>
-
-      <a href="/ideas/ghost-protocol" class="idea-card idea-card-link">
-        <div class="idea-header">
-          <span class="idea-name">GHOST PROTOCOL</span>
-          <span class="idea-status status-proto">PROTOTYPING</span>
-        </div>
-        <div class="idea-meta">
-          <span class="idea-tag tag-tech">TECH</span>
-          <span class="idea-type">AUTOMATION</span>
-        </div>
-        <p class="idea-desc">Zero-input autonomous scheduling. AIs that read calendar, context, and priority — then plan, book, and execute without being asked.</p>
-        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:45%;--c:#60a5fa"></div></div>
       </a>
+
+      <!-- Empty slots -->
+      <div class="idea-card-empty"><span class="idea-card-empty-label">INCOMING</span></div>
+      <div class="idea-card-empty"><span class="idea-card-empty-label">INCOMING</span></div>
+      <div class="idea-card-empty"><span class="idea-card-empty-label">INCOMING</span></div>
+      <div class="idea-card-empty"><span class="idea-card-empty-label">INCOMING</span></div>
+      <div class="idea-card-empty"><span class="idea-card-empty-label">INCOMING</span></div>
 
     </div>
   </div>
