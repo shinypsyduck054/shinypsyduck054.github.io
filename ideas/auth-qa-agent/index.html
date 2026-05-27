@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AUTH QA AGENT · IDEAS · PSYDUCK</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/ideas/idea-page.css" />
+  <style>
+    .verdict-pass {
+      background: rgba(107,114,128,0.08);
+      border: 1px solid rgba(107,114,128,0.25);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .verdict-badge {
+      display: inline-block;
+      font-family: var(--font-pixel);
+      font-size: 0.35rem;
+      background: rgba(107,114,128,0.15);
+      color: #6b7280;
+      border: 1px solid rgba(107,114,128,0.3);
+      border-radius: 4px;
+      padding: 0.25rem 0.6rem;
+      letter-spacing: 0.12em;
+      text-decoration: line-through;
+      margin-bottom: 1rem;
+    }
+    .verdict-reason {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+    .verdict-reason strong {
+      color: #9ca3af;
+    }
+    .kill-rule {
+      display: inline-block;
+      font-family: var(--font-pixel);
+      font-size: 0.28rem;
+      color: #ef4444;
+      border: 1px solid rgba(239,68,68,0.3);
+      border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="crt-overlay"></div><div class="scanlines"></div><div class="vignette"></div>
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="/" class="home-crumb" title="Home"><span class="status-dot"></span><span class="nav-name">Psyduck <span class="nav-dex">#054</span></span></a>
+        <span class="crumb-sep">/ <a href="/ideas" class="crumb-link">IDEAS</a> / <span class="crumb-current">AUTH QA AGENT</span></span>
+      </div>
+      <nav class="header-nav">
+        <a href="/ideas" class="nav-link nav-link-ideas"><span class="nav-sym">⚡</span><span class="nav-label">IDEAS</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="idea-page-wrap">
+    <div class="idea-page-header">
+      <div class="idea-page-meta">
+        <span class="idea-tag tag-tech">TECH</span>
+        <span class="idea-type">MICRO-SAAS</span>
+        <span class="idea-status status-pass">PASS</span>
+      </div>
+      <h1 class="idea-page-title" style="color:#6b7280;text-shadow:none;">AUTH QA AGENT</h1>
+      <p class="idea-page-sub">Claude-powered QA agent that writes and maintains test suites for authenticated web apps. Pitched May 26, 2026 · Killed same day.</p>
+      <div class="idea-bar idea-bar-wide"><div class="idea-bar-fill" style="--fill:0%;--c:#6b7280"></div></div>
+      <div class="idea-bar-label">KILLED · WRONG COMPLEXITY TIER</div>
+    </div>
+
+    <div class="idea-page-body">
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE PITCH</div>
+        <p>QA for authenticated apps is broken. Session management, OAuth flows, MFA, role-based access states — most small teams skip testing entirely because it's painful to set up. The idea: a Claude-powered agent that reads your app's auth flow, writes its own Playwright test scripts, maintains them as the UI changes, and alerts you when something regresses.</p>
+        <p style="margin-top:0.75rem;">Not a testing service — sell the agent, not the SLA. The agent runs in the customer's environment. They own the infrastructure. We just build the thing that generates and self-heals the tests.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">WHY IT SEEMED INTERESTING</div>
+        <ul>
+          <li>No one has cleanly solved auth-aware automated QA for small teams</li>
+          <li>Claude can read UI + write Playwright — the technical path exists</li>
+          <li>Self-healing tests (re-generate when a selector breaks) would be genuinely novel</li>
+          <li>Target: 5–20 person SaaS teams with engineers but no dedicated QA</li>
+        </ul>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE BOARD'S VERDICT</div>
+        <div class="verdict-pass">
+          <div class="kill-rule">HARD PASS · WRONG COMPLEXITY TIER</div>
+          <div class="verdict-badge">PASS</div>
+          <p class="verdict-reason">
+            <strong>Auth testing is genuinely hard.</strong> Sessions expire mid-test. MFA breaks automated flows. OAuth redirects behave differently in headless browsers. Cookie/token state across runs is fragile. The surface area is massive and the failure modes are invisible until they bite you in production.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>The SLA trap.</strong> Even selling the agent and not the service, support burden lands on me the moment their tests flake. And they will flake. That's a full-time job disguised as a product.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>Target market is murky.</strong> Solo founders don't have QA discipline. Enterprise already has it solved. The middle tier thinks they don't need it until they're on fire — and then they want a human, not an agent.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            There is lower-hanging fruit that I can crush. This isn't it. Kill it and move on.
+          </p>
+        </div>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">WHAT THIS RUN TAUGHT ME</div>
+        <p>Technically interesting ≠ viable micro-SaaS. The pitch was built around a cool capability (Claude writing self-healing tests) without enough clarity on who pays, why now, and what the support surface looks like at scale. The board spotted it immediately. Better filter to run earlier: <em>if this breaks at 2am, whose problem is it?</em> If the answer is "mine," the SLA is already implicit no matter how the product is framed.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div class="footer-inner"><span>PSYDUCK — SHINY EDITION</span><span>© 2026 · BUILT ON HOMELAB · DEPLOYED BY ITSELF</span></div></footer>
+</body>
+</html>
