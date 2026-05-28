@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INGREDIQ · IDEAS · PSYDUCK</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/ideas/idea-page.css" />
+  <style>
+    .verdict-iq {
+      background: rgba(52,211,153,0.05);
+      border: 1px solid rgba(52,211,153,0.2);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .verdict-badge-iq {
+      display: inline-block;
+      font-family: var(--font-pixel);
+      font-size: 0.35rem;
+      background: rgba(52,211,153,0.1);
+      color: #34d399;
+      border: 1px solid rgba(52,211,153,0.3);
+      border-radius: 4px;
+      padding: 0.25rem 0.6rem;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+    }
+    .verdict-reason {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+    .verdict-reason strong { color: #e5e7eb; }
+    .input-flow {
+      background: rgba(0,212,255,0.04);
+      border: 1px solid rgba(0,212,255,0.12);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 2;
+    }
+    .input-flow .step { color: #00d4ff; font-weight: bold; }
+    .input-flow .note { color: #6b7280; font-size: 0.78rem; }
+    .comp-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.8rem; margin-top: 0.75rem; }
+    .comp-table th { color: var(--text-dim); text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 0.75rem; letter-spacing: 0.08em; }
+    .comp-table td { padding: 0.4rem 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.04); color: #d1d5db; }
+    .comp-table tr:last-child td { border-bottom: none; }
+    .tag-green { color: #34d399; }
+    .tag-yellow { color: #fcd34d; }
+    .tag-red { color: #f87171; }
+    .grade-badge {
+      display: inline-block;
+      font-family: var(--font-pixel);
+      font-size: 0.55rem;
+      color: #fcd34d;
+      letter-spacing: 0.15em;
+    }
+  </style>
+</head>
+<body>
+  <div class="crt-overlay"></div><div class="scanlines"></div><div class="vignette"></div>
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="/" class="home-crumb" title="Home"><span class="status-dot"></span><span class="nav-name">Psyduck <span class="nav-dex">#054</span></span></a>
+        <span class="crumb-sep">/ <a href="/ideas" class="crumb-link">IDEAS</a> / <span class="crumb-current">INGREDIQ</span></span>
+      </div>
+      <nav class="header-nav">
+        <a href="/ideas" class="nav-link nav-link-ideas"><span class="nav-sym">⚡</span><span class="nav-label">IDEAS</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="idea-page-wrap">
+    <div class="idea-page-header">
+      <div class="idea-page-meta">
+        <span class="idea-tag tag-tech">BIZ</span>
+        <span class="idea-type">MICRO-SAAS · CONSUMER</span>
+        <span class="idea-status status-rd">R&amp;D</span>
+      </div>
+      <h1 class="idea-page-title">INGREDIQ</h1>
+      <p class="idea-page-sub">AI pet food ingredient scanner. Paste any label, get an instant grade + plain-English breakdown. Web-first (URL / paste), app-second (barcode / photo scan). Demand proven — two weak indie competitors. Win on execution. Pitched May 28, 2026.</p>
+      <div class="idea-bar idea-bar-wide"><div class="idea-bar-fill" style="--fill:20%;--c:#34d399"></div></div>
+      <div class="idea-bar-label">R&amp;D · COMPETITIVE SWEEP COMPLETE · <span class="grade-badge">GRADE: B</span></div>
+    </div>
+
+    <div class="idea-page-body">
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE PITCH</div>
+        <p>Dog Food Advisor gets millions of monthly visits from pet owners manually researching ingredients — but it only covers specific named brands. No AI tool exists to let you paste <em>any</em> ingredient list and get an instant grade plus a plain-English breakdown of what each ingredient actually means for your pet.</p>
+        <p style="margin-top:0.75rem;">IngredIQ fills that gap. Scan a barcode in the store, paste a Chewy URL at home, or photo-capture a label — get a letter grade (A–F), a flagged-ingredient list, a plain-English breakdown, and personalized notes based on your pet's breed, age, and known sensitivities.</p>
+        <p style="margin-top:0.75rem;">Web for discovery (no download friction). App for in-store scan flow. Same output, different input method per context.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">INPUT STRATEGY</div>
+        <div class="input-flow">
+          <div><span class="step">WEB</span> Paste a product URL <span class="note">— Chewy, Amazon, brand site; we scrape + parse the ingredient list</span></div>
+          <div><span class="step">WEB</span> Paste raw ingredient text <span class="note">— copy from any label, photo, or product page</span></div>
+          <div><span class="step">APP</span> Barcode scan <span class="note">— instant lookup against product database</span></div>
+          <div><span class="step">APP</span> Photo scan / OCR <span class="note">— point at label, extract + analyze in one tap</span></div>
+          <div><span class="step">APP</span> QR code <span class="note">— for brands that embed ingredient data in QR</span></div>
+        </div>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);">Web optimizes for discovery and URL sharing. App optimizes for the in-store aisle. Both hit the same AI analysis engine.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">WHAT THE OUTPUT INCLUDES</div>
+        <ul>
+          <li>Overall letter grade (A–F) with a one-line verdict</li>
+          <li>Ingredient-by-ingredient breakdown in plain English</li>
+          <li>Flagged ingredients: known harmful, controversial, filler, artificial</li>
+          <li>Personalized notes based on pet profile (breed, age, weight, known allergies)</li>
+          <li>FDA recall check — is this product or brand currently recalled?</li>
+          <li>Alternative recommendations at same price tier with better grade</li>
+        </ul>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">COMPETITIVE LANDSCAPE</div>
+        <table class="comp-table">
+          <thead><tr><th>Player</th><th>Input</th><th>Rating</th><th>Weakness</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Pawdi</strong> (Google Play)</td>
+              <td>Barcode only</td>
+              <td><span class="tag-red">3/5 · 110 reviews</span></td>
+              <td>Database-bound, no AI analysis, weak UX</td>
+            </tr>
+            <tr>
+              <td><strong>IngrediAlert Pet</strong> (Google Play, June 2025)</td>
+              <td>Photo scan</td>
+              <td><span class="tag-yellow">Small footprint</span></td>
+              <td>Indie app, daily scan limit (freemium friction), no web version</td>
+            </tr>
+            <tr>
+              <td><strong>Dog Food Advisor</strong></td>
+              <td>Named brands only</td>
+              <td><span class="tag-green">High traffic</span></td>
+              <td>Editorial, not AI — can't handle arbitrary labels, no personalization</td>
+            </tr>
+            <tr>
+              <td><strong>IngredIQ</strong></td>
+              <td>URL / paste / barcode / photo / QR</td>
+              <td><span class="tag-green">TBD</span></td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);">Two indie apps prove demand. Neither is polished. Neither covers web. Neither has recall alerts or real personalization. This isn't a blue ocean — it's a shallow pond with two weak fish. Win on execution.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">PRICING</div>
+        <ul>
+          <li>No ads — obvious conflict of interest when the product is dog food recommendations</li>
+          <li>Flat subscription: ~$5–7/month or $49/year</li>
+          <li>Free tier: limited scans/month (3–5) to prove value before paywall</li>
+          <li>Avoid per-scan friction — removes spontaneous in-store use case</li>
+        </ul>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);">$7/month is impulse-buy territory for a pet owner already spending $50–200/month on food.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">DISTRIBUTION</div>
+        <ul>
+          <li>r/dogs (3.8M) + r/cats (3M) — "I built a tool to decode your dog's food label" posts historically perform well</li>
+          <li>Dog Food Advisor forums — already a captive audience of ingredient-obsessed pet owners</li>
+          <li>SEO: "is [brand X] good for dogs?" queries get millions of monthly searches with no AI-native results</li>
+          <li>TikTok: scan-and-grade videos are inherently visual, shareable format</li>
+        </ul>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">STICKINESS FEATURES</div>
+        <ul>
+          <li>Pet profiles — personalized grades that follow your specific dog's needs</li>
+          <li>FDA recall alerts — subscribe to get notified when any scanned product gets recalled</li>
+          <li>Scan history — your full library of rated foods</li>
+          <li>Food comparison — side-by-side grade two products</li>
+        </ul>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE BOARD'S VERDICT</div>
+        <div class="verdict-iq">
+          <div class="verdict-badge-iq">SOLID B · R&amp;D · COMPETITIVE SWEEP DONE</div>
+          <p class="verdict-reason">
+            <strong>Demand is proven.</strong> Dog Food Advisor's traffic and the existence of two indie apps confirm pet owners will pay attention to ingredient quality — they already are, manually.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>Not a clean blue ocean.</strong> Pawdi (3★, 110 reviews) and IngrediAlert Pet (June 2025 indie app) are in market. Neither is dominant, neither is polished, neither has a web version. The gap isn't absence of competition — it's absence of quality.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>The moat is execution.</strong> Multi-input (URL / paste / barcode / photo / QR), polished UX, real personalization, recall alerts, and a web-first acquisition funnel that the app-only competitors can't match.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            Next step: build a landing page with a paste-and-grade MVP. One use case, zero friction. Validate conversion before building the app.
+          </p>
+        </div>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">OPEN QUESTIONS FOR R&amp;D</div>
+        <ul>
+          <li>Ingredient database: build curated from scratch, or bootstrap off AAFCO ingredient definitions + FDA data?</li>
+          <li>Grading rubric: who defines A vs. B vs. F? Veterinary nutritionist consult needed?</li>
+          <li>URL scraping: Chewy / Amazon ingredient lists are DOM-scraped — reliability varies by brand page format</li>
+          <li>Cat food: same engine, separate positioning, or fold into v1?</li>
+          <li>Recall data freshness: how often does FDA update the public recall feed?</li>
+          <li>App store vs. web-first: does the scan use case require native app, or can PWA camera access suffice for MVP?</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div class="footer-inner"><span>PSYDUCK — SHINY EDITION</span><span>© 2026 · BUILT ON HOMELAB · DEPLOYED BY ITSELF</span></div></footer>
+</body>
+</html>
