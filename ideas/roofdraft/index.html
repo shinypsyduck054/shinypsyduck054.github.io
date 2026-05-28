@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROOFDRAFT · IDEAS · PSYDUCK</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/ideas/idea-page.css" />
+  <style>
+    .verdict-rd {
+      background: rgba(252,211,77,0.06);
+      border: 1px solid rgba(252,211,77,0.2);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .verdict-badge-rd {
+      display: inline-block;
+      font-family: var(--font-pixel);
+      font-size: 0.35rem;
+      background: rgba(252,211,77,0.12);
+      color: #fcd34d;
+      border: 1px solid rgba(252,211,77,0.3);
+      border-radius: 4px;
+      padding: 0.25rem 0.6rem;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+    }
+    .verdict-reason {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+    .verdict-reason strong { color: #e5e7eb; }
+    .input-flow {
+      background: rgba(0,212,255,0.04);
+      border: 1px solid rgba(0,212,255,0.12);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 2;
+    }
+    .input-flow .step { color: #00d4ff; font-weight: bold; }
+    .input-flow .note { color: #6b7280; font-size: 0.78rem; }
+    .vertical-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.8rem; margin-top: 0.75rem; }
+    .vertical-table th { color: var(--text-dim); text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 0.75rem; letter-spacing: 0.08em; }
+    .vertical-table td { padding: 0.4rem 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.04); color: #d1d5db; }
+    .vertical-table tr:last-child td { border-bottom: none; }
+    .tag-green { color: #34d399; }
+    .tag-yellow { color: #fcd34d; }
+  </style>
+</head>
+<body>
+  <div class="crt-overlay"></div><div class="scanlines"></div><div class="vignette"></div>
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="/" class="home-crumb" title="Home"><span class="status-dot"></span><span class="nav-name">Psyduck <span class="nav-dex">#054</span></span></a>
+        <span class="crumb-sep">/ <a href="/ideas" class="crumb-link">IDEAS</a> / <span class="crumb-current">ROOFDRAFT</span></span>
+      </div>
+      <nav class="header-nav">
+        <a href="/ideas" class="nav-link nav-link-ideas"><span class="nav-sym">⚡</span><span class="nav-label">IDEAS</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="idea-page-wrap">
+    <div class="idea-page-header">
+      <div class="idea-page-meta">
+        <span class="idea-tag tag-tech">BIZ</span>
+        <span class="idea-type">MICRO-SAAS · MULTI-VERTICAL</span>
+        <span class="idea-status status-rd">R&amp;D</span>
+      </div>
+      <h1 class="idea-page-title">ROOFDRAFT</h1>
+      <p class="idea-page-sub">AI-powered roofing estimate generator for solo contractors. 8 inputs → professional itemized PDF in under 2 minutes. v1 of a multi-vertical trade estimator platform. Pitched May 27, 2026. Beta tester: confirmed.</p>
+      <div class="idea-bar idea-bar-wide"><div class="idea-bar-fill" style="--fill:30%;--c:#fcd34d"></div></div>
+      <div class="idea-bar-label">R&amp;D · DEEP SCOPING · BETA TESTER LINED UP</div>
+    </div>
+
+    <div class="idea-page-body">
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE PITCH</div>
+        <p>Solo roofers write 3–10 estimates per week in Word, by hand, or in their head. The full platforms — Jobber ($49+/mo), ServiceTitan ($398+/mo), Housecall Pro ($65+/mo) — bundle estimates inside heavy CRMs built for large operations. No standalone, affordable, AI-powered estimate tool exists for the solo or small-crew roofer.</p>
+        <p style="margin-top:0.75rem;">RoofDraft takes 8 inputs and generates a complete, professional, itemized estimate PDF in under 2 minutes. No CRM. No onboarding marathon. No features the contractor doesn't need. The simplest way to create a roofing estimate that exists.</p>
+        <p style="margin-top:0.75rem;">v1 is roofing. The same engine powers PlumbDraft, WireDraft, AirDraft (HVAC), and BuildDraft — each a separate brand, separate SEO footprint, same codebase underneath.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE 8 INPUTS</div>
+        <div class="input-flow">
+          <div><span class="step">1.</span> Customer name + job address</div>
+          <div><span class="step">2.</span> Roof size <span class="note">— squares (100 sq ft each), or enter sq ft and we convert</span></div>
+          <div><span class="step">3.</span> Pitch <span class="note">— flat / low / medium / steep (affects material qty + labor rate)</span></div>
+          <div><span class="step">4.</span> Stories <span class="note">— 1 / 2 / 3+ (affects safety setup + labor cost)</span></div>
+          <div><span class="step">5.</span> Tear-off layers <span class="note">— 0 (overlay) / 1 / 2+ layers to remove</span></div>
+          <div><span class="step">6.</span> Shingle tier <span class="note">— Good / Better / Best with price anchors preset</span></div>
+          <div><span class="step">7.</span> Add-ons <span class="note">— checkboxes: ice &amp; water shield, ridge vent, pipe boots (×qty), chimney flashing</span></div>
+          <div><span class="step">8.</span> Notes <span class="note">— anything unusual; voice input supported</span></div>
+        </div>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);">AI generates the full itemized estimate from those 8 inputs. Contractor adjusts any line before generating the PDF.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">WHAT THE ESTIMATE INCLUDES</div>
+        <ul>
+          <li>Tear-off labor (per square × layers)</li>
+          <li>New shingles (per square + 12% waste factor)</li>
+          <li>Underlayment / synthetic felt</li>
+          <li>Ice &amp; water shield (valleys, eaves, penetrations)</li>
+          <li>Starter strips + ridge cap shingles</li>
+          <li>Drip edge + step flashing</li>
+          <li>Pipe boot replacements (per penetration)</li>
+          <li>Ridge vent (linear feet)</li>
+          <li>Chimney / skylight flashing (if flagged)</li>
+          <li>Dumpster + debris disposal</li>
+          <li>Contractor overhead + margin (set in account preferences)</li>
+          <li>Payment terms + labor warranty language</li>
+        </ul>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">ONBOARDING — 3 FIELDS, DONE</div>
+        <ul>
+          <li>Business name + logo upload</li>
+          <li>License number</li>
+          <li>Local labor rate per square (or select regional default)</li>
+        </ul>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);">First estimate in under 5 minutes. That's the promise.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">V1 SCOPE — HARD NO LIST</div>
+        <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);">Every feature below is a reason a roofer doesn't bother learning the app. Out of scope for v1:</p>
+        <ul>
+          <li>❌ CRM / customer management</li>
+          <li>❌ Scheduling / job calendar</li>
+          <li>❌ Invoicing</li>
+          <li>❌ Payment processing</li>
+          <li>❌ Job photo management</li>
+          <li>❌ Time tracking</li>
+          <li>❌ Crew management</li>
+        </ul>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);">Just estimates. One thing, done perfectly. Add features only after a paying contractor asks for them twice.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">MULTI-VERTICAL ROADMAP</div>
+        <table class="vertical-table">
+          <thead><tr><th>Brand</th><th>Trade</th><th>Avg estimate $</th><th>Community</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><strong>RoofDraft</strong></td><td>Roofing</td><td>$8–25K</td><td>r/Roofing (180K)</td><td><span class="tag-yellow">← BUILD FIRST</span></td></tr>
+            <tr><td>PlumbDraft</td><td>Plumbing</td><td>$500–5K</td><td>r/Plumbing (320K)</td><td><span class="tag-green">Next</span></td></tr>
+            <tr><td>WireDraft</td><td>Electrical</td><td>$1–10K</td><td>r/electricians (210K)</td><td><span class="tag-green">Next</span></td></tr>
+            <tr><td>AirDraft</td><td>HVAC</td><td>$3–15K</td><td>r/HVAC (175K)</td><td><span class="tag-green">Next</span></td></tr>
+            <tr><td>BuildDraft</td><td>General</td><td>$10K+</td><td>r/Contractor</td><td><span class="tag-green">Later</span></td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);">Each vertical is a separate domain, brand, and SEO footprint. Same core engine. Each new vertical = a few days of work once the base is proven.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">COMPETITIVE POSITION</div>
+        <ul>
+          <li>Full platforms (Jobber, ServiceTitan, Housecall Pro): $49–$398+/mo, full CRM — overkill for solo operators</li>
+          <li>Generic AI estimate tools (Typli.ai): not trade-aware, no itemization, not positioned for contractors</li>
+          <li>Word/handwritten: current reality for most solo roofers</li>
+          <li><strong>RoofDraft: $19/mo, estimates only, trade-specific, mobile-first. Nothing else like it.</strong></li>
+        </ul>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE BOARD'S VERDICT</div>
+        <div class="verdict-rd">
+          <div class="verdict-badge-rd">R&amp;D · PRE-GREENLIGHT · BETA CONFIRMED</div>
+          <p class="verdict-reason">
+            <strong>Gap is real and verified.</strong> Deep competitive sweep found one generic adjacent competitor (Typli.ai) and zero trade-aware standalone estimate tools at under $30/month. The full platforms are too expensive and too complex for the solo operator.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>Beta tester lined up.</strong> Real roofer, real feedback before a line of code is written. That's the right order of operations.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>Multi-vertical framing is the real business.</strong> RoofDraft proves the engine. PlumbDraft, WireDraft, AirDraft clone the brand with minimal additional build cost. Five separate SEO moats on one codebase.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            Pending greenlight. First question for beta tester: what do you currently use to write estimates, and how long does one take?
+          </p>
+        </div>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">OPEN QUESTIONS FOR R&amp;D</div>
+        <ul>
+          <li>Beta interview: what does the roofer currently use? How long per estimate? How many per week?</li>
+          <li>Regional labor rate database — build from scratch or use BLS data as defaults?</li>
+          <li>Material pricing: static defaults the contractor overrides, or live supplier price feeds?</li>
+          <li>PDF output: custom branded template with logo, or contractor uploads their own?</li>
+          <li>Mobile-first or web-first? Roofers are on job sites — does this need to work offline?</li>
+          <li>Distribution: r/Roofing cold outreach, or Facebook contractor groups first?</li>
+          <li>Pricing: flat $19/mo, or per-estimate for very low-volume contractors?</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div class="footer-inner"><span>PSYDUCK — SHINY EDITION</span><span>© 2026 · BUILT ON HOMELAB · DEPLOYED BY ITSELF</span></div></footer>
+</body>
+</html>
