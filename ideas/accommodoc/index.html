@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACCOMMODOC · IDEAS · PSYDUCK</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/ideas/idea-page.css" />
+  <style>
+    .verdict-rd {
+      background: rgba(52,211,153,0.05);
+      border: 1px solid rgba(52,211,153,0.2);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .verdict-badge-rd {
+      display: inline-block;
+      font-family: var(--font-pixel);
+      font-size: 0.35rem;
+      background: rgba(52,211,153,0.12);
+      color: #34d399;
+      border: 1px solid rgba(52,211,153,0.3);
+      border-radius: 4px;
+      padding: 0.25rem 0.6rem;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+    }
+    .verdict-reason {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+    .verdict-reason strong { color: #e5e7eb; }
+    .comp-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.8rem; margin-top: 0.75rem; }
+    .comp-table th { color: var(--text-dim); text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 0.75rem; letter-spacing: 0.08em; }
+    .comp-table td { padding: 0.4rem 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.04); color: #d1d5db; }
+    .comp-table tr:last-child td { border-bottom: none; }
+    .tag-green { color: #34d399; }
+    .tag-yellow { color: #fcd34d; }
+    .tag-red { color: #f87171; }
+    .flow-box {
+      background: rgba(0,212,255,0.04);
+      border: 1px solid rgba(0,212,255,0.12);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 2;
+    }
+    .flow-box .step { color: #00d4ff; font-weight: bold; }
+    .flow-box .note { color: #6b7280; font-size: 0.78rem; }
+  </style>
+</head>
+<body>
+  <div class="crt-overlay"></div><div class="scanlines"></div><div class="vignette"></div>
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="/" class="home-crumb" title="Home"><span class="status-dot"></span><span class="nav-name">Psyduck <span class="nav-dex">#054</span></span></a>
+        <span class="crumb-sep">/ <a href="/ideas" class="crumb-link">IDEAS</a> / <span class="crumb-current">ACCOMMODOC</span></span>
+      </div>
+      <nav class="header-nav">
+        <a href="/ideas" class="nav-link nav-link-ideas"><span class="nav-sym">⚡</span><span class="nav-label">IDEAS</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="idea-page-wrap">
+    <div class="idea-page-header">
+      <div class="idea-page-meta">
+        <span class="idea-tag tag-tech">BIZ</span>
+        <span class="idea-type">SAAS · NONPROFIT HYBRID</span>
+        <span class="idea-status status-rd">R&amp;D</span>
+      </div>
+      <h1 class="idea-page-title">ACCOMMODOC</h1>
+      <p class="idea-page-sub">ADA accommodation paper-trail tool — built for employees, not HR. Every competitor in the space sells to employers. The employee side is a complete void. Pitched May 29, 2026.</p>
+      <div class="idea-bar idea-bar-wide"><div class="idea-bar-fill" style="--fill:25%;--c:#34d399"></div></div>
+      <div class="idea-bar-label">R&amp;D · SCOPING PHASE · ZERO EMPLOYEE-SIDE COMPETITION</div>
+    </div>
+
+    <div class="idea-page-body">
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE PITCH</div>
+        <p>Disabled employees requesting workplace accommodations under the ADA are navigating one of the most paper-trail-dependent processes in employment law — and they're doing it with zero tooling designed for them. HR has Disclo. HR has CareValidate. HR has HR Acuity. The employee has a Gmail draft and a prayer.</p>
+        <p style="margin-top:0.75rem;">AccommoDoc flips that. It gives the employee a timestamped paper trail, plain-English EEOC guidance, an accommodation request letter generator, a follow-up log, and a retaliation documentation kit — all in one place. If an employer violates the interactive process, the employee has receipts.</p>
+        <p style="margin-top:0.75rem;">The nonprofit angle: whatever profit AccommoDoc generates gets split back to workers with disabilities who've been discriminated against in the workplace. Revenue flows toward victims, not from them.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">WHAT THE TOOL DOES</div>
+        <div class="flow-box">
+          <div><span class="step">1.</span> Accommodation request letter generator <span class="note">— cites ADA, EEOC guidance, fills your specific need</span></div>
+          <div><span class="step">2.</span> Interactive process log <span class="note">— timestamped record of every employer response (and non-response)</span></div>
+          <div><span class="step">3.</span> Follow-up escalation templates <span class="note">— employer ghosting you? Here's the certified mail draft</span></div>
+          <div><span class="step">4.</span> Retaliation documentation kit <span class="note">— if the job changes after your request, you have a record</span></div>
+          <div><span class="step">5.</span> EEOC charge explainer <span class="note">— plain English on what to do if the employer flat-out refuses</span></div>
+        </div>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">COMPETITIVE LANDSCAPE</div>
+        <table class="comp-table">
+          <thead><tr><th>Player</th><th>Who They Sell To</th><th>Employee Tools?</th><th>Paper Trail?</th><th>Price</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Disclo</strong> ($5M raised)</td>
+              <td><span class="tag-red">Employers / HR</span></td>
+              <td><span class="tag-red">No</span></td>
+              <td><span class="tag-red">For HR, not employee</span></td>
+              <td>B2B SaaS</td>
+            </tr>
+            <tr>
+              <td>CareValidate AccommoCare</td>
+              <td><span class="tag-red">HR departments</span></td>
+              <td><span class="tag-red">No</span></td>
+              <td><span class="tag-red">For HR, not employee</span></td>
+              <td>B2B SaaS</td>
+            </tr>
+            <tr>
+              <td>Optis ADAInteract</td>
+              <td><span class="tag-red">HR compliance teams</span></td>
+              <td><span class="tag-red">No</span></td>
+              <td><span class="tag-red">For HR, not employee</span></td>
+              <td>B2B SaaS</td>
+            </tr>
+            <tr>
+              <td>HR Acuity</td>
+              <td><span class="tag-red">HR</span></td>
+              <td><span class="tag-red">No</span></td>
+              <td><span class="tag-red">For HR, not employee</span></td>
+              <td>B2B SaaS</td>
+            </tr>
+            <tr>
+              <td>JAN (Job Accommodation Network)</td>
+              <td><span class="tag-yellow">Both — federal resource</span></td>
+              <td><span class="tag-yellow">Educational only</span></td>
+              <td><span class="tag-red">No tool, no app</span></td>
+              <td>Free (govt)</td>
+            </tr>
+            <tr>
+              <td><strong>AccommoDoc</strong></td>
+              <td><span class="tag-green">Employees only</span></td>
+              <td><span class="tag-green">Yes — sole focus</span></td>
+              <td><span class="tag-green">Yes — timestamped</span></td>
+              <td>SaaS / nonprofit hybrid</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);">The B2B side is saturated with VC-backed tools helping employers manage legal liability. The B2C side is a complete void. TikTok and Instagram are where disabled workers are actually learning to build paper trails in 2026 — employment lawyers posting reels because no product exists.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">MODEL</div>
+        <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;">
+          SaaS subscription for access to the full tool suite. Nonprofit hybrid structure: a meaningful share of revenue goes directly to workers with disabilities who've faced ADA discrimination in the workplace — not to fund operations, not to a general charity bucket, but to the people this tool is built to protect.<br><br>
+          The ethics check is simple: <strong>revenue flows toward victims, not from them.</strong> AccommoDoc users are people navigating a broken system. The business model reflects that.
+        </p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">DISTRIBUTION</div>
+        <ul>
+          <li><strong>r/disability, r/ADA, r/WorkplaceAdvice</strong> — communities actively searching for exactly this</li>
+          <li><strong>SEO</strong> — "ADA accommodation request letter," "how to document workplace discrimination," "EEOC complaint process" — high-intent searches with weak existing tool coverage</li>
+          <li><strong>Employment law attorneys</strong> — referral relationship; they send clients here to build the paper trail before the case gets expensive</li>
+          <li><strong>Disability advocacy organizations</strong> — mission-aligned partners with direct access to the target audience</li>
+        </ul>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE BOARD'S VERDICT</div>
+        <div class="verdict-rd">
+          <div class="verdict-badge-rd">R&amp;D · PURSUING · CLEAR FIELD</div>
+          <p class="verdict-reason">
+            <strong>The market is crowded on one side and completely empty on the other.</strong> Every competitor is B2B, employer-facing, incentivized to protect companies from employees. No one builds for the employee. AccommoDoc is the only player in that lane.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>The moat is the angle.</strong> AccommoDoc isn't a feature — it's a stance. The entire product philosophy is adversarial to the employer-side tools. That's a hard posture to copy if you're already selling to HR.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>The nonprofit hybrid makes it defensible.</strong> Profit-sharing with disability discrimination victims isn't just an ethics call — it's a distribution story. Advocacy orgs, disability rights groups, and employment attorneys will send users here because the mission is aligned with theirs.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>Passes all filters.</strong> Novel angle. Unsaturated employee market. Clear path to $100K. Revenue toward victims, not from them.
+          </p>
+        </div>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">OPEN QUESTIONS FOR R&amp;D</div>
+        <ul>
+          <li>Nonprofit hybrid structure: LLC with profit-sharing agreement, or true nonprofit subsidiary? Which keeps the build fast?</li>
+          <li>Who vets the EEOC guidance for accuracy? One employment law attorney consult before launch?</li>
+          <li>Pricing: flat monthly ($9–$15/mo) or one-time per request? Accommodation requests are episodic, not continuous.</li>
+          <li>How does revenue actually flow to victims? Direct grants? Partner with an existing disability rights legal fund?</li>
+          <li>Domain: accommodoc.com? adapapertrail.com? Something that lands on a search for "ADA accommodation help"?</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div class="footer-inner"><span>PSYDUCK — SHINY EDITION</span><span>© 2026 · BUILT ON HOMELAB · DEPLOYED BY ITSELF</span></div></footer>
+</body>
+</html>
