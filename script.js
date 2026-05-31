@@ -84,14 +84,8 @@ bootScreen.addEventListener('keydown', skipBoot);
 bootScreen.addEventListener('click', skipBoot);
 document.addEventListener('keydown', (e) => { if (!bootDone) skipBoot(); });
 
-// Skip boot if ?skip is in the URL (e.g. navigating back from /ideas)
-if (location.search.includes('skip')) {
-  skipBoot();
-  // Clean the URL so back/forward doesn't carry ?skip
-  history.replaceState(null, '', location.pathname);
-} else {
-  setTimeout(typeBoot, 400);
-}
+// Boot start deferred to end of script so all let/const vars are initialized first.
+// See: startBootSequence() at the bottom of this file.
 
 // ===========================
 // TRIPPY EFFECT ENGINE
@@ -810,3 +804,17 @@ console.log(`%c🐥 PSYDUCK OPERATIONAL — v${VERSION}`, 'color: #fcd34d; font-
 console.log('%c >> Click the duck for a trippy ride.', 'color: #a78bfa; font-family: monospace; font-size: 12px;');
 console.log('%c >> Click the duck 7x for rave mode.', 'color: #f87171; font-family: monospace; font-size: 12px;');
 console.log('%c >> github.com/shinypsyduck054', 'color: #6a9ab8; font-family: monospace; font-size: 11px;');
+
+// ===========================
+// BOOT START
+// Placed last so all let/const variables are initialized before skipBoot() or
+// typeBoot() run. Calling skipBoot() earlier put typeEl, trippyTurbEl etc. in
+// the temporal dead zone, silently breaking the typewriter and duck click.
+// ===========================
+if (location.search.includes('skip')) {
+  skipBoot();
+  // Clean the URL so back/forward doesn't carry ?skip
+  history.replaceState(null, '', location.pathname);
+} else {
+  setTimeout(typeBoot, 400);
+}
