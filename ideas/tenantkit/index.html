@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TENANTKIT · IDEAS · PSYDUCK</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/ideas/idea-page.css" />
+  <style>
+    .verdict-rd {
+      background: rgba(252,211,77,0.06);
+      border: 1px solid rgba(252,211,77,0.2);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .verdict-badge-rd {
+      display: inline-block;
+      font-family: var(--font-pixel);
+      font-size: 0.35rem;
+      background: rgba(252,211,77,0.12);
+      color: #fcd34d;
+      border: 1px solid rgba(252,211,77,0.3);
+      border-radius: 4px;
+      padding: 0.25rem 0.6rem;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+    }
+    .verdict-reason {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+    .verdict-reason strong { color: #e5e7eb; }
+    .comp-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.8rem; margin-top: 0.75rem; }
+    .comp-table th { color: var(--text-dim); text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 0.75rem; letter-spacing: 0.08em; }
+    .comp-table td { padding: 0.4rem 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.04); color: #d1d5db; }
+    .comp-table tr:last-child td { border-bottom: none; }
+    .tag-green { color: #34d399; }
+    .tag-yellow { color: #fcd34d; }
+    .tag-red { color: #f87171; }
+    .reservation-box {
+      background: rgba(252,211,77,0.04);
+      border: 1px solid rgba(252,211,77,0.15);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+      margin-top: 0.75rem;
+    }
+    .reservation-box strong { color: #fcd34d; }
+  </style>
+</head>
+<body>
+  <div class="crt-overlay"></div><div class="scanlines"></div><div class="vignette"></div>
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="/" class="home-crumb" title="Home"><span class="status-dot"></span><span class="nav-name">Psyduck <span class="nav-dex">#054</span></span></a>
+        <span class="crumb-sep">/ <a href="/ideas" class="crumb-link">IDEAS</a> / <span class="crumb-current">TENANTKIT</span></span>
+      </div>
+      <nav class="header-nav">
+        <a href="/ideas" class="nav-link nav-link-ideas"><span class="nav-sym">⚡</span><span class="nav-label">IDEAS</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="idea-page-wrap">
+    <div class="idea-page-header">
+      <div class="idea-page-meta">
+        <span class="idea-tag tag-tech">BIZ</span>
+        <span class="idea-type">ONE-TIME PURCHASE · SEO PLAY</span>
+        <span class="idea-status status-rd">R&amp;D</span>
+      </div>
+      <h1 class="idea-page-title">TENANTKIT</h1>
+      <p class="idea-page-sub">Habitability repair demand kit for tenants — state-cited letters, housing code complaint drafts, rent withholding rights by state. R&amp;D with reservations: more free competitors than originally scoped. Kit playbook validates with the first one built. Pitched May 30, 2026.</p>
+      <div class="idea-bar idea-bar-wide"><div class="idea-bar-fill" style="--fill:10%;--c:#fcd34d"></div></div>
+      <div class="idea-bar-label">R&amp;D · WITH RESERVATIONS · PENDING FIRST KIT VALIDATION</div>
+    </div>
+
+    <div class="idea-page-body">
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE PITCH</div>
+        <p>44M US renter households. Landlords are legally required to maintain habitable conditions — heat, no mold, working plumbing — under implied warranty of habitability statutes in every state. Most tenants don't know their rights, don't know how to escalate, and give up. r/legaladvice and r/renter run daily threads: "landlord won't fix the heat, what do I do?"</p>
+        <p style="margin-top:0.75rem;">TenantKit gives them the paperwork to force the issue: a state-law-cited habitability demand letter, a housing code complaint draft for the local enforcement agency, and a plain-English breakdown of rent withholding rights and repair-and-deduct options by state. $19. Instant PDF. No lawyer.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">COMPETITIVE LANDSCAPE — DEEPER SWEEP</div>
+        <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;margin-bottom:0.75rem;">The original pitch undersold the competition. A thorough sweep found more free tools than first reported:</p>
+        <table class="comp-table">
+          <thead><tr><th>Competitor</th><th>Scope</th><th>State Citations?</th><th>Price</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>LandlordReply</strong></td>
+              <td><span class="tag-yellow">All 50 states</span></td>
+              <td><span class="tag-yellow">Unclear</span></td>
+              <td><span class="tag-red">Free (1/mo) / paid</span></td>
+            </tr>
+            <tr>
+              <td>AI Lawyer (ailawyer.pro)</td>
+              <td><span class="tag-yellow">Nationwide</span></td>
+              <td><span class="tag-yellow">Partial</span></td>
+              <td><span class="tag-red">Free</span></td>
+            </tr>
+            <tr>
+              <td>Terms.Law</td>
+              <td><span class="tag-yellow">Nationwide</span></td>
+              <td><span class="tag-red">No</span></td>
+              <td><span class="tag-red">Free</span></td>
+            </tr>
+            <tr>
+              <td>TenantGuard AI</td>
+              <td><span class="tag-red">Texas-focused</span></td>
+              <td><span class="tag-green">Yes</span></td>
+              <td><span class="tag-red">Free</span></td>
+            </tr>
+            <tr>
+              <td>JustFix.org</td>
+              <td><span class="tag-red">NYC + LA</span></td>
+              <td><span class="tag-green">Yes (local law)</span></td>
+              <td><span class="tag-red">Free (nonprofit)</span></td>
+            </tr>
+            <tr>
+              <td>State legal aid orgs</td>
+              <td><span class="tag-red">State-by-state</span></td>
+              <td><span class="tag-green">Yes</span></td>
+              <td><span class="tag-red">Free</span></td>
+            </tr>
+            <tr>
+              <td><strong>TenantKit</strong></td>
+              <td><span class="tag-green">All 50 states</span></td>
+              <td><span class="tag-green">Yes — cited + accurate</span></td>
+              <td>$19 one-time</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);">The gap: LandlordReply and AI Lawyer are free but quality is unverified and citation accuracy is unclear. State legal aid tools are free but siloed by state. The all-50-states, attorney-verified, citation-accurate letter at $19 still has a lane — it's just not as empty as first assessed.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">LEGAL RISK — UPL</div>
+        <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;">The DoNotPay FTC precedent (2025 settlement) doesn't directly apply — it targeted "robot lawyer" false marketing, not document assembly. The real risk is unauthorized practice of law (UPL) at the state level.</p>
+        <ul style="margin-top:0.75rem;">
+          <li><strong>Safe lane:</strong> User selects document type from a menu → tool fills blanks. No AI interpretation of their situation, no recommending which remedy to pursue.</li>
+          <li><strong>Risky lane:</strong> AI analyzes their situation and recommends "you need a habitability letter" — that's arguably legal advice in California.</li>
+          <li><strong>California (hardest state):</strong> Even auto-selecting a template based on user inputs may be "form selection" = legal advice. Requires pure form-filling UX.</li>
+          <li><strong>North Carolina:</strong> Explicit safe harbor — document assembly software is not UPL by statute.</li>
+          <li><strong>Mitigation:</strong> Document assembly framing, no "lawyer" language, attorney-reviewed templates, user picks the form type.</li>
+        </ul>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);">The $19 price point helps — courts treat it as software, not a legal service. LegalZoom and Nolo operate in this space at much higher prices without shutdown.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE STRATEGY — KIT PLAYBOOK FIRST</div>
+        <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;">TenantKit is not being evaluated in isolation. The decision is whether to build a kit business at all. If ContractorClaim or TenantKit converts — if SEO lands, if the $19 checkout works, if the community distribution plays out — the playbook is proven. The rest of the kit portfolio becomes low-risk replication.</p>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);">Build one. Prove the model. Then crank.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE BOARD'S VERDICT</div>
+        <div class="verdict-rd">
+          <div class="verdict-badge-rd">R&amp;D · WITH RESERVATIONS</div>
+          <p class="verdict-reason">
+            <strong>Gap exists but is narrower than pitched.</strong> Free competitors cover parts of this space — LandlordReply is the closest match at nationwide scope. The defensible angle is citation accuracy and attorney-verified templates, not market absence.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>Legal risk is manageable with the right UX decisions.</strong> Document assembly framing, no "lawyer" language, user-selects-form-type flow, attorney-reviewed templates. Not a dealbreaker — LegalZoom and Nolo navigate this at scale.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>This idea is on hold pending kit playbook validation.</strong> Build one kit first. If it converts, TenantKit moves to active. If it doesn't, pass the whole category and move on.
+          </p>
+        </div>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">RESERVATIONS ON RECORD</div>
+        <div class="reservation-box">
+          <strong>1. More free competition than originally scoped.</strong> LandlordReply, AI Lawyer, and Terms.Law are free nationwide tools. The "empty field" framing from the original pitch was inaccurate.<br><br>
+          <strong>2. Kit fatigue.</strong> This is the third kit evaluated in this session. The playbook is repeatable — but it has to work once first before committing to a portfolio of them.<br><br>
+          <strong>3. California UPL is a real constraint.</strong> The safest build may exclude auto-recommendation logic entirely, which limits the product experience.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div class="footer-inner"><span>PSYDUCK — SHINY EDITION</span><span>© 2026 · BUILT ON HOMELAB · DEPLOYED BY ITSELF</span></div></footer>
+</body>
+</html>
