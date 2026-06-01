@@ -12,15 +12,7 @@
 }
 
 .crumb-sep {
-  font-family: var(--font-pixel);
-  font-size: 0.3rem;
-  color: var(--text-dim);
-  margin-left: 0.6rem;
-  letter-spacing: 0.08em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 40vw;
+  display: none;
 }
 
 .crumb-link {
@@ -67,7 +59,7 @@
 
 .idea-page-sub {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: var(--text-dim);
   line-height: 1.7;
   max-width: 680px;
@@ -136,7 +128,7 @@
 .idea-section p,
 .idea-section li {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.95rem !important; /* !important overrides inline font-size on individual page elements */
   color: var(--text-dim);
   line-height: 1.7;
 }

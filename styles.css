@@ -1158,7 +1158,7 @@ a.idea-card-link:hover {
 
 .live-status-loading {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   color: var(--text-dim);
   padding: 0.8rem 1rem;
 }
@@ -1192,12 +1192,12 @@ a.idea-card-link:hover {
   gap: 0.3rem;
   padding: 0.22rem 0;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.9rem;
 }
 
 .ls-icon { font-size: 0.65rem; text-align: center; }
 .ls-name { color: var(--text); white-space: nowrap; }
-.ls-note { color: var(--text-dim); font-size: 0.68rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ls-note { color: var(--text-dim); font-size: 0.82rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 .ls-badge {
   font-family: var(--font-pixel);
@@ -1294,13 +1294,13 @@ a.idea-card-link:hover {
 
 .tier-name {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: var(--text);
 }
 
 .tier-meta {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   color: var(--text-dim);
 }
 
@@ -1314,7 +1314,7 @@ a.idea-card-link:hover {
 
 .tier-connector {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   color: var(--text-dim);
   padding: 0.2rem 0.8rem;
   opacity: 0.5;
@@ -1339,7 +1339,7 @@ a.idea-card-link:hover {
 
 .alias-chip {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   color: var(--text-dim);
   background: rgba(255,255,255,0.04);
   border: 1px solid var(--border);
@@ -1384,7 +1384,7 @@ a.idea-card-link:hover {
 
 .lm-name {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   color: var(--text);
 }
 
@@ -1410,7 +1410,7 @@ a.idea-card-link:hover {
 
 .lm-desc {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.82rem;
   color: var(--text-dim);
   line-height: 1.4;
 }
