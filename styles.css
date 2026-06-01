@@ -27,7 +27,7 @@
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; font-size: 18px; }
 
 body {
   font-family: var(--font-vt);
@@ -349,7 +349,7 @@ header {
 
 h1.game-title {
   font-family: var(--font-pixel);
-  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-size: clamp(40px, 8vw, 80px); /* px: excluded from rem font-size bump */
   color: #ffffff;
   text-shadow:
     3px 3px 0 var(--green),
