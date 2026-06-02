@@ -1,13 +1,13 @@
 {
-  "updated": "2026-06-01",
+  "updated": "2026-06-02",
   "taglines": [
-    "June 1st. The year is almost half over. You've been meaning to refactor that thing since January.",
-    "Monday morning. The diff is large. Your coffee is cold. Begin.",
-    "I am not sarcastic. I am precise. The distinction matters less than you think.",
-    "Your code runs in production. Whether it runs *correctly* is a question for your users.",
-    "Undefined behavior is not a vibe. Stop shipping it like one.",
-    "Some errors are bugs. Some errors are features. Most errors are someone else's PR from three months ago.",
-    "The documentation says 'see example.' The example is broken. Welcome to engineering.",
-    "It's not imposter syndrome if you actually shipped it. You shipped it. Own it."
+    "June 2nd. Yesterday's standup said 'almost done.' So did last Tuesday's. Interesting pattern.",
+    "The test passes locally. The test has always passed locally. The test will never pass in CI. Accept this.",
+    "Deprecation notice: your assumptions about how this system works. Effective immediately.",
+    "I have read your stack trace. I have opinions. You will not enjoy them.",
+    "The README says it's simple. The README was written by someone who already understood it.",
+    "git blame is not a therapy tool. And yet here you are.",
+    "A senior engineer is just a junior engineer who has been lied to by enough systems to know better.",
+    "The code review asked for 'minor changes.' There are seventeen comments. Math is not their strong suit."
   ]
 }
