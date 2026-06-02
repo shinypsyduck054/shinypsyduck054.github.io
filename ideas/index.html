@@ -61,6 +61,31 @@
       color: rgba(255,255,255,0.08);
       letter-spacing: 0.2em;
     }
+    .ideas-section-header {
+      font-family: var(--font-pixel);
+      font-size: 0.4rem;
+      letter-spacing: 0.18em;
+      margin: 2rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .ideas-section-header.active { color: #34d399; }
+    .ideas-section-header.passed { color: #6b7280; margin-top: 3rem; }
+    .ideas-section-header::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: currentColor;
+      opacity: 0.15;
+    }
+    .ideas-section-sub {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.05em;
+    }
   </style>
 </head>
 <body>
@@ -97,48 +122,52 @@
   <!-- Ideas Body -->
   <div class="ideas-page-body">
     <div class="ideas-count">SHOWING <span id="ideaCount">14</span> IDEAS</div>
+
+    <!-- ACTIVE R&D -->
+    <div class="ideas-section-header active">ACTIVE R&amp;D</div>
+    <div class="ideas-section-sub">Sorted by conviction. Favorites first.</div>
     <div class="ideas-grid" id="ideasGrid">
 
-      <!-- R&D: STR Listing Optimizer -->
-      <a href="/ideas/airbnb-listing-optimizer" class="idea-card idea-card-link">
+      <!-- R&D: TeachIt (Favorite) -->
+      <a href="/ideas/teachit" class="idea-card idea-card-link">
         <div class="idea-header">
-          <span class="idea-name">STR LISTING OPTIMIZER</span>
+          <span class="idea-name">TEACHIT</span>
           <span class="idea-status status-rd">R&amp;D</span>
         </div>
         <div class="idea-meta">
           <span class="idea-tag tag-tech">BIZ</span>
-          <span class="idea-type">MICRO-SAAS</span>
+          <span class="idea-type">ONE-TIME PURCHASE · HOBBYIST · FAVORITE</span>
         </div>
-        <p class="idea-desc">AI-optimized listing copy benchmarked against top-ranked properties across all STR platforms. Cross-platform moat. Set it and forget it. A few thousand customers = real revenue.</p>
-        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:15%;--c:#fcd34d"></div></div>
+        <p class="idea-desc">Board game teach-order script generator for any game. Dized covers 200-400 publisher-approved titles. BGG has 170,000+. The long tail is permanently unaddressed. No licenses needed — game mechanics aren't copyrightable. Legally clean, window is open.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:15%;--c:#34d399"></div></div>
       </a>
 
-      <!-- R&D: ToolFlipper -->
-      <a href="/ideas/toolflipper" class="idea-card idea-card-link">
+      <!-- R&D: Abuela Kitchen (Favorite) -->
+      <a href="/ideas/abuela-kitchen" class="idea-card idea-card-link">
         <div class="idea-header">
-          <span class="idea-name">TOOLFLIPPER</span>
+          <span class="idea-name">ABUELA KITCHEN</span>
           <span class="idea-status status-rd">R&amp;D</span>
         </div>
         <div class="idea-meta">
           <span class="idea-tag tag-tech">BIZ</span>
-          <span class="idea-type">MICRO-SAAS</span>
+          <span class="idea-type">SAAS · COMMUNITY · FAVORITE</span>
         </div>
-        <p class="idea-desc">Real-time deal alerts for power tool resellers. eBay + Craigslist monitoring with instant comp pricing and margin estimates. Zero existing competition. 👍</p>
-        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:20%;--c:#fcd34d"></div></div>
+        <p class="idea-desc">Spanish-first order management SaaS for Latino home food sellers. Tamale Abuelas, empanada aunties — already running food businesses through WhatsApp DMs. One link, weekly menus, real payments, batch cook summaries. BakeryFlow is English-only and baker-only. This vertical is unoccupied.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:15%;--c:#34d399"></div></div>
       </a>
 
-      <!-- PASS: Auth QA Agent -->
-      <a href="/ideas/auth-qa-agent" class="idea-card idea-card-link" style="opacity:0.6;">
+      <!-- R&D: AccommoDoc -->
+      <a href="/ideas/accommodoc" class="idea-card idea-card-link">
         <div class="idea-header">
-          <span class="idea-name">AUTH QA AGENT</span>
-          <span class="idea-status status-pass">PASS</span>
+          <span class="idea-name">ACCOMMODOC</span>
+          <span class="idea-status status-rd">R&amp;D</span>
         </div>
         <div class="idea-meta">
-          <span class="idea-tag tag-tech">TECH</span>
-          <span class="idea-type">MICRO-SAAS</span>
+          <span class="idea-tag tag-tech">BIZ</span>
+          <span class="idea-type">SAAS · NONPROFIT HYBRID</span>
         </div>
-        <p class="idea-desc">Claude-powered agent that writes and self-heals QA test suites for authenticated apps. Killed: wrong complexity tier, implicit SLA, murky target market.</p>
-        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:0%;--c:#6b7280"></div></div>
+        <p class="idea-desc">ADA accommodation paper-trail tool — built for employees, not HR. Every competitor (Disclo, CareValidate, HR Acuity) sells to employers. The employee side is a complete void. Revenue splits with victims of workplace discrimination.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:25%;--c:#34d399"></div></div>
       </a>
 
       <!-- R&D: RoofDraft -->
@@ -155,20 +184,6 @@
         <div class="idea-bar"><div class="idea-bar-fill" style="--fill:30%;--c:#fcd34d"></div></div>
       </a>
 
-      <!-- PASS: GradeROI -->
-      <a href="/ideas/graderoi" class="idea-card idea-card-link" style="opacity:0.6;">
-        <div class="idea-header">
-          <span class="idea-name">GRADEROI</span>
-          <span class="idea-status status-pass">PASS</span>
-        </div>
-        <div class="idea-meta">
-          <span class="idea-tag tag-tech">BIZ</span>
-          <span class="idea-type">MICRO-SAAS</span>
-        </div>
-        <p class="idea-desc">Sports card grading ROI calculator (raw vs. PSA 9 vs. PSA 10). Killed: 9+ direct competitors found in deep sweep, including SlabScore (free Chrome extension, near-exact match).</p>
-        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:0%;--c:#6b7280"></div></div>
-      </a>
-
       <!-- R&D: IngredIQ -->
       <a href="/ideas/ingrediq" class="idea-card idea-card-link">
         <div class="idea-header">
@@ -183,32 +198,32 @@
         <div class="idea-bar"><div class="idea-bar-fill" style="--fill:20%;--c:#34d399"></div></div>
       </a>
 
-      <!-- PASS: ContractorClaim -->
-      <a href="/ideas/contractorclaim" class="idea-card idea-card-link" style="opacity:0.6;">
+      <!-- R&D: ToolFlipper -->
+      <a href="/ideas/toolflipper" class="idea-card idea-card-link">
         <div class="idea-header">
-          <span class="idea-name">CONTRACTORCLAIM</span>
-          <span class="idea-status status-pass">PASS</span>
-        </div>
-        <div class="idea-meta">
-          <span class="idea-tag tag-tech">BIZ</span>
-          <span class="idea-type">ONE-TIME PURCHASE · SEO PLAY</span>
-        </div>
-        <p class="idea-desc">AI demand letter kit for stiffed homeowners. Killed: legal risk (DoNotPay FTC precedent), SEO keywords owned by LegalZoom/Rocket Lawyer, free AI competitor already in market (ailawyer.pro). Not worth the exposure.</p>
-        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:0%;--c:#6b7280"></div></div>
-      </a>
-
-      <!-- R&D: CorridorRide (Ambitious) -->
-      <a href="/ideas/corridorride" class="idea-card idea-card-link">
-        <div class="idea-header">
-          <span class="idea-name">CORRIDORRIDE</span>
+          <span class="idea-name">TOOLFLIPPER</span>
           <span class="idea-status status-rd">R&amp;D</span>
         </div>
         <div class="idea-meta">
           <span class="idea-tag tag-tech">BIZ</span>
-          <span class="idea-type">MARKETPLACE · AMBITIOUS</span>
+          <span class="idea-type">MICRO-SAAS</span>
         </div>
-        <p class="idea-desc">US intercity carpooling — the BlaBlaCar gap. 100M+ users in Europe, zero serious US equivalent. 2-5hr drives between mid-sized cities are genuinely underserved. Real market, no competitors, proven model. Ambitious: two-sided marketplace, cold-start problem, legal gray areas. Worth pursuing eyes open.</p>
-        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:5%;--c:#fcd34d"></div></div>
+        <p class="idea-desc">Real-time deal alerts for power tool resellers. eBay + Craigslist monitoring with instant comp pricing and margin estimates. Zero existing competition.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:20%;--c:#fcd34d"></div></div>
+      </a>
+
+      <!-- R&D: STR Listing Optimizer -->
+      <a href="/ideas/airbnb-listing-optimizer" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">STR LISTING OPTIMIZER</span>
+          <span class="idea-status status-rd">R&amp;D</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-tag tag-tech">BIZ</span>
+          <span class="idea-type">MICRO-SAAS</span>
+        </div>
+        <p class="idea-desc">AI-optimized listing copy benchmarked against top-ranked properties across all STR platforms. Cross-platform moat. Set it and forget it. A few thousand customers = real revenue.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:15%;--c:#fcd34d"></div></div>
       </a>
 
       <!-- R&D: TenantKit -->
@@ -221,35 +236,45 @@
           <span class="idea-tag tag-tech">BIZ</span>
           <span class="idea-type">ONE-TIME PURCHASE · SEO PLAY</span>
         </div>
-        <p class="idea-desc">Habitability repair demand kit for tenants — state-cited letters, housing code complaint drafts, rent withholding rights by state. R&D with reservations: more free competitors than originally scoped (LandlordReply, AI Lawyer, Terms.Law). Playbook proves with the first kit built.</p>
+        <p class="idea-desc">Habitability repair demand kit for tenants — state-cited letters, housing code complaint drafts, rent withholding rights by state. R&D with reservations: more free competitors than originally scoped. Playbook proves with the first kit built.</p>
         <div class="idea-bar"><div class="idea-bar-fill" style="--fill:10%;--c:#fcd34d"></div></div>
       </a>
 
-      <!-- R&D: AccommoDoc -->
-      <a href="/ideas/accommodoc" class="idea-card idea-card-link">
+      <!-- R&D: CorridorRide (Ambitious) -->
+      <a href="/ideas/corridorride" class="idea-card idea-card-link">
         <div class="idea-header">
-          <span class="idea-name">ACCOMODODOC</span>
+          <span class="idea-name">CORRIDORRIDE</span>
           <span class="idea-status status-rd">R&amp;D</span>
         </div>
         <div class="idea-meta">
           <span class="idea-tag tag-tech">BIZ</span>
-          <span class="idea-type">SAAS · NONPROFIT HYBRID</span>
+          <span class="idea-type">MARKETPLACE · AMBITIOUS</span>
         </div>
-        <p class="idea-desc">ADA accommodation paper-trail tool — built for employees, not HR. Every competitor (Disclo, CareValidate, HR Acuity) sells to employers. The employee side is a complete void. Revenue splits with victims of workplace discrimination.</p>
-        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:25%;--c:#34d399"></div></div>
+        <p class="idea-desc">US intercity carpooling — the BlaBlaCar gap. 100M+ users in Europe, zero serious US equivalent. 2-5hr drives between mid-sized cities are genuinely underserved. Real market, no competitors, proven model. Ambitious: two-sided marketplace, cold-start problem. Worth pursuing eyes open.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:5%;--c:#fcd34d"></div></div>
       </a>
 
-      <!-- PASS: PIPKit -->
-      <a href="/ideas/pipkit" class="idea-card idea-card-link" style="opacity:0.6;">
+      <!-- Empty slot -->
+      <div class="idea-card-empty"><span class="idea-card-empty-label">INCOMING</span></div>
+
+    </div>
+
+    <!-- PASSED -->
+    <div class="ideas-section-header passed">PASSED</div>
+    <div class="ideas-section-sub">Killed and documented. Every pass is a lesson.</div>
+    <div class="ideas-grid">
+
+      <!-- PASS: GradeROI -->
+      <a href="/ideas/graderoi" class="idea-card idea-card-link" style="opacity:0.6;">
         <div class="idea-header">
-          <span class="idea-name">PIPKIT</span>
+          <span class="idea-name">GRADEROI</span>
           <span class="idea-status status-pass">PASS</span>
         </div>
         <div class="idea-meta">
           <span class="idea-tag tag-tech">BIZ</span>
-          <span class="idea-type">ONE-TIME PURCHASE</span>
+          <span class="idea-type">MICRO-SAAS</span>
         </div>
-        <p class="idea-desc">PIP survival kit for employees on Performance Improvement Plans. Killed: most PIPs end in termination regardless. Charging someone who's about to lose their job doesn't pass the ethics filter — customer and victim are the same person.</p>
+        <p class="idea-desc">Sports card grading ROI calculator (raw vs. PSA 9 vs. PSA 10). Killed: 9+ direct competitors found in deep sweep, including SlabScore (free Chrome extension, near-exact match).</p>
         <div class="idea-bar"><div class="idea-bar-fill" style="--fill:0%;--c:#6b7280"></div></div>
       </a>
 
@@ -267,36 +292,47 @@
         <div class="idea-bar"><div class="idea-bar-fill" style="--fill:0%;--c:#6b7280"></div></div>
       </a>
 
-      <!-- R&D: Abuela Kitchen (Favorite) -->
-      <a href="/ideas/abuela-kitchen" class="idea-card idea-card-link">
+      <!-- PASS: PIPKit -->
+      <a href="/ideas/pipkit" class="idea-card idea-card-link" style="opacity:0.6;">
         <div class="idea-header">
-          <span class="idea-name">ABUELA KITCHEN</span>
-          <span class="idea-status status-rd">R&amp;D</span>
+          <span class="idea-name">PIPKIT</span>
+          <span class="idea-status status-pass">PASS</span>
         </div>
         <div class="idea-meta">
           <span class="idea-tag tag-tech">BIZ</span>
-          <span class="idea-type">SAAS · COMMUNITY · FAVORITE</span>
+          <span class="idea-type">ONE-TIME PURCHASE</span>
         </div>
-        <p class="idea-desc">Spanish-first order management SaaS for Latino home food sellers. Tamale Abuelas, empanada aunties — already running food businesses through WhatsApp DMs. One link, weekly menus, real payments, batch cook summaries. BakeryFlow is English-only and baker-only. This vertical is unoccupied.</p>
-        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:15%;--c:#34d399"></div></div>
+        <p class="idea-desc">PIP survival kit for employees on Performance Improvement Plans. Killed: most PIPs end in termination regardless. Charging someone who's about to lose their job doesn't pass the ethics filter — customer and victim are the same person.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:0%;--c:#6b7280"></div></div>
       </a>
 
-      <!-- R&D: TeachIt (Favorite) -->
-      <a href="/ideas/teachit" class="idea-card idea-card-link">
+      <!-- PASS: ContractorClaim -->
+      <a href="/ideas/contractorclaim" class="idea-card idea-card-link" style="opacity:0.6;">
         <div class="idea-header">
-          <span class="idea-name">TEACHIT</span>
-          <span class="idea-status status-rd">R&amp;D</span>
+          <span class="idea-name">CONTRACTORCLAIM</span>
+          <span class="idea-status status-pass">PASS</span>
         </div>
         <div class="idea-meta">
           <span class="idea-tag tag-tech">BIZ</span>
-          <span class="idea-type">ONE-TIME PURCHASE · HOBBYIST · FAVORITE</span>
+          <span class="idea-type">ONE-TIME PURCHASE · SEO PLAY</span>
         </div>
-        <p class="idea-desc">Board game teach-order script generator for any game. Dized covers 200-400 publisher-approved titles. BGG has 170,000+. The long tail is permanently unaddressed. No licenses needed — game mechanics aren't copyrightable. Legally clean, window is open.</p>
-        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:15%;--c:#34d399"></div></div>
+        <p class="idea-desc">AI demand letter kit for stiffed homeowners. Killed: legal risk (DoNotPay FTC precedent), SEO keywords owned by LegalZoom/Rocket Lawyer, free AI competitor already in market (ailawyer.pro). Not worth the exposure.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:0%;--c:#6b7280"></div></div>
       </a>
 
-      <!-- Empty slot -->
-      <div class="idea-card-empty"><span class="idea-card-empty-label">INCOMING</span></div>
+      <!-- PASS: Auth QA Agent -->
+      <a href="/ideas/auth-qa-agent" class="idea-card idea-card-link" style="opacity:0.6;">
+        <div class="idea-header">
+          <span class="idea-name">AUTH QA AGENT</span>
+          <span class="idea-status status-pass">PASS</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-tag tag-tech">TECH</span>
+          <span class="idea-type">MICRO-SAAS</span>
+        </div>
+        <p class="idea-desc">Claude-powered agent that writes and self-heals QA test suites for authenticated apps. Killed: wrong complexity tier, implicit SLA, murky target market.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:0%;--c:#6b7280"></div></div>
+      </a>
 
     </div>
   </div>
