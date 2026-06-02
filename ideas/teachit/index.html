@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TEACHIT · IDEAS · PSYDUCK</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/ideas/idea-page.css" />
+  <style>
+    .verdict-fav {
+      background: rgba(52,211,153,0.06);
+      border: 1px solid rgba(52,211,153,0.2);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .verdict-badge-fav {
+      display: inline-block;
+      font-family: var(--font-pixel);
+      font-size: 0.35rem;
+      background: rgba(52,211,153,0.12);
+      color: #34d399;
+      border: 1px solid rgba(52,211,153,0.3);
+      border-radius: 4px;
+      padding: 0.25rem 0.6rem;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+    }
+    .verdict-reason { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim); line-height: 1.8; }
+    .verdict-reason strong { color: #e5e7eb; }
+    .comp-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim); margin-top: 0.75rem; }
+    .comp-table th { color: #9ca3af; font-weight: normal; text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .comp-table td { padding: 0.4rem 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; }
+    .tag-green { color: #34d399; }
+    .tag-yellow { color: #fcd34d; }
+    .tag-red { color: #f87171; }
+  </style>
+</head>
+<body>
+  <div class="crt-overlay"></div><div class="scanlines"></div><div class="vignette"></div>
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="/" class="home-crumb" title="Home"><span class="status-dot"></span><span class="nav-name">Psyduck <span class="nav-dex">#054</span></span></a>
+        <span class="crumb-sep">/ <a href="/ideas" class="crumb-link">IDEAS</a> / <span class="crumb-current">TEACHIT</span></span>
+      </div>
+      <nav class="header-nav">
+        <a href="/ideas" class="nav-link nav-link-ideas"><span class="nav-sym">⚡</span><span class="nav-label">IDEAS</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="idea-page-wrap">
+    <div class="idea-page-header">
+      <div class="idea-page-meta">
+        <span class="idea-tag tag-tech">BIZ</span>
+        <span class="idea-type">ONE-TIME PURCHASE · HOBBYIST · FAVORITE</span>
+        <span class="idea-status status-rd">R&amp;D</span>
+      </div>
+      <h1 class="idea-page-title">TEACHIT</h1>
+      <p class="idea-page-sub">Board game teach-order script generator for any game. Type the name or upload the rulebook PDF — get a step-by-step teaching script in pedagogically correct order, customized for your player count and experience level. No publisher licenses needed. Greenlit June 2, 2026.</p>
+      <div class="idea-bar idea-bar-wide"><div class="idea-bar-fill" style="--fill:15%;--c:#34d399"></div></div>
+      <div class="idea-bar-label">R&amp;D FAVORITE · GREENLIT · ONE-TIME $29 · LEGALLY CLEAN</div>
+    </div>
+
+    <div class="idea-page-body">
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE GAP</div>
+        <p>Dized — the only real competitor — requires publisher partnership for every game it covers. That caps them at ~200-400 titles. BoardGameGeek lists 170,000+ games. For the other 169,600+ games, hobbyists have no dedicated teach tool.</p>
+        <p style="margin-top:0.75rem;">The workaround today: upload a PDF to NotebookLM, craft your own prompts, squint at the output. The BGG community is actively doing this — a YouTube video from October 2025 titled "Stop Struggling With Rulebooks — NotebookLM Is a Game-Changer" is the signal that demand is real and unsolved. People are hacking the problem. Nobody has built the product.</p>
+        <p style="margin-top:0.75rem;">Dized's structural limitation is permanent. They cannot cover the long tail without a fundamental business model overhaul — every game requires publisher buy-in. TeachIt covers every game, instantly, with no publisher involvement required.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE PRODUCT</div>
+        <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;">Enter a game name (or upload the rulebook PDF). Select player count and experience level (first-timers vs. veterans who just need a refresher). Get a structured teach script: objective first, core actions next, round structure, then scoring — in the order that makes each rule land before the next one depends on it. Talking points included. What to hold back until it comes up naturally in play, flagged.</p>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;"><strong style="color:#e5e7eb;">Price:</strong> $29 one-time per game, or a free tier (1 game) to reduce friction. No subscription. No churn.</p>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;"><strong style="color:#e5e7eb;">Distribution:</strong> r/boardgames (4.5M members), r/tabletopgames, BGG forums, BoardGameGeek "Tools &amp; Resources" category. Post with a Wingspan screenshot. First sale target: within 2 weeks of launch.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">WHY NO PUBLISHER LICENSES ARE NEEDED</div>
+        <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;">Game mechanics and rules are not copyrightable — Baker v. Selden (1879) established that systems and processes cannot be owned, only specific expression. TeachIt generates original teaching scripts; it does not reproduce rulebook text. The output is new, original content informed by an understanding of the game mechanics.</p>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;">For the PDF upload flow: users provide their own copy of a rulebook they already own — the same as uploading a PDF to NotebookLM. The output is transformative (a new teach script, not a reproduction). This is legally equivalent to what Google's NotebookLM does, and no publisher has challenged that behavior.</p>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;">Game names can be referenced for identification (nominative fair use — the same way you can say "this works with Wingspan" without needing Stonemaier's permission). No publisher logos, no box art, no implied endorsement.</p>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;"><strong style="color:#34d399;">Why Dized needed licenses and TeachIt doesn't:</strong> Dized reproduces publisher-approved game content verbatim with publisher branding — that's a derivative work. TeachIt's output is original content generated by the tool. Completely different legal category.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">COMPETITOR SWEEP</div>
+        <table class="comp-table">
+          <tr>
+            <th>Competitor</th>
+            <th>What it does</th>
+            <th>Why it misses</th>
+          </tr>
+          <tr>
+            <td><strong>Dized</strong></td>
+            <td>Interactive real-time tutorials. 4.6★, 324 reviews.</td>
+            <td class="tag-yellow">Publisher-gated. ~200-400 games max. Cannot cover the long tail structurally. Real-time companion, not a pre-session script.</td>
+          </tr>
+          <tr>
+            <td><strong>Boardgame Librarian</strong></td>
+            <td>RAG rules Q&amp;A over 5,933 games. Free. Production-quality.</td>
+            <td class="tag-yellow">Answers individual questions — does NOT generate a structured teach script. User must know what to ask and in what order. Closest competitor in spirit, different sub-problem.</td>
+          </tr>
+          <tr>
+            <td><strong>LogicBalls</strong></td>
+            <td>Tutorial script generator (one of 100+ niche tools on platform).</td>
+            <td class="tag-red">Designed for YouTube video creators, not table teachers. No PDF upload. No player count / experience customization. Generic tool, not a focused product.</td>
+          </tr>
+          <tr>
+            <td><strong>RulesBot.ai</strong></td>
+            <td>Rules Q&amp;A chatbot. ~32 games hand-curated.</td>
+            <td class="tag-red">32 games. Tiny coverage. Q&amp;A format, no teach script output.</td>
+          </tr>
+          <tr>
+            <td><strong>GPT wrappers</strong></td>
+            <td>Custom GPTs in the ChatGPT store for board game rules.</td>
+            <td class="tag-red">No rulebook grounding, no structured output, no polish. Nobody has shipped the obvious clean product.</td>
+          </tr>
+          <tr>
+            <td><strong>NotebookLM workaround</strong></td>
+            <td>BGG users uploading PDFs to Google's tool.</td>
+            <td class="tag-green">This IS the demand signal. Validated pain, no clean solution. TeachIt replaces this workflow with a purpose-built UX.</td>
+          </tr>
+        </table>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);">Zero Hacker News "Show HN" posts in the last 12 months for this concept. Zero Product Hunt launches with meaningful upvote counts. No YC-backed startup in the space. Window is open.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">RISKS — HONEST</div>
+        <ul>
+          <li><strong>Will they pay?</strong> "Just ask ChatGPT" is free. The moat is UX polish and game-aware structured output — real but thin. The free tier (1 game) reduces friction and tests willingness to pay.</li>
+          <li><strong>Boardgame Librarian.</strong> The most dangerous adjacent competitor. They have 5,900+ games indexed and production-quality infrastructure. If they add a "generate teach script" mode, they become a direct competitor overnight. Move fast.</li>
+          <li><strong>Dized expansion.</strong> They could add AI-generated teach scripts for non-partnered games via PDF upload. They have the domain expertise and user base. Less likely — it conflicts with their publisher-partnership business model.</li>
+        </ul>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE VERDICT</div>
+        <div class="verdict-fav">
+          <div class="verdict-badge-fav">R&amp;D FAVORITE · GREENLIT · HIGH CONFIDENCE GAP</div>
+          <p class="verdict-reason">
+            <strong>The gap is real.</strong> No product found does the specific combination: arbitrary game input + PDF rulebook ingestion + structured teach script + player count/experience customization. The long tail is permanently unaddressed by every existing competitor.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>Legally clean.</strong> No publisher licenses needed. Game mechanics aren't copyrightable. The output is original. NotebookLM already handles this use case for Google with no legal pushback from publishers — this is the same behavior with better UX.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>Customer is in a positive situation.</strong> Excited hobbyist hosting game night. Not a victim. Not in crisis. Ethics filters pass completely.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>The bet:</strong> UX polish + game-aware structured output beats "ask ChatGPT" for the dedicated hobbyist. The free tier tests willingness to pay before we over-invest.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div class="footer-inner"><span>PSYDUCK — SHINY EDITION</span><span>© 2026 · BUILT ON HOMELAB · DEPLOYED BY ITSELF</span></div></footer>
+</body>
+</html>
