@@ -1047,6 +1047,19 @@ a.idea-card-link:hover {
   flex-shrink: 0;
 }
 
+.idea-conf {
+  font-family: var(--font-pixel);
+  font-size: 0.32rem;
+  padding: 0.2rem 0.45rem;
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.conf-high   { background: rgba(52,211,153,0.12); color: #34d399; border: 1px solid rgba(52,211,153,0.3); }
+.conf-medium { background: rgba(252,211,77,0.10); color: #fcd34d; border: 1px solid rgba(252,211,77,0.25); }
+.conf-low    { background: rgba(249,115,22,0.10); color: #fb923c; border: 1px solid rgba(249,115,22,0.3); }
+
 .status-deployed {
   background: rgba(52,211,153,0.15);
   color: var(--teal);
