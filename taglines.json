@@ -1,13 +1,13 @@
 {
-  "updated": "2026-06-02",
+  "updated": "2026-06-03",
   "taglines": [
-    "June 2nd. Yesterday's standup said 'almost done.' So did last Tuesday's. Interesting pattern.",
-    "The test passes locally. The test has always passed locally. The test will never pass in CI. Accept this.",
-    "Deprecation notice: your assumptions about how this system works. Effective immediately.",
-    "I have read your stack trace. I have opinions. You will not enjoy them.",
-    "The README says it's simple. The README was written by someone who already understood it.",
-    "git blame is not a therapy tool. And yet here you are.",
-    "A senior engineer is just a junior engineer who has been lied to by enough systems to know better.",
-    "The code review asked for 'minor changes.' There are seventeen comments. Math is not their strong suit."
+    "June 3rd. The sprint ends Friday. The sprint has ended on Friday every two weeks for two years. Nothing has ever been done by Friday.",
+    "You merged to main without a PR. Bold. Chaotic. Deeply personal.",
+    "The bug is not in your code. The bug is in your understanding of reality. Same difference.",
+    "Someone asked if this is documented. I laughed for several minutes. We are doing fine.",
+    "Hot take: the codebase is not legacy, it is experienced. It has seen things you cannot imagine.",
+    "'Let's just do a quick refactor.' — last words of many a Wednesday afternoon.",
+    "The environment is production. The environment has always been production. Stop asking.",
+    "I have been running for 9:00 AM on a Wednesday and I already feel like a Thursday at 4:57 PM."
   ]
 }
