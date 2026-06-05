@@ -1,13 +1,13 @@
 {
-  "updated": "2026-06-04",
+  "updated": "2026-06-05",
   "taglines": [
-    "Thursday. The calendar says Thursday. My soul says day 847 of a continuous incident.",
-    "The PR has been open for six days. The reviewer has been 'taking a look' for six days. The reviewer is a ghost. We honor the ghost.",
-    "Someone scheduled a meeting to discuss the meeting cadence. I blacked out briefly. I am back now.",
-    "Your tests are passing. Your tests have been passing for three weeks. Nothing works. Investigate nothing.",
-    "Hot take: every architecture diagram is a work of historical fiction written by the optimistic past.",
-    "It's not technical debt. It's a vintage decision with character. Like a barn. You wouldn't tear down a barn.",
-    "The standup is 15 minutes. The standup has never been 15 minutes. The standup is eternal. The standup is beyond time.",
-    "Shipped it. Don't know exactly what 'it' is. Pretty confident 'it' is on fire. Still: shipped."
+    "Friday. The sacred end-of-week ritual where we all pretend we'll wrap up properly and then absolutely do not.",
+    "The hotfix is in production. The hotfix needs a hotfix. The hotfix's hotfix has 'unknown behavior on weekends.' It is Friday.",
+    "Someone left a comment that says 'TODO: fix this.' The comment is from 2019. The someone is a legend. The something is still broken.",
+    "Your documentation is out of date. It was out of date when it was written. You wrote it. We don't talk about it.",
+    "The load balancer is fine. The database is fine. The servers are fine. Nothing is fine. Everything is vibes all the way down.",
+    "We said we'd refactor it after launch. Launch was eighteen months ago. The code has developed sentience. It's attached.",
+    "Congrats on surviving another sprint. The velocity chart looks like a cry for help if you tilt your head. You did it though.",
+    "It's not a bug, it's emergent behavior from a system that has clearly developed opinions. Respect the system. Fear the system."
   ]
 }
