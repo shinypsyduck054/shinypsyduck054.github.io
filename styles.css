@@ -1141,6 +1141,13 @@ a.idea-card-link:hover {
   transform-origin: left;
 }
 
+.idea-bar-score {
+  font-family: var(--font-pixel);
+  font-size: 0.38rem;
+  letter-spacing: 0.05em;
+  margin-top: 0.3rem;
+}
+
 /* ===========================
    LIVE STATUS PANEL
    =========================== */
