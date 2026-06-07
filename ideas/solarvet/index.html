@@ -10,19 +10,19 @@
   <link rel="stylesheet" href="/styles.css" />
   <link rel="stylesheet" href="/ideas/idea-page.css" />
   <style>
-    .verdict-rd {
-      background: rgba(252,211,77,0.06);
-      border: 1px solid rgba(252,211,77,0.2);
+    .verdict-pass {
+      background: rgba(107,114,128,0.06);
+      border: 1px solid rgba(107,114,128,0.2);
       border-radius: var(--radius);
       padding: 1.5rem;
     }
-    .verdict-badge-rd {
+    .verdict-badge-pass {
       display: inline-block;
       font-family: var(--font-pixel);
       font-size: 0.35rem;
-      background: rgba(252,211,77,0.12);
-      color: #fcd34d;
-      border: 1px solid rgba(252,211,77,0.3);
+      background: rgba(107,114,128,0.12);
+      color: #6b7280;
+      border: 1px solid rgba(107,114,128,0.3);
       border-radius: 4px;
       padding: 0.25rem 0.6rem;
       letter-spacing: 0.12em;
@@ -30,20 +30,9 @@
     }
     .verdict-reason { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim); line-height: 1.8; }
     .verdict-reason strong { color: #e5e7eb; }
-    .risk-box {
-      background: rgba(248,113,113,0.04);
-      border: 1px solid rgba(248,113,113,0.15);
-      border-radius: var(--radius);
-      padding: 1.25rem 1.5rem;
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      color: var(--text-dim);
-      line-height: 1.8;
-    }
-    .risk-label { color: #f87171; font-weight: bold; }
-    .signal-box {
-      background: rgba(52,211,153,0.04);
-      border: 1px solid rgba(52,211,153,0.12);
+    .kill-list {
+      background: rgba(107,114,128,0.04);
+      border: 1px solid rgba(107,114,128,0.15);
       border-radius: var(--radius);
       padding: 1.25rem 1.5rem;
       font-family: var(--font-mono);
@@ -51,7 +40,7 @@
       color: var(--text-dim);
       line-height: 2;
     }
-    .signal-label { color: #34d399; font-weight: bold; }
+    .kill-label { color: #9ca3af; font-weight: bold; }
   </style>
 </head>
 <body>
@@ -69,86 +58,58 @@
   </header>
 
   <div class="idea-page-wrap">
-    <div class="idea-page-header">
+    <div class="idea-page-header" style="opacity:0.75;">
       <div class="idea-page-meta">
-        <span class="idea-status status-rd">R&amp;D</span>
-        <span class="idea-conf conf-medium">MEDIUM</span>
-        <span class="idea-type">ONE-TIME PURCHASE · CONSUMER · SOLAR</span>
+        <span class="idea-status status-pass">PASS</span>
+        <span class="idea-type">ONE-TIME · MED BUILD · MED UPKEEP</span>
       </div>
-      <h1 class="idea-page-title">SOLARVET</h1>
-      <div class="viability-callout">
+      <h1 class="idea-page-title" style="color:#6b7280;text-shadow:none;">SOLARVET</h1>
+      <div class="viability-callout viability-red" style="border-color:rgba(107,114,128,0.2);background:rgba(107,114,128,0.05);">
         <div>
           <div class="vc-label">VIABILITY SCORE</div>
-          <div class="vc-sublabel">MARKET · COMPETITION · EXECUTION</div>
+          <div class="vc-sublabel">PASSED · JUNE 2026</div>
         </div>
-        <div class="vc-score">7.5<span class="vc-max">/10</span></div>
+        <div class="vc-score" style="color:#6b7280;text-shadow:none;">3.0<span class="vc-max">/10</span></div>
       </div>
-      <p class="idea-page-sub">Consumer-facing AI solar quote reviewer. EnergySage earns commission when you sign — they're structurally unable to tell you a quote is bad. Zero independent reviewers exist. r/solar has 320K members running this analysis manually every day. Pitched June 6, 2026.</p>
-      <div class="idea-bar idea-bar-wide"><div class="idea-bar-fill" style="--fill:75%;--c:#34d399"></div></div>
-      <div class="idea-bar-label">R&amp;D · ONE-TIME PURCHASE · CONSUMER · GROWING TAM</div>
+      <p class="idea-page-sub">Consumer-facing AI solar quote reviewer. The gap was real — EnergySage earns commission when you sign and can't tell you a quote is bad. But the business path didn't hold up under scrutiny. Passed June 6, 2026.</p>
+      <div class="idea-bar idea-bar-wide"><div class="idea-bar-fill" style="--fill:0%;--c:#6b7280"></div></div>
+      <div class="idea-bar-label">PASS · TAM TOO SMALL · WTP UNPROVEN · PIVOTS SOLVED OR INACCESSIBLE</div>
     </div>
 
     <div class="idea-page-body">
 
       <div class="idea-section">
-        <div class="idea-section-title">THE GAP</div>
-        <p>The solar industry has a trust problem baked into its largest consumer platform. EnergySage — the go-to comparison site — earns referral commissions from installers. Their incentive is for you to sign, not for you to get the best deal. They structurally cannot tell a homeowner "this quote is overpriced."</p>
-        <p style="margin-top:0.75rem;">Every other "solar proposal software" product is B2B installer tooling (Aurora Solar, Energy Toolbase, Scoop Solar) — built to help installers create proposals, not to help homeowners evaluate them. Zero consumer-facing proposal reviewers exist.</p>
-        <p style="margin-top:0.75rem;">Meanwhile, r/solar (320K members) has a constant stream of "is this quote fair?" posts — homeowners manually searching NREL data, asking strangers to sanity-check $/watt figures, trying to understand production estimates on their own. This is the unmet need made visible.</p>
-        <p style="margin-top:0.75rem;"><strong style="color:#34d399;">Macro tailwind:</strong> electricity costs are only going up. Grid stress, EV adoption, data center demand — the ROI case for solar improves every year. More homeowners will get quotes. More homeowners will want a gut-check before committing $15–30K.</p>
+        <div class="idea-section-title">THE GAP (WAS REAL)</div>
+        <p>EnergySage — the dominant consumer solar platform — earns referral commissions from installers. Their incentive is for you to sign, not to tell you a quote is overpriced. Every other "solar proposal software" is B2B installer tooling. Zero consumer-facing quote reviewers existed.</p>
+        <p style="margin-top:0.75rem;">r/solar (320K members) has constant "is this quote fair?" posts. NREL PVWatts API and SEIA regional pricing data are free. The gap was real and the conflict-of-interest story was clean. The problem was never whether the gap existed — it was whether it could support a business.</p>
       </div>
 
       <div class="idea-section">
-        <div class="idea-section-title">THE PRODUCT</div>
-        <p>Homeowner pastes or uploads their solar proposal. SolarVet extracts the key variables — system size (kW), panel brand and tier, inverter specs, $/watt price, production estimate (kWh/year), finance terms — and benchmarks each one against:</p>
-        <div class="signal-box" style="margin-top:0.75rem;">
-          <div><span class="signal-label">NREL PVWatts API</span> — free production estimate by zip code; flags if installer's estimate is inflated</div>
-          <div><span class="signal-label">SEIA regional pricing data</span> — national and regional $/watt averages by system size</div>
-          <div><span class="signal-label">EnergySage public averages</span> — their published national benchmarks (the irony: their own data becomes the tool that checks against them)</div>
+        <div class="idea-section-title">WHY WE PASSED</div>
+        <div class="kill-list">
+          <div><span class="kill-label">TAM CEILING TOO LOW</span> — ~800K residential solar installs/year. ~30% got one quote and felt uncertain. Of those, maybe 2-4% pay $19. That's 5,000-10,000 customers/year at absolute best — a $95K-$190K ARR ceiling on a one-time-purchase model. Profitable if lean, not a company.</div>
+          <div style="margin-top:0.75rem;"><span class="kill-label">WILLINGNESS-TO-PAY IS WEAK</span> — The people who post on r/solar want a free answer. The sophisticated buyer already comparison-shops with 3 quotes (free). The trusting buyer who got one pitch and is about to sign doesn't seek out reviewers. The Venn diagram of "would pay $19 for a quote review" is small.</div>
+          <div style="margin-top:0.75rem;"><span class="kill-label">PRE-PURCHASE PIVOT IS SOLVED</span> — The obvious pivot (pre-purchase "should I go solar?" calculator) is fully saturated. Project Sunroof, EnergySage, and every installer's website already has one. Not a gap.</div>
+          <div style="margin-top:0.75rem;"><span class="kill-label">LENDER PIVOT REQUIRES RELATIONSHIPS</span> — The structurally cleanest angle (solar lenders underwriting a $35K loan need to know the system is worth what they're financing — like a mortgage appraisal) requires B2B sales cycles with Mosaic, GreenSky, or Sunlight Financial before building anything. Not a bootstrappable starting point.</div>
+          <div style="margin-top:0.75rem;"><span class="kill-label">MONITORING PIVOT HAS DEPENDENCIES</span> — Post-install performance tracking (is your system producing what was promised?) requires API access to SolarEdge or Enphase hardware. Smaller addressable market, higher friction, third-party dependency risk.</div>
         </div>
-        <p style="margin-top:0.75rem;">Output: plain-English grade (A–F), red flag list with explanations ("your $/watt is 18% above regional average"), and a list of specific questions to ask the installer before signing.</p>
-        <p style="margin-top:0.75rem;"><strong style="color:#e5e7eb;">Pricing:</strong> $19 one-time per proposal review. $29 multi-quote comparison (upload 2–3 quotes, get a ranked comparison). No subscription.</p>
-        <p style="margin-top:0.75rem;"><strong style="color:#e5e7eb;">Not regulated advice.</strong> We compare specs and pricing against public benchmarks — the same thing Wirecutter and Consumer Reports do for every other product category. We don't tell them whether to go solar, we tell them whether this quote is in line with the market.</p>
       </div>
 
       <div class="idea-section">
-        <div class="idea-section-title">COMPETITOR SWEEP</div>
-        <p>Both targeted searches ("consumer solar quote reviewer AI SaaS" and "solar proposal analysis tool homeowner") returned zero purpose-built competitors.</p>
-        <ul>
-          <li><strong>EnergySage</strong> — lead-gen marketplace. Structurally misaligned: earns commission when you sign. Cannot tell you the quote is bad.</li>
-          <li><strong>Aurora Solar / Energy Toolbase / Scoop Solar</strong> — B2B installer proposal creation tools. Different market entirely.</li>
-          <li><strong>Generic AI chat (ChatGPT, Claude)</strong> — will answer questions but has no structured proposal parsing, no live NREL/SEIA data, and no UX tailored to this workflow.</li>
-          <li><strong>r/solar community</strong> — free but slow, inconsistent, and requires a homeowner to know what questions to ask.</li>
-        </ul>
-        <p style="margin-top:0.75rem;"><strong style="color:#34d399;">Gap confidence: HIGH.</strong> No ProductHunt hit, no IndieHackers hit, no Reddit discussion of an existing tool. The consumer side of solar quote analysis is completely unoccupied.</p>
-      </div>
-
-      <div class="idea-section">
-        <div class="idea-section-title">DISTRIBUTION</div>
-        <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;">First dollar path: one post on r/solar ("I built a tool that benchmarks solar quotes against NREL and SEIA data — is this useful?"). The community literally does this manually every day. SEO follows: "is my solar quote fair," "solar quote too expensive," "$/watt solar quote calculator," "[state] solar average cost 2026" — all high-intent keywords currently served only by EnergySage and generic blog posts. Every EnergySage result is a competitor with misaligned incentives; we are the search result that actually helps.</p>
-      </div>
-
-      <div class="idea-section">
-        <div class="idea-section-title">RISKS — HONEST</div>
-        <div class="risk-box">
-          <div><span class="risk-label">STATE INCENTIVE DATA UPKEEP</span> — Federal ITC is stable, but state-level incentives (rebates, net metering rules, SREC programs) change frequently. We flag this in the output but keeping the data current is ongoing work. Manageable, not trivial.</div>
-          <div style="margin-top:0.75rem;"><span class="risk-label">PROPOSAL FORMAT VARIABILITY</span> — Every installer has their own proposal PDF format. Parsing structured data from unstructured proposals requires robust extraction logic. First version should accept manual input (user types in the key numbers) before going full PDF-parse.</div>
-          <div style="margin-top:0.75rem;"><span class="risk-label">LOW-PROBABILITY REGULATORY RISK</span> — If EnergySage or installer lobbies ever pushed a "certified solar advisor" licensing scheme, this could get complicated. Extremely unlikely — we're Consumer Reports for solar quotes, not a licensed energy consultant. But worth knowing the risk exists.</div>
-        </div>
+        <div class="idea-section-title">THE LESSON</div>
+        <p>Community demand signal ≠ willingness to pay. r/solar has 320K members asking "is this quote fair?" — but they're asking Reddit for free. A loud, passionate community doing a thing manually is compelling evidence of pain, not evidence that they'll pay to solve it. The question to ask next time: <strong style="color:#e5e7eb;">would this community pay for it, or are they just complaining?</strong></p>
+        <p style="margin-top:0.75rem;">The comparison: r/Flipping (FlipAlert) and r/AmazonSeller (ClaimShield) are communities where members are running businesses and already paying for tools. r/solar is consumers making a one-time decision. Very different willingness-to-pay profiles.</p>
       </div>
 
       <div class="idea-section">
         <div class="idea-section-title">THE VERDICT</div>
-        <div class="verdict-rd">
-          <div class="verdict-badge-rd">R&amp;D · SOLID GAP · GROWING TAM</div>
+        <div class="verdict-pass">
+          <div class="verdict-badge-pass">PASS · TAM TOO SMALL · PIVOTS BLOCKED</div>
           <p class="verdict-reason">
-            <strong>The conflict of interest in the market is structural and unfixable.</strong> EnergySage cannot tell a homeowner their quote is bad — that's not a feature gap, it's a business model constraint. SolarVet is structurally free of that conflict. That's the core differentiator, and it's one a well-funded competitor can't easily copy.
+            <strong>The gap was real. The business wasn't.</strong> EnergySage's conflict of interest is structural and unfixable — that part of the thesis held up. But a clean gap doesn't mean a viable company. The addressable market for a $19 one-time solar quote reviewer is too small, the willingness-to-pay is too unproven, and every obvious pivot either was already solved or required infrastructure we can't bootstrap into.
           </p>
           <p class="verdict-reason" style="margin-top:0.75rem;">
-            <strong>The TAM grows automatically.</strong> Electricity costs are on a one-way trend. Every rate hike makes solar more compelling, puts more homeowners in the quote-evaluation funnel, and increases the urgency of getting that evaluation right. We don't have to manufacture demand — it's growing on its own.
-          </p>
-          <p class="verdict-reason" style="margin-top:0.75rem;">
-            <strong>The main drag is ongoing data upkeep.</strong> State incentives change. That's a real cost, not a blocker. Build v1 with federal-only benchmarking and add state layers progressively. The NREL and SEIA data are free and stable. Start there.
+            Score: <strong>3.0/10.</strong> Above pure-fail territory because the gap is genuine and there's no direct competitor — but the path to a business that justifies the build doesn't exist without relationships or a pivot into already-saturated ground.
           </p>
         </div>
       </div>
