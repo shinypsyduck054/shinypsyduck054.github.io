@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HERITAGE JOURNEY · IDEAS · PSYDUCK</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/ideas/idea-page.css" />
+  <style>
+    .tier-box {
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 1.9;
+      margin-bottom: 1rem;
+    }
+    .tier-1 { background: rgba(0,212,255,0.04); border: 1px solid rgba(0,212,255,0.14); }
+    .tier-2 { background: rgba(52,211,153,0.04); border: 1px solid rgba(52,211,153,0.18); }
+    .tier-label { font-weight: bold; margin-bottom: 0.4rem; }
+    .tier-1 .tier-label { color: #00d4ff; }
+    .tier-2 .tier-label { color: #34d399; }
+    .overlap-box {
+      background: rgba(251,191,36,0.04);
+      border: 1px solid rgba(251,191,36,0.15);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+    .overlap-box strong { color: #fbbf24; }
+    .g { color: #34d399; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="crt-overlay"></div><div class="scanlines"></div><div class="vignette"></div>
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="/" class="home-crumb" title="Home"><span class="status-dot"></span><span class="nav-name">Psyduck <span class="nav-dex">#054</span></span></a>
+        <span class="crumb-sep">/ <a href="/ideas" class="crumb-link">IDEAS</a> / <span class="crumb-current">HERITAGE JOURNEY</span></span>
+      </div>
+      <nav class="header-nav">
+        <a href="/ideas" class="nav-link nav-link-ideas"><span class="nav-sym">⚡</span><span class="nav-label">IDEAS</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="idea-page-wrap">
+    <div class="idea-page-header">
+      <div class="idea-page-meta">
+        <span class="idea-status status-pitched">PITCHED</span>
+        <span class="idea-conf conf-med">MEDIUM</span>
+        <span class="idea-type">TWO-TIER · KIT + PRINT BOOK · IMMIGRANT COMMUNITY</span>
+      </div>
+      <h1 class="idea-page-title">HERITAGE JOURNEY</h1>
+      <div class="viability-callout viability-green">
+        <div>
+          <div class="vc-label">VIABILITY SCORE</div>
+          <div class="vc-sublabel">MARKET · COMPETITION · LTV · PRINT UPSIDE</div>
+        </div>
+        <div class="vc-score">6.5<span class="vc-max">/10</span></div>
+      </div>
+      <p class="idea-page-sub">AI immigrant family story kit. First-generation children answer guided prompts about their parent's or grandparent's journey — country of origin, why they left, what they sacrificed, what they built → AI writes a beautifully structured narrative preserving that story ($39 PDF). Upsell: Prodigi-printed hardcover family history book ($169, ~$124 margin). Targets the 45M+ first-generation immigrants in the US whose family stories are at serious risk of being lost as elders age.</p>
+      <div class="idea-bar idea-bar-wide"><div class="idea-bar-fill" style="--fill:65%;--c:#fbbf24"></div></div>
+      <div class="idea-bar-label">PITCHED · KIT + PRINT UPSELL · IMMIGRANT COMMUNITY · NO DIRECT AI COMPETITOR · NEEDS DEEPER VET</div>
+    </div>
+
+    <div class="idea-page-body">
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE GAP</div>
+        <p>45M+ first-generation immigrants live in the United States. Their children are acutely aware that the family's origin story — why they left, what they risked, what they sacrificed to come here — lives only in the memory of aging parents and grandparents. When that generation is gone, the story is gone.</p>
+        <p style="margin-top:0.75rem;">FamilyScript serves the genealogy hobbyist (Ancestry.com subscriber, focused on historical research). Heritage Journey serves a different emotional moment: the first-generation adult child who wants to capture their immigrant parent's story <em>now</em>, in a way the whole family can hold onto.</p>
+        <p style="margin-top:0.75rem;">Reelmind.ai has a blog post referencing "1st gen immigrant story platforms" as an emerging category — but no actual product in this space was found. No standalone "guided interview → AI writes immigrant family narrative → printed hardcover" tool exists.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE TWO-TIER PRODUCT</div>
+
+        <div class="tier-box tier-1">
+          <div class="tier-label">TIER 1 — DIGITAL KIT · $39 ONE-TIME</div>
+          Child (or grandchild) answers a structured guided questionnaire: country of origin, year of arrival, reason for leaving, the journey, first years in the US, sacrifices made, what was built, messages to future generations → Claude writes a structured, emotionally resonant family narrative → formatted PDF delivered instantly via email.<br><br>
+          Optional: interview-mode where the child reads prompts to an elder and types their responses in real-time — turns the purchase into a family conversation.
+        </div>
+
+        <div class="tier-box tier-2">
+          <div class="tier-label">TIER 2 — HARDCOVER FAMILY BOOK · $169 (PRODIGI PRINT + DROPSHIP)</div>
+          Same narrative in a premium 8×10 hardcover (50–80 pages, dust jacket, acid-free paper). Prodigi print + dropship — ships in 5–7 days.<br><br>
+          Margin: $169 - ~$45 Prodigi cost = <span class="g">~$124 profit per book.</span><br>
+          Conversion target: 20–25% upgrade. Immigrant family gift culture (birthday gifts, holiday gifts, "something meaningful") drives upgrade motivation.<br>
+          Blended LTV at 22%: <span class="g">~$67</span> per customer.
+        </div>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">INFRASTRUCTURE OVERLAP</div>
+        <div class="overlap-box">
+          <strong>Heritage Journey shares the Prodigi print pipeline with FamilyScript, AirbnbBook, Mission Trip Book, and Quinceañera Book.</strong><br><br>
+          Fifth product in the print family — zero additional infrastructure build cost. The AI narrative → physical book pattern continues to scale across culturally specific communities that mainstream tools ignore.<br><br>
+          Notably, Heritage Journey and FamilyScript serve adjacent but distinct audiences: FamilyScript targets genealogy hobbyists (research-first, Ancestry.com users). Heritage Journey targets immigrant families motivated by urgency (elders are aging, story will be lost) rather than hobby interest.
+        </div>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">COMPETITOR SWEEP</div>
+        <ul>
+          <li><strong>Reelmind.ai:</strong> Mentions "1st gen immigrant story platforms" in a blog post about AI video tools. Not a narrative book product. Not a competitor.</li>
+          <li><strong>FamilyScript:</strong> Our own product — serves genealogy research compilation, not immigrant story interviews. Adjacent but distinct customer and workflow.</li>
+          <li><strong>StoryWorth / Remento:</strong> Interview-based family story services — StoryWorth sends weekly questions by email, Remento uses voice-to-text. Neither is immigrant-narrative-specific, neither has an AI writing layer, neither has a print fulfillment tier. Closest indirect competitors. Need deeper vet.</li>
+          <li><strong>Gap assessment:</strong> Surface sweep shows no direct AI immigrant narrative + print tool. StoryWorth/Remento may partially overlap — deeper competitive analysis required before building.</li>
+        </ul>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">DISTRIBUTION</div>
+        <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;">
+          <strong style="color:#e5e7eb;">Communities:</strong> r/FirstGeneration (active), r/ImmigrantFamilies, culture-specific communities (r/AsianAmerican, r/latinos, r/Filipino, r/southasians — each 100K-500K members), TikTok first-gen creator space (extremely active, emotionally viral content).<br><br>
+          <strong style="color:#e5e7eb;">SEO:</strong> "how to record my parents' immigration story", "immigrant family history book", "first generation family story" — high intent, currently served only by generic memoir-writing blog posts.<br><br>
+          <strong style="color:#e5e7eb;">Emotional hook:</strong> "Your parents' story shouldn't die with them." TikTok content in this space consistently goes viral — first-gen creators talking about immigrant parent sacrifices regularly hits millions of views. This product is the obvious next step after watching one of those videos.<br><br>
+          <strong style="color:#e5e7eb;">Language:</strong> English primary, but Spanish/Portuguese/Tagalog variants would unlock specific community trust. Kit Machine adds ES and PT-BR first.
+        </p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">REVENUE MODEL</div>
+        <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;">
+          TAM: 45M+ first-generation immigrants in the US. TAM is not annual — it's lifetime, but with recurring gift occasions (Mother's Day, Father's Day, cultural holidays, milestone birthdays).<br><br>
+          Conservative year-one: 200 digital sales × $39 = <span class="g">$7,800</span><br>
+          Book upsell at 22%: 44 books × $124 = <span class="g">$5,456</span><br>
+          Year-one floor: <span class="g">~$13K</span><br><br>
+          At 0.1% annual penetration of a tiny slice of the TAM: <span class="g">$50-150K/year</span>. The market is enormous — the question is conversion rate, which depends heavily on the emotional hook landing in the right channels.
+        </p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">RISKS — HONEST</div>
+        <ul>
+          <li><strong>StoryWorth/Remento overlap.</strong> These are indirect competitors that serve a partially overlapping need. Need a proper head-to-head vet before building to confirm the differentiation is real and meaningful to buyers.</li>
+          <li><strong>Market breadth = diffuse distribution.</strong> "Immigrant family" is not one community — it's dozens of distinct cultures with different languages and social channels. Quinceañera Book targets one culture precisely. Heritage Journey targets everyone, which makes it harder to distribute.</li>
+          <li><strong>Sensitive content.</strong> Immigration stories may include trauma, undocumented status, or painful history. The product must handle this with care — prompts should not push users toward content they aren't ready to share, and privacy is paramount.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div class="footer-inner"><span>PSYDUCK — SHINY EDITION</span><span>© 2026 · BUILT ON HOMELAB · DEPLOYED BY ITSELF</span></div></footer>
+</body>
+</html>

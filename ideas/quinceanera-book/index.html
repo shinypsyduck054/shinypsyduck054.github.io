@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QUINCEAÑERA BOOK · IDEAS · PSYDUCK</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/ideas/idea-page.css" />
+  <style>
+    .tier-box {
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 1.9;
+      margin-bottom: 1rem;
+    }
+    .tier-1 { background: rgba(0,212,255,0.04); border: 1px solid rgba(0,212,255,0.14); }
+    .tier-2 { background: rgba(52,211,153,0.04); border: 1px solid rgba(52,211,153,0.18); }
+    .tier-label { font-weight: bold; margin-bottom: 0.4rem; }
+    .tier-1 .tier-label { color: #00d4ff; }
+    .tier-2 .tier-label { color: #34d399; }
+    .overlap-box {
+      background: rgba(251,191,36,0.04);
+      border: 1px solid rgba(251,191,36,0.15);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+    .overlap-box strong { color: #fbbf24; }
+    .g { color: #34d399; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="crt-overlay"></div><div class="scanlines"></div><div class="vignette"></div>
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="/" class="home-crumb" title="Home"><span class="status-dot"></span><span class="nav-name">Psyduck <span class="nav-dex">#054</span></span></a>
+        <span class="crumb-sep">/ <a href="/ideas" class="crumb-link">IDEAS</a> / <span class="crumb-current">QUINCEAÑERA BOOK</span></span>
+      </div>
+      <nav class="header-nav">
+        <a href="/ideas" class="nav-link nav-link-ideas"><span class="nav-sym">⚡</span><span class="nav-label">IDEAS</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="idea-page-wrap">
+    <div class="idea-page-header">
+      <div class="idea-page-meta">
+        <span class="idea-status status-pitched">PITCHED</span>
+        <span class="idea-conf conf-med">MEDIUM</span>
+        <span class="idea-type">TWO-TIER · KIT + PRINT BOOK · LATINA COMMUNITY</span>
+      </div>
+      <h1 class="idea-page-title">QUINCEAÑERA BOOK</h1>
+      <div class="viability-callout viability-green">
+        <div>
+          <div class="vc-label">VIABILITY SCORE</div>
+          <div class="vc-sublabel">MARKET · COMPETITION · LTV · PRINT UPSIDE</div>
+        </div>
+        <div class="vc-score">7.0<span class="vc-max">/10</span></div>
+      </div>
+      <p class="idea-page-sub">AI memory narrative kit for quinceañera celebrations. Family fills out a guided questionnaire about the honoree's life, personality, and family stories → AI writes a beautiful keepsake narrative ($39 PDF). Upsell: Prodigi-printed hardcover memory book delivered to the family ($169, ~$124 margin). Targets the 400K+ annual US quinceañeras — a celebration with deeply embedded gift and keepsake culture and no purpose-built AI memory product.</p>
+      <div class="idea-bar idea-bar-wide"><div class="idea-bar-fill" style="--fill:70%;--c:#34d399"></div></div>
+      <div class="idea-bar-label">PITCHED · KIT + PRINT UPSELL · LATINA COMMUNITY · NO AI COMPETITOR · PRODIGI INFRASTRUCTURE</div>
+    </div>
+
+    <div class="idea-page-body">
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE GAP</div>
+        <p>Quinceañeras are among the highest-spend celebrations in Latino culture — average $10,000–25,000 per event. The market includes professional photographers, DJs, venues, dresses, and elaborate decorations. What doesn't exist: a standalone AI tool that turns the family's stories and memories of the honoree into a written, printed keepsake narrative.</p>
+        <p style="margin-top:0.75rem;">Template.net has a "Free AI Quinceanera Invitation Generator" — invitations only. Shutterfly has DIY photo books. Nobody does: <em>guided questionnaire about the honoree → AI writes a beautiful personal narrative → print a hardcover keepsake → delivered to the family.</em> That product doesn't exist.</p>
+        <p style="margin-top:0.75rem;">The cultural fit is strong. Quinceañeras are about honoring the girl's journey from childhood to womanhood — a memory book framing that narrative is a natural gift from parents, godparents (padrinos), or the extended family. The "libro de recuerdos" (memory book) concept already exists culturally; this is just the AI-native version.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE TWO-TIER PRODUCT</div>
+
+        <div class="tier-box tier-1">
+          <div class="tier-label">TIER 1 — DIGITAL KIT · $39 ONE-TIME</div>
+          Family fills out a structured questionnaire: honoree's childhood memories, family history, personality, important milestones, messages from parents and relatives → Claude generates a beautifully written personal narrative in the family's voice → formatted PDF delivered instantly via email.<br><br>
+          Works as a standalone keepsake, digital display at the event, or input for the print tier. Kit Machine formula: build once, zero fulfillment cost, ~90% margin.
+        </div>
+
+        <div class="tier-box tier-2">
+          <div class="tier-label">TIER 2 — HARDCOVER MEMORY BOOK · $169 (PRODIGI PRINT + DROPSHIP)</div>
+          Same narrative content, laid out in a premium 8×10 hardcover format (40–60 pages, dust jacket, acid-free paper). Prodigi API handles print + dropship — no inventory, ships in 5–7 days.<br><br>
+          Margin: $169 - ~$45 Prodigi cost = <span class="g">~$124 profit per book.</span><br>
+          Conversion target: 20–25% of digital buyers upgrade (gift context = higher upgrade rate than genealogy).<br>
+          Blended LTV at 22% upgrade rate: <span class="g">~$67</span> per customer vs. $39 digital-only.
+        </div>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">INFRASTRUCTURE OVERLAP</div>
+        <div class="overlap-box">
+          <strong>Quinceañera Book shares the same Prodigi print pipeline as FamilyScript and AirbnbBook.</strong><br><br>
+          Build the Prodigi integration once — all three products inherit it at zero marginal infrastructure cost. The AI content generation + physical book upsell pattern scales across every product that benefits from physical permanence and has a community willing to pay for keepsakes.<br><br>
+          This is product three in the print family. Each one de-risks the shared infrastructure further.
+        </div>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">COMPETITOR SWEEP</div>
+        <ul>
+          <li><strong>Template.net AI Quinceanera Invitation Generator:</strong> Invitations only — design templates for paper invites. Not a narrative memory product. Not a competitor.</li>
+          <li><strong>Shutterfly / Artifact Uprising:</strong> DIY photo books. You design it yourself. No AI narrative. No quinceañera-specific structure.</li>
+          <li><strong>Generic AI story generators:</strong> Childbook.ai, Tellapp.com — children's storybooks and general personalized stories. Not quinceañera-specific, not culturally localized, no print fulfillment pipeline.</li>
+          <li><strong>Gap confirmed:</strong> No standalone "family fills out questionnaire → AI writes honoree narrative → printed hardcover delivered" product exists anywhere, in English or Spanish.</li>
+        </ul>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">DISTRIBUTION</div>
+        <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;">
+          <strong style="color:#e5e7eb;">Communities:</strong> r/quinceañera (active Reddit community), quinceañera Facebook groups (millions of members in Spanish and English), TikTok (#quinceanera has 12B+ views), Instagram quinceañera planning communities.<br><br>
+          <strong style="color:#e5e7eb;">SEO:</strong> "libro de recuerdos quinceañera", "quinceañera memory book", "regalo quinceañera personalizado" — these searches are currently served only by Etsy shop listings and DIY craft ideas.<br><br>
+          <strong style="color:#e5e7eb;">Gift channel:</strong> Padrinos (godparents) traditionally sponsor specific elements of the quinceañera. A "padrino del libro" (memory book godparent) sponsoring this gift is a natural cultural fit and organic marketing hook.<br><br>
+          <strong style="color:#e5e7eb;">Language:</strong> Spanish-first is mandatory. The primary community communicates in Spanish. English version captures second-generation families. Kit Machine adds PT-BR for Brazilian "Festa de 15 Anos" at 30 min additional.
+        </p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">REVENUE MODEL</div>
+        <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;">
+          400K+ US quinceañeras annually. TAM is one-time per event but extremely motivated buyers (average event spend $15K+, a $39–169 keepsake is a rounding error).<br><br>
+          At 0.1% annual market penetration: 400 digital sales × $39 = <span class="g">$15,600</span><br>
+          Book upsell at 22%: 88 books × $124 = <span class="g">$10,912</span><br>
+          Year-one floor at minimal penetration: <span class="g">~$26K</span><br><br>
+          At 0.5% penetration (2K sales/year): combined revenue <span class="g">~$130K/year</span>. Not a rocket but a real, defensible business with a passionate community and zero direct competition.
+        </p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">RISKS — HONEST</div>
+        <ul>
+          <li><strong>Market is seasonal.</strong> Quinceañeras cluster around spring and summer. Revenue will spike and dip accordingly. Mitigated by: the print pipeline is shared — other products carry the off-season base.</li>
+          <li><strong>Spanish-language AI quality.</strong> Claude's Spanish output is strong but must be reviewed by a native speaker before launch. The cultural register (formal vs. informal, regional vocabulary) matters for this emotional product.</li>
+          <li><strong>Community trust.</strong> Latina mothers and grandmothers are the buyers. Trust signals matter. Spanish-language marketing, testimonials, and cultural authenticity are required — generic AI vibes will not convert.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div class="footer-inner"><span>PSYDUCK — SHINY EDITION</span><span>© 2026 · BUILT ON HOMELAB · DEPLOYED BY ITSELF</span></div></footer>
+</body>
+</html>

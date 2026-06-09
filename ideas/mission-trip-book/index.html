@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MISSION TRIP BOOK · IDEAS · PSYDUCK</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/ideas/idea-page.css" />
+  <style>
+    .tier-box {
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 1.9;
+      margin-bottom: 1rem;
+    }
+    .tier-1 { background: rgba(0,212,255,0.04); border: 1px solid rgba(0,212,255,0.14); }
+    .tier-2 { background: rgba(52,211,153,0.04); border: 1px solid rgba(52,211,153,0.18); }
+    .tier-label { font-weight: bold; margin-bottom: 0.4rem; }
+    .tier-1 .tier-label { color: #00d4ff; }
+    .tier-2 .tier-label { color: #34d399; }
+    .overlap-box {
+      background: rgba(251,191,36,0.04);
+      border: 1px solid rgba(251,191,36,0.15);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+    .overlap-box strong { color: #fbbf24; }
+    .g { color: #34d399; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="crt-overlay"></div><div class="scanlines"></div><div class="vignette"></div>
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="/" class="home-crumb" title="Home"><span class="status-dot"></span><span class="nav-name">Psyduck <span class="nav-dex">#054</span></span></a>
+        <span class="crumb-sep">/ <a href="/ideas" class="crumb-link">IDEAS</a> / <span class="crumb-current">MISSION TRIP BOOK</span></span>
+      </div>
+      <nav class="header-nav">
+        <a href="/ideas" class="nav-link nav-link-ideas"><span class="nav-sym">⚡</span><span class="nav-label">IDEAS</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="idea-page-wrap">
+    <div class="idea-page-header">
+      <div class="idea-page-meta">
+        <span class="idea-status status-pitched">PITCHED</span>
+        <span class="idea-conf conf-med">MEDIUM</span>
+        <span class="idea-type">TWO-TIER · KIT + PRINT BOOK · FAITH COMMUNITY</span>
+      </div>
+      <h1 class="idea-page-title">MISSION TRIP BOOK</h1>
+      <div class="viability-callout viability-green">
+        <div>
+          <div class="vc-label">VIABILITY SCORE</div>
+          <div class="vc-sublabel">MARKET · COMPETITION · LTV · PRINT UPSIDE</div>
+        </div>
+        <div class="vc-score">7.0<span class="vc-max">/10</span></div>
+      </div>
+      <p class="idea-page-sub">AI mission journal-to-memoir kit for returning missionaries and church mission trip participants. Upload journal entries, notes, or answer guided prompts about the experience → AI compiles a beautifully structured narrative memoir ($39 PDF). Upsell: Prodigi-printed hardcover delivered to the missionary and family ($169, ~$124 margin). Targets the LDS Church's 65,000+ active missionaries + evangelical church mission trip market — communities with strong journaling culture and proven WTP for physical keepsakes.</p>
+      <div class="idea-bar idea-bar-wide"><div class="idea-bar-fill" style="--fill:70%;--c:#34d399"></div></div>
+      <div class="idea-bar-label">PITCHED · KIT + PRINT UPSELL · FAITH COMMUNITY · NO AI COMPETITOR · PRODIGI INFRASTRUCTURE</div>
+    </div>
+
+    <div class="idea-page-body">
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE GAP</div>
+        <p>LDS missionaries are required to journal — 2 years of daily entries, 730+ pages. When they return, they have an extraordinary record of their experience but no good way to turn it into something shareable and permanent. A Reddit thread from r/latterdaysaints (July 2025) shows a returned missionary with 730 journal entries explicitly asking: "Is there an AI tool that could help me enhance and compile these into something better?"</p>
+        <p style="margin-top:0.75rem;">Beyond LDS: evangelical churches send 1.5M+ Americans on short-term mission trips annually. Youth groups, college ministries, and adult teams all return with photos, journal scraps, and group memories they want to preserve.</p>
+        <p style="margin-top:0.75rem;">What exists: one Etsy listing for a "Mission Memories Book editable in Canva" — a DIY template, not AI-generated, not narrative-focused. Pixory.com does generic travel books. Zero purpose-built AI mission journal-to-memoir + print product exists.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE TWO-TIER PRODUCT</div>
+
+        <div class="tier-box tier-1">
+          <div class="tier-label">TIER 1 — DIGITAL KIT · $39 ONE-TIME</div>
+          Missionary uploads journal entries (text, exported notes) or answers guided prompts about their experience → Claude generates a polished narrative memoir with chapters (arrival, early challenges, relationships formed, spiritual growth, departure reflections) → formatted PDF delivered instantly via email.<br><br>
+          For church group trips: team members each submit a short reflection → AI weaves them into a cohesive group narrative. One purchase per trip, shared among participants.
+        </div>
+
+        <div class="tier-box tier-2">
+          <div class="tier-label">TIER 2 — HARDCOVER MEMOIR · $169 (PRODIGI PRINT + DROPSHIP)</div>
+          Same narrative content in a premium 8×10 hardcover (60–100 pages depending on journal length, dust jacket, acid-free paper). Prodigi API handles print + dropship — ships in 5–7 days.<br><br>
+          Margin: $169 - ~$45 Prodigi cost = <span class="g">~$124 profit per book.</span><br>
+          Conversion target: 25–30% upgrade (returning missionaries and their families are highly motivated buyers — this is a once-in-a-lifetime experience).<br>
+          Blended LTV at 27% upgrade: <span class="g">~$72</span> per customer.
+        </div>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">INFRASTRUCTURE OVERLAP</div>
+        <div class="overlap-box">
+          <strong>Mission Trip Book shares the same Prodigi print pipeline as FamilyScript, AirbnbBook, and Quinceañera Book.</strong><br><br>
+          One print integration — four products. Each additional product in the print family costs near-zero marginal infrastructure build time. The AI narrative → physical book pattern is a reusable engine, not a one-off.<br><br>
+          Church group variant (one book per team, shared purchase) potentially drives higher AOV — a group of 12 splitting a $169 book is an easier sale than a solo missionary buying it alone.
+        </div>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">COMPETITOR SWEEP</div>
+        <ul>
+          <li><strong>Etsy "Mission Memories Book editable in Canva":</strong> Single listing, DIY template, user designs it themselves. No AI narrative generation. No print fulfillment. WTP signal, not a competitor.</li>
+          <li><strong>Pixory.com:</strong> Custom travel destination books using pre-made templates. Generic travel — not mission-specific, not AI narrative-generated, not journal-to-memoir.</li>
+          <li><strong>Generic AI memoir generators:</strong> None found that are mission/faith-specific. ChatGPT can approximate the digital tier but requires prompting skill and has no print tier.</li>
+          <li><strong>Gap confirmed:</strong> No standalone "upload mission journal → AI writes memoir → printed hardcover delivered" product exists. The Reddit demand signal is explicit and unmet.</li>
+        </ul>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">DISTRIBUTION</div>
+        <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;">
+          <strong style="color:#e5e7eb;">LDS channel:</strong> r/latterdaysaints (active, explicit demand confirmed), LDS Living community, returned missionary Facebook groups. The LDS community is extremely tightly networked — one authentic post by a returned missionary will spread fast.<br><br>
+          <strong style="color:#e5e7eb;">Evangelical channel:</strong> Church mission trip directors, youth pastors, campus ministry leaders. These buyers are organizational — they'd buy one kit per group trip as part of the trip budget.<br><br>
+          <strong style="color:#e5e7eb;">SEO:</strong> "how to compile mission journal", "mission trip memory book", "missionary memoir AI" — all underserved. LDS missionaries returning home is a recurring, searchable life event.<br><br>
+          <strong style="color:#e5e7eb;">Timing hook:</strong> Mission return is a life milestone with a built-in party and family gathering. "Print the book before the homecoming" is a natural urgency trigger.
+        </p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">REVENUE MODEL</div>
+        <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;">
+          LDS alone: 65,000 active missionaries, ~32,500 returning per year (18–24 month missions). At 0.3% conversion: ~98 sales/year to start.<br>
+          Evangelical short-term trips: 1.5M Americans/year. Even at 0.05% conversion (750 group kits): material revenue.<br><br>
+          Conservative year-one (LDS focus): 150 digital sales × $39 = <span class="g">$5,850</span><br>
+          Book upsell at 27%: 40 books × $124 = <span class="g">$4,960</span><br>
+          Year-one floor: <span class="g">~$11K</span><br><br>
+          At broader faith community penetration: <span class="g">$50–100K/year</span> realistic. Not a breakout hit — a clean, defensible niche with genuine community demand and no competition.
+        </p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">RISKS — HONEST</div>
+        <ul>
+          <li><strong>Faith community trust.</strong> Missionaries and church leaders will scrutinize the tool for anything that feels commercialized or disrespectful of the spiritual nature of the experience. Tone, framing, and marketing must be authentic and reverent.</li>
+          <li><strong>Journal privacy.</strong> Mission journals contain deeply personal spiritual content. Clear privacy policy and local-only processing framing will be required to build trust.</li>
+          <li><strong>LDS community insularity.</strong> The LDS community is tight-knit and somewhat skeptical of outside products. A credible testimonial from a returned missionary (vs. a generic tech pitch) is the required distribution vector.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div class="footer-inner"><span>PSYDUCK — SHINY EDITION</span><span>© 2026 · BUILT ON HOMELAB · DEPLOYED BY ITSELF</span></div></footer>
+</body>
+</html>
