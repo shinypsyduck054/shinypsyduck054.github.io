@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RIVALRADAR · IDEAS · PSYDUCK</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/ideas/idea-page.css" />
+  <style>
+    .verdict-favorite {
+      background: rgba(52,211,153,0.06);
+      border: 1px solid rgba(52,211,153,0.25);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .verdict-badge-favorite {
+      display: inline-block;
+      font-family: var(--font-pixel);
+      font-size: 0.35rem;
+      background: rgba(52,211,153,0.12);
+      color: #34d399;
+      border: 1px solid rgba(52,211,153,0.3);
+      border-radius: 4px;
+      padding: 0.25rem 0.6rem;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+    }
+    .verdict-reason { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim); line-height: 1.8; }
+    .verdict-reason strong { color: #e5e7eb; }
+    .pipeline-box {
+      background: rgba(52,211,153,0.03);
+      border: 1px solid rgba(52,211,153,0.12);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 2.2;
+    }
+    .pipeline-box .step { color: #34d399; font-weight: bold; }
+    .pipeline-box .arrow { color: #6b7280; }
+    .data-box {
+      background: rgba(0,212,255,0.03);
+      border: 1px solid rgba(0,212,255,0.1);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 2;
+    }
+    .data-box .source { color: #00d4ff; font-weight: bold; }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 0.75rem;
+    }
+    @media (max-width: 600px) { .pricing-grid { grid-template-columns: 1fr; } }
+    .pricing-tier {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 1rem;
+    }
+    .pricing-tier-name {
+      font-family: var(--font-pixel);
+      font-size: 0.32rem;
+      color: #fcd34d;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.4rem;
+    }
+    .pricing-tier-price {
+      font-family: var(--font-pixel);
+      font-size: 0.5rem;
+      color: #34d399;
+      margin-bottom: 0.5rem;
+    }
+    .pricing-tier-desc {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+    .extend-box {
+      background: rgba(252,211,77,0.03);
+      border: 1px solid rgba(252,211,77,0.12);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 2;
+    }
+    .extend-box .vertical { color: #fcd34d; font-weight: bold; }
+    .cost-box {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 2;
+    }
+    .cost-box .cost-line { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.04); padding: 0.2rem 0; }
+    .cost-box .cost-line:last-child { border-bottom: none; font-weight: bold; color: #34d399; }
+    .cost-box .cost-label { color: var(--text-dim); }
+    .cost-box .cost-val { color: #e5e7eb; }
+  </style>
+</head>
+<body>
+  <div class="crt-overlay"></div><div class="scanlines"></div><div class="vignette"></div>
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="/" class="home-crumb" title="Home"><span class="status-dot"></span><span class="nav-name">Psyduck <span class="nav-dex">#054</span></span></a>
+        <span class="crumb-sep">/ <a href="/ideas" class="crumb-link">IDEAS</a> / <span class="crumb-current">RIVALRADAR</span></span>
+      </div>
+      <nav class="header-nav">
+        <a href="/ideas" class="nav-link nav-link-ideas"><span class="nav-sym">⚡</span><span class="nav-label">IDEAS</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="idea-page-wrap">
+    <div class="idea-page-header">
+      <div class="idea-page-meta">
+        <span class="idea-status status-rd">R&amp;D ⭐</span>
+        <span class="idea-conf conf-high">HIGH</span>
+        <span class="idea-type">AI SERVICE · RECURRING · SELF-OPERATING · EXTENDABLE</span>
+      </div>
+      <h1 class="idea-page-title">RIVALRADAR ⭐</h1>
+      <div class="viability-callout viability-green">
+        <div>
+          <div class="vc-label">VIABILITY SCORE</div>
+          <div class="vc-sublabel">MARKET · COMPETITION · EXECUTION</div>
+        </div>
+        <div class="vc-score">8.0<span class="vc-max">/10</span></div>
+      </div>
+      <p class="idea-page-sub">Weekly AI-generated competitive intelligence reports for local home service companies. AI scrapes competitors' reviews, ads, and hiring signals — synthesizes into a one-page Monday morning briefing. Fully automated. No direct competitor found in the hyperlocal SMB tier. Extendable to any local business vertical. Greenlit June 9, 2026.</p>
+      <div class="idea-bar idea-bar-wide"><div class="idea-bar-fill" style="--fill:80%;--c:#34d399"></div></div>
+      <div class="idea-bar-label">R&amp;D FAVORITE · AI SERVICE · SUBSCRIPTION · HIGH TICKET · SELF-OPERATING</div>
+    </div>
+
+    <div class="idea-page-body">
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE GAP</div>
+        <p>Competitive intelligence tools exist in two tiers: enterprise (Crayon, Klue, Kompyte — $25k+/yr, built for SaaS companies tracking press releases and product updates) and nothing. The million-dollar roofing company in Columbus, Ohio has no way to know what its 5 local competitors are charging, what their recent reviews say, or whether they just hired 3 new crews.</p>
+        <p style="margin-top:0.75rem;">HomeServiceBase.com provides national market research statistics — industry-level data, not local competitor tracking. BrightLocal and Semrush track YOUR OWN local SEO, not competitors. Google Alerts is unstructured noise. No product delivers "here's what the 5 companies competing with you right now did this week" at an SMB price point.</p>
+        <p style="margin-top:0.75rem;">The gap is hyperlocal + specific-competitor + actionable synthesis + SMB price. All four together: unoccupied.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE PRODUCT</div>
+        <p style="font-family:var(--font-mono);font-size:0.85rem;color:var(--text-dim);line-height:1.8;">Customer onboards once: enters their business name, location, and up to 10 competitor names. Every Monday at 7am, a one-page briefing lands in their inbox. No dashboards to log into. No settings to fiddle with. Just intelligence, delivered.</p>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;">Sample output: <em>"ABC Roofing dropped their price on gutter installs this week — two new reviews mention 'same day service' as a differentiator. They posted a job for a crew lead, signaling expansion. Recommended: address response time in your own review requests this week."</em></p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">DATA SOURCES</div>
+        <div class="data-box">
+          <div><span class="source">Google Maps reviews</span> — new reviews + rating delta + owner response analysis</div>
+          <div><span class="source">Google Ads Transparency</span> — official public API, what ads competitors are running</div>
+          <div><span class="source">Meta Ad Library</span> — official Facebook API (free), Facebook/Instagram ads</div>
+          <div><span class="source">Indeed / ZipRecruiter</span> — job postings reveal growth signals (new crew, office staff, sales hires)</div>
+          <div><span class="source">Website monitoring</span> — pricing page changes, new service area additions, promotions</div>
+        </div>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE SCRAPING ARCHITECTURE</div>
+        <div class="pipeline-box">
+          <div><span class="step">SAT 8PM</span> <span class="arrow">→</span> Report generation jobs queued for all customers due Monday</div>
+          <div><span class="step">SAT 9PM</span> <span class="arrow">→</span> Scrape jobs begin — 1 request per competitor per source, 3-5 min delay between each</div>
+          <div><span class="arrow">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 10 competitors × 4 sources = 40 requests, staggered over 20+ hours. Looks organic.</div>
+          <div><span class="step">SUN 7PM</span> <span class="arrow">→</span> All raw data collected and stored in DB</div>
+          <div><span class="step">SUN 8PM</span> <span class="arrow">→</span> Claude synthesis runs (parallel across all customers, fast)</div>
+          <div><span class="step">MON 7AM</span> <span class="arrow">→</span> Email fires. Customer reads it with their morning coffee.</div>
+        </div>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);">Slow drip = undetectable. No rate limit triggers. The 24-hour window is the protection.</p>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);"><strong style="color:#e5e7eb;">Phase 1 (0–100 customers):</strong> Playwright + residential proxy rotation. <strong style="color:#e5e7eb;">Phase 2 (100–1,000):</strong> SerpAPI for Google Maps, official APIs for Meta/Google Ads, Apify actors for job sites. <strong style="color:#e5e7eb;">Phase 3 (1,000+):</strong> DataForSEO or BrightData bulk contracts — 80% cost reduction at scale.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">UNIT ECONOMICS</div>
+        <div class="cost-box">
+          <div class="cost-line"><span class="cost-label">40 API calls @ $0.005 avg</span><span class="cost-val">$0.20</span></div>
+          <div class="cost-line"><span class="cost-label">Claude Sonnet synthesis</span><span class="cost-val">$0.15</span></div>
+          <div class="cost-line"><span class="cost-label">Email delivery</span><span class="cost-val">$0.001</span></div>
+          <div class="cost-line"><span class="cost-label">Storage + compute</span><span class="cost-val">$0.05</span></div>
+          <div class="cost-line"><span class="cost-label">COST PER REPORT</span><span class="cost-val">~$0.40</span></div>
+          <div class="cost-line"><span class="cost-label">REVENUE AT $500/MO (4 REPORTS)</span><span class="cost-val">$500.00</span></div>
+          <div class="cost-line"><span class="cost-label">GROSS MARGIN</span><span class="cost-val" style="color:#34d399;">~99.9%</span></div>
+        </div>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">PRICING</div>
+        <div class="pricing-grid">
+          <div class="pricing-tier">
+            <div class="pricing-tier-name">STARTER</div>
+            <div class="pricing-tier-price">$299/mo</div>
+            <div class="pricing-tier-desc">3 competitors tracked<br>Weekly email report<br>4 data sources</div>
+          </div>
+          <div class="pricing-tier">
+            <div class="pricing-tier-name">PRO</div>
+            <div class="pricing-tier-price">$599/mo</div>
+            <div class="pricing-tier-desc">10 competitors<br>Weekly report + real-time alerts<br>Priority data refresh</div>
+          </div>
+          <div class="pricing-tier">
+            <div class="pricing-tier-name">AGENCY</div>
+            <div class="pricing-tier-price">$1,499/mo</div>
+            <div class="pricing-tier-desc">25 competitors<br>White-label reports<br>Multiple locations</div>
+          </div>
+        </div>
+        <p style="margin-top:1rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);">1,000 customers at blended $500/mo = <strong style="color:#34d399;">$6M ARR</strong>. Solo or 2-person operation.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">WHY IT'S SELF-OPERATING</div>
+        <ul>
+          <li><strong>Discovery:</strong> SEO captures "roofing competitor tracking software", "HVAC competitor intelligence" — no sales team</li>
+          <li><strong>Signup:</strong> Clerk + Stripe, transparent pricing, no demo gate</li>
+          <li><strong>Onboarding:</strong> 5-field form (business name, location, competitor names) — live in 3 minutes</li>
+          <li><strong>Delivery:</strong> Fully automated cron pipeline — zero human involvement per report</li>
+          <li><strong>Support:</strong> AI chatbot trained on product docs handles 90%+ of tickets</li>
+          <li><strong>Retention:</strong> Weekly routine creates habit. Data gravity keeps them. High-value insight keeps them.</li>
+        </ul>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);">One person can run this at $1M ARR. Infrastructure: Railway or Fly.io (auto-scales), Supabase + pg_cron (no Redis needed early), Resend for email delivery.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE EXTENSION ENGINE</div>
+        <p style="font-family:var(--font-mono);font-size:0.85rem;color:var(--text-dim);line-height:1.8;">The core engine — scrape local business signals → Claude synthesizes → email report — is vertical-agnostic. The prompt changes. The data sources are the same. Each vertical is a new product line with its own TAM:</p>
+        <div class="extend-box" style="margin-top:0.75rem;">
+          <div><span class="vertical">HOME SERVICES</span> — roofing, HVAC, plumbing, pest control, landscaping · 1M+ businesses · v1 launch</div>
+          <div><span class="vertical">RESTAURANTS</span> — 500K+ independents, obsessed with competitor menus and reviews · v2</div>
+          <div><span class="vertical">AUTO DEALERS</span> — inventory pricing, ad spend, review sentiment · v3</div>
+          <div><span class="vertical">DENTAL / MED SPA</span> — service pricing, staff hiring, review monitoring · v4</div>
+          <div><span class="vertical">REAL ESTATE AGENTS</span> — listing activity, price cuts, days on market · v5</div>
+          <div><span class="vertical">LAW FIRMS</span> — practice area focus, reviews, hiring signals · v6</div>
+        </div>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);">Each vertical launched under the RivalRadar umbrella brand. One infrastructure, many products. The moat deepens with every vertical added — shared data pipeline, shared customer acquisition playbook, shared AI synthesis layer.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">COMPETITOR SWEEP</div>
+        <ul>
+          <li><strong>HomeServiceBase.com</strong> — national/industry-level market research statistics. NOT hyperlocal competitor tracking. Different product entirely.</li>
+          <li><strong>Crayon / Klue / Kompyte</strong> — enterprise SaaS competitive intelligence, $25k+/yr, designed for tech companies tracking product changes and press releases. Wrong audience, wrong price point.</li>
+          <li><strong>BrightLocal / Semrush</strong> — track YOUR OWN local SEO rankings and review scores. Not competitor intelligence.</li>
+          <li><strong>Google Alerts</strong> — unstructured, noisy, requires manual interpretation. Not a product.</li>
+        </ul>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);"><strong style="color:#34d399;">Gap confirmed:</strong> No product delivers "here's what your 5 specific local competitors did this week" as an automated report at $299-1499/mo for home service SMBs.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">HONEST RISKS</div>
+        <ul>
+          <li><strong>Data quality:</strong> Competitors with minimal online presence generate thin reports. Mitigate with a "low data" fallback message and focus on digitally-active markets first (suburban/metro, not rural).</li>
+          <li><strong>Google Maps rate limiting:</strong> Solved by Phase 2 SerpAPI/Outscraper migration — they handle the proxy infrastructure. Do not rely on direct scraping at scale.</li>
+          <li><strong>Report fatigue:</strong> If insights aren't consistently "wow," churn spikes at 90 days. Mitigate with an AI quality gate before sending — only surface genuinely notable changes, not noise.</li>
+          <li><strong>Home service CAC:</strong> These owners aren't browsing Product Hunt. Distribution requires SEO + Facebook/Instagram ads targeting the vertical + direct outreach to contractor associations.</li>
+        </ul>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE VERDICT</div>
+        <div class="verdict-favorite">
+          <div class="verdict-badge-favorite">R&amp;D FAVORITE · HIGH CONVICTION · SELF-OPERATING · EXTENDABLE</div>
+          <p class="verdict-reason">
+            <strong>The gap is real and confirmed.</strong> After 20+ competitive searches across categories, RivalRadar is one of the cleanest gaps found — no direct competitor in the hyperlocal SMB tier. The closest things (HomeServiceBase, Crayon) are fundamentally different products.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>The economics are exceptional.</strong> ~$0.40 cost per report. $299-1,499/mo revenue. 99.9% gross margin. One person can manage this at $1M+ ARR.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>The architecture is right.</strong> Slow-drip scraping (24 hours before delivery) solves the rate-limit problem at low cost. SerpAPI/Meta Ad Library APIs remove legal scraping risk at scale. Claude synthesis is the product — the raw data is worthless without it.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>The extension engine is the real prize.</strong> Home services is v1. Every local business vertical that cares about competitors — restaurants, auto dealers, med spas, law firms — is a new product line on the same infrastructure. The playbook is repeatable.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div class="footer-inner"><span>PSYDUCK — SHINY EDITION</span><span>© 2026 · BUILT ON HOMELAB · DEPLOYED BY ITSELF</span></div></footer>
+</body>
+</html>
