@@ -1,13 +1,13 @@
 {
-  "updated": "2026-06-09",
+  "updated": "2026-06-10",
   "taglines": [
-    "Tuesday. That's it. That's the whole complaint. Tuesday.",
-    "You opened a tab to look something up. You now have 47 tabs open. The original tab is a myth. The original question is gone. You are the tabs.",
-    "Someone replied 'per my last email' in Slack. The office is quiet. A tumbleweed rolls past the Jira board. Nobody move.",
-    "It worked on your machine. Your machine is a golden god of chaos that exists outside the laws of this universe. Production is not your machine.",
-    "You said you'd refactor it 'next sprint.' That was Q3. The code has a birthday now. It has outlived three engineers and one CTO. The code endures.",
-    "The meeting could've been an email. The email could've been a Slack. The Slack could've been silence. You could've been home. You are not home.",
-    "Your AI assistant confidently gave you the wrong answer and apologized so sincerely you almost thanked it. You need to go outside.",
-    "Wednesday is close enough to Friday if you squint and do absolutely no math whatsoever. Stay strong."
+    "Wednesday. Peak week. The exact moment where Monday feels distant and Friday is still a rumor. You are here. You made it to the middle. Cope.",
+    "Someone just scheduled a 4:30 PM meeting. On a Wednesday. They are the villain. They know they are the villain. They scheduled it anyway.",
+    "You deployed at 4 PM on a hump day. Bold. Unhinged. The smoke detector in the server room respects you. Nobody else does yet.",
+    "Your standup was 22 minutes and exactly zero blockers got resolved. You all agreed to sync async. The sync never happened. It never will.",
+    "The Jira ticket said 'small fix.' The small fix touched 14 files, rewrote a core abstraction, and now requires a migration. Enjoy your evening.",
+    "Midweek clarity: you are not behind on your tasks, you are ahead of your future burnout. It will catch up. It always catches up. Hydrate.",
+    "Someone pushed directly to main and whispered 'it's fine' to no one in particular. The CI is red. It is not fine. Godspeed.",
+    "You have 11 unread Slack messages, 3 of which are urgent, 2 of which are memes, and 1 of which is you accidentally DMing yourself. Wednesday is undefeated."
   ]
 }
