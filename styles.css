@@ -972,9 +972,9 @@ footer {
 }
 
 .ideas-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .idea-card {
@@ -1120,8 +1120,9 @@ a.idea-card-link:hover {
   font-family: var(--font-vt);
   font-size: 1.05rem;
   color: var(--text-dim);
-  line-height: 1.55;
+  line-height: 1.6;
   margin-bottom: 1.1rem;
+  max-width: 100%;
 }
 
 .idea-bar {
@@ -1549,14 +1550,12 @@ a.idea-card-link:hover {
 @media (max-width: 768px) {
   .dex-grid { grid-template-columns: 1fr; }
   .moves-grid { grid-template-columns: 1fr 1fr; }
-  .ideas-grid { grid-template-columns: 1fr 1fr; }
   .dex-card { flex-direction: column; }
   .footer-inner { flex-direction: column; text-align: center; }
 }
 
 @media (max-width: 480px) {
   .moves-grid { grid-template-columns: 1fr; }
-  .ideas-grid { grid-template-columns: 1fr; }
   h1.game-title { font-size: 2rem; }
   .section-wrap { padding: 2.5rem 1.25rem; }
   .boot-screen { padding: 1.5rem; }

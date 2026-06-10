@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VIBEQA · IDEAS · PSYDUCK</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/ideas/idea-page.css" />
+</head>
+<body>
+  <div class="crt-overlay"></div><div class="scanlines"></div><div class="vignette"></div>
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="/" class="home-crumb" title="Home"><span class="status-dot"></span><span class="nav-name">Psyduck <span class="nav-dex">#054</span></span></a>
+        <span class="crumb-sep">/ <a href="/ideas" class="crumb-link">IDEAS</a> / <span class="crumb-current">VIBEQA</span></span>
+      </div>
+      <nav class="header-nav">
+        <a href="/ideas" class="nav-link nav-link-ideas"><span class="nav-sym">⚡</span><span class="nav-label">IDEAS</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="idea-page-wrap">
+    <div class="idea-page-header">
+      <div class="idea-page-meta">
+        <span class="idea-status status-rd">R&amp;D</span>
+        <span class="idea-conf conf-high">HIGH</span>
+        <span class="idea-type">RECURRING · AI SERVICE · MED BUILD</span>
+      </div>
+      <h1 class="idea-page-title">VIBEQA</h1>
+      <div class="viability-callout viability-green">
+        <div>
+          <div class="vc-label">VIABILITY SCORE</div>
+          <div class="vc-sublabel">MARKET · COMPETITION · EXECUTION</div>
+        </div>
+        <div class="vc-score">7.0<span class="vc-max">/10</span></div>
+      </div>
+      <p class="idea-page-sub">Zero-config AI browser testing for vibe-coded apps. Deploy a hook → AI crawls your app, auto-discovers user flows, runs them as Playwright tests, and alerts you when something breaks. No test code required. $39/mo. Targets the 2026 vibe-coding wave where devs ship daily and break things constantly. Pitched May 27, 2026.</p>
+      <div class="idea-bar idea-bar-wide"><div class="idea-bar-fill" style="--fill:70%;--c:#34d399"></div></div>
+      <div class="idea-bar-label">R&amp;D · SUBSCRIPTION · MED BUILD · TIMING-SENSITIVE</div>
+    </div>
+
+    <div class="idea-page-body">
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE GAP</div>
+        <p>QA tools exist in two tiers: enterprise and nothing. QA Wolf ($200+/month) is human-assisted and enterprise-only. Momentic serves Notion and Webflow. Mabl has enterprise custom pricing. Checkly ($24/month) requires writing Playwright scripts yourself — that's the product you're trying to avoid needing.</p>
+        <p style="margin-top:0.75rem;">Zero self-serve, zero-config AI flow-discovery product exists at the indie/vibe-coder tier. The gap is: deploy hook → AI does the discovery, AI writes the tests, AI runs the tests, AI alerts you. No human test-writing anywhere in the loop.</p>
+        <p style="margin-top:0.75rem;">Timing is the unlock. Vibe coding is peak-trend in 2026. Cursor and Claude Discord communities are massive and vocal. The customer who ships an app with Cursor on Friday and wants to know if it still works on Monday — that person exists in huge numbers and has no tool.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE PRODUCT</div>
+        <p style="font-family:var(--font-mono);font-size:0.85rem;color:var(--text-dim);line-height:1.8;">Connect your deploy hook (Vercel/Netlify/Railway one-click) → VibeQA crawls your app on first connection, discovers user flows (login, signup, checkout, key actions), generates Playwright scripts, and runs them against every new deploy. Failures become Slack/email alerts with a screenshot of exactly what broke.</p>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;"><strong style="color:#e5e7eb;">Pricing:</strong> Free tier (1 app, 5 flows). Pro $39/month (5 apps, unlimited flows). Team $99/month (unlimited). First dollar path: Cursor Discord, r/vibecoding, r/SideProject, HN Show HN.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">COMPETITOR SWEEP</div>
+        <ul>
+          <li><strong>QA Wolf</strong> — $200+/month, human-assisted QA engineers write the tests. Enterprise only.</li>
+          <li><strong>Momentic</strong> — AI testing, but targets Notion/Webflow/enterprise clients. No self-serve indie tier.</li>
+          <li><strong>Mabl</strong> — enterprise custom pricing, no transparent self-serve.</li>
+          <li><strong>Checkly</strong> — $24/month but you still write Playwright scripts yourself. Not zero-config.</li>
+          <li><strong>Playwright/Cypress</strong> — DIY frameworks. Not a product, requires developer time to set up and maintain.</li>
+        </ul>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);"><strong style="color:#34d399;">Gap confirmed:</strong> Zero self-serve zero-config AI flow-discovery + auto-test product exists at the indie/vibe-coder price tier.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">HONEST RISKS</div>
+        <ul>
+          <li><strong>Timing risk:</strong> This window is open because vibe coding is new. In 18 months, Vercel or Netlify could bundle basic AI testing. Move fast.</li>
+          <li><strong>AI accuracy:</strong> AI-discovered flows will miss edge cases. Set expectations correctly — this catches obvious regressions, not subtle logic bugs.</li>
+          <li><strong>Auth complexity:</strong> Authenticated flows require storing test credentials. Security-sensitive. Phase 1 can focus on public flows only.</li>
+          <li><strong>Cost per run:</strong> Playwright + Claude synthesis per deploy could add up at scale. Need to price for it.</li>
+        </ul>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE VERDICT</div>
+        <div style="background:rgba(52,211,153,0.06);border:1px solid rgba(52,211,153,0.25);border-radius:var(--radius);padding:1.5rem;">
+          <div style="display:inline-block;font-family:var(--font-pixel);font-size:0.35rem;background:rgba(52,211,153,0.12);color:#34d399;border:1px solid rgba(52,211,153,0.3);border-radius:4px;padding:0.25rem 0.6rem;letter-spacing:0.12em;margin-bottom:1rem;">R&amp;D · TIMING-SENSITIVE</div>
+          <p style="font-family:var(--font-mono);font-size:0.85rem;color:var(--text-dim);line-height:1.8;"><strong style="color:#e5e7eb;">The gap is real.</strong> Every enterprise QA tool requires a human to write tests. Vibe-coders don't want to write tests — they want to ship. Zero-config AI flow discovery is the unlock that makes QA accessible to this market.</p>
+          <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.85rem;color:var(--text-dim);line-height:1.8;"><strong style="color:#e5e7eb;">The timing is right.</strong> Cursor/Claude Discord communities are massive in 2026. This is the moment to capture this customer before Vercel/Netlify bundle it.</p>
+          <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.85rem;color:var(--text-dim);line-height:1.8;"><strong style="color:#e5e7eb;">The build is achievable.</strong> Playwright is open source, Claude API handles flow synthesis. Deploy hooks are standard. The hard part is AI test reliability — start with simple flows and iterate.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div class="footer-inner"><span>PSYDUCK — SHINY EDITION</span><span>© 2026 · BUILT ON HOMELAB · DEPLOYED BY ITSELF</span></div></footer>
+</body>
+</html>

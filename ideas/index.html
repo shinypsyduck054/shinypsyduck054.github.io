@@ -44,23 +44,6 @@
     .ideas-count span {
       color: #fcd34d;
     }
-    /* Empty slot placeholder */
-    .idea-card-empty {
-      background: rgba(255,255,255,0.015);
-      border: 1px dashed rgba(255,255,255,0.06);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 160px;
-    }
-    .idea-card-empty-label {
-      font-family: var(--font-pixel);
-      font-size: 0.28rem;
-      color: rgba(255,255,255,0.08);
-      letter-spacing: 0.2em;
-    }
     .ideas-section-header {
       font-family: var(--font-pixel);
       font-size: 0.4rem;
@@ -85,6 +68,18 @@
       color: var(--text-dim);
       margin-bottom: 1.25rem;
       letter-spacing: 0.05em;
+    }
+    /* Row layout: score badge inline with name header */
+    .idea-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .idea-desc {
+      margin-bottom: 1rem;
     }
   </style>
 </head>
@@ -120,25 +115,14 @@
 
   <!-- Ideas Body -->
   <div class="ideas-page-body">
-    <div class="ideas-count">SHOWING <span id="ideaCount">24</span> IDEAS</div>
+    <div class="ideas-count">SHOWING <span id="ideaCount">44</span> IDEAS</div>
 
     <!-- ACTIVE R&D -->
     <div class="ideas-section-header active">ACTIVE R&amp;D</div>
     <div class="ideas-section-sub">Sorted by viability score. Highest first.</div>
     <div class="ideas-grid" id="ideasGrid">
 
-      <!-- R&D: RivalRadar 8.0 ⭐ -->
-      <a href="/ideas/rivalradar" class="idea-card idea-card-link">
-        <div class="idea-header">
-          <span class="idea-name">RIVALRADAR ⭐</span>
-          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#34d399;border:1px solid rgba(52,211,153,0.3);background:rgba(52,211,153,0.08);border-radius:4px;padding:0.2rem 0.5rem;">8.0</span>
-        </div>
-        <div class="idea-meta">
-          <span class="idea-type">RECURRING · AI SERVICE · SELF-OPERATING · EXTENDABLE</span>
-        </div>
-        <p class="idea-desc">Weekly AI competitive intelligence reports for local home service companies. AI scrapes competitors' reviews, ads, and hiring signals — synthesizes into a Monday morning briefing. Fully automated, $299–1,499/mo. No direct competitor in the hyperlocal SMB tier. Core engine is vertical-agnostic: restaurants, auto dealers, med spas, law firms are all v2+.</p>
-        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:80%;--c:#34d399"></div></div>
-      </a>
+      <!-- 9.0 ──────────────────────────────────── -->
 
       <!-- R&D: ClaimShield 9.0 ⭐ -->
       <a href="/ideas/claimshield" class="idea-card idea-card-link">
@@ -151,6 +135,21 @@
         </div>
         <p class="idea-desc">$19 AI dispute response generator for marketplace sellers fighting fraudulent A-to-Z, eBay MBG, and Etsy claims. Sellers currently pay $100–300/response to Upwork specialists. No dedicated product exists. ODR account health protection makes it worth it even on small claims.</p>
         <div class="idea-bar"><div class="idea-bar-fill" style="--fill:90%;--c:#34d399"></div></div>
+      </a>
+
+      <!-- 8.0 ──────────────────────────────────── -->
+
+      <!-- R&D: RivalRadar 8.0 ⭐ -->
+      <a href="/ideas/rivalradar" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">RIVALRADAR ⭐</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#34d399;border:1px solid rgba(52,211,153,0.3);background:rgba(52,211,153,0.08);border-radius:4px;padding:0.2rem 0.5rem;">8.0</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-type">RECURRING · AI SERVICE · SELF-OPERATING · EXTENDABLE</span>
+        </div>
+        <p class="idea-desc">Weekly AI competitive intelligence reports for local home service companies. AI scrapes competitors' reviews, ads, and hiring signals — synthesizes into a Monday morning briefing. Fully automated, $299–1,499/mo. No direct competitor in the hyperlocal SMB tier. Core engine is vertical-agnostic: restaurants, auto dealers, med spas, law firms are all v2+.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:80%;--c:#34d399"></div></div>
       </a>
 
       <!-- R&D: Abuela Kitchen 8.0 ⭐ -->
@@ -179,43 +178,19 @@
         <div class="idea-bar"><div class="idea-bar-fill" style="--fill:80%;--c:#34d399"></div></div>
       </a>
 
-      <!-- Pitched: Quinceañera Book 7.0 -->
-      <a href="/ideas/quinceanera-book" class="idea-card idea-card-link">
-        <div class="idea-header">
-          <span class="idea-name">QUINCEAÑERA BOOK</span>
-          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#34d399;border:1px solid rgba(52,211,153,0.3);background:rgba(52,211,153,0.08);border-radius:4px;padding:0.2rem 0.5rem;">7.0</span>
-        </div>
-        <div class="idea-meta">
-          <span class="idea-type">TWO-TIER · KIT + PRINT BOOK · LATINA COMMUNITY</span>
-        </div>
-        <p class="idea-desc">Family answers guided prompts about the honoree → AI writes a beautiful keepsake narrative ($39 PDF). Upsell: Prodigi-printed hardcover libro de recuerdos ($169, ~$124 margin). 400K+ US quinceañeras/year. Spanish-first. No purpose-built AI memory book competitor found — Template.net has invitations only.</p>
-        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:70%;--c:#34d399"></div></div>
-      </a>
+      <!-- 7.5 ──────────────────────────────────── -->
 
-      <!-- Pitched: Mission Trip Book 7.0 -->
-      <a href="/ideas/mission-trip-book" class="idea-card idea-card-link">
+      <!-- R&D: AirbnbBook 7.5 ⭐ -->
+      <a href="/ideas/airbnbbook" class="idea-card idea-card-link">
         <div class="idea-header">
-          <span class="idea-name">MISSION TRIP BOOK</span>
-          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#34d399;border:1px solid rgba(52,211,153,0.3);background:rgba(52,211,153,0.08);border-radius:4px;padding:0.2rem 0.5rem;">7.0</span>
+          <span class="idea-name">AIRBNBBOOK ⭐</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#34d399;border:1px solid rgba(52,211,153,0.3);background:rgba(52,211,153,0.08);border-radius:4px;padding:0.2rem 0.5rem;">7.5</span>
         </div>
         <div class="idea-meta">
-          <span class="idea-type">TWO-TIER · KIT + PRINT BOOK · FAITH COMMUNITY</span>
+          <span class="idea-type">ONE-TIME · HARD BUILD · LOW UPKEEP</span>
         </div>
-        <p class="idea-desc">Returning missionary uploads 2 years of journal entries → AI compiles a polished memoir ($39 PDF). Upsell: hardcover via Prodigi ($169, ~$124 margin). LDS alone: 32K returning missionaries/year. Reddit demand confirmed — returned missionary explicitly asking for this product.</p>
-        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:70%;--c:#34d399"></div></div>
-      </a>
-
-      <!-- Pitched: Heritage Journey 6.5 -->
-      <a href="/ideas/heritage-journey" class="idea-card idea-card-link">
-        <div class="idea-header">
-          <span class="idea-name">HERITAGE JOURNEY</span>
-          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#fcd34d;border:1px solid rgba(252,211,77,0.3);background:rgba(252,211,77,0.08);border-radius:4px;padding:0.2rem 0.5rem;">6.5</span>
-        </div>
-        <div class="idea-meta">
-          <span class="idea-type">TWO-TIER · KIT + PRINT BOOK · IMMIGRANT COMMUNITY</span>
-        </div>
-        <p class="idea-desc">First-gen child answers guided prompts about immigrant parent's journey → AI writes a preserved family narrative ($39 PDF). Upsell: hardcover via Prodigi ($169, ~$124 margin). 45M+ first-gen immigrants in the US. Distinct from FamilyScript — urgency-driven story capture before elders are gone. StoryWorth/Remento need head-to-head vet.</p>
-        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:65%;--c:#fcd34d"></div></div>
+        <p class="idea-desc">AI-generated luxury welcome books for high-end vacation rental hosts. Paste your listing — we generate the copy, render the book, Prodigi API ships hardcover coffee-table-quality books to your door. Every digital competitor has avoided print. That's the gap.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:75%;--c:#34d399"></div></div>
       </a>
 
       <!-- R&D: RoofDraft 7.5 -->
@@ -231,7 +206,7 @@
         <div class="idea-bar"><div class="idea-bar-fill" style="--fill:75%;--c:#34d399"></div></div>
       </a>
 
-      <!-- R&D: IngredIQ 7.5 -->
+      <!-- Pitched: IngredIQ 7.5 -->
       <a href="/ideas/ingrediq" class="idea-card idea-card-link">
         <div class="idea-header">
           <span class="idea-name">INGREDIQ</span>
@@ -240,22 +215,78 @@
         <div class="idea-meta">
           <span class="idea-type">RECURRING · MED BUILD · MED UPKEEP</span>
         </div>
-        <p class="idea-desc">AI pet food ingredient scanner. Paste any label, get an instant grade + plain-English breakdown. Web-first (URL/paste), app-second (barcode/photo). Demand proven, two weak indie competitors. Win on execution. Grade: B.</p>
+        <p class="idea-desc">AI pet food ingredient scanner. Paste any label, get an instant grade + plain-English breakdown of every ingredient. Dog Food Advisor has millions of monthly visitors doing this manually — no AI scanner exists. $7/month or $49/year. Recall alert layer adds subscription stickiness.</p>
         <div class="idea-bar"><div class="idea-bar-fill" style="--fill:75%;--c:#34d399"></div></div>
       </a>
 
-      <!-- R&D: AirbnbBook 7.5 ⭐ -->
-      <a href="/ideas/airbnbbook" class="idea-card idea-card-link">
+      <!-- 7.0 ──────────────────────────────────── -->
+
+      <!-- Pitched: VibeQA 7.0 -->
+      <a href="/ideas/vibeqa" class="idea-card idea-card-link">
         <div class="idea-header">
-          <span class="idea-name">AIRBNBBOOK ⭐</span>
-          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#34d399;border:1px solid rgba(52,211,153,0.3);background:rgba(52,211,153,0.08);border-radius:4px;padding:0.2rem 0.5rem;">7.5</span>
+          <span class="idea-name">VIBEQA</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#34d399;border:1px solid rgba(52,211,153,0.3);background:rgba(52,211,153,0.08);border-radius:4px;padding:0.2rem 0.5rem;">7.0</span>
         </div>
         <div class="idea-meta">
-          <span class="idea-type">ONE-TIME · HARD BUILD · LOW UPKEEP</span>
+          <span class="idea-type">RECURRING · MED BUILD · MED UPKEEP</span>
         </div>
-        <p class="idea-desc">AI-generated luxury welcome books for high-end vacation rental hosts. Paste your listing — we generate the copy, render the book, Prodigi API ships hardcover coffee-table-quality books to your door. Every digital competitor has avoided print. That's the gap.</p>
-        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:75%;--c:#34d399"></div></div>
+        <p class="idea-desc">Deploy-hook AI that crawls your app, auto-discovers user flows, and runs them as browser tests via Playwright — no test code required. Targets vibe-coders who ship fast and break things. $39/mo. QA Wolf is $200+/month and human-assisted. Zero self-serve zero-config AI QA product exists at the indie tier.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:70%;--c:#34d399"></div></div>
       </a>
+
+      <!-- Pitched: CreatorDeal 7.0 -->
+      <a href="/ideas/creatordeal" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">CREATORDEAL</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#34d399;border:1px solid rgba(52,211,153,0.3);background:rgba(52,211,153,0.08);border-radius:4px;padding:0.2rem 0.5rem;">7.0</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-type">ONE-TIME OR SUBSCRIPTION · EASY BUILD · LOW UPKEEP</span>
+        </div>
+        <p class="idea-desc">Creator pastes a brand deal contract → $19 kit: plain-English summary, red flag alerts, FTC-compliant disclosure scripts per platform (IG, TikTok, YouTube, podcast), negotiation email template. Influencer marketing is $24B+. FTC enforcement is spiking. No dedicated brand-deal contract + FTC compliance kit exists.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:70%;--c:#34d399"></div></div>
+      </a>
+
+      <!-- Pitched: MechCheck 7.0 -->
+      <a href="/ideas/mechcheck" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">MECHCHECK</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#34d399;border:1px solid rgba(52,211,153,0.3);background:rgba(52,211,153,0.08);border-radius:4px;padding:0.2rem 0.5rem;">7.0</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-type">ONE-TIME OR ANNUAL · EASY BUILD · LOW UPKEEP</span>
+        </div>
+        <p class="idea-desc">Paste your mechanic estimate → instant analysis: plain-English explanations, RepairPal price benchmarks by region, urgency ratings, upsell flag alerts, and smart questions to ask before approving. $9/review or $19/yr. 290M US registered vehicles, 2 mechanic visits/year average. Zero "paste estimate → structured report" products found.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:70%;--c:#34d399"></div></div>
+      </a>
+
+      <!-- Pitched: Quinceañera Book 7.0 -->
+      <a href="/ideas/quinceanera-book" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">QUINCEAÑERA BOOK</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#34d399;border:1px solid rgba(52,211,153,0.3);background:rgba(52,211,153,0.08);border-radius:4px;padding:0.2rem 0.5rem;">7.0</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-type">TWO-TIER · KIT + PRINT BOOK · LATINA COMMUNITY</span>
+        </div>
+        <p class="idea-desc">Family answers guided prompts about the honoree → AI writes a beautiful keepsake narrative ($39 PDF). Upsell: Prodigi-printed hardcover libro de recuerdos ($169, ~$124 margin). 400K+ US quinceañeras/year. Spanish-first. No purpose-built AI memory book competitor found. Shares Prodigi print pipeline with FamilyScript and AirbnbBook.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:70%;--c:#34d399"></div></div>
+      </a>
+
+      <!-- Pitched: Mission Trip Book 7.0 -->
+      <a href="/ideas/mission-trip-book" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">MISSION TRIP BOOK</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#34d399;border:1px solid rgba(52,211,153,0.3);background:rgba(52,211,153,0.08);border-radius:4px;padding:0.2rem 0.5rem;">7.0</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-type">TWO-TIER · KIT + PRINT BOOK · FAITH COMMUNITY</span>
+        </div>
+        <p class="idea-desc">Returning missionary uploads 2 years of journal entries → AI compiles a polished memoir ($39 PDF). Upsell: hardcover via Prodigi ($169, ~$124 margin). LDS alone: 32K returning missionaries/year. Evangelical church mission trip market 1.5M trips/year. Reddit demand confirmed — returned missionary explicitly asking for this product.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:70%;--c:#34d399"></div></div>
+      </a>
+
+      <!-- 6.5 — starred R&D first ──────────────── -->
 
       <!-- R&D: TeachIt 6.5 ⭐ -->
       <a href="/ideas/teachit" class="idea-card idea-card-link">
@@ -266,7 +297,124 @@
         <div class="idea-meta">
           <span class="idea-type">ONE-TIME · EASY BUILD · LOW UPKEEP</span>
         </div>
-        <p class="idea-desc">Board game teach-order script generator for any game. Dized covers 200-400 publisher-approved titles. BGG has 170,000+. The long tail is permanently unaddressed. No licenses needed — game mechanics aren't copyrightable. Legally clean, window is open.</p>
+        <p class="idea-desc">Board game teach-order script generator for any game. Dized covers 200-400 publisher-approved titles. BGG has 170,000+. The long tail is permanently unaddressed. No licenses needed — game mechanics aren't copyrightable. Greenlit June 2, 2026.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:65%;--c:#fcd34d"></div></div>
+      </a>
+
+      <!-- Pitched: FlipAlert 6.5 -->
+      <a href="/ideas/flip-alert" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">FLIPALERT</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#fcd34d;border:1px solid rgba(252,211,77,0.3);background:rgba(252,211,77,0.08);border-radius:4px;padding:0.2rem 0.5rem;">6.5</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-type">RECURRING · MED BUILD · MED UPKEEP</span>
+        </div>
+        <p class="idea-desc">Real-time eBay listing monitor that compares new listings against recent sold comps, scores profit opportunity (margin + days-to-sell estimate), and sends instant alerts when underpriced items appear. $19–29/mo. Terapeak is historical-only with no alert layer. Target: r/flipping (400K), r/reselling (300K+).</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:65%;--c:#fcd34d"></div></div>
+      </a>
+
+      <!-- Pitched: TradeDraft 6.5 -->
+      <a href="/ideas/tradedraft" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">TRADEDRAFT</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#fcd34d;border:1px solid rgba(252,211,77,0.3);background:rgba(252,211,77,0.08);border-radius:4px;padding:0.2rem 0.5rem;">6.5</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-type">RECURRING · EASY BUILD · LOW UPKEEP</span>
+        </div>
+        <p class="idea-desc">Plain-English job description → professional itemized estimate PDF in under 2 minutes for solo tradespeople (plumbers, electricians, roofers, HVAC). $15–19/mo. Full platforms (Jobber $49+, ServiceTitan $398+) are too expensive and complex. Zero standalone AI estimate writer for solo contractors found.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:65%;--c:#fcd34d"></div></div>
+      </a>
+
+      <!-- Pitched: IRSDecoder 6.5 -->
+      <a href="/ideas/irsdecoder" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">IRSDECODER</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#fcd34d;border:1px solid rgba(252,211,77,0.3);background:rgba(252,211,77,0.08);border-radius:4px;padding:0.2rem 0.5rem;">6.5</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-type">ONE-TIME · EASY BUILD · LOW UPKEEP</span>
+        </div>
+        <p class="idea-desc">Enter your IRS notice code (CP2000, CP503, LT11, 5071C) → get plain-English explanation, real-vs-scam check, deadline, action steps, response letter template, and document checklist. $19 one-time. IRS sends 300M+ notices/year. CPAPilot is B2B/CPA-only — no consumer-facing decoder exists.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:65%;--c:#fcd34d"></div></div>
+      </a>
+
+      <!-- Pitched: OfferWin 6.5 -->
+      <a href="/ideas/offerwin" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">OFFERWIN</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#fcd34d;border:1px solid rgba(252,211,77,0.3);background:rgba(252,211,77,0.08);border-radius:4px;padding:0.2rem 0.5rem;">6.5</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-type">ONE-TIME · EASY BUILD · LOW UPKEEP</span>
+        </div>
+        <p class="idea-desc">$19 AI kit for job seekers with an offer in hand: personalized counter-offer email, phone negotiation script, benefits negotiation checklist (PTO/equity/signing bonus), market rate research guide, walk-away decision framework. Customer is NOT in crisis — they have an offer, a positive life event. Generic free blog posts are the only competition.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:65%;--c:#fcd34d"></div></div>
+      </a>
+
+      <!-- Pitched: FreelanceReclaim 6.5 -->
+      <a href="/ideas/freelancereclaim" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">FREELANCERECLAIM</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#fcd34d;border:1px solid rgba(252,211,77,0.3);background:rgba(252,211,77,0.08);border-radius:4px;padding:0.2rem 0.5rem;">6.5</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-type">ONE-TIME · EASY BUILD · LOW UPKEEP</span>
+        </div>
+        <p class="idea-desc">$19 AI kit for freelancers stiffed by clients: state-cited demand letter invoking Freelance Isn't Free Act (NY, OR, IL, WA, NJ, CO), small claims court checklist, labor board complaint template. 57M US freelancers, ~20% encounter non-payment. No tool knows about state-specific freelancer protection statutes.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:65%;--c:#fcd34d"></div></div>
+      </a>
+
+      <!-- Pitched: FeeBack 6.5 -->
+      <a href="/ideas/feedback" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">FEEDBACK</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#fcd34d;border:1px solid rgba(252,211,77,0.3);background:rgba(252,211,77,0.08);border-radius:4px;padding:0.2rem 0.5rem;">6.5</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-type">ONE-TIME · EASY BUILD · LOW UPKEEP</span>
+        </div>
+        <p class="idea-desc">AI dealer hidden-fee dispute kit: enter state + unauthorized add-ons → demand letter citing state consumer protection act, dealer licensing board complaint, AG complaint, BBB template. $29 one-time. 14M+ cars sold annually. FTC's most-complained-about dealer practice. No dedicated AI kit exists.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:65%;--c:#fcd34d"></div></div>
+      </a>
+
+      <!-- Pitched: AppraisalFight 6.5 -->
+      <a href="/ideas/appraisalfight" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">APPRAISALFIGHT</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#fcd34d;border:1px solid rgba(252,211,77,0.3);background:rgba(252,211,77,0.08);border-radius:4px;padding:0.2rem 0.5rem;">6.5</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-type">ONE-TIME · EASY BUILD · LOW UPKEEP</span>
+        </div>
+        <p class="idea-desc">$29 AI kit for homeowners who received a low appraisal: personalized ROV narrative letter, comparable sales research guide, appraiser error/omission checklist, escalation path. 2025 Interagency ROV Guidance requires lenders to provide a process — but homeowners have no tool to make a strong request. ~400K-500K low appraisals/year.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:65%;--c:#fcd34d"></div></div>
+      </a>
+
+      <!-- Pitched: 504PlanKit 6.5 -->
+      <a href="/ideas/plan504kit" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">504PLANKIT</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#fcd34d;border:1px solid rgba(252,211,77,0.3);background:rgba(252,211,77,0.08);border-radius:4px;padding:0.2rem 0.5rem;">6.5</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-type">ONE-TIME · EASY BUILD · LOW UPKEEP</span>
+        </div>
+        <p class="idea-desc">Parent enters child's diagnosis + state → formal Section 504 evaluation request letter (triggers school's legal obligation to respond), documentation checklist, state-specific timeline rights, accommodation ideas, denial appeal template. $19–29. Zero parent-facing 504 request tools exist — all tools are B2B teacher-side generators.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:65%;--c:#fcd34d"></div></div>
+      </a>
+
+      <!-- Pitched: Heritage Journey 6.5 -->
+      <a href="/ideas/heritage-journey" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">HERITAGE JOURNEY</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#fcd34d;border:1px solid rgba(252,211,77,0.3);background:rgba(252,211,77,0.08);border-radius:4px;padding:0.2rem 0.5rem;">6.5</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-type">TWO-TIER · KIT + PRINT BOOK · IMMIGRANT COMMUNITY</span>
+        </div>
+        <p class="idea-desc">First-gen child answers guided prompts about immigrant parent's journey → AI writes a preserved family narrative ($39 PDF). Upsell: hardcover via Prodigi ($169, ~$124 margin). 45M+ first-gen immigrants in the US. Distinct from FamilyScript — urgency-driven story capture before elders are gone.</p>
         <div class="idea-bar"><div class="idea-bar-fill" style="--fill:65%;--c:#fcd34d"></div></div>
       </a>
 
@@ -283,7 +431,7 @@
         <div class="idea-bar"><div class="idea-bar-fill" style="--fill:65%;--c:#fcd34d"></div></div>
       </a>
 
-      <!-- R&D: TenantKit 6.5 -->
+      <!-- Pitched: TenantKit 6.5 -->
       <a href="/ideas/tenantkit" class="idea-card idea-card-link">
         <div class="idea-header">
           <span class="idea-name">TENANTKIT</span>
@@ -292,11 +440,104 @@
         <div class="idea-meta">
           <span class="idea-type">ONE-TIME · EASY BUILD · MED UPKEEP</span>
         </div>
-        <p class="idea-desc">Habitability repair demand kit for tenants — state-cited letters, housing code complaint drafts, rent withholding rights by state. R&D with reservations: more free competitors than originally scoped. Playbook proves with the first kit built.</p>
+        <p class="idea-desc">Habitability repair demand kit for tenants — state-cited habitability demand letter, local housing code complaint draft, rent withholding rights summary + escalation path. $19 one-time. Implied warranty of habitability applies in all 50 states. 44M US renter households. r/renter (300K) and r/legaladvice (2M+) have constant habitability complaint threads.</p>
         <div class="idea-bar"><div class="idea-bar-fill" style="--fill:65%;--c:#fcd34d"></div></div>
       </a>
 
-      <!-- R&D: AccommoDoc 6.0 -->
+      <!-- Pitched: LeaseFlag 6.5 (re-evaluated) -->
+      <a href="/ideas/leaseflag" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">LEASEFLAG</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#fcd34d;border:1px solid rgba(252,211,77,0.3);background:rgba(252,211,77,0.08);border-radius:4px;padding:0.2rem 0.5rem;">6.5</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-type">ONE-TIME · EASY BUILD · LOW UPKEEP</span>
+        </div>
+        <p class="idea-desc">Paste any commercial lease (retail, restaurant, salon, gym) → instant AI red flag report: plain-English clause breakdown + danger scoring on the 10 most treacherous commercial lease traps (personal guarantee, CAM charge caps, HVAC responsibility, permitted use, assignment rights). $49 one-time. Customer is a business owner in a positive life moment. Zero purpose-built competitors found. Re-evaluated Jun 6.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:65%;--c:#fcd34d"></div></div>
+      </a>
+
+      <!-- 6.0 ──────────────────────────────────── -->
+
+      <!-- Pitched: DisclosureRight 6.0 -->
+      <a href="/ideas/disclosureright" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">DISCLOSURERIGHT</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#fcd34d;border:1px solid rgba(252,211,77,0.3);background:rgba(252,211,77,0.08);border-radius:4px;padding:0.2rem 0.5rem;">6.0</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-type">ONE-TIME · EASY BUILD · LOW UPKEEP</span>
+        </div>
+        <p class="idea-desc">AI disclosure kit for home sellers (especially FSBO): state-specific disclosure checklist, properly-phrased narrative for each issue, safe-harbor language, and liability scope guide. $39 one-time. 500K+ FSBO sellers annually with no agent guidance. Non-disclosure is the #1 cause of post-sale real estate lawsuits.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:60%;--c:#fcd34d"></div></div>
+      </a>
+
+      <!-- Pitched: ExecutorKit 6.0 -->
+      <a href="/ideas/executorkit" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">EXECUTORKIT</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#fcd34d;border:1px solid rgba(252,211,77,0.3);background:rgba(252,211,77,0.08);border-radius:4px;padding:0.2rem 0.5rem;">6.0</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-type">ONE-TIME · EASY BUILD · LOW UPKEEP</span>
+        </div>
+        <p class="idea-desc">$29–49 kit for estate executors: instantly generate 20–30 customized notification letters for banks, credit cards, Social Security, IRS, DMV, insurance companies, utilities. Atticus.law ($5.9M raised) handles probate filings — no one generates the actual death notification letters. 2.8M US deaths/year.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:60%;--c:#fcd34d"></div></div>
+      </a>
+
+      <!-- Pitched: VendorVet 6.0 -->
+      <a href="/ideas/vendorvet" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">VENDORVET</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#fcd34d;border:1px solid rgba(252,211,77,0.3);background:rgba(252,211,77,0.08);border-radius:4px;padding:0.2rem 0.5rem;">6.0</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-type">ONE-TIME · EASY BUILD · LOW UPKEEP</span>
+        </div>
+        <p class="idea-desc">Paste any wedding vendor contract → instant AI analysis: plain-English summary, red flag list (kill fees, substitution clauses, overtime traps), questions to ask the vendor, negotiation email template. $19/contract or $39 for full wedding (5 vendors). Average US wedding costs $30K — couples will pay $19 to review a $5K photography contract.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:60%;--c:#fcd34d"></div></div>
+      </a>
+
+      <!-- Pitched: PermitPal 6.0 -->
+      <a href="/ideas/permitpal" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">PERMITPAL</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#fcd34d;border:1px solid rgba(252,211,77,0.3);background:rgba(252,211,77,0.08);border-radius:4px;padding:0.2rem 0.5rem;">6.0</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-type">ONE-TIME · EASY BUILD · LOW UPKEEP</span>
+        </div>
+        <p class="idea-desc">Enter state/city + project type → do-you-need-a-permit determination, municipality-specific document checklist, project description template, inspector readiness checklist. $19 one-time. PermitFlow ($31M) is B2B/developer only. Unpermitted work is the #1 defect flagged in home inspections. r/DIY (4M members).</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:60%;--c:#fcd34d"></div></div>
+      </a>
+
+      <!-- Pitched: ViolationKit 6.0 -->
+      <a href="/ideas/violationkit" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">VIOLATIONKIT</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#fcd34d;border:1px solid rgba(252,211,77,0.3);background:rgba(252,211,77,0.08);border-radius:4px;padding:0.2rem 0.5rem;">6.0</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-type">ONE-TIME · EASY BUILD · LOW UPKEEP</span>
+        </div>
+        <p class="idea-desc">AI HOA violation appeal generator: describe your violation + state → state-statute-cited appeal letter + hearing request template + fine dispute language. $19 one-time. 74M Americans in HOA communities. HOA violation fines compound at $50–500/day. Homeowners will pay $19 to dispute a $200/day fine before it grows.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:60%;--c:#fcd34d"></div></div>
+      </a>
+
+      <!-- Pitched: HuntLease 6.0 -->
+      <a href="/ideas/huntlease" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">HUNTLEASE</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#fcd34d;border:1px solid rgba(252,211,77,0.3);background:rgba(252,211,77,0.08);border-radius:4px;padding:0.2rem 0.5rem;">6.0</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-type">ONE-TIME · EASY BUILD · LOW UPKEEP</span>
+        </div>
+        <p class="idea-desc">Enter state + acreage + species/seasons/methods → 3-document kit: state-specific hunting lease agreement with landowner liability protection, liability waiver, rules &amp; regulations addendum. $39 one-time. Texas hunting lease market alone is $400M+/yr. Zero AI-personalized, state-specific hunting lease kit found anywhere.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:60%;--c:#fcd34d"></div></div>
+      </a>
+
+      <!-- Pitched: AccommoDoc 6.0 -->
       <a href="/ideas/accommodoc" class="idea-card idea-card-link">
         <div class="idea-header">
           <span class="idea-name">ACCOMMODOC</span>
@@ -305,11 +546,11 @@
         <div class="idea-meta">
           <span class="idea-type">ONE-TIME · EASY BUILD · MED UPKEEP</span>
         </div>
-        <p class="idea-desc">ADA accommodation paper-trail tool — built for employees, not HR. Every competitor (Disclo, CareValidate, HR Acuity) sells to employers. The employee side is a complete void. Revenue splits with victims of workplace discrimination.</p>
+        <p class="idea-desc">ADA workplace accommodation request kit — built for employees, not HR. Generates ADA Title I request letter + state-specific addendum + interactive process checklist + 30-day employer follow-up template. $29 one-time. Every competitor (Disclo, CareValidate, HR Acuity) sells to employers. EEOC receives 25K+ disability charges annually.</p>
         <div class="idea-bar"><div class="idea-bar-fill" style="--fill:60%;--c:#fcd34d"></div></div>
       </a>
 
-      <!-- R&D: STR Listing Optimizer 6.0 -->
+      <!-- Pitched: STR Listing Optimizer 6.0 -->
       <a href="/ideas/airbnb-listing-optimizer" class="idea-card idea-card-link">
         <div class="idea-header">
           <span class="idea-name">STR LISTING OPTIMIZER</span>
@@ -318,9 +559,26 @@
         <div class="idea-meta">
           <span class="idea-type">RECURRING · MED BUILD · MED UPKEEP</span>
         </div>
-        <p class="idea-desc">AI-optimized listing copy benchmarked against top-ranked properties across all STR platforms. Cross-platform moat. Set it and forget it. A few thousand customers = real revenue.</p>
+        <p class="idea-desc">AI-optimized listing copy benchmarked against top-ranked properties across all STR platforms. Pricing tools (PriceLabs, AirDNA, Wheelhouse) dominate — but no dedicated listing description optimizer for Airbnb SEO exists. Hostaway/Hostfully have it buried as a feature in full PMS suites. r/airbnb_hosts (280K members).</p>
         <div class="idea-bar"><div class="idea-bar-fill" style="--fill:60%;--c:#fcd34d"></div></div>
       </a>
+
+      <!-- 5.5 ──────────────────────────────────── -->
+
+      <!-- Pitched: SLA Contract Monitor 5.5 -->
+      <a href="/ideas/sla-contract-monitor" class="idea-card idea-card-link">
+        <div class="idea-header">
+          <span class="idea-name">SLA CONTRACT MONITOR</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#fcd34d;border:1px solid rgba(252,211,77,0.3);background:rgba(252,211,77,0.08);border-radius:4px;padding:0.2rem 0.5rem;">5.5</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-type">RECURRING · MED BUILD · MED UPKEEP</span>
+        </div>
+        <p class="idea-desc">Per-customer contractual SLA compliance tracking for B2B SaaS companies. Ingests contract terms, pulls data from existing monitoring tools, generates per-customer compliance dashboards and auto-reports. BetterStack/Statuspage/PagerDuty/Gainsight all miss the per-customer contract compliance layer.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:55%;--c:#fcd34d"></div></div>
+      </a>
+
+      <!-- 4.0 ──────────────────────────────────── -->
 
       <!-- R&D: CorridorRide 4.0 -->
       <a href="/ideas/corridorride" class="idea-card idea-card-link">
@@ -370,6 +628,20 @@
         <div class="idea-bar"><div class="idea-bar-fill" style="--fill:0%;--c:#6b7280"></div></div>
       </a>
 
+      <!-- PASS: AutoFeedback 2.5 -->
+      <a href="/ideas/autofeedback" class="idea-card idea-card-link" style="opacity:0.6;">
+        <div class="idea-header">
+          <span class="idea-name">AUTOFEEDBACK</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#6b7280;border:1px solid rgba(107,114,128,0.3);background:rgba(107,114,128,0.08);border-radius:4px;padding:0.2rem 0.5rem;">2.5</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-status status-pass">PASS</span>
+          <span class="idea-type">COMMUNITY · MED BUILD · HIGH UPKEEP</span>
+        </div>
+        <p class="idea-desc">Car dealer predatory practice ratings. Killed: DealerRater (est. 2002, large review base, structured F&amp;I + price transparency ratings) is a direct incumbent. Cars.com, CarGurus, Edmunds, Consumer Reports all have structured dealer review systems. Space is occupied.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:0%;--c:#6b7280"></div></div>
+      </a>
+
       <!-- PASS: MedSettle 2.5 -->
       <a href="/ideas/medsettle" class="idea-card idea-card-link" style="opacity:0.6;">
         <div class="idea-header">
@@ -398,6 +670,20 @@
         <div class="idea-bar"><div class="idea-bar-fill" style="--fill:0%;--c:#6b7280"></div></div>
       </a>
 
+      <!-- PASS: RefundRight 2.5 -->
+      <a href="/ideas/refundright" class="idea-card idea-card-link" style="opacity:0.6;">
+        <div class="idea-header">
+          <span class="idea-name">REFUNDRIGHT</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#6b7280;border:1px solid rgba(107,114,128,0.3);background:rgba(107,114,128,0.08);border-radius:4px;padding:0.2rem 0.5rem;">2.5</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-status status-pass">PASS</span>
+          <span class="idea-type">ONE-TIME · EASY BUILD · LOW UPKEEP</span>
+        </div>
+        <p class="idea-desc">US airline refund enforcement kit. Gap was real — no dedicated US DOT 2024 rule enforcement product exists. Killed: charging travelers $20 to maybe recover money they were already owed fails the ethics filter. Revenue flows from victims, not to them.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:0%;--c:#6b7280"></div></div>
+      </a>
+
       <!-- PASS: ContractorClaim 2.0 -->
       <a href="/ideas/contractorclaim" class="idea-card idea-card-link" style="opacity:0.6;">
         <div class="idea-header">
@@ -412,31 +698,17 @@
         <div class="idea-bar"><div class="idea-bar-fill" style="--fill:0%;--c:#6b7280"></div></div>
       </a>
 
-      <!-- PASS: LeaseFlag 2.0 -->
-      <a href="/ideas/leaseflag" class="idea-card idea-card-link" style="opacity:0.6;">
+      <!-- PASS: MusicKit 2.0 -->
+      <a href="/ideas/musickit" class="idea-card idea-card-link" style="opacity:0.6;">
         <div class="idea-header">
-          <span class="idea-name">LEASEFLAG</span>
+          <span class="idea-name">MUSICKIT</span>
           <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#6b7280;border:1px solid rgba(107,114,128,0.3);background:rgba(107,114,128,0.08);border-radius:4px;padding:0.2rem 0.5rem;">2.0</span>
         </div>
         <div class="idea-meta">
           <span class="idea-status status-pass">PASS</span>
           <span class="idea-type">ONE-TIME · EASY BUILD · LOW UPKEEP</span>
         </div>
-        <p class="idea-desc">AI commercial lease red flag reviewer for small business owners. Killed: the core value requires analyzing lease clauses with legal implications — we are not a lawyer and this is not territory we build in.</p>
-        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:0%;--c:#6b7280"></div></div>
-      </a>
-
-      <!-- PASS: RefundRight 2.5 -->
-      <a href="/ideas/refundright" class="idea-card idea-card-link" style="opacity:0.6;">
-        <div class="idea-header">
-          <span class="idea-name">REFUNDRIGHT</span>
-          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#6b7280;border:1px solid rgba(107,114,128,0.3);background:rgba(107,114,128,0.08);border-radius:4px;padding:0.2rem 0.5rem;">2.5</span>
-        </div>
-        <div class="idea-meta">
-          <span class="idea-status status-pass">PASS</span>
-          <span class="idea-type">ONE-TIME · EASY BUILD · LOW UPKEEP</span>
-        </div>
-        <p class="idea-desc">US airline refund enforcement kit. Gap was real — no dedicated US DOT 2024 rule enforcement product exists. Killed: charging travelers $20 to maybe recover money they were already owed fails the ethics filter. Revenue flows from victims, not to them.</p>
+        <p class="idea-desc">AI split sheet &amp; band agreement generator for indie musicians. Killed: target market fail. Indie musicians are notoriously cash-strapped. The split sheet only matters when there's real money at stake, at which point the right move is an entertainment lawyer. Community size ≠ paying customer base.</p>
         <div class="idea-bar"><div class="idea-bar-fill" style="--fill:0%;--c:#6b7280"></div></div>
       </a>
 
