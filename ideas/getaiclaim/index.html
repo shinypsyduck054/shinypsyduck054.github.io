@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GETAICLAIM · IDEAS · PSYDUCK</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/ideas/idea-page.css" />
+  <style>
+    .verdict-fav {
+      background: rgba(52,211,153,0.06);
+      border: 1px solid rgba(52,211,153,0.2);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .verdict-badge-fav {
+      display: inline-block;
+      font-family: var(--font-pixel);
+      font-size: 0.35rem;
+      background: rgba(52,211,153,0.12);
+      color: #34d399;
+      border: 1px solid rgba(52,211,153,0.3);
+      border-radius: 4px;
+      padding: 0.25rem 0.6rem;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+    }
+    .indev-badge {
+      display: inline-block;
+      font-family: var(--font-pixel);
+      font-size: 0.35rem;
+      background: rgba(129,140,248,0.12);
+      color: #818cf8;
+      border: 1px solid rgba(129,140,248,0.3);
+      border-radius: 4px;
+      padding: 0.25rem 0.6rem;
+      letter-spacing: 0.12em;
+      margin-left: 0.5rem;
+    }
+    .rebrand-note {
+      background: rgba(251,191,36,0.06);
+      border: 1px solid rgba(251,191,36,0.2);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: #fbbf24;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+    .verdict-reason { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim); line-height: 1.8; }
+    .verdict-reason strong { color: #e5e7eb; }
+    .comp-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim); margin-top: 0.75rem; }
+    .comp-table th { color: #9ca3af; font-weight: normal; text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .comp-table td { padding: 0.4rem 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; }
+    .tag-green { color: #34d399; }
+    .tag-yellow { color: #fcd34d; }
+    .tag-red { color: #f87171; }
+  </style>
+</head>
+<body>
+  <div class="crt-overlay"></div><div class="scanlines"></div><div class="vignette"></div>
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="/" class="home-crumb" title="Home"><span class="status-dot"></span><span class="nav-name">Psyduck <span class="nav-dex">#054</span></span></a>
+        <span class="crumb-sep">/ <a href="/ideas" class="crumb-link">IDEAS</a> / <span class="crumb-current">GETAICLAIM</span></span>
+      </div>
+      <nav class="header-nav">
+        <a href="/ideas" class="nav-link nav-link-ideas"><span class="nav-sym">⚡</span><span class="nav-label">IDEAS</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="idea-page-wrap">
+    <div class="idea-page-header">
+      <div class="idea-page-meta">
+        <span class="idea-status status-rd">R&amp;D</span>
+        <span class="idea-conf conf-high">HIGH</span>
+        <span class="idea-type">ONE-TIME PURCHASE · MARKETPLACE SELLERS · GREENLIT · FAVORITE</span>
+        <span class="indev-badge">IN DEVELOPMENT</span>
+      </div>
+      <h1 class="idea-page-title">GETAICLAIM</h1>
+      <div class="viability-callout">
+        <div>
+          <div class="vc-label">VIABILITY SCORE</div>
+          <div class="vc-sublabel">MARKET · COMPETITION · EXECUTION</div>
+        </div>
+        <div class="vc-score">9.0<span class="vc-max">/10</span></div>
+      </div>
+      <p class="idea-page-sub">AI dispute response generator for marketplace sellers fighting fraudulent buyer claims on Amazon, eBay, and Etsy. $19 one-time. Sellers currently pay $100–300 to Upwork specialists per response. No dedicated product exists. Deploying to getaiclaim.com.</p>
+      <div class="idea-bar idea-bar-wide"><div class="idea-bar-fill" style="--fill:90%;--c:#34d399"></div></div>
+      <div class="idea-bar-label">R&amp;D FAVORITE · GREENLIT · HIGH CONFIDENCE GAP · IN DEVELOPMENT</div>
+    </div>
+
+    <div class="idea-page-body">
+
+      <div class="rebrand-note">
+        ⚠ Previously called <strong>ClaimShield</strong>. Renamed June 2026 — trademark conflict with ClaimShield Holdings, Inc. (insurance). New brand: <strong>GetAiClaim</strong>. Domain purchased: <strong>getaiclaim.com</strong>. Currently being built for Vercel deployment.
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE GAP</div>
+        <p>Amazon's A-to-Z Guarantee and eBay's Money Back Guarantee both heavily favor buyers. A buyer can claim "item not received" or "not as described" — even fraudulently — and the seller gets 48–72 hours to submit a structured written response or the claim is automatically decided against them.</p>
+        <p style="margin-top:0.75rem;">Most small sellers don't know what Amazon's claim reviewers actually look for. They write emotional, incomplete responses and lose claims they should win. The result is a double hit: the refund is lost <em>and</em> the seller takes an Order Defect Rate (ODR) account health strike. Enough strikes = account suspension.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE PRODUCT</div>
+        <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;">Seller enters: platform (Amazon/eBay/Etsy), claim type, order ID, item name, tracking number, and the buyer's claim message. Claude generates a platform-optimized dispute response letter and an evidence checklist — in ~90 seconds. $19 one-time. No subscription.</p>
+        <ul style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-dim);line-height:2;padding-left:1.25rem;margin-top:0.5rem;">
+          <li><strong style="color:#e5e7eb;">Platform-optimized letter</strong> — written in the exact language Amazon/eBay/Etsy reviewers look for</li>
+          <li><strong style="color:#e5e7eb;">Evidence checklist</strong> — exactly what to attach, in what order, platform-specific</li>
+          <li><strong style="color:#e5e7eb;">Account health language</strong> — creates a formal record, critical for escalation</li>
+          <li><strong style="color:#e5e7eb;">Personalized</strong> — order ID, tracking, and situation woven into the response</li>
+        </ul>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">COMPETITOR SWEEP</div>
+        <table class="comp-table">
+          <tr><th>Competitor</th><th>What they do</th><th>Gap</th></tr>
+          <tr>
+            <td>Upwork specialists</td>
+            <td>$100–300 per response, human-written.</td>
+            <td class="tag-green">10–15x more expensive. GetAiClaim delivers in 90 seconds.</td>
+          </tr>
+          <tr>
+            <td>Jungle Scout / Helium 10</td>
+            <td>Seller analytics platforms.</td>
+            <td class="tag-green">Zero dispute response capability. Different product category entirely.</td>
+          </tr>
+          <tr>
+            <td>Generic ChatGPT prompt</td>
+            <td>Sellers ask "write a dispute letter."</td>
+            <td class="tag-green">No platform-specific structure, no policy citations, no evidence framework. Gets sellers rejected.</td>
+          </tr>
+        </table>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);">No dedicated A-to-Z / MBG claim response generator found anywhere. Confirmed gap.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">MARKETING</div>
+        <ul style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-dim);line-height:2;padding-left:1.25rem;margin-top:0.5rem;">
+          <li><strong style="color:#e5e7eb;">r/AmazonSeller (200K+)</strong> — near-daily "I got an A-to-Z claim, what do I do" threads</li>
+          <li><strong style="color:#e5e7eb;">r/FulfillmentByAmazon (170K+)</strong> — FBA sellers especially vulnerable to fraudulent claims</li>
+          <li><strong style="color:#e5e7eb;">r/eBaySellerAdvice</strong> — eBay Money Back Guarantee version of the same pain</li>
+          <li><strong style="color:#e5e7eb;">Facebook Amazon seller groups</strong> — some 100K+ members, high trust, word-of-mouth culture</li>
+          <li><strong style="color:#e5e7eb;">SEO</strong> — "how to respond to Amazon A-to-Z claim" is high-intent, currently served only by blog posts</li>
+        </ul>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE MARKET</div>
+        <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;">Amazon: <strong style="color:#e5e7eb;">2M+ third-party sellers</strong>. eBay: <strong style="color:#e5e7eb;">17M+ sellers</strong>. Etsy: <strong style="color:#e5e7eb;">9M+ sellers</strong>. Customer profile: active marketplace seller, $50–500 average item price, already spending on tools (Jungle Scout, Helium 10, FeedbackWhiz). Proven willingness to pay for seller tools.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">BUILD STATUS</div>
+        <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;">Full Next.js app built. Real Stripe + Claude API wired. Deploying to <strong style="color:#818cf8;">getaiclaim.com</strong> via Vercel. GitHub repo: <strong style="color:#e5e7eb;">shinypsyduck054/claimshield-demo</strong> (renaming to getaiclaim).</p>
+        <ul style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-dim);line-height:2;padding-left:1.25rem;margin-top:0.5rem;">
+          <li><span class="tag-green">✓</span> Full UI — landing → form → payment → result</li>
+          <li><span class="tag-green">✓</span> Real Stripe payment intent API</li>
+          <li><span class="tag-green">✓</span> Real Claude API (claude-haiku-4-5)</li>
+          <li><span class="tag-green">✓</span> Payment verified before generation</li>
+          <li><span class="tag-yellow">⟳</span> Vercel deployment + domain DNS</li>
+          <li><span class="tag-yellow">⟳</span> Email delivery via Resend (v1.1)</li>
+        </ul>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE VERDICT</div>
+        <div class="verdict-fav">
+          <div class="verdict-badge-fav">R&amp;D FAVORITE · GREENLIT · HIGH CONFIDENCE · IN DEVELOPMENT</div>
+          <p class="verdict-reason">
+            <strong>The gap is confirmed and deep.</strong> No SaaS product exists for this specific use case. Sellers are currently paying $100–300/response to Upwork specialists or losing claims they should win.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>The ROI math is obvious.</strong> $19 to fight a $100+ claim is a no-brainer. Even for smaller claims, ODR account health protection makes it worth it for any active seller who relies on marketplace income.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>Customer is not in distress.</strong> This is a business owner protecting revenue, not a crisis victim. Ethics filters pass completely.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>The pitch in one sentence:</strong> Don't let a fraudulent buyer claim cost you $200 and an account strike — $19 gets you the exact response format that wins.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div class="footer-inner"><span>PSYDUCK — SHINY EDITION</span><span>© 2026 · BUILT ON HOMELAB · DEPLOYED BY ITSELF</span></div></footer>
+</body>
+</html>
