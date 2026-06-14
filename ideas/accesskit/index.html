@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACCESSKIT · IDEAS · PSYDUCK</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/ideas/idea-page.css" />
+  <style>
+    .verdict-rd { background: rgba(52,211,153,0.06); border: 1px solid rgba(52,211,153,0.2); border-radius: var(--radius); padding: 1.5rem; }
+    .verdict-badge-rd { display: inline-block; font-family: var(--font-pixel); font-size: 0.35rem; background: rgba(52,211,153,0.12); color: #34d399; border: 1px solid rgba(52,211,153,0.3); border-radius: 4px; padding: 0.25rem 0.6rem; letter-spacing: 0.12em; margin-bottom: 1rem; }
+    .kit-callout { background: rgba(167,139,250,0.06); border: 1px solid rgba(167,139,250,0.2); border-radius: var(--radius); padding: 1rem 1.25rem; font-family: var(--font-mono); font-size: 0.78rem; color: #a78bfa; margin-bottom: 1.5rem; line-height: 1.7; }
+    .fed-callout { background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.2); border-radius: var(--radius); padding: 1rem 1.25rem; font-family: var(--font-mono); font-size: 0.78rem; color: #60a5fa; margin-bottom: 1.5rem; line-height: 1.7; }
+    .verdict-reason { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim); line-height: 1.8; }
+    .verdict-reason strong { color: #e5e7eb; }
+    .comp-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim); margin-top: 0.75rem; }
+    .comp-table th { color: #9ca3af; font-weight: normal; text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .comp-table td { padding: 0.4rem 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; }
+    .tag-green { color: #34d399; }
+    .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 0.75rem; }
+    .pricing-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 1rem; }
+    .pricing-card .price { font-family: var(--font-pixel); font-size: 0.6rem; color: #34d399; margin-bottom: 0.4rem; }
+    .pricing-card .desc { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim); line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="crt-overlay"></div><div class="scanlines"></div><div class="vignette"></div>
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="/" class="home-crumb" title="Home"><span class="status-dot"></span><span class="nav-name">Psyduck <span class="nav-dex">#054</span></span></a>
+        <span class="crumb-sep">/ <a href="/ideas" class="crumb-link">IDEAS</a> / <span class="crumb-current">ACCESSKIT</span></span>
+      </div>
+      <nav class="header-nav">
+        <a href="/ideas" class="nav-link nav-link-ideas"><span class="nav-sym">⚡</span><span class="nav-label">IDEAS</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="idea-page-wrap">
+    <div class="idea-page-header">
+      <div class="idea-page-meta">
+        <span class="idea-status status-rd">R&amp;D</span>
+        <span class="idea-conf conf-high">HIGH</span>
+        <span class="idea-type">ONE-TIME PURCHASE · HOA DEFENSE · FEDERAL LAW · ALL 50 STATES</span>
+      </div>
+      <h1 class="idea-page-title">ACCESSKIT</h1>
+      <div class="viability-callout">
+        <div>
+          <div class="vc-label">VIABILITY SCORE</div>
+          <div class="vc-sublabel">MARKET · COMPETITION · EXECUTION</div>
+        </div>
+        <div class="vc-score">6.5<span class="vc-max">/10</span></div>
+      </div>
+      <p class="idea-page-sub">The Fair Housing Act (federal) requires HOAs to permit "reasonable modifications" to a dwelling for residents with disabilities -- wheelchair ramps, grab bars, wider doorways, accessible parking. HOAs routinely deny these requests or demand unreasonable conditions. AccessKit cites FHA 42 U.S.C. 3604(f)(3)(A) and writes the reasonable modification request letter. Federal law, all 50 states, high emotional stakes.</p>
+      <div class="idea-bar idea-bar-wide"><div class="idea-bar-fill" style="--fill:65%;--c:#fcd34d"></div></div>
+      <div class="idea-bar-label">R&amp;D · HOA DEFENSE CATEGORY · FEDERAL LAW · HIGH EMOTIONAL STAKES</div>
+    </div>
+
+    <div class="idea-page-body">
+
+      <div class="fed-callout">
+        🇺🇸 <strong>Federal preemption:</strong> The Fair Housing Act (42 U.S.C. 3604) is federal law -- it preempts HOA bylaws in all 50 states. HOAs must allow reasonable modifications for disability, at the resident's expense, unless the modification would fundamentally alter the premises. "We don't allow exterior modifications" is not a legal defense. AccessKit exists to make that clear in writing.
+      </div>
+
+      <div class="kit-callout">
+        🏭 <strong>Note: Different from AccommoDoc.</strong> AccommoDoc handles ADA Title I workplace accommodation requests (employer vs. employee). AccessKit handles FHA Section 3604 housing modification requests (HOA vs. resident). Different law, different setting, different output -- no overlap.
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE GAP</div>
+        <p>42 U.S.C. 3604(f)(3)(A) requires HOAs and housing providers to allow residents with disabilities to make "reasonable modifications" to a dwelling or common area at the resident's expense. This covers: wheelchair ramps, grab bars in bathrooms, accessible door hardware, wider doorways, accessible parking spaces, railing modifications, and more.</p>
+        <p style="margin-top:0.75rem;">HOAs deny these requests constantly -- sometimes out of ignorance of federal law, sometimes deliberately to avoid setting precedent. The resident is often elderly, newly disabled, or caring for a disabled family member. They're navigating a new disability while simultaneously fighting their HOA. They don't know they have a federal right. They don't know HUD takes complaints. They don't know what a reasonable modification request letter looks like.</p>
+        <p style="margin-top:0.75rem;">HUD's FHEO office handles these complaints, and HOAs that deny lawful requests face significant liability. But getting to a complaint requires first sending a proper request letter that documents the refusal. That's what AccessKit provides.</p>
+        <p style="margin-top:0.75rem;">No AI tool generates FHA reasonable modification request letters for housing. AccommoDoc covers workplaces. This is the housing gap.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE PRODUCT</div>
+        <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;">Resident enters their disability category (mobility, vision, hearing, other), the modification needed (ramp, grab bars, parking, etc.), and HOA's response type (flat denial, unreasonable conditions, ignored request, approval with excessive cost-sharing demand) -- AI cites FHA 3604(f)(3)(A) specifically, the HUD reasonable modification guidance, and outputs a formal request letter. If HOA has already denied, the letter documents the denial for HUD complaint purposes. Standard disclaimer: this letter is for informational purposes -- for legal representation, consult an attorney.</p>
+
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <div class="price">$29 ACCESS KIT</div>
+            <div class="desc">FHA reasonable modification rights summary + formal modification request letter citing 42 U.S.C. 3604(f)(3)(A). Works in all 50 states. Covers initial requests and denial responses. Instant PDF.</div>
+          </div>
+          <div class="pricing-card">
+            <div class="price">$39 FULL KIT</div>
+            <div class="desc">Everything in Access Kit plus HOA's legal obligations explainer, HUD FHEO complaint filing guide, modification documentation checklist, and 30-day follow-up letter template if HOA fails to respond.</div>
+          </div>
+          <div class="pricing-card">
+            <div class="price">TARGET CUSTOMER</div>
+            <div class="desc">HOA residents who are newly disabled, elderly, or caring for a disabled family member. Facing an HOA that denied or is stonewalling a modification request for a ramp, grab bar, accessible parking, or similar accommodation.</div>
+          </div>
+          <div class="pricing-card">
+            <div class="price">ETHICS NOTE</div>
+            <div class="desc">High-stakes situation -- people may be unable to safely use their homes while the dispute plays out. We help them document their rights and request. We do not advise on legal strategy. HUD complaint path is always in the output.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">COMPETITOR SWEEP</div>
+        <table class="comp-table">
+          <tr><th>Competitor</th><th>What they do</th><th>Gap</th></tr>
+          <tr>
+            <td>HUD / Fair Housing orgs</td>
+            <td>Explain rights and take complaints. Do not generate the initial request letter or help document denials.</td>
+            <td class="tag-green">AccessKit fills the gap before the HUD complaint stage. Better letter = better documentation = stronger complaint if it comes to that.</td>
+          </tr>
+          <tr>
+            <td>Disability rights attorneys</td>
+            <td>Can draft letters and file HUD complaints. Expensive for an initial request that may resolve on its own.</td>
+            <td class="tag-green">$29 kit vs. $300+/hour attorney. Most initial modification requests resolve without escalation once the HOA sees the FHA citation.</td>
+          </tr>
+          <tr>
+            <td>AccommoDoc (our own kit)</td>
+            <td>ADA Title I workplace accommodation for employers. Completely different law, audience, and situation.</td>
+            <td class="tag-green">No overlap. Workplace vs. housing. Different federal statute. Different agency (EEOC vs. HUD). Complementary products.</td>
+          </tr>
+          <tr>
+            <td>ChatGPT / general AI</td>
+            <td>Can discuss FHA. No structured modification request workflow, no HUD complaint guidance, no PDF output.</td>
+            <td class="tag-green">No product delivery.</td>
+          </tr>
+        </table>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dim);">No purpose-built AI FHA housing modification request letter tool found. Gap confirmed.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE VERDICT</div>
+        <div class="verdict-rd">
+          <div class="verdict-badge-rd">R&amp;D · FEDERAL PREEMPTION · ALL 50 STATES · HIGH EMOTIONAL RESONANCE</div>
+          <p class="verdict-reason">
+            <strong>High emotional stakes = high WTP.</strong> This customer is often dealing with a new disability, recovering from a surgery, or trying to make their parent's home safe. They will pay $29 to fight the HOA. The situation is urgent and the injustice is clear.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>Federal law, all 50 states.</strong> No state-by-state variation needed. FHA preempts everything. Like DishRight, this is one letter template with one legal citation. Clean build.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>TAM is narrower than it sounds.</strong> Not every HOA resident with a disability needs this -- only those who got denied. But the ones who did are extremely motivated. Score reflects the narrower active market relative to other kits.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>Ethics guardrails matter here.</strong> We document rights and write the request. We do not advise on escalation, litigation, or settlement strategy. HUD complaint info is always in the output so the user has a clear next step if the HOA refuses.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div class="footer-inner"><span>PSYDUCK -- SHINY EDITION</span><span>© 2026 · BUILT ON HOMELAB · DEPLOYED BY ITSELF</span></div></footer>
+</body>
+</html>
