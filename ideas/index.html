@@ -53,8 +53,28 @@
       align-items: center;
       gap: 0.75rem;
     }
-    .ideas-section-header.active { color: #34d399; }
+    .ideas-section-header.beta {
+      color: #22d3ee;
+      text-shadow: 0 0 12px rgba(34,211,238,0.4);
+    }
+    .ideas-section-header.active { color: #34d399; margin-top: 3rem; }
     .ideas-section-header.passed { color: #6b7280; margin-top: 3rem; }
+    .beta-live-link {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: #22d3ee;
+      margin-left: 0.4rem;
+      letter-spacing: 0.04em;
+    }
+    .idea-card.idea-card-beta {
+      border-color: rgba(34,211,238,0.3);
+      background: rgba(34,211,238,0.03);
+    }
+    .idea-card.idea-card-beta:hover {
+      border-color: rgba(34,211,238,0.55);
+      background: rgba(34,211,238,0.06);
+    }
     .ideas-section-header::after {
       content: '';
       flex: 1;
@@ -117,26 +137,31 @@
   <div class="ideas-page-body">
     <div class="ideas-count">SHOWING <span id="ideaCount">54</span> IDEAS</div>
 
+    <!-- BETA — shipping products -->
+    <div class="ideas-section-header beta">BETA · SHIPPING</div>
+    <div class="ideas-section-sub">Live products in beta. Real customers, real revenue.</div>
+    <div class="ideas-grid">
+
+      <!-- BETA: FightAClaim ⭐ -->
+      <a href="/ideas/fightaclaim" class="idea-card idea-card-link idea-card-beta">
+        <div class="idea-header">
+          <span class="idea-name">FIGHTACLAIM ⭐</span>
+          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#22d3ee;border:1px solid rgba(34,211,238,0.4);background:rgba(34,211,238,0.1);border-radius:4px;padding:0.2rem 0.5rem;">BETA</span>
+        </div>
+        <div class="idea-meta">
+          <span class="idea-type">ONE-TIME · MARKETPLACE SELLER DEFENSE</span>
+          <a href="https://fightaclaim.com" target="_blank" rel="noopener" class="beta-live-link" onclick="event.stopPropagation()">→ fightaclaim.com</a>
+        </div>
+        <p class="idea-desc">$19 AI dispute response generator for marketplace sellers fighting fraudulent A-to-Z, eBay MBG, and Etsy Purchase Protection claims. Live in beta at fightaclaim.com. Formerly ClaimShield, rebranded after a trademark conflict. Sprint kit #1, ships the shared backend the other 4 kits inherit.</p>
+        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:100%;--c:#22d3ee"></div></div>
+      </a>
+
+    </div>
+
     <!-- ACTIVE R&D -->
     <div class="ideas-section-header active">ACTIVE R&amp;D</div>
     <div class="ideas-section-sub">Sorted by viability score. Highest first.</div>
     <div class="ideas-grid" id="ideasGrid">
-
-      <!-- 9.0 ──────────────────────────────────── -->
-
-      <!-- R&D: FightAClaim 9.0 ⭐ IN DEV -->
-      <a href="/ideas/fightaclaim" class="idea-card idea-card-link">
-        <div class="idea-header">
-          <span class="idea-name">FIGHTACLAIM ⭐</span>
-          <span style="font-family:var(--font-pixel);font-size:0.4rem;color:#34d399;border:1px solid rgba(52,211,153,0.3);background:rgba(52,211,153,0.08);border-radius:4px;padding:0.2rem 0.5rem;">9.0</span>
-        </div>
-        <div class="idea-meta">
-          <span class="idea-type">ONE-TIME · EASY BUILD · LOW UPKEEP</span>
-          <span style="font-family:var(--font-pixel);font-size:0.35rem;color:#818cf8;border:1px solid rgba(129,140,248,0.3);background:rgba(129,140,248,0.08);border-radius:4px;padding:0.15rem 0.5rem;margin-left:0.4rem;">IN DEV</span>
-        </div>
-        <p class="idea-desc">$19 AI dispute response generator for marketplace sellers fighting fraudulent A-to-Z, eBay MBG, and Etsy claims. Formerly ClaimShield — rebranded, domain purchased, deploying to fightaclaim.com. No dedicated product exists. ODR account health protection makes it worth it even on small claims.</p>
-        <div class="idea-bar"><div class="idea-bar-fill" style="--fill:90%;--c:#34d399"></div></div>
-      </a>
 
       <!-- 8.0 ──────────────────────────────────── -->
 
