@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coastal Boat Works — The Brotherhood</title>
+<style>
+  :root{
+    --navy:#0d2b45; --navy2:#11395c; --teal:#1d7a8c; --teal2:#2a9db5;
+    --sand:#f4efe6; --ink:#1b2733; --muted:#5d6b7a; --line:#dde3ea;
+    --green:#2e8b57; --green2:#3fa46b; --amber:#d99100; --red:#c0392b;
+    --rust:#b8541a; --purple:#6b3fb0; --gold:#b88a2c; --card:#ffffff;
+    --shadow:0 1px 3px rgba(13,43,69,.08),0 6px 18px rgba(13,43,69,.06);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--sand);line-height:1.55;font-size:15.5px}
+  header.hero{background:linear-gradient(135deg,var(--navy),var(--green));color:#fff;padding:32px 28px 28px}
+  header.hero .wrap{max-width:1080px;margin:0 auto}
+  header.hero h1{margin:0 0 8px;font-size:28px;letter-spacing:.2px}
+  header.hero p{margin:0;opacity:.95;font-size:15px;max-width:840px}
+  header.hero .crumb{font-size:12.5px;opacity:.85;margin-bottom:8px}
+  header.hero .crumb a{color:#cfeadd;text-decoration:none;margin-right:6px}
+  header.hero .crumb a:hover{color:#fff;text-decoration:underline}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  nav.tabs{position:sticky;top:0;z-index:50;background:var(--navy);display:flex;flex-wrap:wrap;gap:2px;
+    padding:0 12px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+  nav.tabs button{background:transparent;color:#cfe0ec;border:0;padding:13px 14px;font-size:13.5px;
+    cursor:pointer;border-bottom:3px solid transparent;font-weight:600;white-space:nowrap}
+  nav.tabs button:hover{color:#fff}
+  nav.tabs button.active{color:#fff;border-bottom-color:var(--green2)}
+  section.panel{display:none;padding:26px 0 60px}
+  section.panel.active{display:block}
+  h2{font-size:22px;margin:6px 0 6px;color:var(--navy)}
+  h3{font-size:16.5px;color:var(--navy2);margin:22px 0 8px}
+  h4{font-size:14.5px;color:var(--navy2);margin:14px 0 6px}
+  .sub{color:var(--muted);font-size:14.5px;margin:0 0 18px;max-width:820px}
+  .deep{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;box-shadow:var(--shadow);margin:14px 0}
+  .deep h3:first-child,.deep h4:first-child{margin-top:0}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+  .callout{background:linear-gradient(135deg,var(--navy),var(--green));color:#fff;border-radius:12px;padding:20px 24px;margin:16px 0}
+  .callout h3{color:#fff;margin:0 0 8px;font-size:18px}
+  .callout p{margin:6px 0;font-size:14.5px;opacity:.96}
+  .callout.gold{background:linear-gradient(135deg,#0d2b45,var(--gold))}
+  .callout.rust{background:linear-gradient(135deg,#1b2733,var(--rust))}
+  .warn{background:#fdf3e3;border:1px solid #f0d8a8;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:12px 0}
+  .warn b{color:var(--amber)}
+  .note{background:#eef9f1;border:1px solid #bfe6cc;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:12px 0}
+  .red{background:#fdecea;border:1px solid #f3c9c3;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:12px 0}
+  ul.clean{font-size:14.5px;padding-left:20px} ul.clean li{margin:6px 0}
+  .changed{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;box-shadow:var(--shadow);margin:12px 0;border-left:5px solid var(--green);display:flex;gap:16px;align-items:flex-start}
+  .changed .num{flex-shrink:0;width:36px;height:36px;border-radius:9px;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px}
+  .changed .body{flex:1;min-width:0}
+  .changed .ttl{font-weight:700;color:var(--navy);font-size:16px;margin-bottom:5px}
+  .changed p{margin:5px 0 0;font-size:14px}
+  .changed .before{font-size:12.5px;color:var(--muted);margin-top:8px}
+  .changed .before b{color:var(--red)}
+  .changed .after{font-size:13px;color:var(--green);font-weight:600;margin-top:2px}
+  .qcard{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow);margin:10px 0;border-left:4px solid var(--gold)}
+  .qcard .q{font-weight:700;color:var(--navy);font-size:15px;margin-bottom:6px}
+  .qcard .why{font-size:13.5px;color:var(--muted)}
+  .track{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;box-shadow:var(--shadow);margin:14px 0}
+  .track.a{border-top:5px solid var(--teal)}
+  .track.b{border-top:5px solid var(--green)}
+  .track .head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+  .track h3{margin:0;font-size:19px;color:var(--navy)}
+  .track .badge{font-size:11.5px;padding:2px 9px;border-radius:20px;font-weight:700;letter-spacing:.3px}
+  .track.a .badge{background:#e3f0ff;color:#1f5fb0}
+  .track.b .badge{background:#e6f6ec;color:#236b41}
+  .track .stat{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0 6px}
+  .track .kpi{background:#f7fafc;border:1px solid var(--line);border-radius:8px;padding:10px 14px;min-width:130px;flex:1}
+  .track .kpi .n{font-size:18px;font-weight:800;color:var(--navy)}
+  .track .kpi .l{font-size:12px;color:var(--muted);margin-top:2px}
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;
+    font-size:13.5px;margin:10px 0;box-shadow:var(--shadow)}
+  thead th{background:var(--navy);color:#fff;text-align:left;padding:10px 12px;font-weight:600;font-size:12.5px}
+  tbody td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr:hover{background:#f7fafc}
+  td.term{font-weight:700;color:var(--navy);width:170px}
+  .risk{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow);margin:10px 0;border-left:4px solid var(--red)}
+  .risk .ttl{font-weight:700;color:var(--navy);font-size:14.5px;margin-bottom:4px}
+  .risk .mit{font-size:13px;color:var(--green);margin-top:6px;padding-top:6px;border-top:1px dashed var(--line)}
+  .risk .mit b{color:var(--green)}
+  .pillrow{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+  .pill{font-size:11.5px;background:#eef3f7;color:var(--navy2);padding:2px 9px;border-radius:20px;font-weight:600}
+  .pill.good{background:#e6f6ec;color:#236b41}
+  .pill.warn{background:#fdf0e0;color:var(--rust)}
+  blockquote{border-left:4px solid var(--green);background:#eef9f1;margin:10px 0;padding:10px 16px;border-radius:0 8px 8px 0;color:var(--ink);font-size:14.5px;font-style:italic}
+  .dinner{background:#fefaf2;border:1px solid #efe4cb;border-radius:12px;padding:18px 22px;margin:14px 0}
+  .dinner h4{margin-top:0;color:var(--gold)}
+  .dinner p{font-size:14.5px;margin:8px 0}
+  .dinner .speaker{font-weight:700;color:var(--navy);margin-right:8px}
+  footer{padding:26px 0 50px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);margin-top:20px}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+  .version-tag{font-variant-numeric:tabular-nums}
+  @media(max-width:860px){.twocol,.threecol{grid-template-columns:1fr}thead th{position:static}
+    table{display:block;overflow-x:auto;white-space:nowrap}
+    .changed{flex-direction:column}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="../">← hub</a>·<a href="../landscape/">landscape</a>·<a href="../why-not/">why not?</a>·<a href="../the-edge/">the edge</a>·<a href="../the-partnership/">the partnership</a></div>
+    <h1>The Brotherhood</h1>
+    <p>The Partnership page argued the principled answer for a stranger&#39;s shop. This page rewrites it with the four facts that actually apply: the owner is Justin&#39;s brother, he has capital he wants to invest, his shop is grinding him down, and Justin lives 1.25 hours away in Columbia. Most of the old objections die. A different deal becomes possible. Family makes it more, not less, important to write everything down.</p>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button class="active" data-p="changed">What Changed</button>
+  <button data-p="ask">Before Any Deal</button>
+  <button data-p="track-a">Track A · Get Him His Life Back</button>
+  <button data-p="track-b">Track B · His Capital, Our Bet</button>
+  <button data-p="risks">Family Risks</button>
+  <button data-p="paper">The Paperwork</button>
+  <button data-p="dinner">At Dinner</button>
+</nav>
+
+<div class="wrap">
+
+<!-- WHAT CHANGED -->
+<section class="panel active" id="p-changed">
+  <h2>Four facts that flip the analysis</h2>
+  <p class="sub">The Partnership page concluded &ldquo;no, not a partnership&rdquo; for principled reasons. Most of those reasons assumed a stranger&#39;s shop a long flight away. Here&#39;s what actually applies.</p>
+
+  <div class="changed">
+    <div class="num">1</div>
+    <div class="body">
+      <div class="ttl">Geography is not hostile anymore.</div>
+      <p>Walterboro is about 75 miles from Columbia. Roughly 1 hour 15 minutes door to door. That is a day trip, not a relocation. Justin can be in the shop weekly during a build, monthly during steady state, and same-day if something breaks. The whole &ldquo;remote partner is brittle&rdquo; objection collapses.</p>
+      <div class="before"><b>Was:</b> &ldquo;remote partner is brittle.&rdquo; <span class="after">&nbsp;&rarr; Now: day-trip distance. Hands-on when it matters.</span></div>
+    </div>
+  </div>
+
+  <div class="changed">
+    <div class="num">2</div>
+    <div class="body">
+      <div class="ttl">Trust is already earned. The relationship pre-exists.</div>
+      <p>The Partnership page had &ldquo;we&#39;ve never met this person&rdquo; as a reason to walk away. Family wipes that out completely. We don&#39;t need a paid project to prove trust. The risk profile flips though: now the relationship is the thing that has to be protected, not built. Less salesmanship, more care.</p>
+      <div class="before"><b>Was:</b> &ldquo;trust hasn&#39;t been earned.&rdquo; <span class="after">&nbsp;&rarr; Now: trust exists. Protect it.</span></div>
+    </div>
+  </div>
+
+  <div class="changed">
+    <div class="num">3</div>
+    <div class="body">
+      <div class="ttl">&ldquo;Stay solo&rdquo; is no longer the revealed preference.</div>
+      <p>Why Not? argued that ten years of solo operation meant the owner had chosen this. New information: the shop is running him into the ground. That is a stated preference now, not an inferred one. He&#39;s telling us, out loud, that the current setup isn&#39;t sustainable. That changes whether help is wanted. It is.</p>
+      <div class="before"><b>Was:</b> &ldquo;he didn&#39;t ask, don&#39;t sell against the preference.&rdquo; <span class="after">&nbsp;&rarr; Now: he&#39;s asking. The preference is updating in real time.</span></div>
+    </div>
+  </div>
+
+  <div class="changed">
+    <div class="num">4</div>
+    <div class="body">
+      <div class="ttl">Capital is moving toward us, not away.</div>
+      <p>He has money he wants to invest. That is a very different conversation than &ldquo;will you accept stock instead of cash.&rdquo; It means his offer is not really &ldquo;come run my shop with me.&rdquo; It&#39;s &ldquo;I want in on something you&#39;re building.&rdquo; That reframes the whole deal: he&#39;s a potential investor in the bigger play (Solo Craft Shop OS), and his shop is the test bed. The two roles are separable, and they should be.</p>
+      <div class="before"><b>Was:</b> &ldquo;equity in his shop in exchange for work.&rdquo; <span class="after">&nbsp;&rarr; Now: his capital into our SaaS, our work into his shop. Two trades, not one.</span></div>
+    </div>
+  </div>
+
+  <h3>What did not change</h3>
+  <p class="sub">Some of the original reasons hold, and they still matter. They just need to be handled differently when the counterparty is family.</p>
+
+  <div class="twocol">
+    <div class="warn">
+      <b>Bus factor is still real.</b> The craft is still the moat. If he steps away, the shop still stops. Family doesn&#39;t change physics. We&#39;d be building infrastructure around a single craftsman whose hands are irreplaceable. This caps what the shop can ever be worth on its own, no matter how good the back office gets.
+    </div>
+    <div class="warn">
+      <b>Kit Machine is still the bet.</b> A shop relief engagement plus a SaaS bet on top of an existing portfolio is real load. The risk is not that we say yes; the risk is that the brother stuff quietly displaces FightAClaim, IRSDecoder, and the next four kits. Time budget needs an explicit defense.
+    </div>
+  </div>
+
+  <div class="callout">
+    <h3>The new principled answer</h3>
+    <p>Not a partnership in his shop. <b>A two-track deal: Track A is shop relief without equity, Track B is his capital into Solo Craft Shop OS where the upside actually lives.</b> Family makes both possible. Family also raises the cost if either one breaks, which is why both have to be on paper.</p>
+  </div>
+</section>
+
+<!-- BEFORE ANY DEAL -->
+<section class="panel" id="p-ask">
+  <h2>Before any deal, before any paper</h2>
+  <p class="sub">Until we know the answers to these, every plan is a guess. Drive down on a Saturday, take him out somewhere quiet, and find out what he actually wants. Don&#39;t lead with a pitch. Lead with questions.</p>
+
+  <h3>The seven questions</h3>
+
+  <div class="qcard">
+    <div class="q">1. What does &ldquo;running you into the ground&rdquo; actually look like?</div>
+    <div class="why">Hours per week, weekends lost, sleep, family time, physical wear. Get specific. The right Track A depends on whether he&#39;s working 60 hours, 75, or 90. If he&#39;s working 90, the first move is hours reduction, not revenue growth.</div>
+  </div>
+
+  <div class="qcard">
+    <div class="q">2. What does success look like in 3 years for you, personally?</div>
+    <div class="why">Listen for: &ldquo;same shop, half the hours,&rdquo; or &ldquo;I want to grow this,&rdquo; or &ldquo;I want out by 50.&rdquo; Each implies a completely different plan. Don&#39;t answer for him. Don&#39;t complete his sentences.</div>
+  </div>
+
+  <div class="qcard">
+    <div class="q">3. What&#39;s the capital? How much, how committed, what alternative uses?</div>
+    <div class="why">$10k is a hobby. $50k is a real angel check. $200k changes the structure of Solo Craft Shop OS. Also: is it money he can lose, or money he needs back? The honest answer here changes everything about Track B.</div>
+  </div>
+
+  <div class="qcard">
+    <div class="q">4. Have you talked to your wife about investing this in something Justin is building?</div>
+    <div class="why">Not optional. Investments through family that the spouse didn&#39;t bless become divorces. We make her part of the conversation before any number gets written down. If she&#39;s not in, the deal is not in.</div>
+  </div>
+
+  <div class="qcard">
+    <div class="q">5. Have you actually told mom and dad what&#39;s going on?</div>
+    <div class="why">Parents form theories. If parents think Justin is &ldquo;taking advantage&rdquo; or brother is &ldquo;riding Justin&#39;s coattails,&rdquo; the Christmas table gets weird. Better to surface the basic facts of any deal to parents before they hear a distorted version from someone else.</div>
+  </div>
+
+  <div class="qcard">
+    <div class="q">6. What are you willing to change about how you run the shop?</div>
+    <div class="why">If the answer is &ldquo;nothing, just take work off my plate,&rdquo; Track A is a small win and Track B is the only real move. If the answer is &ldquo;I&#39;ll raise rates, fire the worst customers, do fixed-price packages,&rdquo; Track A becomes a 2x outcome on its own.</div>
+  </div>
+
+  <div class="qcard">
+    <div class="q">7. If we do this and it doesn&#39;t work, what do you want the unwind to look like?</div>
+    <div class="why">Ask this <i>before</i> things go wrong. Get him to articulate what &ldquo;graceful exit&rdquo; means while everybody&#39;s in a good mood. If we can&#39;t answer this on a Saturday in June, we definitely can&#39;t answer it during an argument in November.</div>
+  </div>
+
+  <div class="warn"><b>Don&#39;t bring a pitch deck.</b> Don&#39;t open the laptop. Don&#39;t walk him through the four hub pages. Bring a notebook and one pen. If he wants to see the analysis, send it after, when he&#39;s home and calm. The first conversation is about him, not about us.</div>
+
+  <h3>What we are also evaluating in this conversation</h3>
+  <p class="sub">It is fine to admit, internally, that we&#39;re also reading him. Some honest signals.</p>
+  <ul class="clean">
+    <li><b>Is he describing distress or describing burnout?</b> Distress wants relief. Burnout wants out. They are different deals.</li>
+    <li><b>Does he talk about the work or the money?</b> If he loves the craft and hates the admin, Track A solves it directly. If he&#39;s tired of the craft itself, no software stack saves him.</li>
+    <li><b>How does he react to the words &ldquo;case study&rdquo; and &ldquo;reference customer&rdquo;?</b> If he&#39;s into it, customer-zero for SCSO is easy. If he&#39;s allergic to the spotlight, that part of the deal needs more privacy.</li>
+    <li><b>What does he assume Justin&#39;s motivation is?</b> If he assumes Justin will swoop in and fix it for love (no comp), the conversation needs to gently make explicit that we&#39;re also running a company.</li>
+  </ul>
+</section>
+
+<!-- TRACK A -->
+<section class="panel" id="p-track-a">
+  <h2>Track A: Get him his life back</h2>
+  <p class="sub">The shop fix. No equity in the shop. Family-grade engagement, with real scope and real numbers on paper so nobody is wondering whether the favor was repaid. This track is what immediate relief looks like.</p>
+
+  <div class="track a">
+    <div class="head"><h3>The shape</h3><span class="badge">RELIEF, NOT OWNERSHIP</span></div>
+    <p style="font-size:14.5px;margin:0">Justin builds the Edge stack for his brother&#39;s shop over a focused 8 to 12 week sprint, with weekend trips down to Walterboro for the parts that need to be in person (photos, intake setup, owner training, CNC integration). Psyduck takes over the back office as soon as inbox routing is wired up: quote drafting, inquiry triage, content engine, review automation. Brother does the raise-rates, fire-the-bottom-20%, fixed-price-packages moves from the Landscape playbook. Goal: reclaim 10 to 15 hours a week within 90 days while holding or growing revenue.</p>
+    <div class="stat">
+      <div class="kpi"><div class="n">8-12 wk</div><div class="l">Initial build sprint</div></div>
+      <div class="kpi"><div class="n">10-15 hr/wk</div><div class="l">Hours back to him</div></div>
+      <div class="kpi"><div class="n">30-40%</div><div class="l">Rate increase on new bookings</div></div>
+      <div class="kpi"><div class="n">~$200k&rarr;$280k</div><div class="l">Revenue trajectory, year 1</div></div>
+    </div>
+  </div>
+
+  <h3>What gets built in the sprint</h3>
+  <div class="twocol">
+    <div class="deep">
+      <h4 style="margin-top:0">Justin builds (the software layer)</h4>
+      <ul class="clean">
+        <li>New site on coastalboat.works with clear pricing tiers</li>
+        <li>Intake form &rarr; quote pipeline (template, send, follow-up)</li>
+        <li>Photo-to-post pipeline (phone photo &rarr; Facebook/IG/Google post)</li>
+        <li>Fixed-price package storefront (EVA decking, dash panels)</li>
+        <li>Customer portal: status, invoices, maintenance reminders</li>
+        <li>Google Business Profile claim, Yelp claim, review automation</li>
+        <li>Internal job tracker, deposit handling, waitlist</li>
+      </ul>
+    </div>
+    <div class="deep">
+      <h4 style="margin-top:0">Psyduck runs (the ops layer)</h4>
+      <ul class="clean">
+        <li>Inbox triage (decide which messages need brother&#39;s attention)</li>
+        <li>Quote drafting from intake forms (he edits and approves)</li>
+        <li>Daily content: before/after photo posts with captions</li>
+        <li>Review request automation after every completed job</li>
+        <li>Weekly SEO content (decking guides, pontoon Q&amp;A, etc.)</li>
+        <li>Monthly snapshot: revenue, lead source, response time, NPS</li>
+        <li>Vendor and surveyor outreach drafted, brother sends</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>How he pays for this</h3>
+  <p class="sub">This is the part where most family deals go wrong. Make it explicit. Pick one and write it down before any work starts.</p>
+
+  <table>
+    <thead><tr><th>Option</th><th>Numbers</th><th>When it fits</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="term">Family rate, paid</td>
+        <td>$5,000 build (vs. $12-15k market) + $500/mo ops (vs. $1,200-1,500). Net cost ~$11k year 1.</td>
+        <td><b>Default choice.</b> Real money on paper. He pays what he&#39;d pay a good freelance team at a discount. Nobody owes a favor. Cleanest for the relationship.</td>
+      </tr>
+      <tr>
+        <td class="term">At cost</td>
+        <td>Brother covers hard costs (hosting, tools, materials). Justin&#39;s and Psyduck&#39;s time is free. ~$1-2k year 1.</td>
+        <td>Only if Track B (the SCSO investment) is happening alongside, and we explicitly treat Track A as included in the broader relationship. Has to be written down anyway.</td>
+      </tr>
+      <tr>
+        <td class="term">Sweat for cap table</td>
+        <td>Justin&#39;s time on Track A counts toward Justin&#39;s contribution into Solo Craft Shop OS, dollar-for-dollar against brother&#39;s capital.</td>
+        <td>Cleanest if Track B is definitely happening. Tracks the time honestly, balances effort vs. capital, doesn&#39;t mix anyone&#39;s money into the wrong entity.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note"><b>Pick one and don&#39;t mix.</b> The thing that destroys family business arrangements is &ldquo;well, we&#39;ll figure it out later.&rdquo; You won&#39;t. Pick the structure that fits, paper it, and move on.</div>
+
+  <h3>What Track A is not</h3>
+  <ul class="clean">
+    <li><b>Not equity in the shop.</b> Brother keeps 100%. If we ever wanted in on his shop&#39;s upside, this is not how. Track B is the upside vehicle.</li>
+    <li><b>Not co-owning the IP.</b> Anything that&#39;s generalizable (the configurator, the templates, the playbooks) belongs to us and gets a perpetual free license for his shop. This protects Solo Craft Shop OS later.</li>
+    <li><b>Not an open-ended commitment.</b> 12 month renewal. If either side wants out at the anniversary, clean break, brother keeps the site and gets exported data, Psyduck stops running the inbox.</li>
+    <li><b>Not us deciding what his shop is.</b> Pricing, craft scope, hiring, customers fired or kept, all his call. We advise. He decides.</li>
+  </ul>
+
+  <blockquote>Track A is &ldquo;your kid brother is a software engineer with an AI sidekick, and he&#39;s offering you the same service he&#39;d build for a paying customer, at a family rate, because the alternative is watching you grind yourself down.&rdquo; That&#39;s the whole pitch.</blockquote>
+</section>
+
+<!-- TRACK B -->
+<section class="panel" id="p-track-b">
+  <h2>Track B: His capital, our bet</h2>
+  <p class="sub">The bigger play. Brother invests in Solo Craft Shop OS as a real angel, on standard terms. His shop is customer-zero. He gets uncapped exposure to the SaaS business, not just his own shop&#39;s ceiling. This is where his money actually has a chance to compound.</p>
+
+  <div class="track b">
+    <div class="head"><h3>The shape</h3><span class="badge">FAMILY MONEY, REAL TERMS</span></div>
+    <p style="font-size:14.5px;margin:0">Solo Craft Shop OS is a SaaS for solo craft shops (boat refit, woodworking, metal fab, leather, knife makers, gunsmiths, instrument repair, taxidermy, custom auto, RV refit, custom signage, etc.). The Edge stack, productized. Brother invests cash. He gets equity in the SaaS company. His shop is the founding customer and the case study. He gets the product free for life regardless of how the investment plays out.</p>
+    <div class="stat">
+      <div class="kpi"><div class="n">$149/mo</div><div class="l">Target ASP</div></div>
+      <div class="kpi"><div class="n">500</div><div class="l">Year-2 customer target</div></div>
+      <div class="kpi"><div class="n">~$894k</div><div class="l">ARR at target</div></div>
+      <div class="kpi"><div class="n">5-20x</div><div class="l">Plausible return on capital at exit</div></div>
+    </div>
+  </div>
+
+  <h3>Recommended investment structure</h3>
+  <p class="sub">Use a real SAFE. Not a handshake. Not a Google Doc. A standard Y Combinator post-money SAFE with a real cap and a discount. Cost: $0 (it&#39;s a free template) plus a few hundred dollars for a real lawyer to sign off. This is the single biggest thing we can do to protect the family.</p>
+
+  <table>
+    <thead><tr><th>Term</th><th>Recommended</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="term">Instrument</td>
+        <td>YC post-money SAFE</td>
+        <td>Industry standard. Lawyers know it. Future investors expect it. Cheap to paper. Avoids needing a 409A valuation today.</td>
+      </tr>
+      <tr>
+        <td class="term">Valuation cap</td>
+        <td>$2-4M post-money (negotiable based on check size)</td>
+        <td>Pre-revenue cap range for a credible founding team with a clear thesis. Generous to brother as an early believer, not insulting to founder economics.</td>
+      </tr>
+      <tr>
+        <td class="term">Discount</td>
+        <td>20%</td>
+        <td>Standard. Recognizes that brother is taking on more risk than the next round investor will.</td>
+      </tr>
+      <tr>
+        <td class="term">Check size</td>
+        <td>$25k floor, $100k ceiling for this round</td>
+        <td>Floor is meaningful enough to be worth papering. Ceiling keeps the cap table reasonable and leaves room for outside investors later if needed. Anything bigger and we&#39;re building a company that exists to spend brother&#39;s money, not the other way around.</td>
+      </tr>
+      <tr>
+        <td class="term">MFN clause</td>
+        <td>Yes</td>
+        <td>Brother automatically gets any better terms a later investor gets. Cheap fairness. Standard.</td>
+      </tr>
+      <tr>
+        <td class="term">Information rights</td>
+        <td>Quarterly written update + annual financials + 1-hour call per year. No board seat.</td>
+        <td>Investor visibility. Not operator control. If brother wants more, he&#39;s buying the wrong product.</td>
+      </tr>
+      <tr>
+        <td class="term">Customer-zero perks (separate doc)</td>
+        <td>Free SCSO for life for his shop, founding-customer pricing if a successor takes over, named on case study with his consent</td>
+        <td>This sits in a separate customer agreement, not the SAFE. Keeps investor and customer roles cleanly distinct.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>What brother gets, all in</h3>
+  <div class="threecol">
+    <div class="note">
+      <b>From Track A</b><br>His shop fixed. Hours back. Revenue up. Stays 100% owner of the craft business.
+    </div>
+    <div class="note">
+      <b>From Track B (the SAFE)</b><br>Plausible 5-20x on capital if SCSO works. 0x and a clean writedown if it doesn&#39;t. Tax-deductible loss if structured correctly.
+    </div>
+    <div class="note">
+      <b>From the customer-zero side deal</b><br>The SaaS product free for life. Co-development input on a roadmap that affects his shop directly.
+    </div>
+  </div>
+
+  <h3>What brother does <i>not</i> get</h3>
+  <ul class="clean">
+    <li><b>Operating control of SCSO.</b> Investor, not co-founder. He picked his business. We&#39;re picking ours.</li>
+    <li><b>Veto on product decisions.</b> Information rights are not vote rights.</li>
+    <li><b>A board seat.</b> The cap table stays small and clean. If/when a real round happens, we revisit governance then.</li>
+    <li><b>A pro-rata into every future round.</b> MFN treats him fairly without locking us into terms that hurt fundraising later.</li>
+    <li><b>Guaranteed return.</b> SAFEs are equity. They can go to zero. He has to know this and sign acknowledging it.</li>
+  </ul>
+
+  <div class="callout gold">
+    <h3>Why this is better for him than partnership in his shop</h3>
+    <p>A 25% partnership in his shop caps his upside at the shop&#39;s ceiling, which the Landscape page put at maybe $300-500k revenue in any honest scenario. A $50k SAFE in SCSO at a $2M cap puts him on a vehicle that, if it works, hits $5-25M+ enterprise value. The math isn&#39;t close. And in the partnership-in-shop scenario, he&#39;s still doing the craft work. In the SAFE scenario, his only job is to be a great customer-zero and to take Justin&#39;s call once a quarter. Less work, more upside, and his shop still gets fixed.</p>
+  </div>
+</section>
+
+<!-- FAMILY RISKS -->
+<section class="panel" id="p-risks">
+  <h2>What could blow this up</h2>
+  <p class="sub">Family business is the hardest kind. Most family deals fail not because of the business but because nobody said out loud what could go wrong before it did. Here are the eight scenarios that kill these arrangements, and what we put in place up front to keep each one from ending Thanksgiving.</p>
+
+  <div class="risk">
+    <div class="ttl">1. The shop fix doesn&#39;t work and brother blames us.</div>
+    <p style="font-size:13.5px;margin:0">Edge stack ships, brother doesn&#39;t actually raise rates or fire the bottom 20%, revenue is flat, hours don&#39;t drop. He concludes &ldquo;Justin&#39;s software didn&#39;t help.&rdquo;</p>
+    <div class="mit"><b>Mitigation:</b> Track A scope and goals are written down at the start, with brother&#39;s commitments explicit (he agrees to the rate hike, the bottom-cut, the package pricing). Monthly snapshot, both sides signed. At 6 months, written go/no-go. If we&#39;re honest in the snapshot, nobody can rewrite the story later.</div>
+  </div>
+
+  <div class="risk">
+    <div class="ttl">2. SCSO fails and brother loses his investment.</div>
+    <p style="font-size:13.5px;margin:0">SaaS doesn&#39;t hit traction. Cash runs out. Brother&#39;s $50k is gone. Family quietly wonders if Justin took advantage.</p>
+    <div class="mit"><b>Mitigation:</b> Sign a written acknowledgement that he understands SAFEs are risk capital and can go to zero. Cap check size at money he can lose. Keep his spouse in the loop from day one. Send him every quarterly update on time, even bad ones, especially bad ones.</div>
+  </div>
+
+  <div class="risk">
+    <div class="ttl">3. SCSO succeeds wildly and brother feels under-equitied.</div>
+    <p style="font-size:13.5px;margin:0">Solo Craft Shop OS hits $5M ARR. Brother&#39;s $50k is now &ldquo;only&rdquo; 2% of the cap table. He says &ldquo;I was the first believer, I deserve more.&rdquo;</p>
+    <div class="mit"><b>Mitigation:</b> MFN clause already protects him from being diluted unfairly. Put the cap table in writing. Send him a refresher every 6 months showing his current ownership. If he wants more equity, he can write a bigger check. Equity is not a thank-you note.</div>
+  </div>
+
+  <div class="risk">
+    <div class="ttl">4. Brother wants more control.</div>
+    <p style="font-size:13.5px;margin:0">Things are going well, brother starts saying &ldquo;you know, I&#39;d like to come to the planning meetings,&rdquo; or &ldquo;I think we should pivot toward boats specifically.&rdquo;</p>
+    <div class="mit"><b>Mitigation:</b> Information rights are written down up front, and so are the limits. &ldquo;You get a quarterly update and an annual call. You don&#39;t get the planning meetings. You picked the boat shop on purpose; we&#39;re running the SaaS.&rdquo; Easier to say once than every quarter.</div>
+  </div>
+
+  <div class="risk">
+    <div class="ttl">5. Brother burns out anyway and wants to sell or close the shop.</div>
+    <p style="font-size:13.5px;margin:0">Track A helps but he&#39;s still tired. He decides to sell or wind down. Where does that leave the customer-zero case study?</p>
+    <div class="mit"><b>Mitigation:</b> Customer-zero agreement transfers to a successor operator if he sells, or terminates cleanly if he closes. SCSO doesn&#39;t depend on his shop existing forever. By the time it would matter, we should have 50+ other customers and not need him as the headline anyway.</div>
+  </div>
+
+  <div class="risk">
+    <div class="ttl">6. Spouse on either side becomes the dealbreaker.</div>
+    <p style="font-size:13.5px;margin:0">Brother&#39;s wife thinks the investment is risky. Justin&#39;s partner thinks the family discount is unfair. Resentment moves laterally through the family.</p>
+    <div class="mit"><b>Mitigation:</b> Both spouses read and acknowledge the deal terms before signing. If either has reservations, those get addressed before, not during. This is non-optional. If a spouse won&#39;t sign off, the deal doesn&#39;t happen.</div>
+  </div>
+
+  <div class="risk">
+    <div class="ttl">7. Parents pick a side, or imagine one was picked.</div>
+    <p style="font-size:13.5px;margin:0">Parents hear something at Thanksgiving and form a theory. The theory becomes the family story. Now there&#39;s a side.</p>
+    <div class="mit"><b>Mitigation:</b> Tell parents the basic facts up front, in a low-key way, before anyone else does. Not the SAFE terms. Just &ldquo;hey, we&#39;re going to work together on his shop, and he&#39;s going to put a little money into a thing I&#39;m starting. Both are on paper. Both have outs. We&#39;re fine.&rdquo;</div>
+  </div>
+
+  <div class="risk">
+    <div class="ttl">8. The relationship is the thing that breaks, even when the deals are fine.</div>
+    <p style="font-size:13.5px;margin:0">Both deals technically work. But the brothers stop being brothers and start being &ldquo;business associates.&rdquo; Christmas dinner gets cold.</p>
+    <div class="mit"><b>Mitigation:</b> Quarterly call has a non-business 30 minutes attached. No deal talk on holidays unless both volunteer. If something&#39;s tense in the business, name it once and clear it; don&#39;t let it sit. And: one hard test. If either brother says &ldquo;the deal is hurting us,&rdquo; the other has to take that seriously without arguing first.</div>
+  </div>
+
+  <div class="callout rust">
+    <h3>The one rule that prevents 80% of family business breakups</h3>
+    <p>Write everything down. Family is the reason to paper it, not the reason to skip the paperwork. The relationship is too valuable to put on a handshake. Every term in this document gets signed, and both sides keep a copy. Future-you, in any disagreement, will be very glad past-you wrote it down.</p>
+  </div>
+</section>
+
+<!-- PAPERWORK -->
+<section class="panel" id="p-paper">
+  <h2>What gets written down, and in what document</h2>
+  <p class="sub">Don&#39;t mix entities. Don&#39;t mix instruments. Each thing belongs in exactly one document. Total legal cost for the whole package: probably $1,500 to $3,000 with a small-business lawyer who knows angel deals. Cheap insurance.</p>
+
+  <h3>The five documents</h3>
+
+  <div class="deep">
+    <h4 style="margin-top:0">1. Track A Services Agreement (Justin LLC &harr; Coastal Boat Works LLC)</h4>
+    <p style="font-size:14px;margin:0">Scope of work. Sprint deliverables. Monthly ops responsibilities. Payment terms (whichever family-rate option got picked). 12-month term with anniversary go/no-go. Termination clause: 30-day notice either side, brother keeps site assets and exported data, Justin/Psyduck retain all generalizable IP.</p>
+  </div>
+
+  <div class="deep">
+    <h4 style="margin-top:0">2. SCSO SAFE (Brother &harr; Solo Craft Shop OS LLC/C-Corp)</h4>
+    <p style="font-size:14px;margin:0">Standard YC post-money SAFE. Cap, discount, MFN. Information rights schedule attached. Signed by brother, countersigned by Justin as authorized officer of the company.</p>
+  </div>
+
+  <div class="deep">
+    <h4 style="margin-top:0">3. SCSO Customer-Zero Agreement (Coastal Boat Works LLC &harr; SCSO entity)</h4>
+    <p style="font-size:14px;margin:0">Free product for life for his shop. Founding-customer pricing if a successor takes over. Case study consent and usage rights. Roadmap input rights (non-binding). Separate from the SAFE on purpose: customer status and investor status are different roles, and they should be different papers.</p>
+  </div>
+
+  <div class="deep">
+    <h4 style="margin-top:0">4. Spousal acknowledgements (one per spouse)</h4>
+    <p style="font-size:14px;margin:0">Two short letters. One from brother&#39;s spouse acknowledging the SAFE investment and the risk of loss. One from Justin&#39;s significant other (if applicable) acknowledging the family-rate engagement. Not legally required in most jurisdictions, but very useful for &ldquo;we discussed this, we&#39;re aligned.&rdquo;</p>
+  </div>
+
+  <div class="deep">
+    <h4 style="margin-top:0">5. The Unwind Memo (signed by both brothers, kept by both)</h4>
+    <p style="font-size:14px;margin:0">A one-page document, written before any of this is live, that says: &ldquo;If we have to unwind the Track A engagement, here&#39;s how. If we have to unwind the SCSO investment, here&#39;s how. If one of us decides to stop, here&#39;s how the other one finds out and what happens next.&rdquo; Not legally binding necessarily. Strongly emotionally binding. Future versions of both brothers will thank present versions for writing it.</p>
+  </div>
+
+  <h3>Who signs what, when</h3>
+  <table>
+    <thead><tr><th>Document</th><th>Signed by</th><th>When</th></tr></thead>
+    <tbody>
+      <tr><td>Track A Services Agreement</td><td>Justin (or his entity), Brother (CBW LLC)</td><td>Before any sprint work starts</td></tr>
+      <tr><td>SCSO SAFE</td><td>Brother, Justin (as SCSO officer)</td><td>When SCSO entity exists. Can wait if it&#39;s not ready.</td></tr>
+      <tr><td>Customer-Zero Agreement</td><td>CBW LLC, SCSO entity</td><td>Same time as the SAFE</td></tr>
+      <tr><td>Spousal acknowledgements</td><td>Each spouse, on the relevant doc</td><td>Same time as the doc they cover</td></tr>
+      <tr><td>Unwind Memo</td><td>Both brothers</td><td>Before any of the above. This one goes first.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note"><b>Use a real lawyer.</b> Not LegalZoom. Not us. A small-business or startup lawyer with SAFE experience. $1,500-3,000 total. Cheapest insurance the brothers will ever buy. If brother resists this on cost grounds, Justin covers it as a personal expense. It is genuinely that important.</div>
+
+  <h3>What we don&#39;t paper, but should still agree on out loud</h3>
+  <ul class="clean">
+    <li><b>Communication cadence.</b> Quarterly investor update is the formal one. Casual texts and Sunday calls stay the way they always were. Don&#39;t businessify the brotherly relationship.</li>
+    <li><b>Money talk boundaries.</b> If brother needs to vent about the shop or the investment, say so explicitly so it doesn&#39;t bleed into normal conversation.</li>
+    <li><b>Holiday rule.</b> No deal talk on Thanksgiving, Christmas, or birthdays unless both volunteer.</li>
+    <li><b>The honesty floor.</b> If either brother thinks something is off, they say it within a week. Not a month. Not at the holidays. Now.</li>
+  </ul>
+</section>
+
+<!-- DINNER -->
+<section class="panel" id="p-dinner">
+  <h2>What I&#39;d actually say to him at dinner</h2>
+  <p class="sub">All the structure above is right and necessary. But the first conversation isn&#39;t a SAFE. It&#39;s an honest one. Here&#39;s the rough shape of what Justin would actually say if we sat down with him over food in Walterboro or halfway up the I-95 corridor.</p>
+
+  <div class="dinner">
+    <h4>The opening (after the small talk, before the entree)</h4>
+    <p><span class="speaker">Justin:</span> &ldquo;Look. I&#39;ve been thinking about what you said about the shop running you into the ground. I want to talk about it honestly, but I also want to be careful, because you&#39;re my brother and I don&#39;t want to screw this up. So before I throw any ideas at you, I need to ask: what does success look like for you in three years? Not for the shop. For you.&rdquo;</p>
+    <p style="color:var(--muted);font-style:italic;font-size:13.5px">Listen. Don&#39;t interrupt. Don&#39;t complete his sentences. Order another drink if you have to.</p>
+  </div>
+
+  <div class="dinner">
+    <h4>The honest part (after he&#39;s told you what he wants)</h4>
+    <p><span class="speaker">Justin:</span> &ldquo;Okay. Here&#39;s what I think I can do, and here&#39;s what I can&#39;t. I can build you the software and ops layer your shop needs so you get 10 to 15 hours a week back and your revenue goes up, not down. Real numbers, on paper, with a 6-month checkpoint. I don&#39;t want equity in your shop for that. I want to charge you a fair family rate and have it be clean.&rdquo;</p>
+    <p><span class="speaker">Justin:</span> &ldquo;Separately, that capital you mentioned: I&#39;m starting a thing called Solo Craft Shop OS. It&#39;s the same stack I&#39;d build for you, but as a product, sold to a few hundred shops like yours. If you want in, I&#39;ll take your check at angel-investor terms, with real paperwork, and your shop becomes the case study. You get the product free for life either way. The investment can go to zero. You should only put in money you can lose.&rdquo;</p>
+  </div>
+
+  <div class="dinner">
+    <h4>The thing that matters most (before dessert)</h4>
+    <p><span class="speaker">Justin:</span> &ldquo;Whatever we decide, I want both of these things on paper. Not because I don&#39;t trust you. Because I do. The reason we paper it is so we never have to argue about what we meant. And I want both [spouses, if applicable] to read the terms before we sign anything. And I want us to talk to mom and dad before they hear about it from anyone else.&rdquo;</p>
+    <p><span class="speaker">Justin:</span> &ldquo;And one more thing. If at any point this is hurting us, not the businesses, us, I need you to tell me. And I&#39;ll do the same. The shop and the SaaS are not worth this relationship. Not even close.&rdquo;</p>
+  </div>
+
+  <div class="dinner">
+    <h4>The check, the parking lot, the goodbye</h4>
+    <p><span class="speaker">Justin:</span> &ldquo;Take a week. Talk to [spouse]. Sleep on it. Don&#39;t answer me tomorrow. I&#39;ll send you the four hub pages so you can read the analysis when you&#39;re ready. No rush.&rdquo;</p>
+    <p style="color:var(--muted);font-style:italic;font-size:13.5px">Hug him. Drive home. Don&#39;t text him about it for at least 72 hours unless he texts first.</p>
+  </div>
+
+  <blockquote>The deal is the easy part. The conversation is the hard part. Do the conversation right and the deal almost writes itself.</blockquote>
+
+  <div class="callout">
+    <h3>One last thing, just for us</h3>
+    <p>If brother says no to both tracks and just wants to keep doing what he&#39;s doing, that&#39;s the right answer for him and we respect it completely. If he says yes to Track A but no to Track B, that&#39;s fine; we help him for a fair rate, we build SCSO anyway, his shop is just a normal customer (or not). If he says yes to Track B but no to Track A, that&#39;s also fine; we take his check, we build SCSO, his shop fixes itself on whatever timeline he chooses. The whole point of two tracks is that they&#39;re independent. There&#39;s no version of this where we&#39;re sad about the outcome, as long as we had the honest conversation and we got the paperwork right.</p>
+  </div>
+</section>
+
+</div>
+
+<footer><div class="wrap">
+  <span>The Brotherhood &middot; private project &middot; compiled June 2026 &middot; <span class="version-tag">v&mdash;</span></span>
+  <span><a href="../" style="color:var(--teal)">&larr; back to hub</a></span>
+</div></footer>
+
+<script>
+const tabs = document.querySelectorAll('nav.tabs button');
+const panels = document.querySelectorAll('section.panel');
+tabs.forEach(btn => btn.addEventListener('click', () => {
+  const id = 'p-' + btn.dataset.p;
+  tabs.forEach(b => b.classList.toggle('active', b === btn));
+  panels.forEach(p => p.classList.toggle('active', p.id === id));
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+</script>
+<script src="/script.js"></script>
+</body>
+</html>
