@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-17T13:22:14.156395+00:00",
-  "updatedMs": 1781702534156,
+  "updated": "2026-06-17T13:52:15.209176+00:00",
+  "updatedMs": 1781704335209,
   "channels": [
     {
       "id": "telegram",
@@ -25,12 +25,12 @@
     {
       "id": "anthropic",
       "name": "Anthropic",
-      "status": "unknown",
-      "note": "could not read usage",
-      "session_pct": null,
-      "session_remain": null,
-      "week_pct": null,
-      "week_remain": null,
+      "status": "ok",
+      "note": "session 88% \u00b7 1h 37m \u00b7 week 82% \u00b7 4d 20h \u00b7 oauth 28m",
+      "session_pct": 88,
+      "session_remain": "1h 37m",
+      "week_pct": 82,
+      "week_remain": "4d 20h",
       "models": [
         "Claude Sonnet 4.6",
         "Claude Haiku 4.5",
@@ -42,7 +42,7 @@
       "name": "OpenAI",
       "status": "ok",
       "note": "available",
-      "unlock_date": "May 30",
+      "unlock_date": null,
       "models": [
         "ChatGPT / Codex"
       ]
