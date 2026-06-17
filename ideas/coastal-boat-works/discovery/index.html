@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coastal Boat Works — Discovery</title>
+<style>
+  :root{
+    --navy:#0d2b45; --navy2:#11395c; --teal:#1d7a8c; --teal2:#2a9db5;
+    --sand:#f4efe6; --ink:#1b2733; --muted:#5d6b7a; --line:#dde3ea;
+    --green:#2e8b57; --amber:#d99100; --red:#c0392b; --rust:#b8541a;
+    --purple:#6b3fb0; --gold:#b88a2c; --corps:#a83232; --card:#ffffff;
+    --shadow:0 1px 3px rgba(13,43,69,.08),0 6px 18px rgba(13,43,69,.06);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--sand);line-height:1.55;font-size:15.5px}
+  header.hero{background:linear-gradient(135deg,var(--navy),var(--amber));color:#fff;padding:32px 28px 28px}
+  header.hero .wrap{max-width:1080px;margin:0 auto}
+  header.hero h1{margin:0 0 8px;font-size:28px;letter-spacing:.2px}
+  header.hero p{margin:0;opacity:.95;font-size:15px;max-width:840px}
+  header.hero .crumb{font-size:12.5px;opacity:.85;margin-bottom:8px}
+  header.hero .crumb a{color:#f6e2b8;text-decoration:none;margin-right:6px}
+  header.hero .crumb a:hover{color:#fff;text-decoration:underline}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  section.main{padding:28px 0 60px}
+  h2{font-size:22px;margin:6px 0 6px;color:var(--navy)}
+  h3{font-size:16.5px;color:var(--navy2);margin:22px 0 8px}
+  h4{font-size:14.5px;color:var(--navy2);margin:14px 0 6px}
+  .sub{color:var(--muted);font-size:14.5px;margin:0 0 18px;max-width:820px}
+  .deep{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;box-shadow:var(--shadow);margin:14px 0}
+  .deep h3:first-child,.deep h4:first-child{margin-top:0}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+  .callout{background:linear-gradient(135deg,var(--navy),var(--amber));color:#fff;border-radius:12px;padding:20px 24px;margin:16px 0}
+  .callout h3{color:#fff;margin:0 0 8px;font-size:18px}
+  .callout p{margin:6px 0;font-size:14.5px;opacity:.96}
+  .callout.red{background:linear-gradient(135deg,#1b2733,var(--red))}
+  .callout.green{background:linear-gradient(135deg,#0d2b45,var(--green))}
+  .warn{background:#fdf3e3;border:1px solid #f0d8a8;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:12px 0}
+  .warn b{color:var(--amber)}
+  .note{background:#eef9f1;border:1px solid #bfe6cc;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:12px 0}
+  .red{background:#fdecea;border:1px solid #f3c9c3;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:12px 0}
+  ul.clean{font-size:14.5px;padding-left:20px} ul.clean li{margin:6px 0}
+  .fact{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;box-shadow:var(--shadow);margin:18px 0;border-left:5px solid var(--amber)}
+  .fact .head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+  .fact .num{width:32px;height:32px;border-radius:9px;background:var(--amber);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px}
+  .fact .ttl{font-weight:700;color:var(--navy);font-size:16.5px}
+  .fact .when{margin-left:auto;font-size:12px;color:var(--muted);letter-spacing:.4px;text-transform:uppercase}
+  .fact .body{font-size:14.5px}
+  .fact .impact{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:14px;background:#fefaf2;margin-left:-22px;margin-right:-22px;margin-bottom:-18px;padding:14px 22px 18px;border-radius:0 0 12px 12px}
+  .fact .impact b{color:var(--navy)}
+  .fact .impact .pages{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+  .fact .impact .pages a{font-size:11.5px;background:#fdf0e0;color:var(--rust);padding:2px 9px;border-radius:20px;font-weight:600;text-decoration:none}
+  .fact .impact .pages a:hover{background:#fae5cc}
+  .stat{display:flex;flex-wrap:wrap;gap:14px;margin:14px 0}
+  .stat .kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;box-shadow:var(--shadow);min-width:140px;flex:1}
+  .stat .kpi .n{font-size:22px;font-weight:800;color:var(--amber)}
+  .stat .kpi.red .n{color:var(--red)}
+  .stat .kpi.green .n{color:var(--green)}
+  .stat .kpi.navy .n{color:var(--navy)}
+  .stat .kpi .l{font-size:12.5px;color:var(--muted);margin-top:2px}
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;
+    font-size:13.5px;margin:10px 0;box-shadow:var(--shadow)}
+  thead th{background:var(--navy);color:#fff;text-align:left;padding:10px 12px;font-weight:600;font-size:12.5px}
+  tbody td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:last-child td{border-bottom:0}
+  td.term{font-weight:700;color:var(--navy);width:170px}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  .week{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;box-shadow:var(--shadow);margin:14px 0}
+  .week table{box-shadow:none;margin:0}
+  .week table thead th{background:#f0e9d8;color:var(--navy);font-size:11.5px}
+  .week .total{font-weight:700;color:var(--red)}
+  blockquote{border-left:4px solid var(--amber);background:#fef8e6;margin:14px 0;padding:12px 18px;border-radius:0 8px 8px 0;color:var(--ink);font-size:14.5px;font-style:italic}
+  footer{padding:26px 0 50px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);margin-top:20px}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+  .version-tag{font-variant-numeric:tabular-nums}
+  @media(max-width:860px){.twocol,.threecol{grid-template-columns:1fr}thead th{position:static}
+    table{display:block;overflow-x:auto;white-space:nowrap}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="../">&larr; hub</a>&middot;<a href="../landscape/">landscape</a>&middot;<a href="../why-not/">why not?</a>&middot;<a href="../the-edge/">the edge</a>&middot;<a href="../the-partnership/">the partnership</a>&middot;<a href="../the-brotherhood/">the brotherhood</a>&middot;<a href="../the-corps/">the corps</a></div>
+    <h1>Discovery</h1>
+    <p>This page is a running log of things we&#39;ve <i>actually</i> learned about Coastal Boat Works that change the analysis on the other pages. Each entry names the new fact, says when we learned it, and lists which pages and which assumptions it invalidates. The other pages are guesses anchored to public data. This one is ground truth from Jeremy.</p>
+  </div>
+</header>
+
+<section class="main">
+<div class="wrap">
+
+<div class="callout">
+  <h3>Why this page exists</h3>
+  <p>The Landscape page made reasoned estimates with explicit confidence scores: 35-50% confident on revenue, 40% confident on hourly rate, 70% confident on headcount. Most of the analysis sits on those estimates. As we learn the real numbers from Jeremy, the older pages don&#39;t get rewritten on the spot. Instead, the facts land here, dated and tagged, and the &ldquo;what this means&rdquo; bit calls out exactly which prior assumptions just got falsified. <b>Discovery is the diff log between what we guessed and what&#39;s actually true.</b></p>
+</div>
+
+<h2>Facts as of June 17, 2026</h2>
+
+<!-- FACT 1: hourly rate -->
+<div class="fact">
+  <div class="head">
+    <div class="num">1</div>
+    <div class="ttl">Jeremy&#39;s actual hourly rate is $125/hr, not $85/hr</div>
+    <div class="when">JUNE 17, 2026</div>
+  </div>
+  <div class="body">
+    <p>The Landscape page estimated $75-95/hr with $85 as the midpoint, at 40% confidence. The real number is <b>$125/hr</b>, which is 47% higher than our estimate and puts him at the high end of mid-tier coastal pricing, not the value end. He&#39;s already above Marsh Harbor ($80) and within the Charleston/HHI labor band ($95-130). The &ldquo;he&#39;s priced like 2014&rdquo; framing was wrong; he&#39;s closer to current market on rate. What he&#39;s underpriced on is something else (probably packaging, minimums, or off-hours premiums; needs another conversation to confirm).</p>
+  </div>
+  <div class="impact">
+    <b>What this changes:</b>
+    <ul class="clean" style="margin:6px 0 0">
+      <li><b>Landscape page:</b> the &ldquo;raise rates 30-40%&rdquo; line in the turnaround plan is too aggressive at this base. A 15-20% bump on top of $125 lands at $144-150, which is the coastal yard ceiling. Above that, he&#39;s pricing against Ross Marine and Zimmerman, who have travel-lift yards and physical waterfront. He can&#39;t hold that price without something equivalent (specialization, brand, scarcity signal).</li>
+      <li><b>Landscape revenue estimate:</b> the $150-300k revenue band at $85/hr assumed a solo operator at ~$85 &times; 1,700-3,500 billable hours. At $125/hr the same hours yield $213k-438k, with the realistic midpoint near $325k for solo. <i>Direction: he&#39;s probably making more than the Landscape suggested, but he&#39;s working many more hours than the Landscape assumed (see Fact #2). Net revenue picture: TBD until we know the actual billable-hours figure.</i></li>
+      <li><b>Why Not? page (scenarios A and B):</b> the &ldquo;raise rates&rdquo; lever in Scenario A is smaller than the page suggested. The Compound Effect math assumed $85 base; needs a sweep with $125 base. Likely the conclusion holds (raising rates still helps), but the magnitudes are off.</li>
+      <li><b>The Edge page (compounded math):</b> the +$490k over 5 years figure used $85 as a baseline. With $125 base, the rate-related gains shrink and the productized-revenue gains hold or grow. The total still rises, but the mix of <i>where the $490k comes from</i> shifts toward kits and away from rate hikes.</li>
+      <li><b>Brotherhood Track A:</b> the &ldquo;raise rates 30-40%&rdquo; instruction needs to be rewritten as &ldquo;raise rates a smaller amount (10-15%) and combine with minimums, deposits, and a waitlist signal.&rdquo; The dollar-per-hour increase is now table stakes; the lever is shifting the mix toward fixed-price packages and away from billable hours.</li>
+    </ul>
+    <div class="pages">
+      <span>Affects:</span>
+      <a href="../landscape/">Landscape</a>
+      <a href="../why-not/">Why Not?</a>
+      <a href="../the-edge/">The Edge</a>
+      <a href="../the-brotherhood/">Brotherhood (Track A)</a>
+    </div>
+  </div>
+</div>
+
+<!-- FACT 2: hours worked -->
+<div class="fact">
+  <div class="head">
+    <div class="num">2</div>
+    <div class="ttl">Jeremy&#39;s actual work week: 60-80+ hours, not 40-50</div>
+    <div class="when">JUNE 17, 2026</div>
+  </div>
+  <div class="body">
+    <p>Stated schedule: Monday through Friday <b>8am to 7pm</b> (11 hours/day), Saturday <b>8am to noon</b> (4 hours). That&#39;s already <b>59 hours per week</b> at baseline. But he frequently extends to <b>10pm</b> on weekdays (which would be 14 hours/day), works <i>all day</i> on Saturday instead of stopping at noon, and sometimes works Sundays too. The realistic ceiling is closer to <b>75-85 hours per week</b>.</p>
+    <div class="week">
+      <h4 style="margin-top:0">A typical week, by the numbers</h4>
+      <table>
+        <thead><tr><th>Day</th><th>Stated</th><th>Hours</th><th>Frequent overrun</th><th>Hours (worst case)</th></tr></thead>
+        <tbody>
+          <tr><td>Mon</td><td class="num">8am - 7pm</td><td class="num">11</td><td>often to 10pm</td><td class="num">14</td></tr>
+          <tr><td>Tue</td><td class="num">8am - 7pm</td><td class="num">11</td><td>often to 10pm</td><td class="num">14</td></tr>
+          <tr><td>Wed</td><td class="num">8am - 7pm</td><td class="num">11</td><td>often to 10pm</td><td class="num">14</td></tr>
+          <tr><td>Thu</td><td class="num">8am - 7pm</td><td class="num">11</td><td>often to 10pm</td><td class="num">14</td></tr>
+          <tr><td>Fri</td><td class="num">8am - 7pm</td><td class="num">11</td><td>often to 10pm</td><td class="num">14</td></tr>
+          <tr><td>Sat</td><td class="num">8am - noon</td><td class="num">4</td><td>frequently all day</td><td class="num">10</td></tr>
+          <tr><td>Sun</td><td class="num">off</td><td class="num">0</td><td>sometimes works</td><td class="num">6</td></tr>
+          <tr style="background:#fdecea"><td class="total">Total</td><td class="total">baseline</td><td class="total num">59</td><td class="total">realistic ceiling</td><td class="total num">86</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="stat">
+      <div class="kpi red"><div class="n">59 hrs</div><div class="l">Baseline week (no overruns)</div></div>
+      <div class="kpi red"><div class="n">75-86 hrs</div><div class="l">Realistic week with overruns</div></div>
+      <div class="kpi navy"><div class="n">~40 hrs</div><div class="l">What the Landscape assumed</div></div>
+      <div class="kpi red"><div class="n">1.5-2x</div><div class="l">Hours over our prior estimate</div></div>
+    </div>
+  </div>
+  <div class="impact">
+    <b>What this changes:</b>
+    <ul class="clean" style="margin:6px 0 0">
+      <li><b>Revenue picture (combined with Fact #1):</b> if he&#39;s actually billing 50-65 hours per week of those 59-86 worked hours at $125, that&#39;s <b>$325k-$420k/year in service revenue alone</b>, dramatically higher than the Landscape&#39;s $150-300k estimate. He&#39;s a more substantial business than we thought.</li>
+      <li><b>The Brotherhood &ldquo;burnout&rdquo; framing was right but understated.</b> The page said the shop is &ldquo;running him into the ground.&rdquo; That&#39;s accurate. 75-85 hour weeks is well beyond what any 43-year-old physical-craft worker can sustain. The medical and family costs are accumulating in real time. <b>The relief work in Track A is more urgent than the page treated it.</b></li>
+      <li><b>Track A target should be hours-down, not revenue-up.</b> The Brotherhood page set the Track A goal as &ldquo;10-15 hours back per week.&rdquo; That figure was anchored to a 40-50 hour week. From a 75-85 hour week, <b>getting 25-30 hours back per week is the realistic target, and it still leaves him at 50-55 hours.</b> The Edge stack alone won&#39;t do it; needs to combine with package pricing, dropping low-value jobs, deposits, and a waitlist signal.</li>
+      <li><b>The Harsh Reality &ldquo;runway&rdquo; estimate is too generous.</b> The Corps page assumed 15-20 year physical-craft runway. At 75-85 hour weeks, the body burns out years earlier. Realistic runway at current pace is closer to <b>5-10 years before the back, knees, or shoulders force a stop</b>. Without intervention, the cliff is closer than we said.</li>
+      <li><b>The corps build sequence still works, but the &ldquo;first 90 days&rdquo; framing has to lead with hours-down, not revenue-up.</b> Productization, ledger, founder agreement, all of that is still right. But the urgent fact is that Jeremy needs to be working 20+ fewer hours per week by September, full stop. Everything else cascades from that.</li>
+    </ul>
+    <div class="pages">
+      <span>Affects:</span>
+      <a href="../landscape/">Landscape</a>
+      <a href="../the-brotherhood/">Brotherhood (Track A)</a>
+      <a href="../the-corps/">The Corps (Harsh Reality)</a>
+    </div>
+  </div>
+</div>
+
+<h2>The combined picture after Facts #1 and #2</h2>
+
+<div class="callout red">
+  <h3>What the two new facts mean together</h3>
+  <p>Jeremy is running a <b>$325k-$420k/year service business</b> at $125/hr, working <b>75-85 hours per week</b>, with no recurring revenue and a body on a 5-10 year clock instead of the 15-20 year clock we previously assumed. He&#39;s priced closer to the market than we thought, which means rate hikes have less headroom; but he&#39;s working more than twice the hours we estimated, which means hour reduction has dramatically more headroom. <b>The lever isn&#39;t pricing, it&#39;s capacity: how many of those 75-85 hours get reclaimed from the wrench and converted to design, training, and corps work.</b></p>
+</div>
+
+<h3>Implications, ranked by urgency</h3>
+
+<div class="threecol">
+  <div class="deep" style="border-top:4px solid var(--red)">
+    <h4 style="margin-top:0;color:var(--red)">Most urgent (this week)</h4>
+    <p style="font-size:14px;margin:0">Track A burnout relief is more urgent than any other doc on the hub suggests. 75-85 hour weeks compound damage daily. The conversation with Jeremy about Track A is not &ldquo;when you have time&rdquo;; it&#39;s now. The 90-day target should be cutting at least 20 hours per week off his schedule, regardless of revenue impact.</p>
+  </div>
+  <div class="deep" style="border-top:4px solid var(--amber)">
+    <h4 style="margin-top:0;color:var(--amber)">High priority (this quarter)</h4>
+    <p style="font-size:14px;margin:0">Re-run the Landscape, Edge, and Why Not financial scenarios with $125/hr and 60-70 billable-hour baselines. The conclusions will likely hold direction but the numbers all change. Especially the +$490k Edge math needs a refresh: the rate-hike component shrinks, the kit-storefront component holds or grows.</p>
+  </div>
+  <div class="deep" style="border-top:4px solid var(--green)">
+    <h4 style="margin-top:0;color:var(--green)">Confirmed direction</h4>
+    <p style="font-size:14px;margin:0">The corps thesis gets stronger, not weaker. A larger revenue base + worse hours + a shorter physical runway = more reason to productize urgently. Every kit shipped is more valuable as a recurring revenue unit when the alternative is more hours on a body that&#39;s already over-extended.</p>
+  </div>
+</div>
+
+<h2>What we still don&#39;t know (open questions)</h2>
+<p class="sub">These need confirmation from Jeremy before any subsequent doc can be revised with real numbers. The next conversation with him should source these explicitly.</p>
+
+<ul class="clean">
+  <li><b>Of those 75-85 hours, how many are billable?</b> The revenue picture depends on this. Could be 50, could be 70.</li>
+  <li><b>How much is on fixed-price packages vs. hourly?</b> The lever for higher revenue without more hours is more package work.</li>
+  <li><b>Does he turn down work at the current rate, or take everything that walks in?</b> If he&#39;s turning work down, demand isn&#39;t the issue; throughput is. If he&#39;s taking everything, the &ldquo;drop the bottom 20%&rdquo; move from Track A is the right lever.</li>
+  <li><b>What does his wife think of the current pace?</b> 75-85 hour weeks ripple through marriages. The Track A urgency may already be informed by a marriage conversation we don&#39;t know about.</li>
+  <li><b>What&#39;s his actual cash position?</b> $325-420k revenue at a one-person shop with low overhead suggests significant net income. The &ldquo;capital he wants to invest&rdquo; figure (Brotherhood page Track B) is probably bigger than the &ldquo;$25k floor / $100k ceiling&rdquo; range we anchored to.</li>
+  <li><b>What does he actually like doing of the work?</b> Track A drops the bottom 20%, but defining the bottom 20% requires knowing which jobs he hates and which jobs he loves. The wrong cut makes the corps&#39;s vertical worse.</li>
+  <li><b>What&#39;s his current health baseline?</b> Back, knees, shoulders, sleep. At 75-85 hour weeks at 43, this is not optional information. If something is already injured, the timeline compresses further.</li>
+</ul>
+
+<div class="callout green">
+  <h3>The healthy way to use this page going forward</h3>
+  <p>As we learn more from Jeremy, this page is the receipt of what we know. The other pages stay frozen as the snapshot of what we believed at compile time, with their explicit confidence scores. When a discovery on this page falsifies an assumption on another page, the affected page gets a small &ldquo;updated by Discovery&rdquo; banner pointing back here, but the original analysis stays readable so anyone (including future-us) can see how the thinking evolved. This is how we keep the analysis honest: the guesses get marked, the confirmed facts compound, and we don&#39;t pretend retroactively that we knew things we only just learned.</p>
+</div>
+
+<blockquote>The Landscape said this shop probably makes $200k. The discovery says it probably makes $370k. The Landscape said he&#39;s underpriced at $85. The discovery says he&#39;s priced okay at $125 but working twice as many hours. Every other doc on the hub was right in shape and wrong in magnitude. That&#39;s a manageable update. The thesis stands; the numbers shift.</blockquote>
+
+</div>
+</section>
+
+<footer><div class="wrap">
+  <span>Discovery &middot; private project &middot; updated June 17, 2026 &middot; <span class="version-tag">v&mdash;</span></span>
+  <span><a href="../" style="color:var(--amber)">&larr; back to hub</a></span>
+</div></footer>
+
+<script src="/script.js"></script>
+</body>
+</html>
