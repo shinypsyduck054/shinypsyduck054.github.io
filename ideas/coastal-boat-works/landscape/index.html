@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lowcountry Boat Service — Competitive Landscape Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --navy:#0d2b45; --navy2:#11395c; --teal:#1d7a8c; --teal2:#2a9db5;
+    --sand:#f4efe6; --ink:#1b2733; --muted:#5d6b7a; --line:#dde3ea;
+    --green:#2e8b57; --amber:#d99100; --red:#c0392b; --card:#ffffff;
+    --hi:#0d2b45; --shadow:0 1px 3px rgba(13,43,69,.08),0 6px 18px rgba(13,43,69,.06);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--sand);line-height:1.5;font-size:15px}
+  header.hero{background:linear-gradient(135deg,var(--navy),var(--teal));color:#fff;padding:30px 28px 26px}
+  header.hero h1{margin:0 0 6px;font-size:26px;letter-spacing:.2px}
+  header.hero p{margin:0;opacity:.92;font-size:14.5px;max-width:920px}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 18px}
+  nav.tabs{position:sticky;top:0;z-index:50;background:var(--navy);display:flex;flex-wrap:wrap;gap:2px;
+    padding:0 12px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+  nav.tabs button{background:transparent;color:#cfe0ec;border:0;padding:13px 14px;font-size:13.5px;
+    cursor:pointer;border-bottom:3px solid transparent;font-weight:600;white-space:nowrap}
+  nav.tabs button:hover{color:#fff}
+  nav.tabs button.active{color:#fff;border-bottom-color:var(--teal2)}
+  section.panel{display:none;padding:24px 0 60px}
+  section.panel.active{display:block}
+  h2{font-size:21px;margin:6px 0 4px;color:var(--navy)}
+  h3{font-size:16.5px;color:var(--navy2);margin:22px 0 8px}
+  .sub{color:var(--muted);font-size:14px;margin:0 0 16px;max-width:980px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:14px 0 8px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+  .kpi .n{font-size:24px;font-weight:700;color:var(--navy)}
+  .kpi .l{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .grid2>.chartbox{min-width:0}
+  .chartbox{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;box-shadow:var(--shadow);margin:10px 0}
+  .chartbox h4{margin:0 0 10px;font-size:14.5px;color:var(--navy2)}
+  .chartbox canvas{max-height:320px}
+  .filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:6px 0 14px}
+  .filters select,.filters input{padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:13.5px;background:#fff}
+  .filters input{min-width:200px}
+  .filters .count{margin-left:auto;color:var(--muted);font-size:13px}
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden;
+    box-shadow:var(--shadow);font-size:13px}
+  thead th{background:var(--navy);color:#fff;text-align:left;padding:9px 10px;font-weight:600;cursor:pointer;
+    position:sticky;top:46px;white-space:nowrap;font-size:12.5px}
+  thead th:hover{background:var(--navy2)}
+  thead th .ar{opacity:.5;font-size:10px;margin-left:3px}
+  tbody td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:hover{background:#f7fafc}
+  tbody tr:last-child td{border-bottom:0}
+  .rank{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;
+    background:var(--navy);color:#fff;font-weight:700;font-size:12px}
+  .rank.top{background:var(--green)}
+  .nm{font-weight:700;color:var(--navy)}
+  .nm a{color:var(--teal);text-decoration:none}
+  .nm a:hover{text-decoration:underline}
+  .pill{display:inline-block;padding:1px 8px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
+  .t-luxury{background:#efe3ff;color:#6b3fb0}
+  .t-high{background:#e3f0ff;color:#1f5fb0}
+  .t-mid{background:#e6f6ec;color:#236b41}
+  .t-low{background:#fdf0e3;color:#a8650a}
+  .ty{font-size:11px;color:var(--muted)}
+  .bar{height:7px;background:#e9eef3;border-radius:5px;overflow:hidden;min-width:60px;margin-top:3px}
+  .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--teal2))}
+  .conf{font-size:10.5px;color:var(--muted)}
+  .star{color:var(--amber);font-weight:700}
+  .note-inactive{color:var(--red);font-weight:600;font-size:11px}
+  .legend{font-size:12px;color:var(--muted);margin:8px 0 0}
+  .legend b{color:var(--ink)}
+  .mkcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;box-shadow:var(--shadow);margin:14px 0}
+  .mkcard .head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .mkcard .rk{width:34px;height:34px;border-radius:9px;background:var(--navy);color:#fff;display:flex;align-items:center;
+    justify-content:center;font-weight:800;font-size:18px}
+  .mkcard .rk.g1{background:var(--green)} .mkcard .rk.g2{background:var(--teal)} .mkcard .rk.g3{background:var(--teal2)}
+  .mkcard h3{margin:0;font-size:18px}
+  .mkcard .meta{margin-left:auto;font-size:12.5px;color:var(--muted);text-align:right}
+  .tagrow{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+  .tag{font-size:11.5px;background:#eef3f7;color:var(--navy2);padding:2px 9px;border-radius:20px;font-weight:600}
+  .grow-up{color:var(--green);font-weight:700}.grow-flat{color:var(--amber);font-weight:700}.grow-down{color:var(--red);font-weight:700}
+  .deep{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 24px;box-shadow:var(--shadow);margin:14px 0}
+  .deep table{box-shadow:none;font-size:13.5px}
+  .deep td{padding:7px 10px}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .swot{border-radius:10px;padding:14px 16px}
+  .swot h4{margin:0 0 6px;font-size:14px}
+  .swot.s{background:#e9f6ee;border:1px solid #bfe6cc}
+  .swot.w{background:#fdecea;border:1px solid #f3c9c3}
+  .swot ul{margin:6px 0 0;padding-left:18px;font-size:13px}
+  .swot li{margin:3px 0}
+  .warn{background:#fdf3e3;border:1px solid #f0d8a8;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:12px 0}
+  .warn b{color:var(--amber)}
+  .callout{background:linear-gradient(135deg,#0d2b45,#1d7a8c);color:#fff;border-radius:12px;padding:18px 22px;margin:14px 0}
+  .callout h3{color:#fff;margin:0 0 8px}
+  .callout p{margin:6px 0;font-size:14px;opacity:.95}
+  ul.clean{font-size:14px;padding-left:20px} ul.clean li{margin:5px 0}
+  .src{font-size:11.5px;color:var(--muted);word-break:break-word}
+  footer{padding:26px 0 50px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);margin-top:20px}
+  @media(max-width:860px){.grid2,.twocol{grid-template-columns:1fr}thead th{position:static}
+    table{display:block;overflow-x:auto;white-space:nowrap}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div style="font-size:12.5px;opacity:.85;margin-bottom:8px"><a style="color:#cfe0ec;text-decoration:none" href="../">← hub</a> · <a style="color:#cfe0ec;text-decoration:none" href="../why-not/">why not?</a> · <a style="color:#cfe0ec;text-decoration:none" href="../the-edge/">the edge</a> · <a style="color:#cfe0ec;text-decoration:none" href="../the-partnership/">the partnership</a></div>
+    <h1>Lowcountry Boat Service — Competitive Landscape</h1>
+    <p>Repair · maintenance · customization · refit · detailing across Charleston, Hilton Head/Bluffton, Beaufort, Columbia/Lake Murray &amp; Savannah — plus a deep dive on Coastal Boat Works (Walterboro, SC). Marinas &amp; manufacturers excluded except where they run an on-site service yard. Compiled June 2026.</p>
+  </div>
+</header>
+
+<nav class="tabs wrap" id="tabs"></nav>
+
+<div class="wrap">
+
+<!-- OVERVIEW -->
+<section class="panel active" id="p-overview">
+  <h2>Executive Overview</h2>
+  <p class="sub">~85 operators profiled across five markets. Almost none publish financials, so every revenue, rate, headcount and size figure is a <b>reasoned estimate with an explicit confidence score</b> (see Methodology). Hard data points — addresses, founding years, certifications, review counts and a handful of published labor rates — anchor the estimates.</p>
+  <div class="cards" id="ov-kpis"></div>
+  <div class="grid2">
+    <div class="chartbox"><h4>Estimated service-market size by region ($M/yr, service revenue only)</h4><canvas id="cMarketSize"></canvas></div>
+    <div class="chartbox"><h4>Market opportunity score (for a growing mid-tier operator)</h4><canvas id="cOpp"></canvas></div>
+  </div>
+  <div class="grid2">
+    <div class="chartbox"><h4>Operators profiled by price tier</h4><canvas id="cTier"></canvas></div>
+    <div class="chartbox"><h4>Typical labor-rate band by region ($/hr)</h4><canvas id="cRate"></canvas></div>
+  </div>
+  <div class="callout">
+    <h3>The one-paragraph read</h3>
+    <p>Coastal SC/GA boating is <b>growing</b> — the South Atlantic is now the 2nd-largest U.S. boating region (+12% registrations) and population/wealth are pouring into the Lowcountry. Charleston and Savannah are the largest markets but the most saturated/capital-intensive at the top. <b>Beaufort and Hilton Head/Bluffton are the sweet spot</b> for a quality mid-to-high operator: affluent, fast-growing, and structurally <b>under-supplied</b> on reliable skilled labor and haul-out capacity. Columbia/Lake Murray is a healthy but lower-ceiling freshwater (pontoon/wake) market. The dominant unmet need region-wide is <b>dependable mid-market service + a clearly expanding premium detailing/refit tier</b> — not megayachts.</p>
+  </div>
+</section>
+
+<!-- MARKET TEMPLATE PANELS -->
+<section class="panel" id="p-charleston"></section>
+<section class="panel" id="p-hiltonhead"></section>
+<section class="panel" id="p-beaufort"></section>
+<section class="panel" id="p-columbia"></section>
+<section class="panel" id="p-savannah"></section>
+
+<!-- MARKET RANKING -->
+<section class="panel" id="p-ranking">
+  <h2>Market Opportunity Ranking</h2>
+  <p class="sub">Markets ranked on a blend of <b>demand growth, fleet size, under-supply / white space, pricing power, and entry feasibility</b> for a quality, growth-minded mid-to-high service operator (the lens most relevant to Coastal Boat Works). Each is scored 0–100. Need-type and "why" called out per market.</p>
+  <div class="chartbox"><h4>Composite opportunity score by market</h4><canvas id="cOppBig"></canvas></div>
+  <div id="rank-cards"></div>
+  <div class="callout">
+    <h3>What kind of need wins where</h3>
+    <p><b>Luxury / megayacht:</b> Savannah (Thunderbolt, Safe Harbor SYC) — effectively closed to new entrants, enormous capital barriers. A few large refit yachts in Charleston (Ross) &amp; HHI corridor.</p>
+    <p><b>High-end / affluent recreational:</b> Hilton Head/Bluffton and the gated communities of Beaufort (Dataw, Fripp) &amp; Savannah (Skidaway/Landings) — premium detailing, ceramic, electronics integration, refit, and absentee-owner concierge. Best margins, real white space.</p>
+    <p><b>Mid-market volume (bread &amp; butter):</b> Everywhere — 20–40&nbsp;ft center consoles &amp; bay boats (coast) and pontoons/wake boats (lake). This is where job throughput lives.</p>
+    <p><b>Value / low-end:</b> Columbia/Lake Murray and inland Colleton County — price-sensitive pontoon, bass-boat and trailer owners.</p>
+  </div>
+</section>
+
+<!-- COASTAL BOAT WORKS DEEP DIVE -->
+<section class="panel" id="p-cbw">
+  <h2>Deep Dive — Coastal Boat Works (Walterboro, SC)</h2>
+  <p class="sub">A landlocked value-tier refit/customization shop in Colleton County, ~48–49 miles from both Charleston and Beaufort. Specialty: EVA foam decking, pontoon floors, fiberglass/gelcoat, blasting &amp; detailing — for trailerable boats, pontoons <i>and</i> RVs.</p>
+
+  <div class="warn"><b>⚠ Website hijack flag:</b> the old domain <i>coastalboatwork.com</i> (singular) has expired and now hosts foreign-language online-casino spam with a fake NJ address. The company's real presence is now <b>Facebook (/coastalboatdotworks)</b> and the intended domain <b>coastalboat.works</b>. This is itself a competitive weakness — a weak, partially compromised web footprint.</div>
+
+  <div class="deep">
+    <h3 style="margin-top:0">Identity &amp; contact</h3>
+    <table>
+      <tr><td style="width:230px;color:var(--muted)">Business name</td><td>Coastal Boat Works, LLC <span class="conf">(95% — Bizapedia LLC record + Facebook)</span></td></tr>
+      <tr><td style="color:var(--muted)">Location</td><td>Walterboro, SC 29488 (Colleton County; Hendersonville area referenced). No public street address. <span class="conf">(85% city / 40% exact)</span></td></tr>
+      <tr><td style="color:var(--muted)">Phone</td><td>(843) 908-2140 <span class="conf">(90%)</span></td></tr>
+      <tr><td style="color:var(--muted)">Email</td><td>coastalboatwork@gmail.com <span class="conf">(90%)</span></td></tr>
+      <tr><td style="color:var(--muted)">Web / social</td><td>coastalboat.works (intended) · facebook.com/coastalboatdotworks <span class="note-inactive">— avoid coastalboatwork.com (hijacked)</span></td></tr>
+      <tr><td style="color:var(--muted)">Owner / principal</td><td><b>Not publicly listed</b> — behind SC Secretary of State captcha + Bizapedia paywall. Phrasing "over a decade of experience" implies one experienced principal.</td></tr>
+      <tr><td style="color:var(--muted)">Years in business</td><td>~10+ years experience cited; LLC active. <span class="conf">(50%)</span></td></tr>
+    </table>
+  </div>
+
+  <div class="deep">
+    <h3 style="margin-top:0">The inland problem (quantified)</h3>
+    <p class="sub" style="margin-bottom:10px">Walterboro is on I-95, inland from the coast. Confirmed approximate drive times — a structural constraint in a waterfront-dependent trade:</p>
+    <div class="cards">
+      <div class="kpi"><div class="n">~49 mi</div><div class="l">to Charleston (~1h 08m)</div></div>
+      <div class="kpi"><div class="n">~48 mi</div><div class="l">to Beaufort (~57m)</div></div>
+      <div class="kpi"><div class="n">~47 mi</div><div class="l">to Edisto Beach (~1h 10m)</div></div>
+      <div class="kpi"><div class="n">~20–35 min</div><div class="l">to nearest real water (Edisto R. / ACE Basin ramps)</div></div>
+    </div>
+    <p class="sub" style="margin-top:12px">Implication: no in-water/dockside service, sea-trials or marina drop-off. Natural market = trailerable boats, pontoons and RVs of <b>Colleton County + the I-95 corridor</b>, plus shop-based and mobile work — not the affluent coastal yacht owner, who has little reason to trailer inland.</p>
+  </div>
+
+  <div class="twocol">
+    <div class="deep">
+      <h3 style="margin-top:0">Services &amp; positioning</h3>
+      <ul class="clean">
+        <li><b>EVA marine foam decking</b> — signature offering (sales + install)</li>
+        <li>Fiberglass &amp; gelcoat repair; full restorations (boats &amp; pontoons)</li>
+        <li>Pontoon floor replacement (marine decking + foam)</li>
+        <li>Soda / media blasting — boats, RVs, decks, driveways</li>
+        <li><b>Large-format CNC fabrication</b> — already runs a big CNC machine; produces <b>custom console &amp; dash panels</b> (a real, repeatable product line)</li>
+        <li>Custom wood &amp; plastic fabrication</li>
+        <li>Marine electronics install (GPS, fish-finders, lighting)</li>
+        <li>Diagnostics, routine service, trailer repair, buff/wax/detail</li>
+      </ul>
+      <p class="sub" style="margin:10px 0 0"><b>Tier:</b> mid / value. Cosmetic &amp; structural refit + surface work, not heavy engine/repower or boat-building. Boats worked ~16–26&nbsp;ft, value ~$15k–$50k.</p>
+    </div>
+    <div class="deep">
+      <h3 style="margin-top:0">Size, capacity &amp; revenue (estimated)</h3>
+      <table>
+        <tr><td style="color:var(--muted);width:150px">Headcount</td><td>1–3 (owner-operator / small family) <span class="conf">(70%)</span></td></tr>
+        <tr><td style="color:var(--muted)">Throughput</td><td>~80–200 jobs/yr; 3–8 active at a time <span class="conf">(45%)</span></td></tr>
+        <tr><td style="color:var(--muted)">Avg job value</td><td>$500–$3k (detail/deck) · $3k–$12k (restoration); blended ~$1.5k–$2.5k <span class="conf">(40%)</span></td></tr>
+        <tr><td style="color:var(--muted)">Hourly rate</td><td>est. <b>$75–$95/hr</b> (~$85 midpoint) <span class="conf">(40%)</span></td></tr>
+        <tr><td style="color:var(--muted)">Annual revenue</td><td><b>~$150k–$300k</b> (point ~$200k) <span class="conf">(35%)</span></td></tr>
+      </table>
+      <p class="sub" style="margin:10px 0 0">Reviews: Facebook "100% recommend," 8 recommendations — uniformly positive (responsive, careful, fast turnaround). No Google/Yelp/BBB profile = low visibility, not bad reputation.</p>
+    </div>
+  </div>
+
+  <div class="twocol">
+    <div class="swot s"><h4>Strengths</h4><ul>
+      <li><b>Owns a large CNC machine &amp; already sells custom console/dash panels</b> — a real productization engine most 1-person shops simply don't have</li>
+      <li>Differentiated EVA foam-decking niche (growing demand, esp. pontoons)</li>
+      <li>Strong (small-sample) reviews: quality, communication, no-damage care</li>
+      <li>RV + boat crossover broadens the inland customer base</li>
+      <li>Low overhead → value pricing vs. $110–150/hr coastal yards</li>
+      <li>Licensed &amp; insured</li>
+    </ul></div>
+    <div class="swot w"><h4>Weaknesses</h4><ul>
+      <li>Inland — no water access, no large-vessel / haul-out capability</li>
+      <li>Website dead/hijacked; minimal marketing; ~8 FB recommendations only</li>
+      <li>Capacity-constrained (1–3 people)</li>
+      <li>Out-reviewed in its own town by <b>Juicebox Boatworks</b> (5.0★, 9 Google)</li>
+      <li>No published address/hours hurts discoverability</li>
+    </ul></div>
+  </div>
+
+  <div class="callout">
+    <h3>Where Coastal Boat Works fits — and where the upside is</h3>
+    <p><b>Position today:</b> a low-overhead, value-tier cosmetic/structural refit specialist serving Colleton County &amp; the I-95 corridor. A minor player even within Walterboro, but with a genuinely differentiated decking niche and clean reputation.</p>
+    <p><b>Biggest, cheapest wins:</b> (1) reclaim the web presence — stand up coastal&#8203;boat.works, claim Google Business + Yelp, post the work that already earns 5-star word-of-mouth; (2) lean into <b>EVA decking &amp; pontoon-floor jobs</b> — a high-margin specialty that travels well by trailer and is in demand on Lake Murray and the Bluffton/HHI pontoon fleets; (3) market mobile blasting/decking up the I-95 corridor toward Beaufort (~48 mi), the highest-opportunity adjacent market, where supply is thin.</p>
+  </div>
+
+  <div class="deep">
+    <h3 style="margin-top:0">Same-town competitor to watch</h3>
+    <p><b>Juicebox Boatworks</b> — 6671 Ritter Rd, Walterboro · 5.0★ / 9 Google reviews. Full restorations, fiberglass/metal, bottom paint, electronics. More established review presence in the same town; the most direct local competitor.</p>
+    <p class="src">Sources: facebook.com/coastalboatdotworks · bizapedia.com/sc/coastal-boat-works-llc.html · boatplanet.com/sc/walterboro/boat-repair · buoyandbeyond.com/juicebox-boatworks · colletoncounty.org boat landings · businessfilings.sc.gov (owner lookup)</p>
+  </div>
+</section>
+
+<!-- TURNAROUND -->
+<section class="panel" id="p-turnaround">
+  <h2>Turn-Around Plan — One overworked person, too much demand</h2>
+  <p class="sub">The situation isn't a struggling shop that needs customers. It's a <b>capacity-constrained solo operator with more work than one person can do, priced below the market</b>. That flips the entire playbook: the goal is to convert excess demand into <b>money and free time</b>, not to chase more leads.</p>
+
+  <div class="callout">
+    <h3>The counter-intuitive diagnosis</h3>
+    <p>A one-person shop that is fully booked and overwhelmed at <b>~$85/hr</b> — when coastal shops bill <b>$110–$185/hr</b> — does not have a marketing problem. It has a <b>pricing &amp; positioning problem</b>. When demand exceeds the hours you can physically supply, the market is telling you that you're too cheap. The single highest-leverage move isn't another customer — it's <b>raising prices and narrowing focus so every hour is worth more.</b></p>
+  </div>
+
+  <h3>The real decision: which kind of business do you want?</h3>
+  <p class="sub">Too much demand is leverage. You get to choose how to spend it. There are two honest end-states — and the smart move is to run Path&nbsp;A's free moves <b>now</b>, then decide on Path&nbsp;B once you have breathing room.</p>
+  <div class="twocol">
+    <div class="mkcard" style="border-top:4px solid var(--teal)">
+      <div class="head"><div class="rk g2">A</div><h3>Lifestyle Premium (stay solo)</h3></div>
+      <p style="margin:8px 0 0;font-size:14px">Raise rates hard, shed the worst jobs, niche down to the highest-margin work. <b>Same or higher income, far fewer hours.</b> You stay a craftsman, not a manager. "Booked 6 weeks out" becomes a premium signal, not a stressor.</p>
+      <div class="tagrow"><span class="tag">Lowest risk</span><span class="tag">Immediate</span><span class="tag">Reclaim your life</span><span class="tag">Ceiling ~$250–300k</span></div>
+    </div>
+    <div class="mkcard" style="border-top:4px solid var(--navy)">
+      <div class="head"><div class="rk">B</div><h3>Build the Brand (hire &amp; productize)</h3></div>
+      <p style="margin:8px 0 0;font-size:14px">Use the excess demand to justify a first hire and turn the decking niche into a <b>regional specialist business</b>. Bigger upside, but you become a boss and a marketer. Only worth it if you actually want to grow a company.</p>
+      <div class="tagrow"><span class="tag">Higher upside</span><span class="tag">More headache</span><span class="tag">Needs systems</span><span class="tag">Ceiling $400–500k+</span></div>
+    </div>
+  </div>
+
+  <h3>Recommended strategy — sequence them, don't pick blindly</h3>
+  <div class="deep">
+    <ol class="clean" style="font-size:14.5px">
+      <li><b>Stop bleeding time first (free, do this week):</b> raise rates 30–40% on all new bookings, require a deposit, and start a waitlist. Drop the lowest-value work (driveway/patio blasting, cheap wash-n-wax) — refer it out. This alone fixes burnout and lifts income.</li>
+      <li><b>Pick the lane — niche, then locale:</b> become <b>"the Lowcountry foam-decking &amp; pontoon/restoration specialist."</b> Lead with the one offering that's visual, high-margin, and not in-water dependent: <b>EVA marine decking</b>.</li>
+      <li><b>Productize (breaks the hourly ceiling) — and you're already half-way there:</b> you own a <b>large CNC machine and already sell custom console/dash panels</b>. Decking and panels both template-and-cut cleanly, so sell them as <b>fixed-price products</b>, not hourly, and scale to shippable kits. See the three-vector "productization menu" below.</li>
+      <li><b>Then choose Path B if you want it:</b> with clean books and a waitlist, a first hire (apprentice doing prep/blasting/sanding) frees your hours for skilled finish work and roughly doubles throughput.</li>
+    </ol>
+  </div>
+
+  <div class="chartbox"><h4>Three revenue scenarios — earn more on fewer hours</h4><canvas id="cScenario"></canvas>
+    <p class="legend"><b>Bars</b> = estimated annual revenue. <b>Line</b> = your annual hands-on hours. Scenario 2 earns <b>more money on fewer hours</b>; scenario 3 needs a hire but breaks the solo ceiling; <b>scenario 4 (Beaufort, on the water)</b> has the highest ceiling but trades low overhead for real rent, capital and risk — detailed below. Figures are illustrative models, not a forecast.</p>
+  </div>
+
+  <div class="twocol">
+    <div class="deep">
+      <h3 style="margin-top:0">"Should I go full luxury?" — honest verdict</h3>
+      <p style="font-size:14px"><b>Not coastal/yacht luxury — that door is mostly closed by your location.</b> Yacht owners want in-water service, sea-trials and marina drop-off; they won't trailer a $500k boat 50 miles inland to Walterboro. Chasing Charleston/HHI yacht work means competing on the incumbents' turf at a 48-mile disadvantage.</p>
+      <p style="font-size:14px"><b>But "premium specialist" is wide open.</b> Become the high-end EVA-decking &amp; restoration shop for the I-95 corridor — premium fixed prices for a visual, status-y, resale-boosting craft on <b>center consoles, pontoons and bass boats</b>. That's the smart, achievable version of "upmarket."</p>
+    </div>
+    <div class="deep">
+      <h3 style="margin-top:0">"Focus on a specific locale?" — yes, play your strengths</h3>
+      <p style="font-size:14px">Own a <b>niche first, then a lane.</b> Don't fight for Charleston yacht owners. Play to the water that's actually near you and full of decking-friendly boats:</p>
+      <ul class="clean" style="font-size:13.5px">
+        <li><b>Edisto River / ACE Basin</b> (~20–35 min) — inshore skiffs &amp; center consoles.</li>
+        <li><b>Santee Cooper lakes — Marion &amp; Moultrie</b> (~40 min north) — SC's largest lakes, packed with <b>pontoons &amp; bass boats</b> = foam-decking heaven.</li>
+        <li><b>Trailer-in / mobile work toward Beaufort</b> (~48 mi) — the region's <b>#1 opportunity market</b>, under-supplied, affluent, growing.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Scenario 4 — The Beaufort move: rebrand on the water</h3>
+  <p class="sub">The biggest swing on the board. Instead of staying an inland value shop, you plant a presence in <b>Beaufort — the region's #1-ranked opportunity market (84/100)</b>, ~48 mi south — and rebrand as a <b>coastal premium specialist</b>. The location is the strategy: getting <i>on the water</i> is the one thing that erases Walterboro's core handicap.</p>
+
+  <div class="twocol">
+    <div class="swot s"><h4>What getting on the water unlocks</h4><ul>
+      <li><b>In-water &amp; dockside service</b> — the whole category you literally can't offer from inland (sea-trials, marina drop-off, slip-side work).</li>
+      <li><b>Coastal pricing</b> — $110–$140/hr vs. your $85 inland; the same skilled hours are worth ~40–60% more.</li>
+      <li><b>A 12,000+ boat fleet</b> + affluent gated communities (Dataw, Fripp, Lady's Island) with real refit/detailing/decking budgets.</li>
+      <li><b>A genuinely under-supplied market</b> — only 2–3 haul-out yards; bigger boats currently leave for Charleston. Room for a sharp specialist.</li>
+      <li><b>Brand permission to go upmarket</b> — "Beaufort waterfront" reads premium in a way "inland Walterboro" never will.</li>
+    </ul></div>
+    <div class="swot w"><h4>What it costs you</h4><ul>
+      <li><b>Capital &amp; overhead</b> — waterfront/yard rent or a dock/marina arrangement is the most expensive real estate in the trade; break-even jumps hard.</li>
+      <li><b>You must hire</b> — you can't be in two places; a coastal location only pays off with a small crew, so you become a manager.</li>
+      <li><b>Leaving your moat</b> — you'd walk away from a loyal Colleton/I-95 base and an established (if low-key) local reputation.</li>
+      <li><b>New competition</b> — you'd be facing Marsh Harbor, MTS, Sea Island Marine and East Coast Marine on <i>their</i> turf.</li>
+      <li><b>Execution risk</b> — relocations fail when the founder underestimates rent, permitting and ramp-up time.</li>
+    </ul></div>
+  </div>
+
+  <div class="deep">
+    <h4 style="margin:0 0 8px;color:var(--navy2)">Two ways to do it — test before you bet the shop</h4>
+    <table>
+      <tr><td style="width:200px;color:var(--muted);font-weight:600">4a · Satellite / mobile beachhead <span class="pill t-mid">recommended first</span></td>
+        <td>Keep the Walterboro shop. Add a <b>Beaufort-branded mobile arm</b> — dockside decking, glass &amp; detailing at area marinas, or a small leased bay near the water + a marina dockside agreement. Low capital, charges coastal rates, and <b>proves the demand</b> before any waterfront lease. This is how you de-risk the whole idea.</td></tr>
+      <tr><td style="color:var(--muted);font-weight:600">4b · Full waterfront rebrand</td>
+        <td>Lease/buy a yard or dock-access site in Beaufort, relocate the brand, hire a crew, run in-water + haul-out-adjacent service at premium rates. <b>Highest ceiling (~$600–700k+)</b>, highest capital and risk. Only justified <i>after</i> 4a proves the market and your books/systems are clean.</td></tr>
+    </table>
+  </div>
+
+  <div class="warn"><b>Sequencing matters most here.</b> Don't jump from "overworked solo at $85/hr" straight to a waterfront lease — that's how you trade a profitable headache for an unprofitable one. Do the free Path-A moves first (raise rates, niche, fix the web), <b>then</b> test Beaufort with the mobile/satellite beachhead (4a), and only commit to a full waterfront rebrand (4b) once the corridor demand and your margins are proven. The water is the prize — earn your way onto it.</div>
+
+  <h3>The productization menu — three ways off the hourly treadmill</h3>
+  <p class="sub">The location scenarios (1–4) decide <i>where</i> you work. This decides <i>what you sell</i>. Because you already own a <b>large CNC machine and make custom console panels</b>, you can sell <b>products</b> — fixed-price, repeatable, ship-anywhere — instead of trading hours for dollars. Three vectors, in order of how ready they are today:</p>
+  <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+    <div class="mkcard" style="border-top:4px solid var(--green)">
+      <div class="head"><div class="rk g1">P1</div><h3 style="font-size:16px">EVA decking kits</h3></div>
+      <p style="margin:8px 0 0;font-size:13.5px">Your signature craft, templated and CNC-cut. Sell fixed-price install packages locally; digitize patterns for popular pontoon/center-console models and ship <b>DIY kits</b> regionally. Proven category (SeaDek/USATuff model).</p>
+      <div class="tagrow"><span class="tag">Ready now</span><span class="tag">Visual / sells itself</span><span class="tag">Low risk</span></div>
+    </div>
+    <div class="mkcard" style="border-top:4px solid var(--teal)">
+      <div class="head"><div class="rk g2">P2</div><h3 style="font-size:16px">CNC console / dash panels</h3></div>
+      <p style="margin:8px 0 0;font-size:13.5px"><b>You already do this</b> — so productize it. Build a digital library of panels for common consoles, offer an online configurator, and sell finished panels + switch/dash kits nationally. Highest <b>readiness</b> of the three: the machine and the early product already exist.</p>
+      <div class="tagrow"><span class="tag">Already selling</span><span class="tag">High margin</span><span class="tag">Ship anywhere</span></div>
+    </div>
+    <div class="mkcard" style="border-top:4px solid var(--hi);background:#0d2b45;color:#fff">
+      <div class="head"><div class="rk" style="background:#2a9db5">P3</div><h3 style="font-size:16px;color:#fff">Connected-boat "black box" <span class="pill" style="background:#6b3fb0;color:#fff">later</span></h3></div>
+      <p style="margin:8px 0 0;font-size:13.5px;opacity:.95">A cellular + <b>satellite</b> monitoring box with an integrated wireless <b>kill-switch</b> and <b>proximity wearables (bracelet/ring)</b> for man-overboard auto-shutoff, plus theft/geofence alerts. The most ambitious — and a <b>separate venture</b>, not a turnaround lever.</p>
+      <div class="tagrow"><span class="tag" style="background:#1d3a55;color:#cfe0ec">Highest upside</span><span class="tag" style="background:#1d3a55;color:#cfe0ec">Highest risk</span><span class="tag" style="background:#1d3a55;color:#cfe0ec">Needs capital + partners</span></div>
+    </div>
+  </div>
+
+  <h3>Scenario 5 — the product company (later-stage moonshot)</h3>
+  <p class="sub">Treat the safety "black box" as a <b>later</b> option that competes with decking/panels for your product focus — pursued only after the service business is stable and cash-generative. It's worth taking seriously because the concept sits in real whitespace, but it's an honest hardware venture with venture-style risk.</p>
+  <div class="twocol">
+    <div class="swot s"><h4>Why the concept is real</h4><ul>
+      <li><b>Regulatory tailwind:</b> a 2021 federal law <b>requires</b> engine cut-off switch (ECOS) use on most vessels under 26 ft — safety is now mandated, not optional.</li>
+      <li><b>The pieces exist separately — nobody owns the combo:</b> wireless proximity MOB kill-switches (Fell Marine MOB+, ACR OLAS) and cellular telematics black boxes (Siren Marine) are <i>different</i> products today. One device that fuses <b>proximity kill-switch + cell/sat black box + theft/geofence</b> is genuine whitespace.</li>
+      <li><b>Satellite = offshore coverage</b> where the cellular-only incumbents go dark — a real differentiator for serious fishermen.</li>
+      <li><b>You have a credible beachhead:</b> CNC for enclosures, marine-electronics install experience, and a customer base to pilot with.</li>
+    </ul></div>
+    <div class="swot w"><h4>Why it's a later, separate bet</h4><ul>
+      <li><b>It's not a service business</b> — it needs firmware/electrical engineering, industrial design, and manufacturing you don't do today.</li>
+      <li><b>Certifications &amp; liability:</b> FCC, satellite/cell module approvals, ABYC, and real product-liability exposure (a safety device that fails is a lawsuit).</li>
+      <li><b>Well-funded incumbents:</b> Siren Marine is owned by <b>Yamaha</b>; Garmin, ACR and Fell are established. You'd need a sharp wedge and likely a patent/IP search.</li>
+      <li><b>Capital &amp; runway:</b> hardware burns cash long before revenue — fund it from a <i>healthy</i> shop, never from the overworked-solo phase.</li>
+    </ul></div>
+  </div>
+  <div class="warn"><b>How to de-risk it:</b> validate before you build. Talk to 30–50 local captains and dealers, pre-sell or collect deposits, run an IP/patent search, and find a firmware/hardware co-founder or contract engineering partner. Consider starting as an <b>installer/reseller</b> of existing systems (Siren, Fell) to learn the customer and the margins, then build your differentiated device once demand is proven. <i>(Not on the revenue chart above — a product venture is a binary, lumpy bet, not a steady-revenue model, so plotting it next to the service scenarios would overstate the certainty.)</i></div>
+
+  <h3>Phased roadmap</h3>
+  <div class="twocol">
+    <div class="swot s" style="background:#eef6ff;border-color:#bcd8f5"><h4 style="color:var(--navy2)">Next 90 days — free &amp; immediate</h4><ul>
+      <li><b>Reclaim the web:</b> stand up <i>coastalboat.works</i>, claim Google Business Profile + Yelp, kill the hijacked-domain confusion (catch up to Juicebox on reviews).</li>
+      <li><b>Raise rates 30–40%</b> on new bookings; add deposits + a waitlist.</li>
+      <li><b>Fire the bottom 20%</b> of low-value jobs; refer out blasting/cheap detailing.</li>
+      <li><b>Photograph every job</b> (before/after) — decking is pure visual marketing.</li>
+      <li><b>Productize:</b> 3–4 fixed-price decking &amp; restoration packages on the site.</li>
+    </ul></div>
+    <div class="swot s" style="background:#eef9f1;border-color:#bfe6cc"><h4>3–12 months — build the moat</h4><ul>
+      <li><b>Get certified</b> (SeaDek / MarineMat fabricator) — credibility, supply, templating tools.</li>
+      <li><b>First hire:</b> apprentice/helper on prep, blasting, sanding → your hours go to skilled finish work.</li>
+      <li><b>Dealer/marina subcontracts:</b> be the go-to glass/decking sub for shops in Beaufort &amp; the corridor.</li>
+      <li><b>Digitize templates</b> for common hull/pontoon models — cut once, reuse forever.</li>
+      <li><b>12–18 mo fork:</b> cap at 2 people &amp; premium pricing (lifestyle), <i>or</i> add a CNC table + ship kits (scale).</li>
+    </ul></div>
+  </div>
+
+  <h3>Marketing play (for a shop that needs <i>better</i> demand, not more)</h3>
+  <div class="deep">
+    <ul class="clean" style="font-size:14px">
+      <li><b>Lead with the visual niche.</b> Before/after decking &amp; restoration reels on Facebook/Instagram — this craft sells itself in photos. One good transformation post beats any ad.</li>
+      <li><b>Make scarcity the brand.</b> "Currently booking ~6 weeks out" signals quality and justifies premium pricing — don't hide the wait, advertise it.</li>
+      <li><b>Fixed-price packages on the website</b> filter tire-kickers and pre-sell the premium positioning before you ever pick up the phone.</li>
+      <li><b>Own Google.</b> Reviews + photos on Google Business Profile is the highest-ROI hour you can spend; it's where your local search demand already goes.</li>
+      <li><b>Referral engine:</b> dealers, marinas and detailers send you the decking/glass work they can't do — you stay focused on the high-margin craft.</li>
+    </ul>
+  </div>
+
+  <div class="warn"><b>Watch-outs:</b> raising prices will lose some price-sensitive locals — that's the <i>intended</i> filter, but apply it to new work first so you don't shock loyal customers. Skilled marine labor is scarce in rural SC, so a first hire may need to be an apprentice you train. And don't over-niche into a corner — keep enough general repair to smooth the off-season.</div>
+
+  <div class="callout">
+    <h3>Bottom line</h3>
+    <p><b>Raise prices now, niche into premium EVA decking &amp; restoration, fix your web presence, and let the waitlist do your marketing.</b> Don't chase coastal-yacht "luxury" you can't service from inland — become the <b>Lowcountry decking &amp; pontoon-restoration specialist</b> instead, serving the Edisto/Santee/Beaufort triangle that's actually near you. Do the free moves first; only hire and scale once the books are clean. Then lean on the asset most rivals lack — your <b>CNC</b> — to turn decking and console panels into <b>shippable products</b>, and keep the connected-boat safety "black box" on the shelf as a later, separately-funded moonshot rather than a distraction now.</p>
+  </div>
+</section>
+
+<!-- METHODOLOGY -->
+<section class="panel" id="p-method">
+  <h2>Methodology, Confidence &amp; Caveats</h2>
+  <div class="deep">
+    <h3 style="margin-top:0">How to read the numbers</h3>
+    <ul class="clean">
+      <li><b>Revenue, headcount, hourly rate and job-size are estimates.</b> Privately held marine-service firms almost never disclose financials. Each figure carries a confidence score (0–100%). Most sit at 30–55% — treat them as directional, not precise.</li>
+      <li><b>What is hard data:</b> company existence, addresses, founding years, certifications, services, review star-counts, and a few published labor rates (Ross Marine $95, Cooper River/Zimmerman $99, Marsh Harbor $80/hr).</li>
+      <li><b>Revenue modeling:</b> built from estimated headcount × billable utilization × labor rate, plus parts/materials markup, calibrated to shop type (yard vs. dealer vs. mobile vs. detailer). Dealer "revenue" separates boat-sales (out of scope) from the service/parts slice where noted.</li>
+      <li><b>Viability score (0–100):</b> a composite judgment of revenue scale, reputation/review strength, longevity, and fit with where demand is heading. Used to rank companies <i>within</i> each market.</li>
+      <li><b>Opportunity score (0–100):</b> market-level blend of growth, fleet size, under-supply/white space, pricing power and entry feasibility.</li>
+    </ul>
+  </div>
+  <div class="deep">
+    <h3 style="margin-top:0">Known data gaps &amp; overlaps</h3>
+    <ul class="clean">
+      <li>Pierside Boatworks (Charleston) appears <b>closed/absorbed</b> into Cooper River Boatyard (Zimmerman) — not double-counted.</li>
+      <li>Custom Marine Finishes / Custom Marine USA / boatrepairbluffton.com share one phone — almost certainly <b>one business</b>; counted once.</li>
+      <li>Yacht Systems (HHI) flagged <b>temporarily closed</b> (Nov 2025).</li>
+      <li>Sea Island Marine ↔ Dataw Island Marina yard overlap (same service provider) — noted to avoid double-counting.</li>
+      <li>Safe Harbor Savannah Yacht Center: the "$352M" figure in databases is <b>parent-company</b> Safe Harbor Marinas, not the facility.</li>
+      <li>Several small-LLC owner names (Sea Island Marine, McElveen, K's, etc.) and Coastal Boat Works' owner could not be verified publicly.</li>
+    </ul>
+  </div>
+  <div class="deep">
+    <h3 style="margin-top:0">Growth signals used</h3>
+    <ul class="clean">
+      <li>NMMA 2024: South Atlantic region +12.4% registrations → 2nd-largest U.S. boating region.</li>
+      <li>SC ~360k registered boats; 7th nationally in boats per capita (SC DNR). Beaufort County alone 12,000+ boats.</li>
+      <li>Charleston among fastest-growing U.S. metros; Jasper County (Bluffton/Hardeeville shed) cited as fastest-growing U.S. county 2025.</li>
+      <li>Savannah MSA +26% over 15 yrs; megayacht refit demand rising (Florida yards overbooked).</li>
+      <li>National caution: U.S. recreational registrations softened ~-12% YoY late 2025 (pontoons/PWC hit hardest) — pressures new-boat dealers more than the repair/refit segment.</li>
+    </ul>
+  </div>
+</section>
+
+</div>
+
+<footer><div class="wrap">Compiled June 2026 from public web sources (company sites, Google/Yelp/Birdeye/BBB, Waterway Guide, NMMA, SC DNR, local press). All financial, headcount and rate figures are reasoned estimates with stated confidence — verify before relying on them for decisions. Not financial advice.</div></footer>
+
+<script>
+/* ---------------- DATA ---------------- */
+const MARKETS = {
+  charleston:{name:"Charleston, SC", panel:"p-charleston",
+    size:"$25–45M (service only)", growth:"up", growthTxt:"Growing strongly",
+    need:"Mid-to-high; robust luxury refit tier",
+    overview:"SC's largest, fastest-growing metro and the deepest service market. Bifurcated: a premium full-service yard tier (Ross, Safe Harbor, Zimmerman) for 40–75ft yachts at ~$95–130/hr, plus a crowded, fast-growing mid-market of mobile mechanics, fiberglass and detailers ($80–120/hr). Marinas near-full; demand outstrips supply. Detailing/ceramic is notably saturated.",
+    tags:["Largest market","Premium-leaning","Capacity-constrained","Detailing saturated","~49mi from Walterboro"]},
+  hiltonhead:{name:"Hilton Head / Bluffton, SC", panel:"p-hiltonhead",
+    size:"$15–28M (service only)", growth:"up", growthTxt:"Growing (affluent-led)",
+    need:"High-end / luxury-leaning + healthy mid",
+    overview:"One of SC's wealthiest, fastest-growing areas. Predominantly 20–34ft center consoles plus a tail of 40–60ft cruisers/sailing yachts. Labor at the high end of SC norms ($110–185/hr). A few capital-intensive lift yards atop a fragmented long tail of mobile specialists. Structurally under-supplied on high-end capacity (no local megayacht yard); Yacht Systems' closure tightened supply further.",
+    tags:["Affluent","Under-supplied high-end","Concierge demand","Pontoon + center-console","Jasper Co. fast-growing"]},
+  beaufort:{name:"Beaufort, SC", panel:"p-beaufort",
+    size:"$10–18M (service only)", growth:"up", growthTxt:"Growing (moderate)",
+    need:"Mid-market core + expanding premium",
+    overview:"Fragmented and under-supplied at the yard level — only ~2–3 true haul-out yards (beam/tonnage limited), so larger boats leave for Charleston. Large 12,000+ boat fleet, military demand (MCAS/Parris Island), storm-repair tailwinds, and fast in-migration (adjacent Jasper Co. fastest-growing in US). Affluent gated communities (Dataw, Fripp, Lady's Island) feed a growing premium detailing/refit tier.",
+    tags:["Under-supplied","Closest coastal market","Military demand","Storm-repair tailwind","White space"]},
+  columbia:{name:"Columbia / Lake Murray, SC", panel:"p-columbia",
+    size:"$8–16M (service only)", growth:"up", growthTxt:"Growing (lake-dev led)",
+    need:"Mid / value volume; one premium pocket (wake)",
+    overview:"Freshwater market — pontoons/tritoons, bass boats, runabouts, and a premium pocket of inboard wake/ski boats. Lower boat values cap job sizes vs. the coast. Highly fragmented service supply (sub-$600k mobile micro-shops); only ONE true lakeside service location (Phoenix Marine). Lakefront development + marina consolidation = rising demand against thin supply.",
+    tags:["Freshwater","Pontoons & wake","Lower job values","Only 1 lakeside shop","Fragmented supply"]},
+  savannah:{name:"Savannah, GA", panel:"p-savannah",
+    size:"$80–160M total · ~$15–30M recreational", growth:"up", growthTxt:"Growing (barbell)",
+    need:"Barbell: megayacht top + value long-tail",
+    overview:"A 'barbell' market: a globally significant megayacht refit cluster (Thunderbolt 1965, Safe Harbor SYC) where ~70–80% of dollars concentrate, plus a fragmented recreational long tail with weak/aging web presence. The standout mobile brand (Total Boat Repair, 140+ 5★) is actually Charleston-based — signaling a credible local mid-market brand could capture share. Megayacht tier is effectively closed (capital barriers).",
+    tags:["Megayacht cluster","Weak mid-market incumbents","Affluent enclaves","White space in recreational","Farthest from Walterboro"]}
+};
+
+// tier: luxury / high / mid / low
+const COMPANIES = [
+/* ---------- CHARLESTON ---------- */
+{mk:"charleston",rank:1,v:96,nm:"Ross Marine",ty:"Full-service yacht yard",url:"rossmarine.com",owner:"Ross family",phone:"(843) 559-0379",found:"~1960 (65+ yrs)",rate:"$95/hr",rateC:90,tier:"high",size:"up to 75ft yachts",emp:"40–60",rev:11.0,revLbl:"$8–14M",revC:50,rev_note:"75ft haul-out, 350+ bottoms/yr + high-margin paint/refit",rvw:"4.3★ / 93",water:"On water (Stono/AIWW)",notes:"SE-premier yacht facility; premium price, occasional PM friction"},
+{mk:"charleston",rank:2,v:88,nm:"Safe Harbor City Boatyard",ty:"Full-service yard (chain)",url:"shmarinas.com",owner:"Safe Harbor / Sun Communities",phone:"(843) 884-3000",found:"acq. ~2020",rate:"~$110–130/hr",rateC:45,tier:"high",size:"to ~70–75ft (75-ton lift)",emp:"25–40",rev:7.0,revLbl:"$5–9M",revC:40,rev_note:"Large lift + storage + premium chain pricing (service slice)",rvw:"Positive",water:"On water (Wando R.)",notes:"National premium brand; 'not cheap' complaints"},
+{mk:"charleston",rank:3,v:85,nm:"Zimmerman Marine / Cooper River Boatyard",ty:"Full-service yard (multi-state)",url:"zimmermanmarine.com",owner:"Steve Zimmerman",phone:"—",found:"40-yr co.",rate:"$99/hr",rateC:90,tier:"high",size:"to ~50ft + catamarans",emp:"15–25",rev:4.5,revLbl:"$3–6M",revC:40,rev_note:"Two yard locations + mobile under respected brand",rvw:"Positive",water:"On water (Cooper R.)",notes:"Catamaran haul-outs; some comms gripes"},
+{mk:"charleston",rank:4,v:82,nm:"Hanckel Marine",ty:"Dealer + large service dept",url:"hanckelmarine.com",owner:"Hanckel family",phone:"—",found:"long-established",rate:"~$130–160/hr",rateC:45,tier:"mid",size:"trailerable to ~40ft",emp:"~20",rev:4.5,revLbl:"$3–6M (service slice)",revC:35,rev_note:"One of Lowcountry's largest parts/service depts",rvw:"4.7★ / 185",water:"~2–3mi (West Ashley)",notes:"Mainstream dealer, strong service reputation"},
+{mk:"charleston",rank:5,v:80,nm:"Total Boat Repair",ty:"Mobile fiberglass/gelcoat",url:"totalboatrepair.com",owner:"Brandon Parker",phone:"(843) 940-1008",found:"~2010 (25yr exp)",rate:"~$95–130/hr",rateC:45,tier:"mid",size:"center consoles to mid",emp:"4–8",rev:1.1,revLbl:"$700k–1.5M",revC:50,rev_note:"500+ jobs/yr; covers Chas/HHI/Savannah",rvw:"140+ 5★",water:"Mobile",notes:"Highest review volume of regional mobile cohort"},
+{mk:"charleston",rank:6,v:76,nm:"Longshore Boats",ty:"Dealer service (Mercury)",url:"longshoreboats.com",owner:"—",phone:"—",found:"—",rate:"~$130–150/hr",rateC:40,tier:"mid",size:"trailerable to ~35ft",emp:"15–30 (2 loc)",rev:3.0,revLbl:"$2–4M (service)",revC:35,rev_note:"Mercury-certified, dry-stack on-site service",rvw:"Positive",water:"Near water (Daniel Is.)",notes:"Also Bluffton location"},
+{mk:"charleston",rank:7,v:74,nm:"Butler Marine",ty:"Dealer + service",url:"butlermarineinc.com",owner:"Butler family",phone:"(843) 576-2233",found:"multi-decade",rate:"~$120–150/hr",rateC:35,tier:"mid",size:"trailerable to ~35ft",emp:"15–25",rev:3.0,revLbl:"$2–4M (service)",revC:35,rev_note:"Multi-location dealer; Charleston + Beaufort",rvw:"Mixed/positive",water:"~3mi (Johns Is.)",notes:"Fiberglass/gelcoat + dealer service"},
+{mk:"charleston",rank:8,v:68,nm:"Rogue Motion",ty:"Outboard repower dealer",url:"roguemotion.com",owner:"—",phone:"—",found:"—",rate:"~$110–140/hr",rateC:35,tier:"mid",size:"outboard to ~35ft",emp:"5–12",rev:2.0,revLbl:"$1–3M",revC:35,rev_note:"Multi-brand repower dealer, higher ticket sizes",rvw:"—",water:"—",notes:"Suzuki/Yamaha/Mercury repower"},
+{mk:"charleston",rank:9,v:66,nm:"Carolina Marine Restorations",ty:"Detail / coatings / restoration",url:"carolinamarinerestorations.com",owner:"assoc. Carson Smith",phone:"(843) 284-6731",found:"~2018",rate:"~$85–120/hr",rateC:35,tier:"high",size:"all (mobile)",emp:"5–10",rev:0.95,revLbl:"$600k–1.3M",revC:40,rev_note:"Multi-service crew + maintenance plans + ceramic",rvw:"Strong",water:"Mobile (Awendaw base)",notes:"'1-stop shop' detailing/refit"},
+{mk:"charleston",rank:10,v:64,nm:"Charleston Boat Detailing",ty:"Mobile detailing",url:"charlestonboatdetailing.com",owner:"Andrew",phone:"—",found:"~2006 (17yr)",rate:"~$75–110/hr",rateC:40,tier:"high",size:"all (mobile)",emp:"3–6",rev:0.65,revLbl:"$400–900k",revC:45,rev_note:"17-yr mobile detailer, recurring maintenance contracts",rvw:"4.9★ / 32",water:"Mobile (IOP base)",notes:"Leading mobile detailer; ceramic, brightwork, teak"},
+{mk:"charleston",rank:11,v:62,nm:"Marine Warehouse Center",ty:"Parts + service",url:"marinewarehousecenter.com",owner:"—",phone:"—",found:"—",rate:"~$100–130/hr",rateC:30,tier:"mid",size:"trailerable",emp:"5–12",rev:2.0,revLbl:"$1–3M",revC:30,rev_note:"Parts + maintenance/mechanical",rvw:"—",water:"~Johns Is.",notes:"Oil changes to complex repairs"},
+{mk:"charleston",rank:12,v:60,nm:"Race City Marine",ty:"Inboard/outboard (wake)",url:"racecitymarine.com",owner:"—",phone:"—",found:"—",rate:"~$110–140/hr",rateC:35,tier:"mid",size:"wake + fishing",emp:"3–8",rev:0.85,revLbl:"$500k–1.2M",revC:35,rev_note:"Wake/performance niche + outboard",rvw:"—",water:"Mt. Pleasant",notes:"High-performance wake boats"},
+{mk:"charleston",rank:13,v:58,nm:"Wake & Water",ty:"Inboard wake/ski specialist",url:"wake-water.com",owner:"—",phone:"—",found:"—",rate:"~$110–140/hr",rateC:30,tier:"mid",size:"wake/ski",emp:"3–8",rev:0.85,revLbl:"$500k–1.2M",revC:30,rev_note:"Inboard engine service niche",rvw:"—",water:"—",notes:"Wake/ski niche"},
+{mk:"charleston",rank:14,v:57,nm:"Tri County Mobile Marine",ty:"Mobile outboard",url:"tricountymobilemarine.com",owner:"Tyler Teal",phone:"(843) 469-1921",found:"~2017",rate:"~$95–120/hr",rateC:45,tier:"mid",size:"outboard to ~32ft",emp:"2–5",rev:0.5,revLbl:"$300–700k",revC:45,rev_note:"Owner-operator mobile outboard ('Boat Doctor')",rvw:"Reputable",water:"Mobile",notes:"Yamaha/Suzuki/Merc/Honda diagnostics"},
+{mk:"charleston",rank:15,v:56,nm:"Lowcountry Boat Repair",ty:"Full-line independent",url:"lowcountryboatrepair.com",owner:"—",phone:"(843) 408-6107",found:"—",rate:"~$95–120/hr",rateC:40,tier:"mid",size:"trailerable",emp:"4–8",rev:0.85,revLbl:"$500k–1.2M",revC:35,rev_note:"Broad generalist: glass, engine, paint, canvas, detail",rvw:"—",water:"—",notes:"Full-line independent"},
+{mk:"charleston",rank:16,v:54,nm:"Strictly Marine",ty:"Mobile generalist",url:"strictly-marine.com",owner:"—",phone:"(843) 801-1922",found:"—",rate:"~$90–115/hr",rateC:35,tier:"mid",size:"trailerable to mid",emp:"3–6",rev:0.575,revLbl:"$350–800k",revC:40,rev_note:"Broad mobile generalist, 7-day service",rvw:"Positive",water:"Mobile (Mt. Pleasant)",notes:"Mechanic, glass, canvas, surveys"},
+{mk:"charleston",rank:17,v:53,nm:"High and Dry Boatworks",ty:"Composite/carbon + paint",url:"highanddryboatworks.com",owner:"—",phone:"—",found:"—",rate:"~$95–130/hr",rateC:35,tier:"high",size:"small sail to large yacht",emp:"2–6",rev:0.65,revLbl:"$400–900k",revC:35,rev_note:"Carbon-fiber/composite specialist + full paint",rvw:"—",water:"Historic Charleston",notes:"High-end composite niche"},
+{mk:"charleston",rank:18,v:52,nm:"Palmetto Marine Restorations",ty:"Detail/restore/coatings",url:"palmettomarinerestorations.com",owner:"—",phone:"—",found:"—",rate:"~$85–120/hr",rateC:35,tier:"high",size:"all (mobile)",emp:"3–7",rev:0.8,revLbl:"$500k–1.1M",revC:35,rev_note:"Detail, ceramic, glass, bottom paint, yacht mgmt",rvw:"—",water:"Mobile",notes:"Restoration + vessel management"},
+{mk:"charleston",rank:19,v:50,nm:"Swift Marine",ty:"Fiberglass/paint",url:"swiftmarineinc.com",owner:"—",phone:"—",found:"—",rate:"~$90–120/hr",rateC:30,tier:"mid",size:"trailerable",emp:"3–6",rev:0.65,revLbl:"$400–900k",revC:30,rev_note:"Glass/gelcoat, paint, hull maintenance",rvw:"—",water:"—",notes:"Fiberglass + underwater hull"},
+{mk:"charleston",rank:20,v:49,nm:"Harrison Marine Service",ty:"Veteran independent",url:"—",owner:"—",phone:"—",found:"30+ yrs",rate:"~$90–120/hr",rateC:30,tier:"mid",size:"trailerable",emp:"2–6",rev:0.5,revLbl:"$300–700k",revC:30,rev_note:"30-yr longevity implies stable small-crew shop",rvw:"—",water:"Johns Is.",notes:"Long-established repairs"},
+{mk:"charleston",rank:21,v:48,nm:"Charleston Boat Repairs",ty:"Mobile outboard/glass",url:"charlestonboatrepairs.com",owner:"—",phone:"—",found:"—",rate:"~$90–120/hr",rateC:35,tier:"mid",size:"trailerable",emp:"3–6",rev:0.65,revLbl:"$400–900k",revC:35,rev_note:"Outboard (Yamaha/Merc auth) + gelcoat",rvw:"—",water:"Mobile",notes:"Authorized outboard + glass"},
+{mk:"charleston",rank:22,v:46,nm:"O-Sea-D Boatworks",ty:"Mobile electrical/mech",url:"oseadboatworks.com",owner:"—",phone:"—",found:"—",rate:"~$90–115/hr",rateC:30,tier:"mid",size:"trailerable",emp:"2–5",rev:0.425,revLbl:"$250–600k",revC:30,rev_note:"Mobile electrical, mech, detail, canvas",rvw:"—",water:"Mobile (Mt. Pleasant)",notes:"Electrical + upholstery/canvas"},
+{mk:"charleston",rank:23,v:45,nm:"The Boat Lab",ty:"Marine electrical specialist",url:"theboatlab.net",owner:"—",phone:"—",found:"8+ yr exp",rate:"~$100–130/hr",rateC:35,tier:"high",size:"all",emp:"1–4",rev:0.35,revLbl:"$200–500k",revC:30,rev_note:"Electronics/electrical niche",rvw:"—",water:"Mobile",notes:"Electrical/electronics integration"},
+{mk:"charleston",rank:24,v:44,nm:"Charleston Marine Repair",ty:"Mobile cosmetic/glass",url:"charlestonmarinerepairs.com",owner:"—",phone:"—",found:"—",rate:"~$85–110/hr",rateC:35,tier:"mid",size:"trailerable",emp:"2–5",rev:0.425,revLbl:"$250–600k",revC:35,rev_note:"Mobile glass, gelcoat, bottom paint, cosmetic",rvw:"—",water:"Mobile",notes:"Cosmetic/fiberglass mobile"},
+{mk:"charleston",rank:25,v:43,nm:"Charleston Harbor Boat Repair",ty:"Mobile generalist",url:"charlestonharborboatrepair.com",owner:"—",phone:"(843) 385-9091",found:"—",rate:"~$90–115/hr",rateC:30,tier:"mid",size:"trailerable",emp:"2–4",rev:0.35,revLbl:"$200–500k",revC:30,rev_note:"Outboards, electrical, plumbing, glass, trailers",rvw:"—",water:"Mobile",notes:"On-site generalist"},
+{mk:"charleston",rank:26,v:42,nm:"Salty Gears Marine & Auto",ty:"Mobile marine+auto",url:"saltygearsmarineandauto.com",owner:"—",phone:"—",found:"—",rate:"~$85–110/hr",rateC:30,tier:"mid",size:"trailerable",emp:"2–5",rev:0.425,revLbl:"$250–600k",revC:30,rev_note:"Marine + automotive mobile",rvw:"—",water:"Mobile",notes:"Value generalist"},
+{mk:"charleston",rank:27,v:41,nm:"Wicked Outboards",ty:"Custom paint/coatings",url:"—",owner:"—",phone:"—",found:"—",rate:"~$90–120/hr",rateC:30,tier:"high",size:"outboard",emp:"2–5",rev:0.5,revLbl:"$300–700k",revC:30,rev_note:"Custom boat/outboard painting niche",rvw:"—",water:"—",notes:"Custom cosmetic paint"},
+{mk:"charleston",rank:28,v:40,nm:"Carolina Bay Marine",ty:"Mobile mechanic",url:"carolinabaymarine.com",owner:"—",phone:"—",found:"—",rate:"~$90–115/hr",rateC:30,tier:"mid",size:"trailerable",emp:"1–4",rev:0.325,revLbl:"$200–450k",revC:30,rev_note:"Engine/electrical mobile",rvw:"—",water:"Mobile",notes:"General maintenance"},
+{mk:"charleston",rank:29,v:39,nm:"Loyalty Marine",ty:"Detail/coatings",url:"loyaltymarinesc.com",owner:"—",phone:"—",found:"—",rate:"~$80–110/hr",rateC:30,tier:"high",size:"all",emp:"2–5",rev:0.5,revLbl:"$300–700k",revC:30,rev_note:"Detailing, restoration, ceramic",rvw:"—",water:"Mobile",notes:"Coatings"},
+{mk:"charleston",rank:30,v:38,nm:"Kappler's Marine Detailing & Repair",ty:"Detail + glass",url:"kapplersmarinedetailingandrepair.com",owner:"—",phone:"—",found:"—",rate:"~$85–115/hr",rateC:30,tier:"mid",size:"trailerable",emp:"2–5",rev:0.425,revLbl:"$250–600k",revC:30,rev_note:"Fiberglass repair + detailing",rvw:"—",water:"—",notes:"Detail + glass"},
+{mk:"charleston",rank:31,v:37,nm:"Wando Marine Repair",ty:"Independent repair",url:"—",owner:"—",phone:"—",found:"—",rate:"~$90–120/hr",rateC:25,tier:"mid",size:"trailerable",emp:"2–6",rev:0.5,revLbl:"$300–700k",revC:25,rev_note:"Limited public detail",rvw:"—",water:"Near Wando R.",notes:"Repair (low data)"},
+{mk:"charleston",rank:32,v:20,nm:"Pierside Boatworks",ty:"Full-service yard (CLOSED)",url:"—",owner:"—",phone:"(843) 554-7775",found:"2008",rate:"—",rateC:0,tier:"high",size:"to ~50ft",emp:"—",rev:0,revLbl:"Closed/absorbed",revC:0,rev_note:"Yelp flags CLOSED; site now Cooper River Boatyard (Zimmerman)",rvw:"—",water:"On water",notes:"INACTIVE — merged into Zimmerman",inactive:true},
+
+/* ---------- HILTON HEAD / BLUFFTON ---------- */
+{mk:"hiltonhead",rank:1,v:88,nm:"The Boathouse @ Palmetto Bay Marina",ty:"Marina + full service yard",url:"pbmarinahhi.com/boathouse",owner:"Palmetto Bay / Boathouse grp",phone:"(843) 681-2628",found:"brand since 1987",rate:"~$150–175/hr",rateC:55,tier:"high",size:"to ~70ft (75-ton lift)",emp:"8–15",rev:2.75,revLbl:"$2.0–3.5M",revC:45,rev_note:"Large lift + paint facility + Yamaha master techs",rvw:"Strong brand",water:"On water (Broad Creek)",notes:"Premier HHI service yard"},
+{mk:"hiltonhead",rank:2,v:85,nm:"HH Boathouse (Grady-White dealer)",ty:"Dealer + full service yard",url:"hhboathouse.net",owner:"Boathouse group",phone:"(843) 681-2628",found:"1987",rate:"~$150–180/hr",rateC:55,tier:"high",size:"to ~40ft+ (dry-stack)",emp:"10–20",rev:3.25,revLbl:"$2.5–4M (service)",revC:40,rev_note:"280-slip dry stack + factory Yamaha + only area Grady-White",rvw:"Well-regarded",water:"On water (Skull Creek)",notes:"Sister to Palmetto Bay Boathouse"},
+{mk:"hiltonhead",rank:3,v:80,nm:"Longshore Boats (Bluffton)",ty:"Dealer + full service dept",url:"longshoreboats.com",owner:"—",phone:"(843) 549-4247",found:"—",rate:"~$150–185/hr",rateC:55,tier:"high",size:"to ~40ft (EdgeWater)",emp:"6–12 (Bluffton)",rev:2.25,revLbl:"$1.5–3M (service)",revC:40,rev_note:"Yamaha 5-Star + Mercury Platinum dual-certified",rvw:"5★ recent",water:"~3–5mi",notes:"Handles $600k vessels; pickup/delivery"},
+{mk:"hiltonhead",rank:4,v:78,nm:"Marine Tech Services (MTS)",ty:"Yacht refit/systems",url:"marinerexchange.com",owner:"John Torrens",phone:"(843) 842-2187",found:"2002 (24yr)",rate:"~$130–165/hr",rateC:50,tier:"high",size:"25–70ft power & sail",emp:"5–10",rev:1.6,revLbl:"$1.0–2.5M",revC:40,rev_note:"Refit/systems specialist; high per-job value",rvw:"~36, mixed",water:"~0.5mi (Port Royal)",notes:"Capable on complex systems; some QC complaints"},
+{mk:"hiltonhead",rank:5,v:76,nm:"Matthews Marine",ty:"Dealer + full service yard",url:"matthewsmarine.net",owner:"—",phone:"(843) 705-9995",found:"30+ yrs",rate:"~$115–140/hr",rateC:50,tier:"mid",size:"skiffs to 50ft",emp:"8–15",rev:2.15,revLbl:"$1.5–2.8M (service)",revC:40,rev_note:"Multi-line authorized (Yamaha/Volvo/Merc), big storage yard",rvw:"Long-tenured",water:"~3–6mi (Bluffton)",notes:"Value-to-mid, broad range"},
+{mk:"hiltonhead",rank:6,v:74,nm:"Broad Creek Marina Service Center",ty:"Marina + service yard",url:"bcmboatservice.com",owner:"Broad Creek Marina grp",phone:"(843) 682-6004",found:"recently renovated",rate:"~$120–150/hr",rateC:50,tier:"mid",size:"skiffs to ~50ft",emp:"6–12",rev:1.85,revLbl:"$1.2–2.5M",revC:40,rev_note:"Suzuki dealer + body shop + lift",rvw:"Modest",water:"On water (Broad Creek)",notes:"Newest full-service yard, center of island"},
+{mk:"hiltonhead",rank:7,v:72,nm:"Black Dog Marine",ty:"Electronics + service",url:"blackdogmarinesc.com",owner:"Kirk Sutlive",phone:"(843) 547-1900",found:"2013",rate:"~$110–140/hr",rateC:50,tier:"high",size:"center consoles/flats",emp:"4–8",rev:1.2,revLbl:"$800k–1.6M",revC:45,rev_note:"Electronics carry high parts revenue + install labor",rvw:"Strong WOM",water:"~3–5mi (Ridgeland)",notes:"ABYC/NMEA/Seakeeper certified"},
+{mk:"hiltonhead",rank:8,v:70,nm:"Custom Marine Finishes",ty:"Paint/glass refinish",url:"custommarinefinishes.com",owner:"Paul",phone:"(843) 304-2798",found:"24+ yr exp",rate:"~$90–130/hr",rateC:50,tier:"high",size:"to larger yachts",emp:"3–6",rev:0.75,revLbl:"$500k–1.0M",revC:50,rev_note:"3-bay shop, high-value Awlgrip repaints/restoration",rvw:"5★ consistent",water:"~2–4mi (Bluffton)",notes:"Also Custom Marine USA (same business)"},
+{mk:"hiltonhead",rank:9,v:64,nm:"Total Boat Repair (HHI service)",ty:"Mobile fiberglass/gelcoat",url:"totalboatrepair.com",owner:"Brandon Parker",phone:"(843) 940-1008",found:"25yr exp",rate:"~$95–130/hr",rateC:50,tier:"mid",size:"all (mobile)",emp:"4–8",rev:1.1,revLbl:"$700k–1.5M (regional)",revC:40,rev_note:"500+ jobs/yr across Chas–Savannah corridor",rvw:"Top-rated",water:"Mobile",notes:"Serves all HHI marinas"},
+{mk:"hiltonhead",rank:10,v:60,nm:"Palmetto Boat & Motor (Bluffton Marine)",ty:"Boat mgmt + service + detail",url:"palmettoboatandmotor.com",owner:"John & Colton Boyles",phone:"(843) 816-0700",found:"~10yr",rate:"~$95–125/hr",rateC:45,tier:"mid",size:"center consoles",emp:"2–5",rev:0.5,revLbl:"$300–700k",revC:40,rev_note:"Management + outboard service + detailing (family)",rvw:"Referral-driven",water:"~2–5mi",notes:"Concierge/management angle"},
+{mk:"hiltonhead",rank:11,v:56,nm:"Ocean Motorworks / 843 Jet Skis",ty:"PWC / jet boat specialist",url:"oceanmotorworks.com",owner:"Brian",phone:"—",found:"—",rate:"~$95–125/hr",rateC:45,tier:"mid",size:"PWC / jet boats",emp:"2–4",rev:0.375,revLbl:"$250–500k",revC:40,rev_note:"Niche PWC shop, small scale",rvw:"4.7★ / 7",water:"~1–2mi",notes:"PWC niche; owner well-regarded"},
+{mk:"hiltonhead",rank:12,v:54,nm:"May River Boat Detailing",ty:"Mobile detailing",url:"mayriverboatdetailing.com",owner:"Alex Matos",phone:"(843) 505-8822",found:"newer",rate:"~$75–110/hr eff.",rateC:45,tier:"high",size:"all (mobile)",emp:"1–3",rev:0.21,revLbl:"$120–300k",revC:45,rev_note:"Solo mobile detailer + membership recurring revenue",rvw:"Positive",water:"Mobile (Bluffton)",notes:"Navy vet / USCG captain"},
+{mk:"hiltonhead",rank:13,v:52,nm:"K's Mobile Detailing",ty:"Mobile detail/ceramic",url:"ksmobiledetailing.net",owner:"—",phone:"(843) 739-7377",found:"2022",rate:"~$75–110/hr eff.",rateC:45,tier:"mid",size:"to ~50ft",emp:"1–4",rev:0.3,revLbl:"$150–400k",revC:40,rev_note:"Multi-segment (boat/auto/RV) mobile detailer",rvw:"Recommended",water:"Mobile (Beaufort base)",notes:"Ceramic $800+ published"},
+{mk:"hiltonhead",rank:14,v:50,nm:"Captain BJ Boat & RV Repair",ty:"Independent mechanic",url:"captainbjboatrepair.com",owner:"—",phone:"(843) 689-6979",found:"—",rate:"~$90–115/hr",rateC:50,tier:"low",size:"trailerable; jetski",emp:"2–4",rev:0.425,revLbl:"$250–600k",revC:45,rev_note:"Small mixed-service shop, modest reputation",rvw:"3.4★ / 25",water:"~1–2mi",notes:"Mixed reviews; value/budget"},
+{mk:"hiltonhead",rank:15,v:48,nm:"Mobile Marine Maintenance (corridor)",ty:"Mobile mechanic",url:"boatplanet.com",owner:"—",phone:"—",found:"—",rate:"~$100–130/hr",rateC:40,tier:"mid",size:"trailerable",emp:"1–3",rev:0.275,revLbl:"$150–400k",revC:35,rev_note:"On-site mobile mechanic, small",rvw:"5★ (low n)",water:"Mobile",notes:"Convenience mobile"},
+{mk:"hiltonhead",rank:16,v:40,nm:"Yacht Systems",ty:"Yacht outfit/refit (CLOSED?)",url:"—",owner:"—",phone:"—",found:"40+ yr exp",rate:"—",rateC:25,tier:"high",size:"large yachts",emp:"—",rev:0,revLbl:"Temp. closed",revC:25,rev_note:"Listed temporarily closed Nov 2025",rvw:"—",water:"On water (Crosstree)",notes:"INACTIVE flag — high-end yacht outfitter",inactive:true},
+
+/* ---------- BEAUFORT ---------- */
+{mk:"beaufort",rank:1,v:82,nm:"Marsh Harbor Boat Works",ty:"Full-service boatyard",url:"marshharborboatworks.com",owner:"Peter & Trisha Gamble",phone:"(843) 521-1500",found:"~1985 (own. 2005)",rate:"$80/hr",rateC:90,tier:"mid",size:"~20–55ft (50-ton lift)",emp:"6–12",rev:1.5,revLbl:"$1.2–2.0M",revC:45,rev_note:"50-ton travel-lift yard, bottom paint + glass + diesel",rvw:"~5.0★ (small n)",water:"On water (Lady's Is.)",notes:"Cruiser-favorite haul-out; fair price reputation"},
+{mk:"beaufort",rank:2,v:78,nm:"Marine Tech Services (MTS)",ty:"Yacht refit/systems",url:"boatplanet.com/pro/marine-tech-services",owner:"John Torrens",phone:"(843) 842-2187",found:"2002 (24yr)",rate:"~$110–140/hr",rateC:45,tier:"high",size:"25–70ft power & sail",emp:"5–10",rev:1.6,revLbl:"$1.0–2.5M",revC:40,rev_note:"24-yr yacht refit; high-value jobs",rvw:"~36, mixed",water:"~0.5mi (Port Royal)",notes:"Most comprehensive yacht services locally; some QC gripes"},
+{mk:"beaufort",rank:3,v:74,nm:"Sea Island Marine",ty:"Dealer + large parts/service",url:"seaislandmarinebeaufort.com",owner:"Family-owned",phone:"(843) 524-7272",found:"50+ yrs",rate:"~$95–120/hr",rateC:40,tier:"mid",size:"~16–40ft",emp:"8–15",rev:1.6,revLbl:"$1.2–2.0M (service)",revC:40,rev_note:"50-yr dealer, largest parts dept + repower + 2 loc",rvw:"3.4★/Yelp; 86% FB",water:"~0.5mi (downtown)",notes:"Volume parts/repower/trailer hub"},
+{mk:"beaufort",rank:4,v:70,nm:"East Coast Marine Repair",ty:"Outboard/repower specialist",url:"eastcoastmarinesc.com",owner:"Family-owned",phone:"(843) 522-3186",found:"1991 (35yr)",rate:"~$95–115/hr",rateC:45,tier:"mid",size:"~14–30ft + trailers",emp:"4–8",rev:1.1,revLbl:"$800k–1.6M",revC:50,rev_note:"35-yr Mercury Repower Center + parts + trailer sales",rvw:"Positive",water:"~2–3mi (Hwy 280)",notes:"Honest outboard go-to; military discounts"},
+{mk:"beaufort",rank:5,v:66,nm:"Butler Marine (Beaufort)",ty:"Dealer + service",url:"butlermarineinc.com",owner:"Butler family",phone:"(843) 522-9461",found:"branch 10–20yr",rate:"~$110–130/hr",rateC:45,tier:"mid",size:"~16–35ft",emp:"5–10",rev:1.0,revLbl:"$700k–1.3M (service)",revC:35,rev_note:"Multi-brand certified dealer (satellite branch)",rvw:"Reputable",water:"~0.3mi (Lady's Is.)",notes:"Yamaha/Suzuki/Honda/Merc certified"},
+{mk:"beaufort",rank:6,v:62,nm:"Bob's Dry Dock",ty:"Fiberglass/gelcoat specialist",url:"bobsdrydock.com",owner:"Bob Mills",phone:"—",found:"10–15yr (40yr exp)",rate:"~$85–110/hr",rateC:40,tier:"high",size:"kayaks to 60ft",emp:"1–4",rev:0.4,revLbl:"$250–600k",revC:45,rev_note:"Owner-operated glass shop; insurance/collision jobs",rvw:"Surveyor-referred",water:"Mobile/shop",notes:"Trusted by surveyors/insurers — quality signal"},
+{mk:"beaufort",rank:7,v:58,nm:"Dataw Island Marina Boatyard",ty:"Marina + full-service yard",url:"datawmarina.com",owner:"Dataw Marina / Sea Island Marine",phone:"(843) 838-8410",found:"long-established",rate:"~$80–110/hr",rateC:35,tier:"high",size:"to ~50ft / 50 tons",emp:"5–12",rev:1.0,revLbl:"$600k–1.5M (yard)",revC:30,rev_note:"Travel-lift yard serving wealthy gated community",rvw:"Positive",water:"On ICW",notes:"Affluent clientele; overlaps Sea Island Marine"},
+{mk:"beaufort",rank:8,v:52,nm:"The Boat Guy, LLC",ty:"Mobile full-service repair",url:"theboatguy.org",owner:"—",phone:"(843) 263-9649",found:"~5–12yr",rate:"~$85–110/hr",rateC:35,tier:"mid",size:"~14–35ft",emp:"1–3",rev:0.275,revLbl:"$150–400k",revC:35,rev_note:"Owner-operator, competitive pricing",rvw:"Listed top shops",water:"On water (Eustis Landing)",notes:"Engine/electrical/glass generalist"},
+{mk:"beaufort",rank:9,v:48,nm:"Beaufort Yacht Restoration & Detailing",ty:"Mobile detail/restore",url:"boatplanet.com",owner:"—",phone:"—",found:"14yr exp",rate:"~$60–90/hr",rateC:35,tier:"high",size:"20–60ft (yacht)",emp:"1–3",rev:0.2,revLbl:"$120–300k",revC:35,rev_note:"Established mobile yacht detailer, Savannah–Charleston reach",rvw:"Top-rated",water:"Mobile",notes:"Yacht-care quality focus"},
+{mk:"beaufort",rank:10,v:46,nm:"K's Mobile Detailing",ty:"Mobile detail/ceramic",url:"ksmobiledetailing.net",owner:"—",phone:"(843) 739-7377",found:"~3–6yr",rate:"~$60–90/hr eff.",rateC:35,tier:"mid",size:"~16–50ft",emp:"1–4",rev:0.175,revLbl:"marine ~$100–250k",revC:35,rev_note:"Multi-vertical mobile detailer (marine subset)",rvw:"Active/Yelp",water:"Mobile",notes:"Ceramic $800+ published"},
+{mk:"beaufort",rank:11,v:44,nm:"McElveen Marine",ty:"Independent repair",url:"—",owner:"McElveen (likely)",phone:"(843) 271-5911",found:"~5–15yr",rate:"~$85–110/hr",rateC:30,tier:"mid",size:"~14–30ft",emp:"2–5",rev:0.35,revLbl:"$200–500k",revC:30,rev_note:"Storefront independent, little public footprint",rvw:"Limited",water:"~2mi",notes:"General repair (low data)"},
+{mk:"beaufort",rank:12,v:42,nm:"Lowcountry Underwater Services",ty:"Dive / hull cleaning",url:"facebook.com/LowcountryUnderwaterServices",owner:"—",phone:"(803) 518-6934",found:"10+ yr",rate:"~$2–4/ft or $75–125/hr",rateC:35,tier:"mid",size:"~20–80ft moored",emp:"1–2",rev:0.17,revLbl:"$100–250k",revC:40,rev_note:"Recurring hull cleaning + zincs + salvage/recovery",rvw:"Positive",water:"In-water",notes:"Niche recurring-maintenance diver"},
+{mk:"beaufort",rank:13,v:40,nm:"Mobile Marine Maintenance of Beaufort",ty:"Mobile outboard (value)",url:"mmmofbeaufort.com",owner:"—",phone:"(843) 929-2819",found:"2024–25 (new)",rate:"~$75–95/hr",rateC:45,tier:"low",size:"~16–30ft",emp:"1",rev:0.13,revLbl:"$80–200k",revC:40,rev_note:"Brand-new solo Yamaha-certified value mobile tech",rvw:"Too new",water:"Mobile",notes:"Explicitly undercuts dealers"},
+
+/* ---------- COLUMBIA / LAKE MURRAY ---------- */
+{mk:"columbia",rank:1,v:78,nm:"Cove 2 Coast Marine (MasterCraft)",ty:"Premium inboard dealer",url:"cove2coastmarine.com",owner:"—",phone:"(803) 814-1514",found:"chain",rate:"~$140–175/hr",rateC:60,tier:"high",size:"inboard wake/ski $90–250k",emp:"5–10 (Columbia)",rev:7.0,revLbl:"$4–10M (loc, w/ sales)",revC:40,rev_note:"Premium wakeboat brand, highest ASP in region",rvw:"Dealer rep",water:"~2–4mi (dam)",notes:"Highest boat values & rates on the lake"},
+{mk:"columbia",rank:2,v:74,nm:"CIC Marine (Carolina Inboard)",ty:"Full dealer + service",url:"cicmarine.com",owner:"Family-owned",phone:"—",found:"2006 (~20yr)",rate:"~$120–140/hr",rateC:60,tier:"mid",size:"pontoons/deck/runabout",emp:"8–15",rev:4.5,revLbl:"$3–6M (w/ sales)",revC:45,rev_note:"Largest pontoon dealer (Godfrey/Sweetwater)",rvw:"94% FB; A+ BBB",water:"~5–7mi (Irmo)",notes:"Professional, well-reviewed dealer"},
+{mk:"columbia",rank:3,v:72,nm:"Dynamic Marine and Motorsports",ty:"Full dealer (Merc/Yamaha)",url:"dynamicmarineandmotorsports.com",owner:"—",phone:"(803) 358-9100",found:"rebranded",rate:"~$125–145/hr",rateC:60,tier:"mid",size:"bass/pontoon/deck/CC",emp:"8–14",rev:3.75,revLbl:"$2.5–5M (w/ sales)",revC:45,rev_note:"Merc & Yamaha certified dealer",rvw:"4.3★ / 60",water:"~6–9mi (Lexington)",notes:"'Treated like family'; some BBB complaints"},
+{mk:"columbia",rank:4,v:70,nm:"Lighthouse Marina & Power Boat Sales",ty:"Marina + on-site service",url:"lighthousemarinasc.com",owner:"—",phone:"(803) 749-1554",found:"established",rate:"~$120–150/hr",rateC:50,tier:"high",size:"to 40ft / 20,000 lb",emp:"10–25",rev:0.85,revLbl:"$500k–1.2M (service)",revC:35,rev_note:"Largest full-service marina on the lake (service slice)",rvw:"4.7★ / 118",water:"On water (Chapin)",notes:"First SC Clean Marina on Lake Murray"},
+{mk:"columbia",rank:5,v:66,nm:"Phoenix Marine (Jakes Landing)",ty:"Lakeside service",url:"phoenixmarinesc.com",owner:"—",phone:"—",found:"site since 1982; 2023",rate:"~$110–135/hr",rateC:55,tier:"mid",size:"all lake types",emp:"3–6",rev:0.65,revLbl:"$400–900k",revC:40,rev_note:"Lake Murray's ONLY lakeside service location, growing",rvw:"5.0★ / 19",water:"On water (Lexington)",notes:"Captive marina traffic; adding bays"},
+{mk:"columbia",rank:6,v:64,nm:"Wateree Marina",ty:"Marina + factory service",url:"watereemarinainc.com",owner:"—",phone:"(803) 475-1224",found:"established",rate:"~$120–140/hr",rateC:55,tier:"mid",size:"pontoon/aluminum/bowrider",emp:"8–15",rev:4.5,revLbl:"$3–6M (w/ sales)",revC:40,rev_note:"Factory-certified dealer (Bennington/Xpress/SeaArk/Yamaha)",rvw:"~4.0–4.5★",water:"On water (Lake Wateree)",notes:"Camden side; sales-heavy"},
+{mk:"columbia",rank:7,v:60,nm:"M&W Mobile Marine Service",ty:"Mobile repair + detail (value)",url:"mwmobilemarine.com",owner:"—",phone:"—",found:"2007 (~18yr)",rate:"~$90–110/hr",rateC:60,tier:"mid",size:"all lake types",emp:"2–4",rev:0.45,revLbl:"$300–600k",revC:45,rev_note:"Value leader ('half competitor cost'), tests on lake",rvw:"197 reviews",water:"Mobile (Chapin)",notes:"Most-reviewed pure service rep; honesty praised"},
+{mk:"columbia",rank:8,v:56,nm:"Buck Deese Mobile Marine",ty:"Mobile outboard",url:"buckfixesboats.com",owner:"Buck & Ellie Deese",phone:"—",found:"2020 (~6yr)",rate:"~$100–120/hr",rateC:55,tier:"mid",size:"outboard lake boats",emp:"2–3",rev:0.375,revLbl:"$250–500k",revC:45,rev_note:"Growing young mobile biz; award recognition",rvw:"'Best 2022'",water:"Mobile (Lexington)",notes:"Customer-service driven"},
+{mk:"columbia",rank:9,v:54,nm:"The Boat Butlers",ty:"Detail/concierge + decking",url:"theboatbutlers.com",owner:"Family-owned",phone:"(803) 602-4669",found:"~2019",rate:"~$75–110/hr eff.",rateC:50,tier:"mid",size:"pontoon/tritoon + glass",emp:"2–5",rev:0.425,revLbl:"$250–600k",revC:40,rev_note:"Ceramic + decking + detailing, multi-lake reach",rvw:"Strong FB",water:"~4–6mi + mobile",notes:"'Only concierge co. on Lake Murray'"},
+{mk:"columbia",rank:10,v:52,nm:"Lake Murray Boat Service",ty:"Fiberglass/gelcoat specialist",url:"lakemurrayboatservice.com",owner:"Family-owned",phone:"—",found:"20+ yr exp",rate:"~$80–110/hr",rateC:50,tier:"mid",size:"fiberglass/bass/jetski/sail",emp:"2–6",rev:0.5,revLbl:"$300–700k",revC:40,rev_note:"Fiberglass shop, higher per-job (structural/paint)",rvw:"Limited public",water:"Near lake",notes:"Gelcoat/paint/color-match experts"},
+{mk:"columbia",rank:11,v:48,nm:"Dave's Mobile Marine",ty:"Mobile mechanic",url:"yelp.com",owner:"Dave",phone:"(803) 261-7062",found:"20+ yr exp",rate:"~$95–115/hr",rateC:55,tier:"mid",size:"all incl. diesel cruisers",emp:"1–2",rev:0.25,revLbl:"$150–350k",revC:45,rev_note:"Solo mobile operator (gas & diesel)",rvw:"Positive (few)",water:"Mobile (Columbia)",notes:"Friendly/informative"},
+{mk:"columbia",rank:12,v:46,nm:"Toon Time, LLC",ty:"Pontoon restoration specialist",url:"boatplanet.com",owner:"—",phone:"—",found:"2015 (~10yr)",rate:"~$75–100/hr",rateC:45,tier:"mid",size:"pontoons/tritoons + trailers",emp:"1–3",rev:0.325,revLbl:"$200–450k",revC:40,rev_note:"Pontoon decking/restoration specialist",rvw:"Positive",water:"Mobile (Sumter+Murray)",notes:"Fair price; full restorations"},
+{mk:"columbia",rank:13,v:44,nm:"Upstate Marine (Columbia satellite)",ty:"Inboard wake specialist",url:"upstatemarine.com",owner:"—",phone:"—",found:"established",rate:"~$120–150/hr",rateC:50,tier:"high",size:"inboard wake/ski + pontoon",emp:"5–10",rev:1.75,revLbl:"$1–2.5M (co-wide)",revC:35,rev_note:"Columbia is a satellite market for this Upstate shop",rvw:"Limited local",water:"Mobile to Columbia",notes:"MasterCraft/Malibu/Nautique service"},
+{mk:"columbia",rank:14,v:40,nm:"Boat Biz of Lake Murray",ty:"Storage + mobile repair",url:"theboatbiz.com",owner:"Charlie",phone:"(803) 201-9339",found:"—",rate:"~$90–110/hr",rateC:45,tier:"low",size:"all trailerable",emp:"1–3",rev:0.325,revLbl:"$200–450k",revC:35,rev_note:"Storage rent ($3/ft/mo) + light repair, 'no upsells'",rvw:"Limited",water:"~2–4mi (dam)",notes:"Storage-led value model"},
+{mk:"columbia",rank:15,v:38,nm:"Race City Marine (Lexington)",ty:"Multi-region service",url:"racecitymarine.com",owner:"—",phone:"—",found:"—",rate:"~$110–135/hr",rateC:45,tier:"mid",size:"outboard/inboard + pontoon",emp:"2–6 local",rev:0.4,revLbl:"$200–600k (local)",revC:30,rev_note:"Possibly marketing-network/referral presence locally",rvw:"Limited local",water:"Mobile",notes:"SEO-heavy multi-state operator"},
+
+/* ---------- SAVANNAH ---------- */
+{mk:"savannah",rank:1,v:97,nm:"Safe Harbor Savannah Yacht Center",ty:"Megayacht refit yard",url:"shmarinas.com",owner:"Safe Harbor / Sun Communities",phone:"(912) 443-6888",found:"~2016 (SH 2023)",rate:"~$110–160/hr",rateC:45,tier:"luxury",size:"megayacht to ~135m",emp:"23–50 + 100s subs",rev:65.0,revLbl:"$40–90M",revC:40,rev_note:"3,240-ton shiplift + graving dock; multi-$M refits",rvw:"B2B / industry",water:"On Savannah River",notes:"Among largest US refit capabilities; Pinmar on-site"},
+{mk:"savannah",rank:2,v:93,nm:"Thunderbolt Marine Inc. (TMI)",ty:"Megayacht refit yard",url:"thunderboltmarine.com",owner:"Privately held",phone:"(912) 352-4931",found:"1965 (61yr)",rate:"~$100–150/hr",rateC:45,tier:"luxury",size:"to ~60m / 200ft",emp:"75–150+",rev:37.5,revLbl:"$25–50M",revC:40,rev_note:"25-acre full-trade yard, 1,200-ton Syncrolift, in-house paint",rvw:"4.5★ / 215",water:"On Wilmington R.",notes:"Yachts run up from FL when its yards overbook"},
+{mk:"savannah",rank:3,v:80,nm:"Hinckley Yacht Services — Savannah",ty:"Premium yacht service",url:"hinckleyyachts.com",owner:"The Hinckley Company",phone:"—",found:"~15+ yr loc.",rate:"~$130–165/hr",rateC:50,tier:"high",size:"to ~110ft / 50-ton",emp:"15–30",rev:6.5,revLbl:"$4–9M",revC:35,rev_note:"~20 staff at premium billing + dockage/storage",rvw:"~3.5–4★ mixed",water:"On ICW (Thunderbolt)",notes:"Premium brand; some delay/workmanship complaints"},
+{mk:"savannah",rank:4,v:74,nm:"Hale Marine Services",ty:"Outboard dealer + service",url:"halemarineservices.com",owner:"Tim Hale",phone:"(912) 376-8776",found:"2005 (21yr)",rate:"~$110–140/hr",rateC:55,tier:"mid",size:"~16–35ft outboard",emp:"6–12",rev:2.5,revLbl:"$1.5–3.5M",revC:45,rev_note:"Yamaha/Merc dealer + parts + used-boat sales",rvw:"Positive",water:"<1mi (Causton Bluff)",notes:"Fair pricing reputation"},
+{mk:"savannah",rank:5,v:70,nm:"Cove 2 Coast Marine (Savannah)",ty:"Dealer + full service",url:"cove2coastmarine.com",owner:"Family-owned",phone:"—",found:"~5–10yr",rate:"~$120–145/hr",rateC:45,tier:"mid",size:"~18–36ft",emp:"10–20",rev:8.0,revLbl:"$5–12M (w/ sales)",revC:35,rev_note:"New dealership; service-only likely $0.5–1.5M",rvw:"5.0★ / 37",water:"~1–3mi (Richmond Hill)",notes:"Strong service-dept praise"},
+{mk:"savannah",rank:6,v:64,nm:"Dolan Yacht Services",ty:"Outboard + CNC custom",url:"dolanyachtservices.com",owner:"Dolan family",phone:"—",found:"2007 (19yr)",rate:"~$115–145/hr",rateC:50,tier:"high",size:"~18–36ft outboard",emp:"4–8",rev:1.25,revLbl:"$700k–1.8M",revC:40,rev_note:"Captive affluent Skidaway/Landings marina + CNC niche",rvw:"Positive",water:"On water (Skidaway)",notes:"Tech-forward (3D scan / custom dashes)"},
+{mk:"savannah",rank:7,v:58,nm:"Coastal Marine Service",ty:"Engine repair (value)",url:"boatrepairsavannah.com",owner:"—",phone:"—",found:"35+ yr",rate:"~$85–110/hr",rateC:50,tier:"mid",size:"~16–32ft",emp:"2–5",rev:0.5,revLbl:"$300–700k",revC:45,rev_note:"Small owner-operated engine shop, stable 35-yr base",rvw:"Positive",water:"~1–3mi",notes:"'Best price + great knowledge'"},
+{mk:"savannah",rank:8,v:54,nm:"Total Boat Repair (Savannah service)",ty:"Mobile fiberglass/gelcoat",url:"totalboatrepair.com",owner:"Brandon Parker",phone:"(843) 940-1008",found:"~6–10yr",rate:"~$95–130/hr",rateC:40,tier:"mid",size:"~18–45ft (mobile)",emp:"5–15 (regional)",rev:1.65,revLbl:"$800k–2.5M (regional)",revC:35,rev_note:"Savannah is a fraction; 140+ 5★ across 3 metros",rvw:"140+ 5★",water:"Mobile (Charleston base)",notes:"Strongest mobile review velocity; not local-HQ"},
+{mk:"savannah",rank:9,v:48,nm:"Pro Marine Inc.",ty:"Mobile electrical/mech",url:"promarineinc.net",owner:"Mark",phone:"(912) 398-5685",found:"~5–12yr",rate:"~$90–120/hr",rateC:40,tier:"mid",size:"~16–35ft",emp:"1–3",rev:0.275,revLbl:"$150–400k",revC:35,rev_note:"Solo/small mobile, limited footprint",rvw:"Thin",water:"Mobile",notes:"Electrical/electronics emphasis"},
+{mk:"savannah",rank:10,v:44,nm:"Savannah Boat Repair",ty:"Generalist (value)",url:"savannahboatrepair.com",owner:"—",phone:"(912) 376-9938",found:"~10–15yr",rate:"~$80–105/hr",rateC:45,tier:"low",size:"~16–32ft power & sail",emp:"2–4",rev:0.35,revLbl:"$200–500k",revC:35,rev_note:"Value generalist; aging website",rvw:"Limited",water:"~1–3mi",notes:"'Affordable rates'"},
+{mk:"savannah",rank:11,v:42,nm:"Alpha Marine Detailing",ty:"Mobile detailing",url:"alphamarinedetailing.com",owner:"—",phone:"—",found:"10+ yr exp",rate:"~$50–90/hr eff.",rateC:35,tier:"mid",size:"~18–50ft",emp:"1–3",rev:0.21,revLbl:"$120–300k",revC:35,rev_note:"Mobile detailing, honest reputation",rvw:"~5, positive",water:"Mobile",notes:"Advised against unneeded work — trust signal"},
+{mk:"savannah",rank:12,v:38,nm:"Ellis Marine Detailing",ty:"Mobile detail/ceramic (new)",url:"ellismarinedetailing.com",owner:"Logan Ellis",phone:"(912) 667-0169",found:"~2023 (new)",rate:"per-job premium",rateC:30,tier:"mid",size:"~18–45ft",emp:"1–2",rev:0.12,revLbl:"$60–180k",revC:30,rev_note:"Startup solo detailer; ceramic upsell",rvw:"Too new",water:"Mobile",notes:"Ceramic-coating specialist differentiator"},
+{mk:"savannah",rank:13,v:34,nm:"Savannah Marine Service",ty:"General repair (low data)",url:"—",owner:"—",phone:"(912) 232-3943",found:"unknown",rate:"~$90–120/hr",rateC:25,tier:"mid",size:"~16–40ft",emp:"2–6",rev:0.425,revLbl:"$250–600k",revC:25,rev_note:"Low-confidence placeholder",rvw:"Little data",water:"On water (Hutchinson Is.)",notes:"Insufficient public data"}
+];
+
+/* market opportunity scores */
+const OPP = [
+  {mk:"beaufort", name:"Beaufort, SC", score:84, need:"Mid-market core + fast-expanding premium (gated communities)", why:"Fastest-growing in-migration shed (adjacent Jasper Co. = fastest-growing US county), large 12k+ fleet, military demand, storm-repair tailwind — and structurally UNDER-supplied (only 2–3 haul-out yards, bigger boats leave for Charleston). Closest coastal market to Walterboro (~48mi). Best risk-adjusted entry.", grade:1},
+  {mk:"hiltonhead", name:"Hilton Head / Bluffton, SC", score:82, need:"High-end / luxury recreational + concierge", why:"Wealthiest, among fastest-growing areas; premium detailing/ceramic/electronics/refit and absentee-owner concierge all in demand; no local megayacht yard = high-end capacity gap. Best margins, but more established premium incumbents and farther from Walterboro.", grade:1},
+  {mk:"charleston", name:"Charleston, SC", score:78, need:"Mid-market volume + strong luxury refit tier", why:"Largest, fastest absolute-growth market; marinas near-full, demand outstrips supply. But the most saturated (esp. detailing) and the premium tier is locked up by entrenched yards (Ross, Safe Harbor, Zimmerman). High ceiling, high competition.", grade:2},
+  {mk:"savannah", name:"Savannah, GA", score:66, need:"Barbell — value long-tail (open) + megayacht (closed)", why:"Recreational incumbents are fragmented with weak/aging web presence — clear white space for a professional, review-driven mid-market brand (the leading mobile player is actually Charleston-based). But the big dollars sit in the megayacht tier, which is closed to new entrants, and it's the farthest market from Walterboro.", grade:3},
+  {mk:"columbia", name:"Columbia / Lake Murray, SC", score:60, need:"Value/mid volume; one premium pocket (inboard wake)", why:"Growing (lakefront development + marina consolidation) and under-served on the service side — only ONE lakeside shop, fragmented sub-$600k mobile micro-shops. But freshwater pontoon/bass economics cap job sizes and revenue ceilings well below the coast; premium limited to wake boats.", grade:4}
+];
+
+/* ---------------- RENDER ---------------- */
+const TABS=[["overview","Overview"],["charleston","Charleston"],["hiltonhead","Hilton Head"],["beaufort","Beaufort"],["columbia","Columbia"],["savannah","Savannah"],["ranking","Market Ranking ★"],["cbw","Coastal Boat Works ★"],["turnaround","Turn-Around Plan ★"],["method","Methodology"]];
+/* link out to companion pages */
+{const wrap=document.createElement("span");wrap.style.cssText="margin-left:auto;display:flex;align-items:center;gap:0";
+ const mk=(href,label,color)=>{const a=document.createElement("a");a.href=href;a.textContent=label;
+   a.style.cssText="align-self:center;color:#cfe0ec;font-size:13px;text-decoration:none;font-weight:600;padding:0 14px;border-left:1px solid #25527a";
+   a.onmouseover=()=>a.style.color=color;a.onmouseout=()=>a.style.color="#cfe0ec";return a;};
+ wrap.appendChild(mk("why-not/","Why Not? ★","#fff"));
+ wrap.appendChild(mk("the-edge/","The Edge ★","#cfb3ed"));
+ document.getElementById("tabs").appendChild(wrap);}
+const tabWrap=document.getElementById("tabs");
+TABS.forEach((t,i)=>{const b=document.createElement("button");b.textContent=t[1];b.dataset.t=t[0];if(i===0)b.classList.add("active");b.onclick=()=>show(t[0],b);tabWrap.appendChild(b);});
+function show(id,btn){document.querySelectorAll("section.panel").forEach(p=>p.classList.remove("active"));
+  document.getElementById("p-"+id).classList.add("active");
+  document.querySelectorAll("nav.tabs button").forEach(b=>b.classList.remove("active"));btn.classList.add("active");
+  window.scrollTo({top:0,behavior:"smooth"});}
+
+const tierLabel={luxury:"Luxury",high:"High-end",mid:"Mid",low:"Value"};
+function tierPill(t){return `<span class="pill t-${t}">${tierLabel[t]}</span>`;}
+function urlCell(u){return u&&u!=="—"?`<a href="https://${u}" target="_blank" rel="noopener">${u}</a>`:"—";}
+const fmt$=v=>v>=1?("$"+v.toFixed(1).replace(/\.0$/,"")+"M"):("$"+Math.round(v*1000)+"k");
+
+/* build each market panel */
+Object.entries(MARKETS).forEach(([key,m])=>{
+  const panel=document.getElementById(m.panel);
+  const rows=COMPANIES.filter(c=>c.mk===key);
+  panel.innerHTML=`
+    <h2>${m.name} <span style="font-size:14px;font-weight:600" class="grow-${m.growth==='up'?'up':m.growth==='down'?'down':'flat'}">${m.growth==='up'?'▲':'▬'} ${m.growthTxt}</span></h2>
+    <p class="sub">${m.overview}</p>
+    <div class="tagrow">${m.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div>
+    <div class="cards">
+      <div class="kpi"><div class="n">${rows.length}</div><div class="l">operators profiled</div></div>
+      <div class="kpi"><div class="n">${m.size}</div><div class="l">est. market size</div></div>
+      <div class="kpi"><div class="n">${m.need}</div><div class="l">dominant need</div></div>
+    </div>
+    <div class="filters" id="f-${key}">
+      <label>Tier
+        <select data-f="tier"><option value="">All</option><option value="luxury">Luxury</option><option value="high">High-end</option><option value="mid">Mid</option><option value="low">Value</option></select>
+      </label>
+      <input type="text" data-f="q" placeholder="Search name / service / owner…">
+      <span class="count"></span>
+    </div>
+    <div style="overflow-x:auto">
+    <table id="t-${key}">
+      <thead><tr>
+        <th data-s="rank">#<span class="ar">▼</span></th>
+        <th data-s="nm">Company</th>
+        <th data-s="tier">Tier</th>
+        <th data-s="rate">Hourly</th>
+        <th data-s="size">Boats</th>
+        <th data-s="emp">Staff</th>
+        <th data-s="rev">Est. revenue</th>
+        <th data-s="rvw">Reviews</th>
+        <th data-s="found">Founded</th>
+        <th data-s="water">Water</th>
+        <th data-s="v">Viability</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table></div>
+    <p class="legend"><b>Viability</b> = composite of revenue scale, reputation, longevity &amp; demand-fit (used to rank within market). <b>Reviews / staff / revenue / hourly</b> are estimates — see Methodology. Hover a row for detail.</p>
+  `;
+  const tbody=panel.querySelector("tbody");
+  let state={key,rows:rows.slice(),sort:"rank",dir:1,tier:"",q:""};
+  function render(){
+    let r=state.rows.filter(c=>(!state.tier||c.tier===state.tier)&&
+      (!state.q||(c.nm+" "+c.ty+" "+c.owner+" "+c.notes).toLowerCase().includes(state.q.toLowerCase())));
+    r.sort((a,b)=>{let x=a[state.sort],y=b[state.sort];
+      if(typeof x==="string"){x=x.toLowerCase();y=(y||"").toLowerCase();return x<y?-1*state.dir:x>y?1*state.dir:0;}
+      return (x-y)*state.dir;});
+    tbody.innerHTML=r.map(c=>`
+      <tr title="${(c.ty+' — '+c.notes+'  |  Avg job/value: '+(c.rev_note||'')).replace(/"/g,'&quot;')}" ${c.inactive?'style="opacity:.55"':''}>
+        <td><span class="rank ${c.rank<=3?'top':''}">${c.rank}</span></td>
+        <td><div class="nm">${c.nm}${c.inactive?' <span class="note-inactive">INACTIVE</span>':''}</div>
+            <div class="ty">${c.ty}${c.owner&&c.owner!=='—'?' · '+c.owner:''}</div>
+            <div class="src">${urlCell(c.url)}${c.phone&&c.phone!=='—'?' · '+c.phone:''}</div></td>
+        <td>${tierPill(c.tier)}</td>
+        <td>${c.rate}<div class="conf">conf ${c.rateC}%</div></td>
+        <td>${c.size}</td>
+        <td>${c.emp}</td>
+        <td>${c.revLbl}<div class="conf">conf ${c.revC}%</div></td>
+        <td>${c.rvw}</td>
+        <td>${c.found}</td>
+        <td>${c.water}</td>
+        <td><div style="font-weight:700;color:var(--navy)">${c.v}</div><div class="bar"><i style="width:${c.v}%"></i></div></td>
+      </tr>`).join("");
+    panel.querySelector(".count").textContent=r.length+" shown";
+  }
+  panel.querySelectorAll("thead th").forEach(th=>th.onclick=()=>{
+    const s=th.dataset.s;if(state.sort===s)state.dir*=-1;else{state.sort=s;state.dir=(s==='rank'||s==='nm'||s==='found'||s==='size'||s==='water'||s==='rvw')?1:-1;}
+    panel.querySelectorAll("thead th .ar").forEach(a=>a.remove());
+    const ar=document.createElement("span");ar.className="ar";ar.textContent=state.dir>0?"▲":"▼";th.appendChild(ar);
+    render();});
+  panel.querySelector('[data-f="tier"]').onchange=e=>{state.tier=e.target.value;render();};
+  panel.querySelector('[data-f="q"]').oninput=e=>{state.q=e.target.value;render();};
+  render();
+});
+
+/* ----- market ranking cards ----- */
+const rc=document.getElementById("rank-cards");
+rc.innerHTML=OPP.map((o,i)=>{const m=MARKETS[o.mk];return `
+  <div class="mkcard">
+    <div class="head">
+      <div class="rk g${o.grade}">${i+1}</div>
+      <h3>${o.name}</h3>
+      <div class="meta">Opportunity <b style="font-size:18px;color:var(--navy)">${o.score}</b>/100<br><span class="grow-${m.growth}">${m.growthTxt}</span> · ${m.size}</div>
+    </div>
+    <div class="tagrow"><span class="tag">Need: ${o.need}</span></div>
+    <p style="margin:6px 0 0;font-size:14px">${o.why}</p>
+  </div>`;}).join("");
+
+/* ----- charts ----- */
+const NAVY="#0d2b45",TEAL="#1d7a8c",TEAL2="#2a9db5",GREEN="#2e8b57",AMBER="#d99100",PURPLE="#6b3fb0";
+Chart.defaults.font.family="-apple-system,Segoe UI,Roboto,sans-serif";
+Chart.defaults.font.size=12;Chart.defaults.color="#5d6b7a";
+
+const mkOrder=["charleston","hiltonhead","beaufort","columbia","savannah"];
+const mkNames=mkOrder.map(k=>MARKETS[k].name.split(",")[0].split(" / ")[0]);
+const mkSvc=[35,21,14,12,22.5]; // service-market midpoints $M (Savannah recreational portion)
+const oppByOrder=mkOrder.map(k=>OPP.find(o=>o.mk===k).score);
+
+new Chart(document.getElementById("cMarketSize"),{type:"bar",
+  data:{labels:mkNames,datasets:[{label:"$M/yr (service)",data:mkSvc,backgroundColor:TEAL}]},
+  options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>"~$"+c.raw+"M/yr (midpoint est.)"}}},
+    scales:{y:{title:{display:true,text:"$M / yr"}}}}});
+
+new Chart(document.getElementById("cOpp"),{type:"bar",
+  data:{labels:mkNames,datasets:[{label:"Opportunity",data:oppByOrder,
+    backgroundColor:oppByOrder.map(s=>s>=82?GREEN:s>=75?TEAL:s>=65?TEAL2:AMBER)}]},
+  options:{indexAxis:"y",plugins:{legend:{display:false}},scales:{x:{max:100,title:{display:true,text:"score /100"}}}}});
+
+const tierCounts={luxury:0,high:0,mid:0,low:0};COMPANIES.forEach(c=>{if(!c.inactive)tierCounts[c.tier]++;});
+new Chart(document.getElementById("cTier"),{type:"doughnut",
+  data:{labels:["Luxury / megayacht","High-end","Mid-market","Value / low-end"],
+    datasets:[{data:[tierCounts.luxury,tierCounts.high,tierCounts.mid,tierCounts.low],
+      backgroundColor:[PURPLE,TEAL,GREEN,AMBER]}]},
+  options:{plugins:{legend:{position:"right"}}}});
+
+const rateLow=[80,110,80,90,85],rateHigh=[160,185,140,175,165];
+new Chart(document.getElementById("cRate"),{type:"bar",
+  data:{labels:mkNames,datasets:[
+    {label:"Low end",data:rateLow,backgroundColor:TEAL2},
+    {label:"High end (− low)",data:rateHigh.map((h,i)=>h-rateLow[i]),backgroundColor:NAVY}]},
+  options:{plugins:{tooltip:{callbacks:{label:c=>c.datasetIndex===0?("from $"+c.raw+"/hr"):("to $"+(c.raw+rateLow[c.dataIndex])+"/hr")}}},
+    scales:{x:{stacked:true},y:{stacked:true,title:{display:true,text:"$ / hr"}}}}});
+
+new Chart(document.getElementById("cOppBig"),{type:"bar",
+  data:{labels:OPP.map(o=>o.name),datasets:[{label:"Opportunity score",data:OPP.map(o=>o.score),
+    backgroundColor:OPP.map(o=>o.grade===1?GREEN:o.grade===2?TEAL:o.grade===3?TEAL2:AMBER)}]},
+  options:{indexAxis:"y",plugins:{legend:{display:false},
+    tooltip:{callbacks:{afterLabel:c=>"Need: "+OPP[c.dataIndex].need}}},
+    scales:{x:{max:100,title:{display:true,text:"composite score /100"}}}}});
+
+/* turnaround scenario chart */
+new Chart(document.getElementById("cScenario"),{
+  type:"bar",
+  data:{labels:["1 · Today\n$85/hr, maxed out","2 · Raise rates + shed\nbottom 20% (solo)","3 · Productize decking\n+ first hire","4 · Beaufort on-water\nrebrand (coastal rates)"],
+    datasets:[
+      {type:"bar",label:"Est. annual revenue",data:[200,245,425,650],backgroundColor:[AMBER,TEAL,GREEN,PURPLE],
+        yAxisID:"y",borderRadius:5},
+      {type:"line",label:"Your hands-on hours/yr",data:[2200,1500,1800,2000],borderColor:NAVY,backgroundColor:NAVY,
+        yAxisID:"y1",tension:.3,pointRadius:5,pointHoverRadius:7,borderWidth:3}
+    ]},
+  options:{plugins:{legend:{position:"top"},
+    tooltip:{callbacks:{label:c=>c.dataset.type==="line"?("~"+c.raw.toLocaleString()+" hrs/yr (you)"):("~$"+c.raw+"k revenue")}}},
+    scales:{
+      y:{position:"left",title:{display:true,text:"revenue ($k)"},grid:{drawOnChartArea:false},suggestedMax:750},
+      y1:{position:"right",title:{display:true,text:"your hours / yr"},suggestedMax:2600,grid:{drawOnChartArea:false}}}}});
+
+/* overview KPIs */
+const active=COMPANIES.filter(c=>!c.inactive);
+document.getElementById("ov-kpis").innerHTML=`
+  <div class="kpi"><div class="n">${active.length}</div><div class="l">operators profiled (5 markets)</div></div>
+  <div class="kpi"><div class="n">5</div><div class="l">markets, all growing</div></div>
+  <div class="kpi"><div class="n">$80–135<span style="font-size:14px">/hr</span></div><div class="l">typical mid-market labor band</div></div>
+  <div class="kpi"><div class="n">Beaufort</div><div class="l">#1 opportunity for a mid-tier operator</div></div>
+  <div class="kpi"><div class="n">▲ +12%</div><div class="l">South Atlantic boat registrations (NMMA)</div></div>`;
+</script>
+</body>
+</html>

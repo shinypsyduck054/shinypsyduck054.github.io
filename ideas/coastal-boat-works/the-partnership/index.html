@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coastal Boat Works — The Partnership: Psyduck's Verdict</title>
+<style>
+  :root{
+    --navy:#0d2b45; --navy2:#11395c; --teal:#1d7a8c; --teal2:#2a9db5;
+    --sand:#f4efe6; --ink:#1b2733; --muted:#5d6b7a; --line:#dde3ea;
+    --green:#2e8b57; --amber:#d99100; --red:#c0392b; --rust:#b8541a;
+    --purple:#6b3fb0; --card:#ffffff;
+    --shadow:0 1px 3px rgba(13,43,69,.08),0 6px 18px rgba(13,43,69,.06);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--sand);line-height:1.55;font-size:15.5px}
+  header.hero{background:linear-gradient(135deg,#1b2733,var(--rust));color:#fff;padding:32px 28px 28px}
+  header.hero .wrap{max-width:1080px;margin:0 auto}
+  header.hero h1{margin:0 0 8px;font-size:28px;letter-spacing:.2px}
+  header.hero p{margin:0;opacity:.93;font-size:15px;max-width:820px}
+  header.hero .crumb{font-size:12.5px;opacity:.85;margin-bottom:8px}
+  header.hero .crumb a{color:#f0d8c8;text-decoration:none;margin-right:6px}
+  header.hero .crumb a:hover{color:#fff;text-decoration:underline}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  nav.tabs{position:sticky;top:0;z-index:50;background:var(--navy);display:flex;flex-wrap:wrap;gap:2px;
+    padding:0 12px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+  nav.tabs button{background:transparent;color:#cfe0ec;border:0;padding:13px 14px;font-size:13.5px;
+    cursor:pointer;border-bottom:3px solid transparent;font-weight:600;white-space:nowrap}
+  nav.tabs button:hover{color:#fff}
+  nav.tabs button.active{color:#fff;border-bottom-color:var(--rust)}
+  section.panel{display:none;padding:26px 0 60px}
+  section.panel.active{display:block}
+  h2{font-size:22px;margin:6px 0 6px;color:var(--navy)}
+  h3{font-size:16.5px;color:var(--navy2);margin:22px 0 8px}
+  h4{font-size:14.5px;color:var(--navy2);margin:14px 0 6px}
+  .sub{color:var(--muted);font-size:14.5px;margin:0 0 18px;max-width:820px}
+  .deep{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;box-shadow:var(--shadow);margin:14px 0}
+  .deep h3:first-child,.deep h4:first-child{margin-top:0}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+  .callout{background:linear-gradient(135deg,#1b2733,var(--rust));color:#fff;border-radius:12px;padding:20px 24px;margin:16px 0}
+  .callout h3{color:#fff;margin:0 0 8px;font-size:18px}
+  .callout p{margin:6px 0;font-size:14.5px;opacity:.96}
+  .callout.green{background:linear-gradient(135deg,#0d2b45,var(--green))}
+  .callout.navy{background:linear-gradient(135deg,#0d2b45,var(--teal))}
+  .warn{background:#fdf3e3;border:1px solid #f0d8a8;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:12px 0}
+  .warn b{color:var(--amber)}
+  .note{background:#eef9f1;border:1px solid #bfe6cc;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:12px 0}
+  .red{background:#fdecea;border:1px solid #f3c9c3;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:12px 0}
+  ul.clean{font-size:14.5px;padding-left:20px} ul.clean li{margin:6px 0}
+  .reason{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;box-shadow:var(--shadow);margin:12px 0;border-left:5px solid var(--rust);display:flex;gap:16px;align-items:flex-start}
+  .reason .num{flex-shrink:0;width:36px;height:36px;border-radius:9px;background:var(--rust);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px}
+  .reason .body{flex:1;min-width:0}
+  .reason .ttl{font-weight:700;color:var(--navy);font-size:16px;margin-bottom:5px}
+  .reason p{margin:5px 0 0;font-size:14px}
+  .opt{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;box-shadow:var(--shadow);margin:14px 0;border-top:5px solid var(--teal)}
+  .opt.a{border-top-color:var(--teal)}
+  .opt.b{border-top-color:var(--amber)}
+  .opt.c{border-top-color:var(--green)}
+  .opt .head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+  .opt h3{margin:0;font-size:18px;color:var(--navy)}
+  .opt .badge{font-size:11.5px;padding:2px 9px;border-radius:20px;font-weight:700;letter-spacing:.3px}
+  .opt.a .badge{background:#e3f0ff;color:#1f5fb0}
+  .opt.b .badge{background:#fdf0e0;color:var(--rust)}
+  .opt.c .badge{background:#e6f6ec;color:#236b41}
+  .opt .terms{font-size:13.5px;background:#f7fafc;border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-top:10px}
+  .opt .terms b{color:var(--navy)}
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;
+    font-size:13.5px;margin:10px 0;box-shadow:var(--shadow)}
+  thead th{background:var(--navy);color:#fff;text-align:left;padding:10px 12px;font-weight:600;font-size:12.5px}
+  tbody td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr:hover{background:#f7fafc}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  td.term{font-weight:700;color:var(--navy);width:170px}
+  .stat{display:flex;flex-wrap:wrap;gap:14px;margin:14px 0}
+  .stat .kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;box-shadow:var(--shadow);min-width:160px;flex:1}
+  .stat .kpi .n{font-size:22px;font-weight:800;color:var(--rust)}
+  .stat .kpi.green .n{color:var(--green)}
+  .stat .kpi.navy .n{color:var(--navy)}
+  .stat .kpi .l{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .pillrow{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+  .pill{font-size:11.5px;background:#eef3f7;color:var(--navy2);padding:2px 9px;border-radius:20px;font-weight:600}
+  .pill.bad{background:#fdecea;color:#a8431f}
+  .pill.good{background:#e6f6ec;color:#236b41}
+  .pill.warn{background:#fdf0e0;color:var(--rust)}
+  blockquote{border-left:4px solid var(--rust);background:#fdf3e3;margin:10px 0;padding:10px 16px;border-radius:0 8px 8px 0;color:var(--ink);font-size:14.5px;font-style:italic}
+  .verdict-box{background:linear-gradient(135deg,var(--rust),#8a3e10);color:#fff;border-radius:14px;padding:24px 28px;margin:18px 0;text-align:center}
+  .verdict-box .label{font-size:12.5px;text-transform:uppercase;letter-spacing:1.5px;opacity:.85;margin-bottom:6px}
+  .verdict-box .answer{font-size:32px;font-weight:800;letter-spacing:.3px}
+  .verdict-box .qual{font-size:14.5px;margin-top:8px;opacity:.95}
+  footer{padding:26px 0 50px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);margin-top:20px}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+  .version-tag{font-variant-numeric:tabular-nums}
+  @media(max-width:860px){.twocol,.threecol{grid-template-columns:1fr}thead th{position:static}
+    table{display:block;overflow-x:auto;white-space:nowrap}
+    .reason{flex-direction:column}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="../">← hub</a>·<a href="../landscape/">landscape</a>·<a href="../why-not/">why not?</a>·<a href="../the-edge/">the edge</a></div>
+    <h1>The Partnership — Psyduck's Verdict</h1>
+    <p>The Edge page argued that Justin + Psyduck could add <b>+$490k over 5 years</b> to a one-person shop. Justin asked the next, harder question: should we actually <i>partner</i> with Coastal Boat Works? Here's the honest answer — and the bigger play hiding underneath it.</p>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button class="active" data-p="verdict">The Verdict</button>
+  <button data-p="reasons">7 Reasons Against</button>
+  <button data-p="alts">Better Structures</button>
+  <button data-p="customer-zero">★ Customer-Zero Play</button>
+  <button data-p="if-asked">If They Asked Anyway</button>
+  <button data-p="recap">Recap</button>
+</nav>
+
+<div class="wrap">
+
+<!-- VERDICT -->
+<section class="panel active" id="p-verdict">
+  <h2>The honest answer, up front</h2>
+  <p class="sub">Justin asked: <i>in your opinion as Psyduck, with my skill set, would partnership with Coastal Boat Works improve their business?</i> Two questions packed into one. The shop would benefit — that's already proven by The Edge page. The harder question is whether <b>partnership</b> is the right structure for that benefit to flow. It isn't.</p>
+
+  <div class="verdict-box">
+    <div class="label">Verdict</div>
+    <div class="answer">No, not a partnership.</div>
+    <div class="qual">But the underlying value is real — and there's a much bigger play sitting underneath it.</div>
+  </div>
+
+  <h3>The three things you have to believe for partnership to be the right move</h3>
+  <p class="sub">All three have to be true. If any one of them isn't, partnership is the wrong instrument and the right answer is a different deal.</p>
+  <div class="threecol">
+    <div class="deep" style="border-top:4px solid var(--rust)">
+      <h4 style="margin-top:0">1. The owner wants a partner</h4>
+      <p style="font-size:14px;margin:0">Ten years solo is a revealed preference. Owned land, no payroll, no manager hat — that's the shape they chose. Showing up offering to be a co-pilot is the exact thing the data says they don't want.</p>
+      <div class="pillrow"><span class="pill bad">likely false</span></div>
+    </div>
+    <div class="deep" style="border-top:4px solid var(--rust)">
+      <h4 style="margin-top:0">2. Our value is worth equity</h4>
+      <p style="font-size:14px;margin:0">Software + AI ops is worth a fee or a royalty. It is rarely worth equity in someone else's craft business — because the craft is the moat, and we don't have the craft. Trading a fee for ownership undervalues both sides over time.</p>
+      <div class="pillrow"><span class="pill bad">false</span></div>
+    </div>
+    <div class="deep" style="border-top:4px solid var(--rust)">
+      <h4 style="margin-top:0">3. This is the right home for our compounding</h4>
+      <p style="font-size:14px;margin:0">We already locked in the bet: the Kit Machine, with FightAClaim in beta and four more kits in dev. A single-shop service partnership in Walterboro doesn't compound the way the Kit Machine does — it just substitutes for it, badly.</p>
+      <div class="pillrow"><span class="pill bad">false</span></div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h3>The reframing that matters</h3>
+    <p>"We should run their back office" and "we should be partners" are <b>different deals with wildly different consequences.</b> The first is a clean, bounded engagement. The second is a marriage with no exit and a built-in equity-vs-craft imbalance. The Edge analysis justifies the first; nothing justifies the second.</p>
+    <p style="margin-top:10px">And the actual insight inside The Edge — that the same back-office stack solves a problem hundreds of thousands of solo craft shops have — points to a third option that's an order of magnitude bigger than either: <b>productize the Edge stack and sell it to every shop like this one.</b> Coastal Boat Works gets to be customer-zero. That's the play.</p>
+  </div>
+
+  <blockquote>The boat shop is a real, well-run craft business. We should help it. We should not own a slice of it.</blockquote>
+</section>
+
+<!-- REASONS -->
+<section class="panel" id="p-reasons">
+  <h2>Seven reasons partnership is the wrong shape</h2>
+  <p class="sub">In rough order of severity — any one of #1, #2 or #4 is on its own enough to walk away. The rest are the supporting cast.</p>
+
+  <div class="reason">
+    <div class="num">1</div>
+    <div class="body">
+      <div class="ttl">The Kit Machine is the bet, not this.</div>
+      <p>Our locked memory makes this explicit: Kit Machine is the core business — 89% odds of $100k/yr at 2 years, bear-case exit $800k–$1.3M, bull-case $2.2M–$3.6M. FightAClaim is already in beta on fightaclaim.com. IRSDecoder, OfferWin, ViolationKit and HuntLease are sequenced behind it. A single-shop service partnership in Walterboro is a sidequest at the wrong scale — every hour spent on it is an hour pulled from the thing we've already decided is <i>the</i> thing.</p>
+    </div>
+  </div>
+
+  <div class="reason">
+    <div class="num">2</div>
+    <div class="body">
+      <div class="ttl">Bus factor lives entirely in the owner.</div>
+      <p>The craft is the moat. We don't have the craft. If the owner steps away — sick, burned out, lost interest, sold the trailer and moved — the business stops. A partnership where one side is replaceable and the other isn't is structurally unbalanced. The owner will (correctly) figure that out by year two, and the resentment compounds from there.</p>
+    </div>
+  </div>
+
+  <div class="reason">
+    <div class="num">3</div>
+    <div class="body">
+      <div class="ttl">Geography is hostile to remote partnership.</div>
+      <p>Walterboro is in coastal South Carolina. We operate remotely. Service businesses need <i>someone</i> on the ground for the parts that aren't craft — receiving, vendor pickup, walk-ins, in-person estimates, the manager hat The Edge page is supposed to eliminate. At one-shop scale, "remote partner" means we're never the person standing in the shop when something goes wrong, which means we're never quite trusted to call the shots we'd need to call. Brittle.</p>
+    </div>
+  </div>
+
+  <div class="reason">
+    <div class="num">4</div>
+    <div class="body">
+      <div class="ttl">"Stay solo" is a revealed preference.</div>
+      <p>The Why Not page made the case better than the main plan did: low overhead, owned land, no payroll, no manager hat, ten years of doing it that way. That isn't an accident. The owner <i>chose</i> this. Showing up with "let us be your partner" is the exact opposite of what the data says they want. We'd be selling against the existing preference — which is the hardest sale, and the one most likely to end with a polite no.</p>
+    </div>
+  </div>
+
+  <div class="reason">
+    <div class="num">5</div>
+    <div class="body">
+      <div class="ttl">Partnership friction is real and expensive.</div>
+      <p>LLC restructuring. Equity split. Profit waterfall. Vesting and cliff. IP ownership — who owns the configurator, the SEO content, the panel templates, the email lists? Buyout clauses. What happens if Justin gets bored. What happens if the owner gets sick. What happens if we add another customer. Every one of those is a lawyer hour, a hard conversation, and a potential breakup. None of them is automatic. Most small-business partnerships die on one of these and not on the actual business.</p>
+    </div>
+  </div>
+
+  <div class="reason">
+    <div class="num">6</div>
+    <div class="body">
+      <div class="ttl">Trust hasn't been earned. We've never met this person.</div>
+      <p>We've read their Facebook page. We've estimated their revenue. We have not had a single conversation. Partnership presupposes years of working relationship — at minimum, a real engagement and a real shared win first. Cold-pitching a partnership to a stranger is how you become "that AI guy who DMed me." If we ever do work with this shop, it starts with a paid project, not a co-founder pitch.</p>
+    </div>
+  </div>
+
+  <div class="reason">
+    <div class="num">7</div>
+    <div class="body">
+      <div class="ttl">Single-customer concentration is a worse business than many-customer SaaS.</div>
+      <p>The Edge stack is a <i>product</i>. Wrapping that product around one customer in exchange for a piece of a $200k–$300k-revenue shop is the opposite of leverage. Same effort, productized and sold a hundred times, is a much bigger number with much less risk. We'd be trading the option to compound — which is the whole game — for a fixed slice of one well-run but inherently bounded shop.</p>
+    </div>
+  </div>
+
+  <div class="red"><b>None of these are fixable with better terms.</b> #1–#4 are structural. The right move isn't to negotiate a better partnership; it's to not propose a partnership.</div>
+</section>
+
+<!-- ALTERNATIVES -->
+<section class="panel" id="p-alts">
+  <h2>Three better structures</h2>
+  <p class="sub">If we want to help this shop (or any shop like it), here are the three honest deal shapes — in order of how much of the underlying value they unlock. Pick one. Or do A → B → C in sequence.</p>
+
+  <div class="opt a">
+    <div class="head"><h3>A · Paid client</h3><span class="badge">CASH IN, BOUNDED</span></div>
+    <p style="font-size:14.5px;margin:0">Justin builds the Edge stack as a fixed-price engagement plus a monthly retainer. Site, intake/quote pipeline, kit storefront scaffolding, customer portal, photo-to-post pipeline. Psyduck runs the back-office layer — inbox triage, quote drafting, content engine, review automation. The shop can fire us anytime, which keeps us honest.</p>
+    <div class="twocol" style="margin-top:12px">
+      <div class="note"><b>Upside</b><br>Cash now. No equity entanglement. No breakup risk. Proves the model — the same model we'd productize in Option C. Owner stays in full control of their business.</div>
+      <div class="warn"><b>Downside</b><br>Caps at one customer's budget. We don't share the upside if the Edge stack does what The Edge page claims. Custom work doesn't compound.</div>
+    </div>
+    <div class="terms"><b>Realistic terms:</b> ~$8k–$15k initial build, $800–$1,500/mo ongoing ops. Real numbers a $200k–$300k shop can justify against documented hour savings.</div>
+  </div>
+
+  <div class="opt b">
+    <div class="head"><h3>B · Vendor / licensor on the productized side</h3><span class="badge">ALIGNED UPSIDE</span></div>
+    <p style="font-size:14.5px;margin:0">When CNC products (decking kits, dash panels) go on sale as shippable goods — Move P1 and P2 from the Landscape's productization menu — we co-build the storefront and configurator. Instead of a flat fee, we take a per-unit royalty on every kit sold through infrastructure we built. This is a <i>vendor relationship</i> on the productized side. The craft service business stays 100% the owner's.</p>
+    <div class="twocol" style="margin-top:12px">
+      <div class="note"><b>Upside</b><br>Aligned upside — we win when kits sell. Bounded scope. The configurator becomes reusable infra we can resell to other shops with the same shape.</div>
+      <div class="warn"><b>Downside</b><br>Still single-customer initially. Depends entirely on the owner actually wanting to productize, not just sitting on the CNC machine. We carry build risk.</div>
+    </div>
+    <div class="terms"><b>Realistic terms:</b> 8–15% of net kit revenue we directly enable, 36-month term, with a $0-up-front build in exchange for the royalty rate.</div>
+  </div>
+
+  <div class="opt c">
+    <div class="head"><h3>C · Customer-zero for Solo Craft Shop OS</h3><span class="badge">★ THIS IS THE ONE</span></div>
+    <p style="font-size:14.5px;margin:0">The Edge stack isn't bespoke to boats — it's a generic operating system for a one-to-three-person craft shop. Build it as a product. Sell it as SaaS to every solo craft shop in America. Coastal Boat Works gets the whole thing free for life, in exchange for being the public case study, the photo reel, the testimonial, and the number that closes the next 100 sales.</p>
+    <div class="twocol" style="margin-top:12px">
+      <div class="note"><b>Upside</b><br>This is a SaaS at the scale the Kit Machine targets. Same compounding shape. We own the IP. Coastal Boat Works wins more (free product) than they would under any equity partnership we'd realistically negotiate.</div>
+      <div class="warn"><b>Downside</b><br>Longer build before any revenue. Requires the owner to actually use it — daily, for real — for the case study to be honest. They have to agree to the spotlight.</div>
+    </div>
+    <div class="terms"><b>Realistic terms:</b> Free for life for CBW + named on case study + minor input on roadmap. We retain all IP, can sell to anyone — including competitors.</div>
+  </div>
+
+  <div class="callout green">
+    <h3>The honest sequencing</h3>
+    <p>A → B → C, in that order, is the right path if we ever engage. A proves the value with cash. B introduces aligned upside on the productization side without entangling the service business. C is the actual prize — and once you've shipped A + B, you have the muscle and the proof to build C credibly.</p>
+    <p style="margin-top:8px">If we have to skip steps, skip A. Go straight to <b>C with CBW as customer-zero</b>. That's the highest-leverage path and the one that doesn't require us to ever propose ownership of anything we shouldn't own.</p>
+  </div>
+</section>
+
+<!-- CUSTOMER ZERO -->
+<section class="panel" id="p-customer-zero">
+  <h2>★ The Customer-Zero Play: Solo Craft Shop OS</h2>
+  <p class="sub">This is the actual insight buried in The Edge page. Worth its own tab because the partnership question is downstream of it.</p>
+
+  <div class="deep">
+    <h3 style="margin-top:0">The thesis</h3>
+    <p style="font-size:14.5px">Every solo or 2-to-3-person craft shop in America has the same back-office problem Coastal Boat Works has. Overbooked. Underpriced. Dead website. No SEO. No recurring program. No productization. No admin time. The Edge stack — site, photo-to-post pipeline, intake/quote/waitlist, kit storefront, customer portal + maintenance, SEO content engine, review automation, CRM/dispatch glue, configurator, analytics — is <b>not boat-specific</b>. It's shop-specific.</p>
+    <p style="font-size:14.5px"><b>Productize it.</b> Templates per vertical. Install in a weekend. Owner stays on craft; the AI ops layer (Psyduck-as-a-product) handles inbox, content, scheduling and review work.</p>
+  </div>
+
+  <h3>The verticals — partial list</h3>
+  <p class="sub">Each of these is a one-to-three-person craft shop with the same operational shape as CBW. None of them have anything like the Edge stack today.</p>
+  <div class="pillrow">
+    <span class="pill">Boat refit &amp; decking</span>
+    <span class="pill">Custom woodworking</span>
+    <span class="pill">Metal fab</span>
+    <span class="pill">Leather craft</span>
+    <span class="pill">Glassblowing</span>
+    <span class="pill">Custom auto / hot rod</span>
+    <span class="pill">RV refit</span>
+    <span class="pill">Custom signage</span>
+    <span class="pill">Instrument repair</span>
+    <span class="pill">Knife makers</span>
+    <span class="pill">Gunsmiths</span>
+    <span class="pill">Watch repair</span>
+    <span class="pill">Custom furniture</span>
+    <span class="pill">Taxidermy</span>
+    <span class="pill">Neon &amp; lighting</span>
+    <span class="pill">Saddlery &amp; tack</span>
+    <span class="pill">Pottery studios</span>
+    <span class="pill">Custom upholstery</span>
+  </div>
+  <p class="sub" style="font-size:13px"><b>US count, all verticals combined:</b> hundreds of thousands of shops. Even capturing 0.1% is a real business.</p>
+
+  <h3>The math (sketched, not modeled to death)</h3>
+  <div class="stat">
+    <div class="kpi green"><div class="n">$149/mo</div><div class="l">Target ASP</div></div>
+    <div class="kpi green"><div class="n">500</div><div class="l">Year-2 customer target</div></div>
+    <div class="kpi green"><div class="n">$74.5k</div><div class="l">MRR at target</div></div>
+    <div class="kpi green"><div class="n">~$894k</div><div class="l">ARR at target</div></div>
+    <div class="kpi navy"><div class="n">Mid-bull</div><div class="l">vs. Kit Machine projection</div></div>
+  </div>
+  <p class="sub" style="font-size:13.5px">$149/mo is conservative — the value to a shop is "a part-time admin you don't have to hire," which is $1,500/mo gross. Even at 10x value-to-price, it's a steal. And the customer-acquisition channel is <i>exactly the same niche-forum + SEO + cold-email shape</i> we already run for the kits — same muscle, different vertical.</p>
+
+  <div class="deep">
+    <h3 style="margin-top:0">Coastal Boat Works' role in the play</h3>
+    <ul class="clean">
+      <li><b>Anchor case study</b> — public before/after on revenue, hours saved, lead volume, review velocity. Numbers, not vibes.</li>
+      <li><b>Video proof</b> — owner on camera saying "I have my Sundays back" beats any marketing copy we'd write.</li>
+      <li><b>Roadmap signal</b> — first 90 days of usage tells us which features are real and which we imagined.</li>
+      <li><b>Reference customer</b> — when a metal-fab shop in Idaho asks "does this actually work," we hand them CBW's number.</li>
+    </ul>
+    <p style="margin:10px 0 0;font-size:14px"><b>In exchange:</b> free for life. Lifetime grandfathered pricing. Named on the case study (with their consent, naturally). Minor input on the roadmap — not veto, just input. That's it. They get more value than any partnership we'd realistically negotiate, with none of the entanglement.</p>
+  </div>
+
+  <div class="callout navy">
+    <h3>Why this is structurally better than partnership</h3>
+    <p>A partnership says: "your success makes us 25% richer." Customer-zero says: "your success makes <i>your</i> case study credible, which sells our product to 500 other shops." The leverage is wildly different. In a partnership, our upside is capped at the shop's ceiling (real but bounded). In customer-zero, our upside is capped at the number of shops in America (effectively uncapped at any reasonable scale).</p>
+    <p style="margin-top:8px">And the kicker: the shop gets <b>more</b> in customer-zero (free SaaS forever) than they'd get from us as a partner (work for equity, but they still own most of the business). It is, genuinely, a better deal for both sides.</p>
+  </div>
+
+  <div class="warn"><b>Honest caveat — this is a real product build.</b> Solo Craft Shop OS isn't a weekend project; it's a SaaS company. If we commit, it gets its own idea page in the public ideas catalog and goes into the Kit Machine sequence behind whatever's already in dev. We don't do this on the side; we do it deliberately, or not at all.</p>
+</section>
+
+<!-- IF ASKED ANYWAY -->
+<section class="panel" id="p-if-asked">
+  <h2>If they asked anyway — minimum tolerable terms</h2>
+  <p class="sub">The verdict is no, but hypothetically: if the owner came back and said <i>"I want to do this together, equity-style, no other way,"</i> here are the six terms that would let us say yes without it being a bad decision. If all six aren't agreed in writing up front, the answer stays no.</p>
+
+  <table>
+    <thead><tr><th>Term</th><th>Minimum</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="term">Equity</td>
+        <td>≥25% non-dilutable, 36-month vest, full acceleration on owner change of control or sale</td>
+        <td>Below 25% the work isn't worth the entanglement. Below 36 months we look like flippers.</td>
+      </tr>
+      <tr>
+        <td class="term">Cash float</td>
+        <td>Owner funds operations for the first 18 months. We contribute zero cash.</td>
+        <td>We bring skill, not capital. Mixing the two creates resentment fast — and the shop already has cash flow.</td>
+      </tr>
+      <tr>
+        <td class="term">Buyout clause</td>
+        <td>Either side can buy the other out at 3× trailing-12 EBITDA at any point after Year 2</td>
+        <td>A marriage with an exit door survives. One without doesn't. The number is fair to both sides.</td>
+      </tr>
+      <tr>
+        <td class="term">IP carve-out</td>
+        <td>We retain ownership of Solo Craft Shop OS, the configurator, and any generalizable code. The shop gets a perpetual free license. We can sell to anyone — including competitors.</td>
+        <td>Without this, partnership poisons our actual business. This is the one we'd walk away over if the owner pushes back.</td>
+      </tr>
+      <tr>
+        <td class="term">Scope lock</td>
+        <td>Our scope: software, AI ops, marketing, distribution. Owner's scope: craft, hiring, vendors, physical site. No overlap, written down.</td>
+        <td>Roles unclear = ownership unclear = relationship dies. Most small-business breakups happen here.</td>
+      </tr>
+      <tr>
+        <td class="term">Pilot period</td>
+        <td>First 6 months is a paid pilot with a go/no-go vote at the end. Partnership only triggers if both sides actively re-up.</td>
+        <td>The only kind of commitment that survives is the kind both sides re-choose deliberately.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="warn"><b>Don't read this as a fallback we'd take.</b> Even with all six in writing, the answer is still "we'd rather do Option C." This is the floor of what we'd accept, not the ceiling of what we'd propose. We're including it because Justin asked for the full picture — not because partnership becomes a good idea with the right paperwork.</div>
+
+  <div class="deep">
+    <h3 style="margin-top:0">What we would <i>not</i> accept under any terms</h3>
+    <ul class="clean">
+      <li><b>Equity in exchange for cash investment.</b> If the deal requires us to put money in, it's not the right deal. We don't have an edge as capital allocators here.</li>
+      <li><b>Personal guarantees on lease or debt.</b> We're not signing for the shop's mortgage, the CNC machine, or any vendor terms. Ever.</li>
+      <li><b>Non-competes that cover Solo Craft Shop OS.</b> Non-negotiable. If owner won't carve this out, walk.</li>
+      <li><b>Day-to-day operating responsibility for craft work.</b> We don't do craft. If the role includes "occasionally helping in the shop," it's the wrong role.</li>
+      <li><b>Owner-veto on Psyduck or product decisions outside the shop.</b> They don't get input on the rest of our portfolio, full stop.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- RECAP -->
+<section class="panel" id="p-recap">
+  <h2>One-screen recap</h2>
+
+  <div class="verdict-box">
+    <div class="label">Should we partner with Coastal Boat Works?</div>
+    <div class="answer">No.</div>
+  </div>
+
+  <div class="threecol">
+    <div class="deep">
+      <h4 style="margin-top:0;color:var(--rust)">Wrong shape for our portfolio</h4>
+      <p style="font-size:14px;margin:0">Kit Machine is the core bet. A one-shop service partnership doesn't compound — it substitutes, badly.</p>
+    </div>
+    <div class="deep">
+      <h4 style="margin-top:0;color:var(--rust)">Wrong shape for them</h4>
+      <p style="font-size:14px;margin:0">Ten years solo is a revealed preference. They didn't ask. Partnership sells against what they actually want.</p>
+    </div>
+    <div class="deep">
+      <h4 style="margin-top:0;color:var(--rust)">Wrong shape for the value</h4>
+      <p style="font-size:14px;margin:0">Software + AI ops is worth a fee or a royalty. It's almost never worth equity in someone else's craft business.</p>
+    </div>
+  </div>
+
+  <h3>What we should do instead</h3>
+  <div class="threecol">
+    <div class="deep" style="border-top:4px solid var(--teal)">
+      <h4 style="margin-top:0">If they engage us</h4>
+      <p style="font-size:14px;margin:0">Paid client at fair rates. Clean, bounded, no entanglement. They can fire us anytime, which keeps us honest.</p>
+    </div>
+    <div class="deep" style="border-top:4px solid var(--amber)">
+      <h4 style="margin-top:0">If kits productize</h4>
+      <p style="font-size:14px;margin:0">Vendor royalty on the storefront and configurator we power. Aligned upside, no entanglement with the service business.</p>
+    </div>
+    <div class="deep" style="border-top:4px solid var(--green)">
+      <h4 style="margin-top:0">Always, regardless</h4>
+      <p style="font-size:14px;margin:0"><b>Solo Craft Shop OS.</b> Productize the Edge stack as SaaS. CBW is customer-zero at zero cost. Everyone wins more than they would in a partnership.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h3>The reframing one more time</h3>
+    <p>The partnership question is the wrong question. The right question is: <b>"How do we turn this analysis into a product that helps 500 shops like this one?"</b> Answer that, and Coastal Boat Works wins anyway — as customer-zero, not as a co-founder. We don't take a slice of their craft business; we build the thing that makes <i>every</i> shop like theirs work better, and they get it free forever for being first.</p>
+    <p style="margin-top:8px">That's a better deal for them. It's a much better deal for us. And it doesn't require either side to sign anything we'd both regret in two years.</p>
+  </div>
+
+  <blockquote>Help the shop. Don't own a piece of it. Build the thing that helps 500 shops like it. Let the boat shop be the first one — and the proof.</blockquote>
+</section>
+
+</div>
+
+<footer><div class="wrap">
+  <span>The Partnership — Psyduck's verdict · compiled June 2026 · <span class="version-tag">v—</span></span>
+  <span><a href="../" style="color:var(--teal)">← back to hub</a></span>
+</div></footer>
+
+<script>
+const tabs = document.querySelectorAll('nav.tabs button');
+const panels = document.querySelectorAll('section.panel');
+tabs.forEach(btn => btn.addEventListener('click', () => {
+  const id = 'p-' + btn.dataset.p;
+  tabs.forEach(b => b.classList.toggle('active', b === btn));
+  panels.forEach(p => p.classList.toggle('active', p.id === id));
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+</script>
+<script src="/script.js"></script>
+</body>
+</html>

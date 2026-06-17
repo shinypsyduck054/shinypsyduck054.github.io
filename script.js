@@ -1,7 +1,7 @@
 // ===========================
 // VERSION  (footer only — header uses nav now)
 // ===========================
-const VERSION = '2.5.0';
+const VERSION = '2.6.0';
 
 document.querySelectorAll('.version-tag').forEach(el => {
   el.textContent = `v${VERSION}`;
