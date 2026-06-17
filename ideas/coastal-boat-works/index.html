@@ -593,11 +593,14 @@ const OPP = [
 
 /* ---------------- RENDER ---------------- */
 const TABS=[["overview","Overview"],["charleston","Charleston"],["hiltonhead","Hilton Head"],["beaufort","Beaufort"],["columbia","Columbia"],["savannah","Savannah"],["ranking","Market Ranking ★"],["cbw","Coastal Boat Works ★"],["turnaround","Turn-Around Plan ★"],["method","Methodology"]];
-/* link out to companion "Why Not?" page */
-{const a=document.createElement("a");a.href="why-not/";a.textContent="Why Not? ★";
- a.style.cssText="margin-left:auto;align-self:center;color:#cfe0ec;font-size:13px;text-decoration:none;font-weight:600;padding:0 14px;border-left:1px solid #25527a";
- a.onmouseover=()=>a.style.color="#fff";a.onmouseout=()=>a.style.color="#cfe0ec";
- document.getElementById("tabs").appendChild(a);}
+/* link out to companion pages */
+{const wrap=document.createElement("span");wrap.style.cssText="margin-left:auto;display:flex;align-items:center;gap:0";
+ const mk=(href,label,color)=>{const a=document.createElement("a");a.href=href;a.textContent=label;
+   a.style.cssText="align-self:center;color:#cfe0ec;font-size:13px;text-decoration:none;font-weight:600;padding:0 14px;border-left:1px solid #25527a";
+   a.onmouseover=()=>a.style.color=color;a.onmouseout=()=>a.style.color="#cfe0ec";return a;};
+ wrap.appendChild(mk("why-not/","Why Not? ★","#fff"));
+ wrap.appendChild(mk("the-edge/","The Edge ★","#cfb3ed"));
+ document.getElementById("tabs").appendChild(wrap);}
 const tabWrap=document.getElementById("tabs");
 TABS.forEach((t,i)=>{const b=document.createElement("button");b.textContent=t[1];b.dataset.t=t[0];if(i===0)b.classList.add("active");b.onclick=()=>show(t[0],b);tabWrap.appendChild(b);});
 function show(id,btn){document.querySelectorAll("section.panel").forEach(p=>p.classList.remove("active"));

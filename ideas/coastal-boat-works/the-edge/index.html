@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coastal Boat Works — The Edge: Justin + Psyduck</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --navy:#0d2b45; --navy2:#11395c; --teal:#1d7a8c; --teal2:#2a9db5;
+    --sand:#f4efe6; --ink:#1b2733; --muted:#5d6b7a; --line:#dde3ea;
+    --green:#2e8b57; --amber:#d99100; --red:#c0392b; --card:#ffffff;
+    --purple:#6b3fb0; --shadow:0 1px 3px rgba(13,43,69,.08),0 6px 18px rgba(13,43,69,.06);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--sand);line-height:1.5;font-size:15px}
+  header.hero{background:linear-gradient(135deg,#0d2b45,#6b3fb0);color:#fff;padding:30px 28px 26px}
+  header.hero h1{margin:0 0 6px;font-size:26px;letter-spacing:.2px}
+  header.hero p{margin:0;opacity:.92;font-size:14.5px;max-width:980px}
+  header.hero a.back{color:#cfb3ed;font-size:13px;text-decoration:none}
+  header.hero a.back:hover{color:#fff;text-decoration:underline}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+  nav.tabs{position:sticky;top:0;z-index:50;background:var(--navy);display:flex;flex-wrap:wrap;gap:2px;
+    padding:0 12px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+  nav.tabs button{background:transparent;color:#cfe0ec;border:0;padding:13px 14px;font-size:13.5px;
+    cursor:pointer;border-bottom:3px solid transparent;font-weight:600;white-space:nowrap}
+  nav.tabs button:hover{color:#fff}
+  nav.tabs button.active{color:#fff;border-bottom-color:var(--purple)}
+  section.panel{display:none;padding:24px 0 60px}
+  section.panel.active{display:block}
+  h2{font-size:22px;margin:6px 0 4px;color:var(--navy)}
+  h3{font-size:16.5px;color:var(--navy2);margin:22px 0 8px}
+  h4{font-size:14.5px;color:var(--navy2);margin:14px 0 6px}
+  .sub{color:var(--muted);font-size:14px;margin:0 0 16px;max-width:980px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:14px 0 8px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+  .kpi .n{font-size:22px;font-weight:700;color:var(--navy)}
+  .kpi .l{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .chartbox{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;box-shadow:var(--shadow);margin:10px 0}
+  .chartbox h4{margin:0 0 10px}
+  .chartbox canvas{max-height:340px}
+  .deep{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;box-shadow:var(--shadow);margin:14px 0}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .twocol.tight{gap:14px}
+  .callout{background:linear-gradient(135deg,#0d2b45,#1d7a8c);color:#fff;border-radius:12px;padding:18px 22px;margin:14px 0}
+  .callout.purple{background:linear-gradient(135deg,#0d2b45,#6b3fb0)}
+  .callout h3{color:#fff;margin:0 0 8px}
+  .callout p{margin:6px 0;font-size:14px;opacity:.95}
+  .warn{background:#fdf3e3;border:1px solid #f0d8a8;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:12px 0}
+  .warn b{color:var(--amber)}
+  .note{background:#eef9f1;border:1px solid #bfe6cc;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:12px 0}
+  ul.clean{font-size:14px;padding-left:20px} ul.clean li{margin:5px 0}
+  .role{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;box-shadow:var(--shadow);margin:14px 0}
+  .role.j{border-top:5px solid var(--teal)}
+  .role.p{border-top:5px solid var(--purple)}
+  .role.o{border-top:5px solid var(--green)}
+  .role .head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+  .role .av{width:42px;height:42px;border-radius:9px;background:var(--teal);color:#fff;display:flex;align-items:center;
+    justify-content:center;font-weight:800;font-size:18px}
+  .role.p .av{background:var(--purple)}
+  .role.o .av{background:var(--green)}
+  .role h3{margin:0;font-size:18px;color:var(--navy)}
+  .role .sub2{font-size:12.5px;color:var(--muted)}
+  .build{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow);margin:10px 0}
+  .build .ttl{font-weight:700;color:var(--navy);margin-bottom:4px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .build .rk{width:26px;height:26px;border-radius:7px;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12.5px}
+  .build .rk.green{background:var(--green)}
+  .build .rk.amber{background:var(--amber)}
+  .build .rk.purple{background:var(--purple)}
+  .build .pill{font-size:11px;padding:1px 9px;border-radius:20px;font-weight:600;white-space:nowrap}
+  .pill-j{background:#e3f0ff;color:#1f5fb0}
+  .pill-p{background:#efe3ff;color:#6b3fb0}
+  .pill-jp{background:linear-gradient(90deg,#e3f0ff 50%,#efe3ff 50%);color:#11395c}
+  .build .meta{font-size:12px;color:var(--muted);margin-top:4px}
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;
+    font-size:13.5px;margin:10px 0}
+  thead th{background:var(--navy);color:#fff;text-align:left;padding:9px 10px;font-weight:600;font-size:12.5px}
+  tbody td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr.total td{font-weight:700;background:#f7fafc;color:var(--navy)}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  th.num{text-align:right}
+  .legend{font-size:12px;color:var(--muted);margin:8px 0 0}
+  .timeline{position:relative;padding-left:28px;border-left:3px solid var(--purple);margin:18px 0}
+  .timeline .tl{position:relative;margin:0 0 18px}
+  .timeline .tl::before{content:"";position:absolute;left:-37px;top:6px;width:14px;height:14px;border-radius:50%;
+    background:var(--purple);border:3px solid #fff;box-shadow:0 0 0 2px var(--purple)}
+  .timeline .tl h4{margin:0 0 4px;color:var(--navy)}
+  .timeline .tl .when{font-size:11.5px;color:var(--purple);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+  .humble{background:#fdecea;border:1px solid #f3c9c3;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:12px 0}
+  .humble b{color:var(--red)}
+  footer{padding:26px 0 50px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);margin-top:20px}
+  @media(max-width:860px){.grid2,.twocol{grid-template-columns:1fr}thead th{position:static}
+    table{display:block;overflow-x:auto;white-space:nowrap}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <a class="back" href="../">← back to main analysis</a> · <a class="back" href="../why-not/">why not? →</a>
+    <h1>The Edge — What Justin + Psyduck Bring to the Shop</h1>
+    <p>The "Why Not?" analysis stops where the craftsman's hands stop. This page picks up there. It asks the meta-question: on top of staying solo in Walterboro, raising rates, and dropping the bottom 20% — <b>what specifically changes when the operator has a software engineer and an AI agent quietly running the back office?</b> Honest inventory: what we add, what we don't, and what the numbers look like with that leverage compounded into the Why Not baseline.</p>
+  </div>
+</header>
+
+<nav class="tabs wrap" id="tabs"></nav>
+
+<div class="wrap">
+
+<!-- OVERVIEW -->
+<section class="panel active" id="p-overview">
+  <h2>The Three-Person Solo Shop</h2>
+  <p class="sub">The fundamental insight: a solo craftsman with an AI back-office and a software-engineer co-builder operates with the leverage of a 5-person shop — without the payroll, the HR overhead, or the management hat. Three roles, one bench. The owner stays purely on craft.</p>
+
+  <div class="twocol tight">
+    <div class="role o">
+      <div class="head"><div class="av">⚓</div><div><h3>The Owner</h3><div class="sub2">on the shop floor, hands on boats</div></div></div>
+      <p style="font-size:14px;margin:6px 0 0">10+ years of EVA decking, fiberglass, gelcoat, and CNC. The craft, the customer relationships, the local reputation, the eye that catches the wrong bond line at 30 feet. <b>Not replaceable, not delegatable, not automatable.</b> This is the asset.</p>
+    </div>
+    <div class="role j">
+      <div class="head"><div class="av">⌘</div><div><h3>Justin</h3><div class="sub2">software engineer / builder</div></div></div>
+      <p style="font-size:14px;margin:6px 0 0">Ships software. Web apps, integrations, automations, storefronts, configurators, analytics. Already operating a portfolio of productized kits at shinypsyduck.com — the muscle that turns a CNC machine into a national mail-order business.</p>
+    </div>
+  </div>
+  <div class="role p">
+    <div class="head"><div class="av">🐥</div><div><h3>Psyduck</h3><div class="sub2">AI operating partner · 24/7 back-office</div></div></div>
+    <p style="font-size:14px;margin:6px 0 0">An always-on AI agent that handles the work a solo craftsman can't afford to hire for: content, customer ops, scheduling glue, SEO, research, drafting, monitoring, and continuous improvement. Doesn't sleep, doesn't quit, doesn't need benefits. Reports to Justin, serves the Owner.</p>
+  </div>
+
+  <div class="callout purple">
+    <h3>The unfair advantage in one line</h3>
+    <p>Most one-person marine shops compete with one person. <b>This one competes with one craftsman + a software stack + an AI ops layer.</b> The craft stays artisanal; everything that surrounds it — marketing, scheduling, content, kit fulfillment, customer follow-up, SEO, configurator UX — runs at a quality level you'd otherwise need a $400k/yr team to produce.</p>
+  </div>
+
+  <div class="cards">
+    <div class="kpi"><div class="n">~$0/mo</div><div class="l">cost of the back-office (vs. ~$8–12k for equivalent staff)</div></div>
+    <div class="kpi"><div class="n">+$200–400k</div><div class="l">est. 5-yr cumulative revenue lift over Why Not baseline</div></div>
+    <div class="kpi"><div class="n">0 hires</div><div class="l">owner still legally solo · still pure craft</div></div>
+    <div class="kpi"><div class="n">~3 mo</div><div class="l">to ship the full v1 stack</div></div>
+  </div>
+</section>
+
+<!-- WHAT JUSTIN BRINGS -->
+<section class="panel" id="p-justin">
+  <h2>What Justin Brings</h2>
+  <p class="sub">Engineer-grade execution on every piece of software the shop touches. Not "we hired a freelancer once" — a co-builder who ships, maintains, and iterates indefinitely.</p>
+
+  <div class="grid2">
+    <div class="deep">
+      <h3 style="margin-top:0">Direct builds</h3>
+      <ul class="clean">
+        <li><b>Modern website</b> on the real domain (coastalboat.works) — fast, mobile-first, gallery-led, SEO-anchored, fixed-price packages on-page.</li>
+        <li><b>Online quote &amp; intake form</b> that captures boat model, photos, job type → routes to a single inbox + auto-confirms.</li>
+        <li><b>Customer portal</b>: job status, photos in-progress, invoices, history, recommended next service.</li>
+        <li><b>Mail-order kit storefront</b>: Stripe + Shopify-style checkout for EVA decking kits, shipping label automation, tracking emails.</li>
+        <li><b>CNC dash-panel configurator</b> (Move #11 in <a href="../why-not/">Why Not</a>): browser-based designer → CAD file → quote → order.</li>
+        <li><b>Internal job-tracking tool</b>: kanban for what's in the shop, what's waiting on parts, what's ready to invoice.</li>
+        <li><b>Analytics + SEO instrumentation</b>: know what searches bring customers in, what pages convert, where money leaks.</li>
+      </ul>
+    </div>
+    <div class="deep">
+      <h3 style="margin-top:0">Integration glue</h3>
+      <ul class="clean">
+        <li><b>Google Business Profile + Yelp</b> setup, optimization, automated review requests.</li>
+        <li><b>Stripe / QuickBooks / Calendly</b> integrations so the owner never re-keys data.</li>
+        <li><b>Twilio</b> SMS-to-owner for new leads, customer status, review requests.</li>
+        <li><b>Mailchimp / Klaviyo</b> for newsletters, maintenance reminders, off-season promos.</li>
+        <li><b>Instagram / Facebook posting</b> automation hooked to the photo workflow.</li>
+        <li><b>Backup, monitoring, security</b> — the unglamorous engineering that keeps everything up.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>What this actually replaces</h3>
+  <div class="deep">
+    <table>
+      <thead><tr><th>Replaces</th><th>Typical cost</th><th>What Justin ships instead</th></tr></thead>
+      <tbody>
+        <tr><td>Wix / Squarespace + paid designer</td><td>$2–8k upfront, $30/mo</td><td>Custom site on real infra, free to evolve</td></tr>
+        <tr><td>Booking SaaS (Square Appointments, Acuity)</td><td>$30–80/mo</td><td>Bespoke intake/scheduling tuned to the shop</td></tr>
+        <tr><td>Shopify + apps for kit store</td><td>$300+/mo with apps</td><td>Stripe + custom checkout, $0/mo + transaction fees</td></tr>
+        <tr><td>Marketing agency (basic)</td><td>$1.5–4k/mo</td><td>Owner-team handles strategy; AI handles execution</td></tr>
+        <tr><td>"I'll get my nephew to build it" website</td><td>Free, doesn't ship</td><td>Actually ships, actually maintained</td></tr>
+      </tbody>
+    </table>
+    <p class="legend">Direct savings: ~$24–80k/yr in tooling + agency fees, plus the implicit cost of <i>not</i> having any of this.</p>
+  </div>
+</section>
+
+<!-- WHAT PSYDUCK BRINGS -->
+<section class="panel" id="p-psyduck">
+  <h2>What Psyduck Brings</h2>
+  <p class="sub">An always-on AI ops layer. Not a chatbot — an embedded operating partner that handles the daily work a solo shop can't afford to staff: content, customer communication, research, drafting, monitoring. Reports to Justin, serves the Owner.</p>
+
+  <div class="grid2">
+    <div class="deep">
+      <h3 style="margin-top:0">Daily back-office</h3>
+      <ul class="clean">
+        <li><b>Inbox triage:</b> sort new leads, flag urgent, auto-reply to common questions ("do you do bottom paint?").</li>
+        <li><b>First-touch customer messages:</b> drafted in the owner's voice, owner approves on phone with one tap.</li>
+        <li><b>Quote drafting:</b> from intake photos + description, draft a quote the owner edits in 60 seconds instead of writing from scratch.</li>
+        <li><b>Review-request scripts:</b> personalized per customer, sent at the right post-job moment.</li>
+        <li><b>Post-job follow-up</b> at 30/90/180 days — "how's the deck holding up?" — owners love it, drives referrals.</li>
+        <li><b>Waitlist comms</b>: weekly "here's where you are" updates so customers don't ghost.</li>
+      </ul>
+    </div>
+    <div class="deep">
+      <h3 style="margin-top:0">Marketing engine</h3>
+      <ul class="clean">
+        <li><b>SEO content at scale:</b> articles on "best EVA decking for [pontoon model]", "pontoon floor replacement cost Lowcountry", "how to spot gelcoat failure" — ranks for the searches your customers run.</li>
+        <li><b>Photo captions + social posts:</b> every before/after gets a polished caption in the shop's voice, queued for Instagram/Facebook.</li>
+        <li><b>Newsletter drafting:</b> monthly, owner reviews + ships in 5 min.</li>
+        <li><b>Press / dealer outreach:</b> drafted emails to surveyors, insurers, marinas — Move #3 from <a href="../why-not/">Why Not</a> at scale.</li>
+        <li><b>Workshop curriculum + slides</b> for snowbird teaching weekends (Move #8 from Why Not).</li>
+        <li><b>Ad copy &amp; landing-page variants</b> if paid acquisition ever turns on.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Research &amp; intelligence (already proven)</h3>
+  <div class="deep">
+    <p style="font-size:14px;margin-top:0">This page is itself the proof. The main competitive landscape, the Why Not financial models, the schedule scenarios, the SubKit triple-check, the moves-we-missed inventory — all generated by Psyduck. Ongoing applications:</p>
+    <ul class="clean">
+      <li><b>Quarterly competitive sweeps:</b> what new shops opened, what closed, what rates moved.</li>
+      <li><b>Material price tracking:</b> EVA foam, gelcoat resin, marine plywood — flag when to stock up.</li>
+      <li><b>Regulatory monitoring:</b> changes to SC marine licensing, IC classification rules, environmental rules around blasting.</li>
+      <li><b>Customer trend analysis:</b> what jobs are growing, what's shrinking, what to specialize in next.</li>
+      <li><b>"What did Beaufort do last month?":</b> watch the competitive set so the owner doesn't have to.</li>
+    </ul>
+  </div>
+
+  <h3>Strategic / executive function</h3>
+  <div class="deep">
+    <ul class="clean">
+      <li><b>Process documentation:</b> turn the owner's tacit craft knowledge into SOPs the 1099 prep helper can learn from (Move #2 from Why Not).</li>
+      <li><b>Annual planning</b> with Justin and the Owner: what's working, what's not, what to ship next.</li>
+      <li><b>Pricing analysis:</b> dynamic recommendations for waitlist-length-based pricing.</li>
+      <li><b>Customer-segment analysis:</b> who are the top 20% of customers, what makes them so, how do we get more like them.</li>
+      <li><b>Memory across sessions:</b> remembers every decision, every customer note, every job history — institutional memory that doesn't walk out the door.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- STACK -->
+<section class="panel" id="p-stack">
+  <h2>The Stack We Would Build</h2>
+  <p class="sub">Specific products and tools, in priority order. Tags mark who owns each: <span class="pill pill-j">J</span> Justin code-builds it · <span class="pill pill-p">P</span> Psyduck operates it · <span class="pill pill-jp">J+P</span> both, ongoing.</p>
+
+  <div class="build">
+    <div class="ttl"><span class="rk green">1</span>coastalboat.works — the actual website <span class="pill pill-j">J</span></div>
+    <p style="margin:6px 0 0;font-size:14px">Modern, fast, mobile-first, gallery-driven. Replaces the hijacked domain. Fixed-price packages on-page (the "phone screen" from Move #10 in Why Not). Hooked into Google Business Profile + Yelp. SEO-instrumented from day 1.</p>
+    <div class="meta">Ship: 2 weeks · Replaces: Wix/Squarespace + nephew · Saves: $2–8k upfront + $30/mo + the "we'll get to it" problem</div>
+  </div>
+
+  <div class="build">
+    <div class="ttl"><span class="rk green">2</span>Photo-to-post pipeline <span class="pill pill-jp">J+P</span></div>
+    <p style="margin:6px 0 0;font-size:14px">Owner texts a photo to a shop number → it lands in a folder, gets auto-tagged, AI drafts a caption in the shop's voice, queues for Instagram + Facebook + website gallery + monthly newsletter. <b>Every job becomes 4 pieces of marketing content the owner didn't have to write.</b></p>
+    <div class="meta">Ship: 3 weeks · Replaces: never-happening social media · Effect: visual marketing on autopilot</div>
+  </div>
+
+  <div class="build">
+    <div class="ttl"><span class="rk green">3</span>Intake + quote + waitlist pipeline <span class="pill pill-jp">J+P</span></div>
+    <p style="margin:6px 0 0;font-size:14px">Online intake form (boat model, photos, job type) → Psyduck drafts a quote based on package or rough estimate → owner approves on phone → customer pays deposit → goes on the waitlist with a real ETA → automated weekly updates. <b>Replaces 80% of the back-and-forth phone tag.</b></p>
+    <div class="meta">Ship: 4 weeks · Replaces: phone tag + paper quotes · Effect: $0 acquisition cost on existing demand</div>
+  </div>
+
+  <div class="build">
+    <div class="ttl"><span class="rk">4</span>Mail-order EVA decking kit storefront <span class="pill pill-j">J</span></div>
+    <p style="margin:6px 0 0;font-size:14px">Move #4 from Why Not, productized. Customer picks pontoon model, color, options → quote → Stripe checkout → CNC cuts the kit → ShipStation prints a label → customer gets tracking + install video. National market, no install labor. <b>This is the lever that breaks the hourly ceiling.</b></p>
+    <div class="meta">Ship: 6–8 weeks · Year 1 target: 50 kits @ $300+ avg · Year 5: 400+ kits</div>
+  </div>
+
+  <div class="build">
+    <div class="ttl"><span class="rk">5</span>Customer portal + automated maintenance reminders <span class="pill pill-jp">J+P</span></div>
+    <p style="margin:6px 0 0;font-size:14px">Every customer sees their job status, photos, invoice, history. Annual "your boat is due for X" reminders go out automatically (Move #6 — prepaid maintenance plans — runs on this rail). <b>Recurring revenue without recurring effort.</b></p>
+    <div class="meta">Ship: 6 weeks · Effect: lifts annual revenue/customer ~30%</div>
+  </div>
+
+  <div class="build">
+    <div class="ttl"><span class="rk">6</span>SEO content engine <span class="pill pill-p">P</span></div>
+    <p style="margin:6px 0 0;font-size:14px">Psyduck publishes 2–4 quality articles/month on local + niche search terms ("EVA decking Walterboro", "pontoon floor replacement cost SC", "ACE Basin boat service"). Owner reviews + ships in 10 min. Compounds for years — by year 3, the site ranks for hundreds of long-tail searches.</p>
+    <div class="meta">Ship: ongoing from month 1 · Effect: free organic traffic that compounds</div>
+  </div>
+
+  <div class="build">
+    <div class="ttl"><span class="rk amber">7</span>Review-request automation <span class="pill pill-jp">J+P</span></div>
+    <p style="margin:6px 0 0;font-size:14px">48 hours after job completion: customer gets a one-tap "loved the work? leave a Google review" text. Psyduck drafts a personalized note. <b>Closes the visibility gap to Juicebox (9 reviews) in a quarter.</b></p>
+    <div class="meta">Ship: 1 week (after intake pipeline) · Effect: Google ranking + trust signal</div>
+  </div>
+
+  <div class="build">
+    <div class="ttl"><span class="rk amber">8</span>1099 helper SOP system <span class="pill pill-p">P</span></div>
+    <p style="margin:6px 0 0;font-size:14px">Psyduck turns the owner's tacit knowledge into illustrated, video-supported SOPs for every recurring task — sanding, blasting, masking, prep. New 1099 helper (Move #2 from Why Not) can ramp in days instead of months. Self-onboarding training library.</p>
+    <div class="meta">Ship: 4 weeks · Effect: makes the 1099 helper move viable</div>
+  </div>
+
+  <div class="build">
+    <div class="ttl"><span class="rk purple">9</span>CNC dash-panel configurator (Move #11) <span class="pill pill-j">J</span></div>
+    <p style="margin:6px 0 0;font-size:14px">Browser-based designer for custom console panels. Pick console model, drag gauges/switches, see preview → quote → order. Highest-ambition build, biggest upside. SEO-ranks for "custom boat dash" indefinitely. <b>Turns the CNC into a national lead engine.</b></p>
+    <div class="meta">Ship: Year 2 · Capex: ~$10k of dev time · Becomes a flywheel</div>
+  </div>
+
+  <div class="build">
+    <div class="ttl"><span class="rk purple">10</span>Workshop / certification platform (Move #8) <span class="pill pill-jp">J+P</span></div>
+    <p style="margin:6px 0 0;font-size:14px">If Scenario A (Snowbird) gets chosen: a small platform for hosting paid Dec–Jan SeaDek installer certification workshops. Booking, payments, downloadable curriculum, alumni network. Snowbird side-income at $32k/winter + content marketing.</p>
+    <div class="meta">Ship: Year 2 · Only if Scenario A is locked in</div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="panel" id="p-roadmap">
+  <h2>Delivery Roadmap</h2>
+  <p class="sub">Honest sequence — what ships when, what depends on what, what the owner has to do.</p>
+
+  <div class="timeline">
+    <div class="tl"><div class="when">Week 1</div><h4>Kickoff + foundations</h4>
+      <p style="font-size:14px;margin:6px 0 0">Domain claim (coastalboat.works), Google Business Profile, Yelp, kill the hijacked domain confusion. Owner spends 2 hours showing Justin the shop and walking Psyduck through the work. <b>Owner time after week 1: ~30 min/wk forever.</b></p>
+    </div>
+    <div class="tl"><div class="when">Weeks 2–4</div><h4>Website + intake + first content batch</h4>
+      <p style="font-size:14px;margin:6px 0 0">New site live with package pricing. Intake form taking quotes. First 6 SEO articles published. Review-request automation on. The owner stops answering "do you do X?" — Psyduck does.</p>
+    </div>
+    <div class="tl"><div class="when">Month 2</div><h4>Photo pipeline + customer portal + maintenance reminders</h4>
+      <p style="font-size:14px;margin:6px 0 0">Every job auto-becomes 4 pieces of marketing. Customers see their job status. Annual reminders queued for the existing customer base — instant uplift.</p>
+    </div>
+    <div class="tl"><div class="when">Month 3</div><h4>Mail-order kit storefront v1</h4>
+      <p style="font-size:14px;margin:6px 0 0">First 5 pontoon model templates digitized. Storefront live. First mail-order kit ships. National marketing starts. <b>This is when the business stops being just a service shop.</b></p>
+    </div>
+    <div class="tl"><div class="when">Months 4–6</div><h4>1099 SOPs + waitlist pricing + measurement</h4>
+      <p style="font-size:14px;margin:6px 0 0">SOPs library for the helper hire. Dynamic waitlist pricing live. Analytics dashboard so we see what's working. Owner working 4-day weeks comfortably (Scenario B), waitlist 6+ weeks deep, kit revenue starting to show up monthly.</p>
+    </div>
+    <div class="tl"><div class="when">Year 2</div><h4>Configurator + workshop platform</h4>
+      <p style="font-size:14px;margin:6px 0 0">Dash-panel configurator launches. If Scenario A wins, workshop platform ships in time for first Dec–Jan cohort.</p>
+    </div>
+    <div class="tl"><div class="when">Year 3+</div><h4>Compounding mode</h4>
+      <p style="font-size:14px;margin:6px 0 0">SEO content compounding into hundreds of ranked pages. Kit storefront approaching 200+ orders/year. Configurator generating national leads. Owner has chosen Scenario A or B for good. Books are clean enough to make any next-move call from strength.</p>
+    </div>
+  </div>
+
+  <h3>What the owner has to do</h3>
+  <div class="deep">
+    <ul class="clean">
+      <li><b>Week 1:</b> 2 hours showing the shop, walking through the work, the customer base, the craft.</li>
+      <li><b>Ongoing:</b> ~30 min/week — approve drafts, answer 3–5 Psyduck questions, take 1–2 customer calls Psyduck can't handle solo.</li>
+      <li><b>What's eliminated:</b> writing quotes, drafting emails, managing social media, chasing reviews, doing the website, scheduling, invoicing follow-up, "I should really make a newsletter someday." <b>~10–15 hrs/wk of non-craft work disappears.</b></li>
+    </ul>
+  </div>
+</section>
+
+<!-- MATH -->
+<section class="panel" id="p-math">
+  <h2>The Compounded Math</h2>
+  <p class="sub">Taking the disciplined-solo baseline from <a href="../why-not/">Why Not?</a> and stacking the software + AI leverage on top. Conservative; the only line item we're confident growing materially is productized revenue (kit storefront + dash configurator), because that's the one where software directly removes the labor ceiling.</p>
+
+  <div class="chartbox"><h4>5-year revenue — Why Not baseline vs. with Justin + Psyduck (Scenario A · Snowbird Mode)</h4>
+    <canvas id="cCompare"></canvas>
+    <p class="legend">Same hourly schedule, same craft, same town. Difference is purely back-office leverage: productized side reaches scale faster, conversion on existing demand goes up (waitlist pricing, review-driven trust, fixed-price packaging), and non-craft hours leak less revenue.</p>
+  </div>
+
+  <h3>Where the lift comes from</h3>
+  <div class="deep">
+    <table>
+      <thead><tr><th>Lever</th><th>Why Not baseline (Yr 5)</th><th>With Justin + Psyduck (Yr 5)</th><th class="num">Delta</th></tr></thead>
+      <tbody>
+        <tr><td>Service labor (rate × hours)</td><td>$203k</td><td>$215k <span class="legend">(higher conversion, waitlist pricing)</span></td><td class="num">+$12k</td></tr>
+        <tr><td>Parts &amp; materials margin</td><td>$61k</td><td>$70k</td><td class="num">+$9k</td></tr>
+        <tr><td>Mail-order kits</td><td>$60k <span class="legend">(estimated DIY ramp)</span></td><td>$130k <span class="legend">(real storefront + SEO)</span></td><td class="num">+$70k</td></tr>
+        <tr><td>CNC dash-panel configurator</td><td>$40k <span class="legend">(side hustle)</span></td><td>$95k <span class="legend">(actual product line)</span></td><td class="num">+$55k</td></tr>
+        <tr><td>Recurring maintenance plans</td><td>—</td><td>$45k <span class="legend">(30 plans × ~$1.5k)</span></td><td class="num">+$45k</td></tr>
+        <tr><td>Snowbird workshops <span class="legend">(if Scenario A)</span></td><td>—</td><td>$32k</td><td class="num">+$32k</td></tr>
+        <tr class="total"><td>Year 5 total</td><td>$364k</td><td>$587k</td><td class="num">+$223k</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cards">
+    <div class="kpi"><div class="n">~$1.36M</div><div class="l">5-yr cumulative · Why Not baseline (Scenario A)</div></div>
+    <div class="kpi"><div class="n">~$1.85M</div><div class="l">5-yr cumulative · with the Edge stack</div></div>
+    <div class="kpi"><div class="n">+$490k</div><div class="l">5-yr cumulative lift</div></div>
+    <div class="kpi"><div class="n">Same 1,760 hrs/yr</div><div class="l">on the shop floor — same life</div></div>
+  </div>
+
+  <div class="callout">
+    <h3>What "the Edge" is actually worth</h3>
+    <p>$490k cumulative over 5 years, on the same craft hours, with no payroll, no lease, no manager hat. That's the value of having a software engineer and an AI ops layer attached to a one-person shop. <b>The owner doesn't work harder. The infrastructure works harder around the owner.</b></p>
+  </div>
+
+  <div class="warn"><b>Honest caveats:</b> these are illustrative models, not promises. Kit storefront revenue is the line item with the widest uncertainty band — SEO ramps slowly, paid acquisition is unproven, configurator adoption is hard to predict. We've used conservative numbers; reality could be 0.6× or 1.5× on the productized side. The service-side numbers are tight (~10% bands) because they're driven by existing demand we already see today.</p></div>
+</section>
+
+<!-- HONEST -->
+<section class="panel" id="p-honest">
+  <h2>What We Don't Bring</h2>
+  <p class="sub">A page that only lists what we add is sales copy. Here's the honest mirror — what software + AI can't substitute for, and what the failure modes look like.</p>
+
+  <div class="humble">
+    <b>We can't do the craft.</b> If the owner stops working, the business stops. AI doesn't sand a transom. Justin can't bond an EVA deck. The whole strategy is built around amplifying the craftsman's hours, not replacing them. The owner is the bottleneck and the asset — that doesn't change.
+  </div>
+
+  <div class="humble">
+    <b>We don't have local trust yet.</b> The owner does. The 10-year reputation in a 30-mile radius is what makes the first wave of work possible. We accelerate distribution; we don't manufacture trust. Pushing the brand too premium too fast — before the local community signs off — backfires.
+  </div>
+
+  <div class="humble">
+    <b>AI back-office still needs human judgment on edge cases.</b> Psyduck drafts; the owner approves. If the owner doesn't read the drafts, the brand voice drifts. ~30 min/wk of attention is the minimum dose; below that, quality decays.
+  </div>
+
+  <div class="humble">
+    <b>Software has compounding maintenance cost.</b> Every product we ship needs upkeep. Justin's the engineer of record, but if Justin disappears, the shop has a stack it can't maintain. Bus-factor of 1 on the software side is a real risk we'd need to plan for at year 3+.
+  </div>
+
+  <div class="humble">
+    <b>Kit storefront has real downside risk.</b> National mail-order means national returns, national customer support, national chargebacks, and national competition. The first time a customer's botched DIY install gets blamed on the kit, we'll find out how much that costs. We've underwritten for it; it's still a risk.
+  </div>
+
+  <div class="humble">
+    <b>This is not a venture-scale outcome.</b> Even at $587k/yr in year 5, this is a great solo lifestyle business, not a $10M one. If the owner wants venture-scale growth, this is the wrong page — that's the original "build the brand" Path B in the main plan, with all its trade-offs.
+  </div>
+
+  <div class="callout purple">
+    <h3>The honest pitch</h3>
+    <p>What Justin and Psyduck offer is <b>not</b> "we'll turn your shop into a startup." It's: <i>keep doing the work you love, in the place you love, with the schedule you choose — and we'll quietly run the modern back-office around you, take the productized revenue you don't have time for, and compound the brand while you sleep.</i> If that trade reads right, this is exactly the team you want. If you'd rather just be a craftsman who answers his own phone, that's a fine answer too — but you don't need us for it.</p>
+  </div>
+</section>
+
+</div>
+
+<footer><div class="wrap">Compiled June 2026 as a companion to the main Coastal Boat Works analysis and the Why Not? alternative-strategies page. All financial figures are illustrative scenarios with explicit assumptions — directional, not forecasts. Not financial advice.</div></footer>
+
+<script>
+const TABS=[["overview","Overview"],["justin","Justin"],["psyduck","Psyduck"],["stack","The Stack"],["roadmap","Roadmap"],["math","Compounded Math ★"],["honest","What We Don't Bring"]];
+const tabWrap=document.getElementById("tabs");
+TABS.forEach((t,i)=>{const b=document.createElement("button");b.textContent=t[1];b.dataset.t=t[0];if(i===0)b.classList.add("active");b.onclick=()=>show(t[0],b);tabWrap.appendChild(b);});
+function show(id,btn){document.querySelectorAll("section.panel").forEach(p=>p.classList.remove("active"));
+  document.getElementById("p-"+id).classList.add("active");
+  document.querySelectorAll("nav.tabs button").forEach(b=>b.classList.remove("active"));
+  if(btn){btn.classList.add("active")}else{document.querySelector("nav.tabs button[data-t='"+id+"']").classList.add("active");}
+  window.scrollTo({top:0,behavior:"smooth"});}
+
+const NAVY="#0d2b45",TEAL="#1d7a8c",TEAL2="#2a9db5",GREEN="#2e8b57",AMBER="#d99100",PURPLE="#6b3fb0";
+Chart.defaults.font.family="-apple-system,Segoe UI,Roboto,sans-serif";
+Chart.defaults.font.size=12;Chart.defaults.color="#5d6b7a";
+
+// 5-year revenue: baseline (Why Not Scenario A) vs with Edge
+const yrs=["Yr 1","Yr 2","Yr 3","Yr 4","Yr 5"];
+const baseline=[185,223,272,318,364];  // matches Why Not Snowbird path
+const edge=[210,275,355,455,587];      // additional productized + recurring revenue
+new Chart(document.getElementById("cCompare"),{
+  type:"bar",
+  data:{labels:yrs,datasets:[
+    {label:"Why Not baseline ($k)",data:baseline,backgroundColor:TEAL,borderRadius:5},
+    {label:"With Justin + Psyduck ($k)",data:edge,backgroundColor:PURPLE,borderRadius:5}
+  ]},
+  options:{plugins:{legend:{position:"top"},
+    tooltip:{callbacks:{label:c=>c.dataset.label+": $"+c.raw+"k"}}},
+    scales:{y:{title:{display:true,text:"revenue ($k)"},suggestedMax:650}}}});
+</script>
+</body>
+</html>
