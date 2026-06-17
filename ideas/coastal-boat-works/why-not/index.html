@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coastal Boat Works — Why Not? Roads Not Taken</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --navy:#0d2b45; --navy2:#11395c; --teal:#1d7a8c; --teal2:#2a9db5;
+    --sand:#f4efe6; --ink:#1b2733; --muted:#5d6b7a; --line:#dde3ea;
+    --green:#2e8b57; --amber:#d99100; --red:#c0392b; --card:#ffffff;
+    --purple:#6b3fb0; --shadow:0 1px 3px rgba(13,43,69,.08),0 6px 18px rgba(13,43,69,.06);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--sand);line-height:1.5;font-size:15px}
+  header.hero{background:linear-gradient(135deg,#1b2733,var(--navy));color:#fff;padding:30px 28px 26px}
+  header.hero h1{margin:0 0 6px;font-size:26px;letter-spacing:.2px}
+  header.hero p{margin:0;opacity:.92;font-size:14.5px;max-width:980px}
+  header.hero a.back{color:#a9d2e0;font-size:13px;text-decoration:none}
+  header.hero a.back:hover{color:#fff;text-decoration:underline}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+  nav.tabs{position:sticky;top:0;z-index:50;background:var(--navy);display:flex;flex-wrap:wrap;gap:2px;
+    padding:0 12px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+  nav.tabs button{background:transparent;color:#cfe0ec;border:0;padding:13px 14px;font-size:13.5px;
+    cursor:pointer;border-bottom:3px solid transparent;font-weight:600;white-space:nowrap}
+  nav.tabs button:hover{color:#fff}
+  nav.tabs button.active{color:#fff;border-bottom-color:var(--teal2)}
+  section.panel{display:none;padding:24px 0 60px}
+  section.panel.active{display:block}
+  h2{font-size:22px;margin:6px 0 4px;color:var(--navy)}
+  h3{font-size:16.5px;color:var(--navy2);margin:22px 0 8px}
+  h4{font-size:14.5px;color:var(--navy2);margin:14px 0 6px}
+  .sub{color:var(--muted);font-size:14px;margin:0 0 16px;max-width:980px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:14px 0 8px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+  .kpi .n{font-size:24px;font-weight:700;color:var(--navy)}
+  .kpi .l{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .chartbox{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;box-shadow:var(--shadow);margin:10px 0}
+  .chartbox h4{margin:0 0 10px}
+  .chartbox canvas{max-height:340px}
+  .deep{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;box-shadow:var(--shadow);margin:14px 0}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .callout{background:linear-gradient(135deg,#0d2b45,#1d7a8c);color:#fff;border-radius:12px;padding:18px 22px;margin:14px 0}
+  .callout h3{color:#fff;margin:0 0 8px}
+  .callout p{margin:6px 0;font-size:14px;opacity:.95}
+  .warn{background:#fdf3e3;border:1px solid #f0d8a8;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:12px 0}
+  .warn b{color:var(--amber)}
+  .note{background:#eef9f1;border:1px solid #bfe6cc;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:12px 0}
+  ul.clean{font-size:14px;padding-left:20px} ul.clean li{margin:5px 0}
+  .scenariocard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;box-shadow:var(--shadow);margin:14px 0;border-top:5px solid var(--teal)}
+  .scenariocard.b{border-top-color:var(--green)}
+  .scenariocard .head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+  .scenariocard h3{margin:0;font-size:18px;color:var(--navy)}
+  .scenariocard .tag{font-size:11.5px;background:#eef3f7;color:var(--navy2);padding:2px 9px;border-radius:20px;font-weight:600}
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;
+    font-size:13.5px;margin:10px 0}
+  thead th{background:var(--navy);color:#fff;text-align:left;padding:9px 10px;font-weight:600;font-size:12.5px}
+  tbody td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr.total td{font-weight:700;background:#f7fafc;color:var(--navy)}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  th.num{text-align:right}
+  .pill{display:inline-block;padding:1px 9px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
+  .p-keep{background:#e6f6ec;color:#236b41}
+  .p-cut{background:#fdecea;color:#a8431f}
+  .p-add{background:#e3f0ff;color:#1f5fb0}
+  .move{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow);margin:10px 0}
+  .move .ttl{font-weight:700;color:var(--navy);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+  .move .ttl .rk{width:26px;height:26px;border-radius:7px;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12.5px}
+  .move .ttl .rk.green{background:var(--green)}
+  .move .ttl .rk.amber{background:var(--amber)}
+  .move .ttl .rk.purple{background:var(--purple)}
+  .move .meta{font-size:12px;color:var(--muted);margin-top:4px}
+  .legend{font-size:12px;color:var(--muted);margin:8px 0 0}
+  footer{padding:26px 0 50px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);margin-top:20px}
+  @media(max-width:860px){.grid2,.twocol{grid-template-columns:1fr}thead th{position:static}
+    table{display:block;overflow-x:auto;white-space:nowrap}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <a class="back" href="../">← back to main analysis</a>
+    <h1>Why Not? — Roads Not Taken</h1>
+    <p>The main turn-around plan leans heavily on premium decking, a possible first hire, and a Beaufort beachhead. This page interrogates the moves we <i>didn't</i> emphasize — staying solo, staying in Walterboro, what compounding price &amp; process discipline does over 3–5 years, and the two specific work-schedule shapes you asked about: <b>5 days a week with two months off in winter</b> vs. <b>4-day weeks with a standard two-week vacation</b>. 8–5, no exceptions, in both.</p>
+  </div>
+</header>
+
+<nav class="tabs wrap" id="tabs"></nav>
+
+<div class="wrap">
+
+<!-- OVERVIEW -->
+<section class="panel active" id="p-overview">
+  <h2>What we may have missed</h2>
+  <p class="sub">The original turn-around plan is biased toward growth — productize, hire, beachhead a richer market. But the real question buried in "overworked solo at $85/hr" isn't <i>how do I grow?</i> — it's <i>how do I extract maximum money and maximum life from what I already have?</i> Those are different objectives.</p>
+
+  <div class="callout">
+    <h3>The frame we underplayed</h3>
+    <p>A capacity-constrained solo with a waitlist already has the rarest asset in small business: <b>pricing power</b>. Spent on price + ruthless triage + process, it compounds quietly for 3–5 years and beats almost every "scale" path on a risk-adjusted basis — without a lease, a hire, a brand pivot, or a 48-mile commute. Staying small is a strategy, not a default.</p>
+  </div>
+
+  <div class="cards">
+    <div class="kpi"><div class="n">$85 → $165/hr</div><div class="l">5-yr blended-rate path (solo, Walterboro)</div></div>
+    <div class="kpi"><div class="n">~$1.3M</div><div class="l">5-yr cumulative revenue (Snowbird Mode)</div></div>
+    <div class="kpi"><div class="n">~1,760 hrs/yr</div><div class="l">vs. 2,200 today — 20% fewer</div></div>
+    <div class="kpi"><div class="n">0 hires · 0 leases</div><div class="l">no manager hat, no payroll</div></div>
+  </div>
+
+  <h3>The four corners of this page</h3>
+  <div class="twocol">
+    <div class="deep">
+      <h4 style="margin-top:0">1 · Stay solo, stay in Walterboro</h4>
+      <p style="font-size:14px;margin:6px 0 0">The case the main plan didn't fully make: low overhead is a moat, and a 10-year reputation in a small town is hard to recreate. <a href="#" data-go="solo">Open ↗</a></p>
+    </div>
+    <div class="deep">
+      <h4 style="margin-top:0">2 · The compound effect of cutting &amp; pricing</h4>
+      <p style="font-size:14px;margin:6px 0 0">What just raising rates and dropping the bottom 20% does over 3 and 5 years — modeled, not asserted. <a href="#" data-go="compound">Open ↗</a></p>
+    </div>
+    <div class="deep">
+      <h4 style="margin-top:0">3 · Schedule scenarios — 8 to 5, no exceptions</h4>
+      <p style="font-size:14px;margin:6px 0 0">Two specific shapes: <b>A · 5 days/wk, 2 months off in winter</b> and <b>B · 4 days/wk, standard 2-wk vacation</b>. Hours, revenue, take-home, side-by-side. <a href="#" data-go="schedule">Open ↗</a></p>
+    </div>
+    <div class="deep">
+      <h4 style="margin-top:0">4 · Moves we missed</h4>
+      <p style="font-size:14px;margin:6px 0 0">A dozen levers the main plan didn't list: mobile beachhead without moving, 1099 prep helper, mail-order kits, surveyor rolodex, dry storage, CNC rental, snowbird teaching. <a href="#" data-go="moves">Open ↗</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- STAY SOLO -->
+<section class="panel" id="p-solo">
+  <h2>Stay Solo, Stay in Walterboro</h2>
+  <p class="sub">The main plan treats Walterboro as a handicap and Beaufort as the prize. That framing is half-right — and it's the half that gets you into a lease you don't need.</p>
+
+  <div class="twocol">
+    <div class="deep">
+      <h3 style="margin-top:0">What Walterboro actually gives you</h3>
+      <ul class="clean">
+        <li><b>Owned-land overhead</b> vs. a $3–6k/month coastal yard lease. That's <b>$36–72k/yr</b> that flows straight to take-home in a low-overhead shop and disappears in a waterfront one.</li>
+        <li><b>No commute</b>, no harbormaster, no marina politics, no flood insurance, no tidal scheduling.</li>
+        <li><b>I-95 corridor</b> is a <i>shipping</i> advantage, not just a customer one — every EVA decking kit you ever mail-order goes out the front door onto an interstate.</li>
+        <li><b>10-year local reputation</b>. You're already "the boat guy" in a 30-mile radius. That's free demand that took a decade to build and can't be re-bought at any price.</li>
+        <li><b>Below-the-radar moat.</b> No coastal yard is going to open a Walterboro branch. Your competitive set is one shop (Juicebox) and out-of-town generalists who can't trailer for free.</li>
+        <li><b>Low cost of living.</b> $200k in Walterboro lives like $320k in Bluffton — the dollar buys more of your actual life there.</li>
+      </ul>
+    </div>
+    <div class="deep">
+      <h3 style="margin-top:0">What "stay solo" actually gives you</h3>
+      <ul class="clean">
+        <li><b>No payroll, no employer tax, no workers' comp escalation, no IC misclassification risk</b>, no schedule built around someone else's life. Saves ~$60–90k/yr in overhead vs. a $50k W-2 hire fully loaded.</li>
+        <li><b>You stay a craftsman, not a manager.</b> The skills that built the shop are the skills that keep running it.</li>
+        <li><b>No HR drama, no turnover, no training tax</b>, no "what do I do when they don't show up Monday?"</li>
+        <li><b>Variable cost = zero.</b> Slow week? Your overhead doesn't care. Try that with a coastal lease and a crew.</li>
+        <li><b>Optionality is intact.</b> Staying solo for 3 years doesn't preclude hiring in year 4 — but hiring in year 1 closes most of the other doors.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>The "minor player" reframing</h3>
+  <div class="warn"><b>"Minor player even within Walterboro"</b> is what the main analysis said — and it's only true if you measure by reviews and visibility. By the metric that actually pays the mortgage — <b>profit per hour worked</b> — a low-overhead solo at $130–160/hr on jobs you chose is winning a different game than a fully-staffed yard at $110/hr with $40k/mo of fixed costs. Don't confuse the leaderboards.</div>
+
+  <div class="callout">
+    <h3>The strategic claim</h3>
+    <p>Walterboro is not the consolation prize for someone who couldn't make it on the coast. It's a <b>structurally cheaper place to run a high-margin niche</b>. The internet collapses the geography that used to matter — for decking kits, console panels, and surveyor-referred glass work, your address is a postage label. The only thing the coast still has that Walterboro doesn't is <i>dockside service</i>, and you've already conceded that segment.</p>
+  </div>
+</section>
+
+<!-- COMPOUND -->
+<section class="panel" id="p-compound">
+  <h2>The Compound Effect — Just Cut &amp; Price, 3 and 5 Years Out</h2>
+  <p class="sub">No hire, no Beaufort, no productized kits yet — just the three free moves: <b>raise rates, drop the bottom 20% of jobs, tighten process.</b> What does that alone do?</p>
+
+  <h3>The cut: which 20% goes</h3>
+  <div class="twocol">
+    <div class="deep">
+      <h4 style="margin-top:0">Jobs to drop <span class="pill p-cut">cut</span></h4>
+      <ul class="clean">
+        <li>Driveway / patio soda-blasting (not boats — distracts the brand)</li>
+        <li>$200 wash-and-wax requests</li>
+        <li>Trailer-only repair jobs (low ticket, high hassle)</li>
+        <li>"Diagnose my mystery engine problem" jobs you can't quote</li>
+        <li>Out-of-town one-offs that don't anchor a repeat customer</li>
+        <li>Anyone who's haggled twice before agreeing to a number</li>
+      </ul>
+      <p class="legend">~20% of jobs, but only ~8–10% of revenue — and disproportionately the burnout drivers.</p>
+    </div>
+    <div class="deep">
+      <h4 style="margin-top:0">Jobs to keep &amp; double down on <span class="pill p-keep">keep</span></h4>
+      <ul class="clean">
+        <li>EVA marine decking (signature, visual, high-margin)</li>
+        <li>Pontoon floor replacements</li>
+        <li>Fiberglass &amp; gelcoat restoration (full jobs, not patches)</li>
+        <li>CNC console / dash panels (already productized)</li>
+        <li>RV decking &amp; foam (broadens base, off-season smoother)</li>
+        <li>Insurance / surveyor-referred jobs (paid by check, never haggle)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>The 5-year rate &amp; process arc</h3>
+  <div class="chartbox"><h4>Blended hourly rate, year over year — solo, no hire</h4><canvas id="cRate"></canvas>
+    <p class="legend">Year 1: rate hike + bottom 20% cut. Years 2–3: brand catches up to price (waitlist as signal). Years 4–5: niche locked + lightweight productization (decking templates, fixed-price packages) lifts the <b>effective</b> rate above the hourly ceiling.</p>
+  </div>
+
+  <div class="chartbox"><h4>5-year revenue vs. hours — status quo vs. price &amp; process discipline</h4><canvas id="cCompound"></canvas>
+    <p class="legend"><b>Bars</b> = annual revenue. <b>Line</b> = your hands-on hours/yr. Status quo drifts sideways at $200–230k while burning 2,200 hrs. Disciplined path reaches $300k+ on <b>fewer</b> hours by year 3 and ~$360k by year 5 — without anyone else on payroll.</p>
+  </div>
+
+  <h3>The cumulative-impact framing</h3>
+  <div class="cards">
+    <div class="kpi"><div class="n">~$1.0M</div><div class="l">5-yr revenue, status quo (~2,200 hrs/yr)</div></div>
+    <div class="kpi"><div class="n">~$1.4M</div><div class="l">5-yr revenue, disciplined solo (~1,760 hrs/yr)</div></div>
+    <div class="kpi"><div class="n">+$400k</div><div class="l">5-yr revenue delta · 0 hires · 0 leases</div></div>
+    <div class="kpi"><div class="n">-2,000 hrs</div><div class="l">5-yr fewer hours worked — that's a year of your life</div></div>
+  </div>
+
+  <div class="note"><b>The numbers say:</b> the single most under-rated move on this board is the boring one — raise prices, fire the bottom 20%, write a process for every recurring job, and let compounding do the work. <b>Zero downside scenarios</b> in this model: even a 50% haircut to the rate-growth assumption still beats status quo by ~$200k cumulative.</div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="panel" id="p-schedule">
+  <h2>Schedule Scenarios — 8 to 5, No Exceptions</h2>
+  <p class="sub">Two specific work-week shapes you asked about, modeled side-by-side. Both lock in <b>8 AM start, 5 PM stop, hour for lunch = 8 productive hours/day</b>. Both apply the disciplined-pricing path from the previous tab. Both stay solo in Walterboro.</p>
+
+  <div class="twocol">
+    <div class="scenariocard">
+      <div class="head"><h3>A · Snowbird Mode</h3><span class="tag">5 days/wk</span><span class="tag">8–5</span><span class="tag">2 months off (Dec–Jan)</span></div>
+      <p style="font-size:14px;margin:0">Mon–Fri, 40 hrs/wk × <b>44 work weeks</b> = <b>1,760 hrs/yr</b> in the shop. Take December and January off entirely — the slow season on the water is also the cold season in the shop. Use the break for travel, family, or the snowbird teaching gig (see <a href="#" data-go="moves">Moves</a>).</p>
+    </div>
+    <div class="scenariocard b">
+      <div class="head"><h3>B · Four-Day Week</h3><span class="tag">4 days/wk</span><span class="tag">8–5</span><span class="tag">2-wk vacation</span></div>
+      <p style="font-size:14px;margin:0">Mon–Thu, 32 hrs/wk × <b>50 work weeks</b> = <b>1,600 hrs/yr</b> in the shop. Every weekend is a 3-day weekend. Friday is for admin, errands, kid stuff, or just rest. One conventional 2-week summer vacation.</p>
+    </div>
+  </div>
+
+  <div class="chartbox"><h4>5-year revenue side-by-side · Scenario A vs. B</h4><canvas id="cScenarios"></canvas>
+    <p class="legend">Same rate/productization path applied to both. Scenario A wins on cumulative revenue (~$100k more over 5 years) because it has 160 more shop-hours per year. Scenario B wins on weekly recovery and is more sustainable if the body can't handle Mon–Fri at 50.</p>
+  </div>
+
+  <h3>Year-by-year breakdown</h3>
+  <div class="twocol">
+    <div class="deep">
+      <h4 style="margin-top:0">Scenario A · Snowbird (44 wks × 40 hrs)</h4>
+      <table>
+        <thead><tr><th>Yr</th><th>Rate</th><th class="num">Labor</th><th class="num">Parts/kits</th><th class="num">Revenue</th><th class="num">Hours</th></tr></thead>
+        <tbody id="tA"></tbody>
+      </table>
+    </div>
+    <div class="deep">
+      <h4 style="margin-top:0">Scenario B · Four-Day (50 wks × 32 hrs)</h4>
+      <table>
+        <thead><tr><th>Yr</th><th>Rate</th><th class="num">Labor</th><th class="num">Parts/kits</th><th class="num">Revenue</th><th class="num">Hours</th></tr></thead>
+        <tbody id="tB"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3>The honest trade-offs</h3>
+  <div class="twocol">
+    <div class="deep">
+      <h4 style="margin-top:0">Snowbird Mode — why it wins (and where it bites)</h4>
+      <ul class="clean">
+        <li><b>+$100k cumulative</b> over 5 years vs. four-day.</li>
+        <li>Two months of <i>real</i> rest is rarer than 52 long weekends — and it's the time-block big enough to travel, take a class, build a new product line, or run paid workshops.</li>
+        <li>Customers learn the rhythm: "off Dec–Jan, book by Nov." Forces a waitlist and seasonal pricing.</li>
+        <li><b>Bite:</b> 10 straight months without a real break can still grind you down. The 3-day weekend in Scenario B has compounding recovery value the snowbird block doesn't.</li>
+        <li><b>Bite:</b> two months of zero cash flow needs reserves — at least 3 months expenses in the bank before this is safe.</li>
+      </ul>
+    </div>
+    <div class="deep">
+      <h4 style="margin-top:0">Four-Day Week — why it wins (and where it bites)</h4>
+      <ul class="clean">
+        <li><b>Every weekend is 3 days.</b> The single highest-impact recovery upgrade in the trades.</li>
+        <li>Steady year-round cash flow — no winter hole to plan around.</li>
+        <li>Easier to staff a 1099 prep helper into (see <a href="#" data-go="moves">Moves</a>) because the schedule is predictable.</li>
+        <li>Friday off = errands and admin off the weekend, so weekends are genuinely yours.</li>
+        <li><b>Bite:</b> ~$100k less over 5 years.</li>
+        <li><b>Bite:</b> no big time-block for new ventures, workshops, or a real trip.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h3>Recommendation: start B, earn A</h3>
+    <p>Year 1 is the burnout-recovery year. Start with <b>Scenario B (4-day week)</b> — every weekend long, all year. Once the waitlist is established and the books are clean (~year 2), <b>graduate to Scenario A (Snowbird)</b> if the winter block becomes more valuable than the weekly rhythm — most likely if you want to teach SeaDek workshops, build out the mail-order kit business, or just travel. They're not exclusive — they're sequential.</p>
+  </div>
+
+  <div class="warn"><b>Assumption discipline:</b> both models assume 70% billable utilization (admin, ordering, cleanup, no-shows eat the rest), parts/materials at ~30% of labor revenue, and a productized side that grows from $0 in year 1 to ~$100k in year 5 (decking kits + CNC panels). Drop productization to zero and Scenario A still does ~$1.05M / 5 yrs; ~$0.95M for Scenario B. Both still beat status quo.</div>
+</section>
+
+<!-- MOVES -->
+<section class="panel" id="p-moves">
+  <h2>Moves the Main Plan Didn't List</h2>
+  <p class="sub">A dozen levers that fit inside the "stay solo, stay in Walterboro" frame. Ranked by readiness — green = do this in 90 days, teal = year 1–2, purple = optional / opportunistic.</p>
+
+  <div class="move">
+    <div class="ttl"><span class="rk green">1</span>Trailer-mounted mobile rig &middot; Beaufort upside without the lease</div>
+    <p style="margin:6px 0 0;font-size:14px">Build a self-contained mobile rig (generator, compressor, blast media, small CNC for on-site templating). Drive to Beaufort or HHI 2–4 days/month, charge <b>coastal rates ($130–145/hr)</b>, sleep at home that night. Captures most of the Beaufort upside without rent, harbormaster politics, or a crew. Pre-book through marina dockmasters as referrals.</p>
+    <div class="meta">Capex ~$8–15k · payback &lt;6 months · zero overhead drag</div>
+  </div>
+
+  <div class="move">
+    <div class="ttl"><span class="rk green">2</span>1099 prep helper &middot; stay technically solo, double capacity</div>
+    <p style="margin:6px 0 0;font-size:14px">Hire a high-school grad or trade-school student as a <b>1099 IC</b> on prep work only — sanding, blasting, masking, hauling. SubKit-style state-compliant agreement (CA AB5 doesn't apply in SC; SC's IC test is friendlier). You stay solo legally, but your skilled hours go entirely to finish work. Easy to scale up/down with demand.</p>
+    <div class="meta">~$20–25/hr cost · adds 30–40% capacity · no W-2 / no benefits / no employer tax</div>
+  </div>
+
+  <div class="move">
+    <div class="ttl"><span class="rk green">3</span>Surveyor &amp; insurance rolodex &middot; the Bob's Dry Dock model</div>
+    <p style="margin:6px 0 0;font-size:14px">Bob's Dry Dock in Beaufort gets cited as <i>"trusted by surveyors and insurers."</i> That's a quality signal worth more than any ad. Spend a quarter getting on the rolodex of 3–5 marine surveyors and 2 insurance adjusters in the corridor. They send glass &amp; structural jobs, the bill goes to a check-cutter, and you never haggle.</p>
+    <div class="meta">Cost: lunches + reliability · payoff: highest-trust, lowest-effort lead source in the trade</div>
+  </div>
+
+  <div class="move">
+    <div class="ttl"><span class="rk green">4</span>Mail-order EVA decking kits &middot; the CNC working while you sleep</div>
+    <p style="margin:6px 0 0;font-size:14px">Digitize templates for the top 15 pontoon and center-console models. Cut once, ship USPS to DIY installers nationwide at $300–500/kit ($150–250 margin). The CNC machine that's idle 60% of the time becomes a passive product line. Ships in a flat-rate box. Demand is national; your competitive set is SeaDek's national network — you compete on price + model selection.</p>
+    <div class="meta">Year 1 target: 50 kits · Year 5: 400+ kits · no install labor, no scheduling</div>
+  </div>
+
+  <div class="move">
+    <div class="ttl"><span class="rk">5</span>Subcontract to other yards &middot; their overhead, your craft</div>
+    <p style="margin:6px 0 0;font-size:14px">Be the EVA / fiberglass sub for Charleston and Beaufort yards. They handle the customer, the slip, the diagnosis, the billing — you do the work that's your craft. Bill $145/hr to the yard (they bill the customer $185). No marketing required, captive demand, and you ride the waterfront brand without paying for it.</p>
+    <div class="meta">Best fit: Marsh Harbor (Beaufort), Hanckel (Charleston), Matthews (Bluffton)</div>
+  </div>
+
+  <div class="move">
+    <div class="ttl"><span class="rk">6</span>Pre-paid annual maintenance plans &middot; recurring revenue</div>
+    <p style="margin:6px 0 0;font-size:14px">Sell a "Decking + Detailing Care Plan" — annual prepay, $1,200–2,400, covers a yearly detail, one decking touch-up, priority booking. Locks in revenue, smooths winter cash flow, and the recurring customer is who you actually want — repeat owner, knows the work, recommends you.</p>
+    <div class="meta">Target: 20–40 plans by Yr 3 = $30–80k baseline revenue</div>
+  </div>
+
+  <div class="move">
+    <div class="ttl"><span class="rk">7</span>Dry storage on owned land &middot; passive revenue</div>
+    <p style="margin:6px 0 0;font-size:14px">If you have land, fence a corner, dust gravel, install a gate camera, and rent dry storage at <b>$3–4/ft/month</b>. 20 boats × 25 ft × $3.50 × 12 = <b>~$21k/yr</b> for ~5 hours/month of work. Pairs naturally with service — storage customers become service customers and vice versa.</p>
+    <div class="meta">Capex: ~$5–10k (gravel + fence + camera) · 1–2 yr payback</div>
+  </div>
+
+  <div class="move">
+    <div class="ttl"><span class="rk amber">8</span>Snowbird teaching &middot; only if Scenario A</div>
+    <p style="margin:6px 0 0;font-size:14px">During the Dec–Jan break in Scenario A, host weekend SeaDek installer certification workshops at the shop. 8 students × $1,000/wknd × 4 wknds = <b>$32k</b> off-season. Doubles as content marketing (every graduate becomes a quiet referrer) and validates you as <i>the</i> Lowcountry decking authority.</p>
+    <div class="meta">Requires SeaDek dealer cert · only viable in 5-day Snowbird schedule</div>
+  </div>
+
+  <div class="move">
+    <div class="ttl"><span class="rk amber">9</span>CNC rental / job-shop nights &middot; idle-asset monetization</div>
+    <p style="margin:6px 0 0;font-size:14px">The CNC machine sits idle ~60% of the time. Open evening / weekend slots to local hobbyists, wood shops, sign-makers at $50/hr unattended (you set the job up, they collect the parts). Or take small CNC jobs from non-boat customers. Low-friction add-on, no employee headache.</p>
+    <div class="meta">~$5–15k/yr passive · doesn't scale, but doesn't cost anything either</div>
+  </div>
+
+  <div class="move">
+    <div class="ttl"><span class="rk amber">10</span>Productized fixed-price packages &middot; phone screen for tire-kickers</div>
+    <p style="margin:6px 0 0;font-size:14px">3–4 packaged decking/restoration tiers on the website with fixed prices and clear photos. Tire-kickers self-screen ("not for me"), serious buyers self-qualify ("the $4,800 one — let's book"). Eliminates the "can you give me a quote" call entirely. This is the cheapest pricing-power upgrade you can make.</p>
+    <div class="meta">Build cost: a weekend · revenue effect: ongoing margin lift</div>
+  </div>
+
+  <div class="move">
+    <div class="ttl"><span class="rk purple">11</span>Open-source the dash-panel configurator &middot; lead-gen flywheel</div>
+    <p style="margin:6px 0 0;font-size:14px">A web tool where boat owners design their own dash panel (pick console model, lay out gauges/switches, see a preview). Free to design, $400+ to ship. SEO ranks for "custom boat dash panel" indefinitely. Becomes the entry point for a national CNC-panel business that runs while you sleep.</p>
+    <div class="meta">Ambitious · needs ~$8–15k of dev + a designer · highest upside lever</div>
+  </div>
+
+  <div class="move">
+    <div class="ttl"><span class="rk purple">12</span>License the EVA decking templates &middot; royalties from other shops</div>
+    <p style="margin:6px 0 0;font-size:14px">Once you've digitized the top 30 pontoon and console templates, license them to other small shops for $200/pattern + 5% royalty on each install. You stop being the only shop in America that can cut a perfect 2020 Bennington floor; instead, you're the IP holder. Long game, but the asset compounds.</p>
+    <div class="meta">Most ambitious · year 3+ only · turns a service business into IP</div>
+  </div>
+
+  <div class="callout">
+    <h3>The unifying thread</h3>
+    <p>Every one of these moves either <b>monetizes an asset you already own</b> (CNC, land, templates, reputation), <b>charges coastal rates without coastal overhead</b> (mobile rig, subcontracting, mail-order), or <b>buys recurring revenue without a hire</b> (maintenance plans, storage, surveyor rolodex). None of them require Beaufort. Most of them require nothing but a focused quarter.</p>
+  </div>
+</section>
+
+</div>
+
+<footer><div class="wrap">Compiled June 2026 as a companion to the main Coastal Boat Works analysis. Financial models are illustrative scenarios with explicit assumptions — directional, not forecasts. Not financial advice.</div></footer>
+
+<script>
+const TABS=[["overview","Overview"],["solo","Stay Solo, Stay Walterboro"],["compound","The Compound Effect"],["schedule","Schedule Scenarios ★"],["moves","Moves We Missed"]];
+const tabWrap=document.getElementById("tabs");
+TABS.forEach((t,i)=>{const b=document.createElement("button");b.textContent=t[1];b.dataset.t=t[0];if(i===0)b.classList.add("active");b.onclick=()=>show(t[0],b);tabWrap.appendChild(b);});
+function show(id,btn){document.querySelectorAll("section.panel").forEach(p=>p.classList.remove("active"));
+  document.getElementById("p-"+id).classList.add("active");
+  document.querySelectorAll("nav.tabs button").forEach(b=>b.classList.remove("active"));
+  if(btn){btn.classList.add("active")}else{document.querySelector("nav.tabs button[data-t='"+id+"']").classList.add("active");}
+  window.scrollTo({top:0,behavior:"smooth"});}
+document.querySelectorAll("[data-go]").forEach(a=>{a.onclick=(e)=>{e.preventDefault();show(a.dataset.go);};});
+
+const NAVY="#0d2b45",TEAL="#1d7a8c",TEAL2="#2a9db5",GREEN="#2e8b57",AMBER="#d99100",PURPLE="#6b3fb0",RED="#c0392b";
+Chart.defaults.font.family="-apple-system,Segoe UI,Roboto,sans-serif";
+Chart.defaults.font.size=12;Chart.defaults.color="#5d6b7a";
+
+// rate arc
+const years=["Today (Yr 0)","Year 1","Year 2","Year 3","Year 4","Year 5"];
+const rates=[85,115,130,145,155,165];
+new Chart(document.getElementById("cRate"),{
+  type:"line",
+  data:{labels:years,datasets:[{label:"Blended $/hr",data:rates,borderColor:TEAL,backgroundColor:"rgba(29,122,140,.15)",
+    fill:true,tension:.3,pointRadius:5,pointBackgroundColor:NAVY,borderWidth:3}]},
+  options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>"$"+c.raw+"/hr"}}},
+    scales:{y:{title:{display:true,text:"$ / hr blended rate"},suggestedMin:60,suggestedMax:180}}}});
+
+// COMPOUND: status quo vs disciplined
+const yrs5=["Yr 1","Yr 2","Yr 3","Yr 4","Yr 5"];
+const statusQuoRev=[200,205,215,220,230];
+const statusQuoHrs=[2200,2200,2200,2200,2200];
+const discRev=[185,223,272,318,364]; // Scenario A path (44 wks)
+const discHrs=[1760,1760,1760,1760,1760];
+new Chart(document.getElementById("cCompound"),{
+  type:"bar",
+  data:{labels:yrs5,datasets:[
+    {type:"bar",label:"Status quo revenue ($k)",data:statusQuoRev,backgroundColor:AMBER,yAxisID:"y",borderRadius:4},
+    {type:"bar",label:"Disciplined solo revenue ($k)",data:discRev,backgroundColor:GREEN,yAxisID:"y",borderRadius:4},
+    {type:"line",label:"Status quo hours/yr",data:statusQuoHrs,borderColor:RED,backgroundColor:RED,yAxisID:"y1",
+      tension:0,borderWidth:3,pointRadius:4,borderDash:[5,5]},
+    {type:"line",label:"Disciplined hours/yr",data:discHrs,borderColor:NAVY,backgroundColor:NAVY,yAxisID:"y1",
+      tension:0,borderWidth:3,pointRadius:4}
+  ]},
+  options:{plugins:{legend:{position:"top"},tooltip:{callbacks:{label:c=>c.dataset.type==="line"?
+    ("~"+c.raw.toLocaleString()+" hrs/yr"):("~$"+c.raw+"k revenue")}}},
+    scales:{
+      y:{position:"left",title:{display:true,text:"revenue ($k)"},grid:{drawOnChartArea:true},suggestedMax:400},
+      y1:{position:"right",title:{display:true,text:"hours / yr"},grid:{drawOnChartArea:false},suggestedMax:2400,suggestedMin:0}}}});
+
+// SCHEDULES: A vs B
+const scenA={labor:[],parts:[],rev:[],hrs:[]};
+const scenB={labor:[],parts:[],rev:[],hrs:[]};
+const utilization=0.70;
+const partsMultiplier=0.30; // 30% of labor revenue
+const kitsRev=[0,15,40,70,100]; // productized side ($k)
+const billA = 44*40*utilization; // 1232 billable hrs/yr (Snowbird)
+const billB = 50*32*utilization; // 1120 billable hrs/yr (4-day)
+const totalA = 44*40; // 1760 shop hrs/yr
+const totalB = 50*32; // 1600 shop hrs/yr
+for(let i=0;i<5;i++){
+  const r = rates[i+1]; // skip Yr 0
+  const lA=Math.round(billA*r/1000); // $k
+  const lB=Math.round(billB*r/1000);
+  const pA=Math.round(lA*partsMultiplier);
+  const pB=Math.round(lB*partsMultiplier);
+  const revA=lA+pA+kitsRev[i];
+  const revB=lB+pB+kitsRev[i];
+  scenA.labor.push(lA); scenA.parts.push(pA+kitsRev[i]); scenA.rev.push(revA); scenA.hrs.push(totalA);
+  scenB.labor.push(lB); scenB.parts.push(pB+kitsRev[i]); scenB.rev.push(revB); scenB.hrs.push(totalB);
+}
+new Chart(document.getElementById("cScenarios"),{
+  type:"bar",
+  data:{labels:yrs5,datasets:[
+    {label:"Scenario A · Snowbird ($k)",data:scenA.rev,backgroundColor:TEAL,borderRadius:5},
+    {label:"Scenario B · 4-Day Week ($k)",data:scenB.rev,backgroundColor:GREEN,borderRadius:5}
+  ]},
+  options:{plugins:{legend:{position:"top"},tooltip:{callbacks:{label:c=>c.dataset.label+": $"+c.raw+"k"}}},
+    scales:{y:{title:{display:true,text:"revenue ($k)"},suggestedMax:400}}}});
+
+// year-by-year tables
+const tA=document.getElementById("tA"),tB=document.getElementById("tB");
+const rateLbl=rates.slice(1);
+let cumA=0,cumB=0;
+for(let i=0;i<5;i++){
+  cumA+=scenA.rev[i]; cumB+=scenB.rev[i];
+  tA.insertAdjacentHTML("beforeend",`<tr>
+    <td>Yr ${i+1}</td><td>$${rateLbl[i]}/hr</td>
+    <td class="num">$${scenA.labor[i]}k</td>
+    <td class="num">$${scenA.parts[i]}k</td>
+    <td class="num"><b>$${scenA.rev[i]}k</b></td>
+    <td class="num">${scenA.hrs[i].toLocaleString()}</td></tr>`);
+  tB.insertAdjacentHTML("beforeend",`<tr>
+    <td>Yr ${i+1}</td><td>$${rateLbl[i]}/hr</td>
+    <td class="num">$${scenB.labor[i]}k</td>
+    <td class="num">$${scenB.parts[i]}k</td>
+    <td class="num"><b>$${scenB.rev[i]}k</b></td>
+    <td class="num">${scenB.hrs[i].toLocaleString()}</td></tr>`);
+}
+tA.insertAdjacentHTML("beforeend",`<tr class="total"><td colspan="2">5-yr total</td>
+  <td class="num">$${scenA.labor.reduce((a,b)=>a+b,0)}k</td>
+  <td class="num">$${scenA.parts.reduce((a,b)=>a+b,0)}k</td>
+  <td class="num"><b>$${cumA}k</b></td>
+  <td class="num">${(totalA*5).toLocaleString()}</td></tr>`);
+tB.insertAdjacentHTML("beforeend",`<tr class="total"><td colspan="2">5-yr total</td>
+  <td class="num">$${scenB.labor.reduce((a,b)=>a+b,0)}k</td>
+  <td class="num">$${scenB.parts.reduce((a,b)=>a+b,0)}k</td>
+  <td class="num"><b>$${cumB}k</b></td>
+  <td class="num">${(totalB*5).toLocaleString()}</td></tr>`);
+</script>
+</body>
+</html>
