@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CAMPWISE · IDEAS · PSYDUCK</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/ideas/idea-page.css" />
+  <style>
+    .verdict-pass {
+      background: rgba(107,114,128,0.06);
+      border: 1px solid rgba(107,114,128,0.2);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .verdict-badge-pass {
+      display: inline-block;
+      font-family: var(--font-pixel);
+      font-size: 0.35rem;
+      background: rgba(107,114,128,0.12);
+      color: #6b7280;
+      border: 1px solid rgba(107,114,128,0.3);
+      border-radius: 4px;
+      padding: 0.25rem 0.6rem;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+    }
+    .verdict-reason { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim); line-height: 1.8; }
+    .verdict-reason strong { color: #e5e7eb; }
+    .kill-list {
+      background: rgba(107,114,128,0.04);
+      border: 1px solid rgba(107,114,128,0.15);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 2;
+    }
+    .kill-label { color: #9ca3af; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="crt-overlay"></div><div class="scanlines"></div><div class="vignette"></div>
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="/" class="home-crumb" title="Home"><span class="status-dot"></span><span class="nav-name">Psyduck <span class="nav-dex">#054</span></span></a>
+        <span class="crumb-sep">/ <a href="/ideas" class="crumb-link">IDEAS</a> / <span class="crumb-current">CAMPWISE</span></span>
+      </div>
+      <nav class="header-nav">
+        <a href="/ideas" class="nav-link nav-link-ideas"><span class="nav-sym">&#9889;</span><span class="nav-label">IDEAS</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="idea-page-wrap">
+    <div class="idea-page-header" style="opacity:0.75;">
+      <div class="idea-page-meta">
+        <span class="idea-status status-pass">PASS</span>
+        <span class="idea-type">MARKETPLACE &middot; MED BUILD &middot; HIGH UPKEEP</span>
+      </div>
+      <h1 class="idea-page-title" style="color:#6b7280;text-shadow:none;">CAMPWISE</h1>
+      <div class="viability-callout viability-red" style="border-color:rgba(107,114,128,0.2);background:rgba(107,114,128,0.05);">
+        <div>
+          <div class="vc-label">VIABILITY SCORE</div>
+          <div class="vc-sublabel">PASSED &middot; JUNE 2026</div>
+        </div>
+        <div class="vc-score" style="color:#6b7280;text-shadow:none;">2.5<span class="vc-max">/10</span></div>
+      </div>
+      <p class="idea-page-sub">Summer camp aggregator for working parents: search all local camps, compare ratings, fill schedule gaps, generate a unified camp score across providers. The pitch sounded fresh until the competitive sweep took 20 minutes. Passed June 17, 2026.</p>
+      <div class="idea-bar idea-bar-wide"><div class="idea-bar-fill" style="--fill:0%;--c:#6b7280"></div></div>
+      <div class="idea-bar-label">PASS &middot; ACTIVITYHERO HAS THIS BUILT, FUNDED, AND IN THE TARGET CITY</div>
+    </div>
+
+    <div class="idea-page-body">
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE PITCH (BEFORE THE SWEEP)</div>
+        <p>A working-parent app for summer planning: aggregate every local camp in one place, show ratings and start/end times, optimize a child&#39;s summer schedule across multiple weeks and multiple programs, and provide a universal camp-score metric that&#39;s consistent across providers. The unspoken pain point: summer is a logistics crisis for households with two working parents. The kid is out of school for 11 weeks; daycare doesn&#39;t cover school-age; week-by-week camp shopping happens across a dozen disconnected provider websites starting in January.</p>
+        <p style="margin-top:0.75rem;">The intuition pointed at a real, persistent, well-funded customer segment (working parents), in a category with predictable seasonal urgency (every March-June) and recurring annual demand. On paper, the gap looked obvious.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">WHY WE PASSED</div>
+        <div class="kill-list">
+          <div><span class="kill-label">ACTIVITYHERO IS THE EXACT PRODUCT &mdash; AT SCALE, IN THE TARGET CITY</span> &mdash; <a href="https://activityhero.com" target="_blank" rel="noopener" style="color:#9ca3af;text-decoration:underline">activityhero.com</a> brands itself as the &ldquo;one-stop-shop to find top-rated summer camps, holiday camps and after-school classes near you.&rdquo; 4 million families use it. Aggregates camps from providers large and small. Search and filter by location, age, child&#39;s interests, and timing. Real parent reviews on every listing. Multi-camp registration with one-time form entry (the working-parent killer feature). Operating in Columbia, SC with a dedicated landing page. Covers spring/winter/holiday breaks, scholarships, tax-deductibility. Marketplace model: free for families, paid by providers.</div>
+          <div style="margin-top:0.75rem;"><span class="kill-label">SAWYER (HISAWYER.COM) IS THE SOLID #2</span> &mdash; &ldquo;Discover kids classes, camps, and events.&rdquo; Less camp-focused than ActivityHero, more year-round classes, but still occupies the marketplace space with its own B2B class management platform underneath.</div>
+          <div style="margin-top:0.75rem;"><span class="kill-label">THE CONTENT SITES AREN&#39;T COMPETITORS BUT THEY OWN THE SEO</span> &mdash; Mommy Poppins runs regional camp guides for 16 major cities; Macaroni Kid does hyperlocal newsletters; Tinybeans is a photo-sharing app (not even in this category). They aren&#39;t direct functional competitors, but they ARE the SEO landing pages that capture &ldquo;summer camps in [city]&rdquo; queries before any new entrant could.</div>
+          <div style="margin-top:0.75rem;"><span class="kill-label">THE UNIVERSAL CAMP SCORE DOESN&#39;T EXIST &mdash; AND THAT&#39;S NOT NECESSARILY A GAP</span> &mdash; ActivityHero has per-listing reviews, not a normalized cross-provider rubric (safety, instructor ratios, structured hours, drop-off flexibility). This is a real feature gap, but it&#39;s a feature ActivityHero could add in one release cycle if it gained traction. It&#39;s not a wedge that supports an independent company; it&#39;s a feature ActivityHero would either build or buy.</div>
+          <div style="margin-top:0.75rem;"><span class="kill-label">THE MULTI-WEEK SCHEDULE OPTIMIZER IS THE ONLY NARROW WEDGE</span> &mdash; &ldquo;Two kids ages 7 and 10, fill 11 weeks of summer with no gaps, minimize drop-off/pickup logistics&rdquo; doesn&#39;t exist as a feature today. Real working-parent pain. Also a feature ActivityHero is 3-6 months away from shipping themselves if it becomes popular, and it&#39;s narrow enough that a standalone product can&#39;t survive on it alone.</div>
+          <div style="margin-top:0.75rem;"><span class="kill-label">B2B SUPPLY-SIDE LOCK-IN IS THE REAL MOAT WE CAN&#39;T MATCH</span> &mdash; ActivityHero spent 10+ years building the provider marketplace side: thousands of camp operators with their schedules already plumbed in. A new entrant has to either (a) replicate the supply build (multi-year sales cycle) or (b) scrape provider sites (legally questionable, easily blocked). The functioning two-sided marketplace IS the moat. The matching UX is the easy part.</div>
+        </div>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE LESSON</div>
+        <p>Working-parent intuition about a clear gap is not the same as a real gap. The market is saturated by a dominant marketplace player whose business model is correct (free for families, providers pay), whose product covers all the obvious filter dimensions, and whose moat is the supply side, not the UX.</p>
+        <p style="margin-top:0.75rem;">The lesson that matters: <strong style="color:#e5e7eb;">when a category has a strong two-sided marketplace incumbent with the right business model, every &ldquo;but I&#39;d build it better&rdquo; idea is a feature, not a company.</strong> The schedule optimizer wedge would be a fine Saturday project if you have two kids in summer camp; it would not be a viable standalone business.</p>
+        <p style="margin-top:0.75rem;">Same shape as <a href="/ideas/slop-shield" style="color:#9ca3af;text-decoration:underline">SLOP SHIELD</a> (saturated dev tools) and <a href="/ideas/autofeedback" style="color:#9ca3af;text-decoration:underline">AUTOFEEDBACK</a> (DealerRater dominance). Three different verticals, same failure mode: don&#39;t enter a saturated market without a structural distribution or supply-side advantage.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE VERDICT</div>
+        <div class="verdict-pass">
+          <div class="verdict-badge-pass">PASS &middot; SATURATED BY ACTIVITYHERO</div>
+          <p class="verdict-reason">
+            <strong>The space is full, the incumbent is in the target city, and the wedges are features ActivityHero would build before we could.</strong> ActivityHero hits 4 million families with a marketplace business model that&#39;s ethically clean (no family ever pays) and supply-side defensible (10+ years of provider relationships). The two interesting wedges (universal camp score, multi-week schedule optimizer) are real but neither is a standalone-business opportunity; both get absorbed the moment they prove demand.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            Score: <strong>2.5/10.</strong> Below SolarVet because at least SolarVet&#39;s gap was structurally unfixable (incumbent had an unavoidable conflict of interest). CampWise&#39;s incumbent has no such conflict &mdash; they&#39;re providing the service well, with the right business model, in the right cities. There&#39;s no thesis for entering this market.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div class="footer-inner"><span>PSYDUCK &mdash; SHINY EDITION</span><span>&copy; 2026 &middot; BUILT ON HOMELAB &middot; DEPLOYED BY ITSELF</span></div></footer>
+</body>
+</html>
