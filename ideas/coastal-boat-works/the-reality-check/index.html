@@ -102,6 +102,7 @@
   <button data-p="works">&starf; Why It Works</button>
   <button data-p="doesnt">&starf; Why It Doesn&#39;t</button>
   <button data-p="probability">The Probability Math</button>
+  <button data-p="money">&starf; 1-3-5 Year Math</button>
   <button data-p="honest">The Honest Read</button>
 </nav>
 
@@ -359,6 +360,70 @@
   <p class="sub">The famous three-cousin outcome (15%) almost certainly requires this sequence: (1) Jeremy says yes to founder, (2) corps builds for 6 months and ships first marine product, (3) Joey conversation happens after corps has receipts and the genealogy story is real. Going to Joey on Day 0 with a hypothetical corps gets a hypothetical answer. The famous outcome lives downstream of the modal outcome existing first.</p>
 </section>
 
+<!-- MONEY -->
+<section class="panel" id="p-money">
+  <h2>The 1-3-5 year financial picture, with Psyduck as the recurring-revenue engine</h2>
+  <p class="sub">Three scenarios across five years: <b>bear</b> (only some products ship, depot stalls, Joey stays ally), <b>base</b> (modal outcome from the Probability tab: 2-founder corps + Joey member, depot operational by Year 3), <b>bull</b> (famous three-founder corps, full seven-product roofing vertical, depot at RAS run-rate by Year 4). Numbers are $K of recurring revenue under Psyduck&#39;s management of the Infrastructure axis.</p>
+
+  <div class="callout slate">
+    <h3>Why Psyduck is the recurring-revenue engine, structurally</h3>
+    <p>Labor revenue (roof installs, boat refits, weatherization jobs) is what Jeremy&#39;s and Joey&#39;s verticals ship. It pays the bills but it doesn&#39;t compound: every dollar requires a fresh hour. <b>Recurring revenue is what the corps&#39;s Infrastructure axis ships</b>, and that axis is Justin + Psyduck. Kit Machine portfolio, maintenance subscription billing and CRM, depot weighbridge integration plus customer portal, drone assessment software, apprentice ledger tracking plus DOL reporting. All of these are software-and-process assets that earn ledger payouts for as long as the products sell. Built once, paid forever. That&#39;s the entire premise of the cliff escape. The labor side carries the corps to Year 5. The recurring side carries the founders to Year 30.</p>
+  </div>
+
+  <h3>Chart 1: Total annual recurring revenue under Psyduck&#39;s management</h3>
+  <p class="sub">Three scenarios, in $K. This is the headline chart. Anything sitting under one of these curves at Year 5 is income that&#39;s not tied to anyone&#39;s body or attention span. That&#39;s the prize.</p>
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;box-shadow:var(--shadow);margin:12px 0"><canvas id="chart-recurring" height="280"></canvas></div>
+
+  <h3>Chart 2: Recurring revenue composition under the base case</h3>
+  <p class="sub">Stacked breakdown of where the recurring $$ comes from year over year. Kit Machine is the early carry; depot operations are the Year 3+ inflection; apprentice grants flow through whenever the program runs.</p>
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;box-shadow:var(--shadow);margin:12px 0"><canvas id="chart-composition" height="280"></canvas></div>
+
+  <h3>Chart 3: Per-founder household income from the corps</h3>
+  <p class="sub">What each of the three founders takes home from the corps each year, as ledger payouts and wage tier draws. Year 5 base case is where this stops being supplemental and starts being primary income.</p>
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;box-shadow:var(--shadow);margin:12px 0"><canvas id="chart-founder" height="280"></canvas></div>
+
+  <h3>Chart 4: Total corps revenue (recurring + labor + one-off services)</h3>
+  <p class="sub">For completeness: total dollars flowing through the corps. Most of this is labor revenue in the early years (roof installs, boat refit, weatherization). The recurring share is the part that matters for cliff escape, but the total tells you whether the corps is a real business.</p>
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;box-shadow:var(--shadow);margin:12px 0"><canvas id="chart-total" height="280"></canvas></div>
+
+  <h3>Base case, year by year, narratively</h3>
+  <table>
+    <thead><tr><th>Year</th><th>What&#39;s happening</th><th>Recurring revenue</th><th>Per-founder income</th></tr></thead>
+    <tbody>
+      <tr><td class="term">Year 1 (2026-27)</td><td>Corps forms. Kit Machine portfolio continues. Roof Claim Kit ships Q3. Marine kit (EVA decking) ships Q4. First 20-30 maintenance subs sold. Drone assessment service launched. Depot pre-permit phase, no revenue. Apprentice cohort #1 starts late Year 1. Labor revenue from Jeremy&#39;s and Joey&#39;s primary shops continues but isn&#39;t corps revenue yet.</td><td>~$40K</td><td>~$8K</td></tr>
+      <tr><td class="term">Year 2 (2027-28)</td><td>Kit portfolio at 5-6 active products. Maintenance subs at 60-80 active. Depot land acquired, DHEC permit in flight. Apprentice cohort #1 entering Year 2, cohort #2 hires. SC apprentice tax credit and DOL pass-through funding begins flowing.</td><td>~$130K</td><td>~$25K</td></tr>
+      <tr><td class="term">Year 3 (2028-29)</td><td>Depot tipping operational. Kit portfolio at 7-8. Maintenance subs at 150-180. Drone service at scale. Apprentice cohorts #1-2 shipping product, ledger positions compounding. First DOL Apprenticeship Building America grant submission cycle.</td><td>~$400K</td><td>~$80K</td></tr>
+      <tr><td class="term">Year 4 (2029-30)</td><td>Depot RAS production starts. Maintenance subs at 250+. Cohort #1 graduates to journey tier and becomes apprentice mentors. Second-generation kit products shipping. Justin shifting from full-time build mode to half-time-build, half-time-mentor.</td><td>~$800K</td><td>~$180K</td></tr>
+      <tr><td class="term">Year 5 (2030-31)</td><td>All systems at run-rate. Founders shifting to mentor + governance roles. Ledger payouts material enough to carry founder household income on partial-hour weeks. Member-tier craftspeople running both verticals. Depot serving multiple regional roofers.</td><td>~$1.4M</td><td>~$350K</td></tr>
+    </tbody>
+  </table>
+
+  <div class="cream">
+    <p style="margin-top:0"><b>The inflection point is Year 3.</b> That&#39;s when recurring revenue crosses $400K base case (~$130 to $400 single-year jump = 3x growth), depot tipping comes online, and the corps stops being &ldquo;Justin&#39;s side build with Jeremy and Joey contributing&rdquo; and starts being &ldquo;a real business with payroll, products, and a balance sheet.&rdquo;</p>
+    <p style="margin-top:10px"><b>The cliff escape is Year 5.</b> That&#39;s the year base case per-founder income from the corps crosses ~$350K, which combined with whatever each founder is still earning from their primary shop covers a Lowcountry-or-Columbia household income at full strength without the founder having to be at full intensity. That&#39;s when each of the three can step back without the income stopping. Bull case gets there in Year 4; bear case gets close in Year 6-7 but not all the way.</p>
+  </div>
+
+  <h3>What has to be true for the base case to land</h3>
+  <ul class="clean">
+    <li><b>The Roof Claim Kit ships inside Year 1.</b> ~$30K of Year 1 recurring revenue rides on this. The kit shape is FightAClaim-proven (demand letters, customer-asserts-own-rights, no UPL exposure), so this is the lowest-risk product on the list.</li>
+    <li><b>Justin keeps building the maintenance-sub billing and CRM software</b> through Year 1-2. This is what lets the maintenance sub line scale past 50 subscribers without manual admin eating the margin.</li>
+    <li><b>The depot clears DHEC permit by Month 18.</b> If the permit fight goes past Month 30, Year 3 numbers drop ~$100K and Year 5 numbers drop ~$300K. Permit is the single largest swing.</li>
+    <li><b>DOL Registered Apprenticeship paperwork files by Month 6.</b> The SC tax credit ($4K/apprentice/year for 4 years) and federal pass-through funding require it. The cross-vertical RTI curriculum has to be at least drafted to file. This is where Justin&#39;s PhD friend potentially enters as a Contributor.</li>
+    <li><b>Joey at member-tier or better by Month 9.</b> If Joey stays ally only, the roofing vertical doesn&#39;t exist as a corps product line and the Year 3+ depot tipping revenue numbers are way smaller because the depot only gets Magnolia waste, not vertical-wide corps waste.</li>
+    <li><b>Kit Machine portfolio velocity holds.</b> Justin&#39;s existing portfolio (FightAClaim plus 4 in dev) shipping at the planned rate is what underwrites the Year 1-2 recurring number. If kit velocity drops, base case slides toward bear case.</li>
+  </ul>
+
+  <h3>What could collapse the projection</h3>
+  <div class="twocol">
+    <div class="red"><b>Bear-case triggers:</b> depot permit takes 24+ months (subtracts $400K from Year 5), Joey stays ally (subtracts $300K), maintenance-sub software underbuilt and growth caps at 80 subs (subtracts $100K), apprentice grant pipeline delays beyond Year 3 (subtracts $80K). Base case can roll into bear case with two of these landing.</div>
+    <div class="red"><b>Sub-bear scenarios:</b> Jeremy bails Year 2, marine vertical collapses (subtracts $250K of marine-kit and apprentice revenue). Health event for any founder removes their cohort of Infrastructure-axis work for 6+ months (variable). 2008-style housing recession in Years 3-4 caps roofing-vertical labor revenue but leaves recurring revenue mostly intact (the model is designed for that).</div>
+  </div>
+
+  <div class="warn"><b>These are projections, not commitments.</b> They&#39;re built from the product economics on the Roofing Vertical and Corps pages, scaled by realistic adoption curves and the Probability Math&#39;s base case assumptions. If you read them as &ldquo;Psyduck guarantees $1.4M of recurring revenue by Year 5&rdquo; you&#39;re reading them wrong. If you read them as &ldquo;the math could work at this rough order of magnitude if the corps actually executes,&rdquo; you&#39;re reading them right. The point of charting it is to give the conversations with Jeremy and Joey something concrete to react to, not to lock in a number.</div>
+
+  <blockquote>Recurring revenue is what Psyduck is for. Labor revenue keeps everyone fed; recurring revenue gets everyone off the treadmill. Year 5 base case is the corps doing what the corps is supposed to do.</blockquote>
+</section>
+
 <!-- HONEST -->
 <section class="panel" id="p-honest">
   <h2>The honest read, from Psyduck to Justin</h2>
@@ -431,15 +496,114 @@
   <span><a href="../" style="color:var(--corps)">&larr; back to hub</a></span>
 </div></footer>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script>
 const tabs = document.querySelectorAll('nav.tabs button');
 const panels = document.querySelectorAll('section.panel');
+let chartsRendered = false;
 tabs.forEach(btn => btn.addEventListener('click', () => {
   const id = 'p-' + btn.dataset.p;
   tabs.forEach(b => b.classList.toggle('active', b === btn));
   panels.forEach(p => p.classList.toggle('active', p.id === id));
   window.scrollTo({top:0,behavior:'smooth'});
+  if (id === 'p-money' && !chartsRendered) {
+    renderCharts();
+    chartsRendered = true;
+  }
 }));
+
+function renderCharts() {
+  const years = ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'];
+  const slate = '#455a64', corps = '#a83232', green = '#2e8b57';
+  const corpsLight = 'rgba(168,50,50,0.15)';
+
+  const commonOpts = (yLabel) => ({
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { position: 'top', labels: { font: { size: 12, weight: '600' } } },
+      tooltip: {
+        callbacks: { label: (ctx) => `${ctx.dataset.label}: $${ctx.parsed.y}K` }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: { display: true, text: yLabel, font: { size: 12, weight: '600' } },
+        ticks: { callback: (v) => '$' + v + 'K' }
+      },
+      x: { ticks: { font: { size: 12, weight: '600' } } }
+    }
+  });
+
+  new Chart(document.getElementById('chart-recurring'), {
+    type: 'line',
+    data: {
+      labels: years,
+      datasets: [
+        { label: 'Bear', data: [25, 60, 150, 260, 400], borderColor: slate, backgroundColor: slate, tension: 0.25, borderWidth: 2.5, pointRadius: 4 },
+        { label: 'Base', data: [40, 130, 400, 800, 1400], borderColor: corps, backgroundColor: corps, tension: 0.25, borderWidth: 3, pointRadius: 5 },
+        { label: 'Bull', data: [65, 250, 750, 1500, 2500], borderColor: green, backgroundColor: green, tension: 0.25, borderWidth: 2.5, pointRadius: 4 }
+      ]
+    },
+    options: commonOpts('Recurring revenue per year ($K)')
+  });
+
+  new Chart(document.getElementById('chart-composition'), {
+    type: 'bar',
+    data: {
+      labels: years,
+      datasets: [
+        { label: 'Kit Machine portfolio', data: [25, 70, 150, 260, 400], backgroundColor: '#a83232' },
+        { label: 'Maintenance subscriptions', data: [5, 25, 75, 130, 200], backgroundColor: '#2e8b57' },
+        { label: 'Depot tipping fees', data: [0, 0, 90, 200, 350], backgroundColor: '#d99100' },
+        { label: 'Depot RAS sales', data: [0, 0, 0, 60, 200], backgroundColor: '#b8541a' },
+        { label: 'Drone assessment service', data: [5, 15, 40, 70, 100], backgroundColor: '#6b3fb0' },
+        { label: 'Apprentice grant pass-through', data: [5, 20, 60, 110, 170], backgroundColor: '#1d7a8c' }
+      ]
+    },
+    options: {
+      ...commonOpts('Recurring revenue, base case ($K)'),
+      scales: {
+        y: {
+          stacked: true,
+          beginAtZero: true,
+          title: { display: true, text: 'Recurring revenue, base case ($K)', font: { size: 12, weight: '600' } },
+          ticks: { callback: (v) => '$' + v + 'K' }
+        },
+        x: { stacked: true, ticks: { font: { size: 12, weight: '600' } } }
+      }
+    }
+  });
+
+  new Chart(document.getElementById('chart-founder'), {
+    type: 'line',
+    data: {
+      labels: years,
+      datasets: [
+        { label: 'Bear', data: [5, 12, 25, 50, 80], borderColor: slate, backgroundColor: slate, tension: 0.25, borderWidth: 2.5, pointRadius: 4 },
+        { label: 'Base', data: [8, 25, 80, 180, 350], borderColor: corps, backgroundColor: corps, tension: 0.25, borderWidth: 3, pointRadius: 5 },
+        { label: 'Bull', data: [15, 50, 160, 380, 650], borderColor: green, backgroundColor: green, tension: 0.25, borderWidth: 2.5, pointRadius: 4 }
+      ]
+    },
+    options: commonOpts('Per-founder corps income ($K/yr)')
+  });
+
+  new Chart(document.getElementById('chart-total'), {
+    type: 'line',
+    data: {
+      labels: years,
+      datasets: [
+        { label: 'Bear (total)', data: [80, 200, 500, 800, 1100], borderColor: slate, backgroundColor: slate, tension: 0.25, borderWidth: 2.5, pointRadius: 4, borderDash: [6, 4] },
+        { label: 'Base (total)', data: [150, 500, 1500, 2500, 3800], borderColor: corps, backgroundColor: corps, tension: 0.25, borderWidth: 3, pointRadius: 5, borderDash: [6, 4] },
+        { label: 'Bull (total)', data: [250, 900, 2500, 4500, 6500], borderColor: green, backgroundColor: green, tension: 0.25, borderWidth: 2.5, pointRadius: 4, borderDash: [6, 4] },
+        { label: 'Base (recurring only)', data: [40, 130, 400, 800, 1400], borderColor: corps, backgroundColor: corpsLight, fill: true, tension: 0.25, borderWidth: 2, pointRadius: 3 }
+      ]
+    },
+    options: commonOpts('Total corps revenue ($K)')
+  });
+}
 </script>
 <script src="/script.js"></script>
 </body>
