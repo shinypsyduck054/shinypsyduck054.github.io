@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coastal Boat Works &mdash; The Roofing Vertical</title>
+<style>
+  :root{
+    --navy:#0d2b45; --navy2:#11395c; --teal:#1d7a8c;
+    --sand:#f4efe6; --ink:#1b2733; --muted:#5d6b7a; --line:#dde3ea;
+    --green:#2e8b57; --amber:#d99100; --rust:#b8541a; --purple:#6b3fb0; --red:#c0392b;
+    --corps:#a83232;
+    --mag:#2d5a3d; --mag2:#3e7a52; --mag-bloom:#c8985a; --mag-cream:#faf6ee; --mag-deep:#1f3f2c;
+    --roof:#a0641e; --roof2:#c87533; --roof-deep:#5e3b11; --roof-cream:#fbf4e8;
+    --card:#ffffff;
+    --shadow:0 1px 3px rgba(13,43,69,.08),0 6px 18px rgba(13,43,69,.06);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--sand);line-height:1.55;font-size:15.5px}
+  header.hero{background:linear-gradient(135deg,var(--roof-deep),var(--roof));color:#fff;padding:34px 28px 30px}
+  header.hero .wrap{max-width:1080px;margin:0 auto}
+  header.hero h1{margin:0 0 8px;font-size:30px;letter-spacing:.4px}
+  header.hero .lede{margin:0;opacity:.95;font-size:15.5px;max-width:840px}
+  header.hero .crumb{font-size:12.5px;opacity:.85;margin-bottom:8px}
+  header.hero .crumb a{color:#f0d9b4;text-decoration:none;margin-right:6px}
+  header.hero .crumb a:hover{color:#fff;text-decoration:underline}
+  header.hero .stamp{display:inline-block;font-size:11.5px;letter-spacing:2px;font-weight:700;padding:3px 10px;border:1.5px solid #f0d9b4;border-radius:3px;color:#f0d9b4;margin-bottom:10px;text-transform:uppercase}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  nav.tabs{position:sticky;top:0;z-index:50;background:var(--navy);display:flex;flex-wrap:wrap;gap:2px;
+    padding:0 12px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+  nav.tabs button{background:transparent;color:#cfe0ec;border:0;padding:13px 14px;font-size:13.5px;
+    cursor:pointer;border-bottom:3px solid transparent;font-weight:600;white-space:nowrap}
+  nav.tabs button:hover{color:#fff}
+  nav.tabs button.active{color:#fff;border-bottom-color:var(--roof2)}
+  section.panel{display:none;padding:26px 0 60px}
+  section.panel.active{display:block}
+  h2{font-size:22px;margin:6px 0 6px;color:var(--navy)}
+  h3{font-size:16.5px;color:var(--navy2);margin:22px 0 8px}
+  h4{font-size:14.5px;color:var(--navy2);margin:14px 0 6px}
+  .sub{color:var(--muted);font-size:14.5px;margin:0 0 18px;max-width:820px}
+  .deep{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;box-shadow:var(--shadow);margin:14px 0}
+  .deep h3:first-child,.deep h4:first-child{margin-top:0}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+  .callout{background:linear-gradient(135deg,var(--roof-deep),var(--roof));color:#fff;border-radius:12px;padding:20px 24px;margin:16px 0}
+  .callout.bloom{background:linear-gradient(135deg,var(--roof-deep),var(--roof2));color:#fff}
+  .callout.dark{background:linear-gradient(135deg,#1b2733,var(--roof-deep))}
+  .callout.green{background:linear-gradient(135deg,var(--mag-deep),var(--mag2));color:#fff}
+  .callout h3{color:#fff;margin:0 0 8px;font-size:18px}
+  .callout p{margin:6px 0;font-size:14.5px;opacity:.96}
+  .warn{background:#fdf3e3;border:1px solid #f0d8a8;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:12px 0}
+  .warn b{color:var(--amber)}
+  .note{background:#eef9f1;border:1px solid #bfe6cc;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:12px 0}
+  .red{background:#fdecea;border:1px solid #f3c9c3;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:12px 0}
+  .cream{background:var(--roof-cream);border:1px solid #ecd9b6;border-radius:12px;padding:18px 22px;margin:14px 0}
+  ul.clean{font-size:14.5px;padding-left:20px} ul.clean li{margin:6px 0}
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;
+    font-size:13.5px;margin:10px 0;box-shadow:var(--shadow)}
+  thead th{background:var(--navy);color:#fff;text-align:left;padding:10px 12px;font-weight:600;font-size:12.5px}
+  tbody td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr:hover{background:#f7fafc}
+  td.term{font-weight:700;color:var(--navy);width:170px}
+  .prod{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;box-shadow:var(--shadow);margin:12px 0;border-top:5px solid var(--roof)}
+  .prod.alt{border-top-color:var(--roof2)}
+  .prod.depot{border-top-color:var(--roof-deep);border:2px solid var(--roof2);background:var(--roof-cream)}
+  .prod .head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+  .prod h3{margin:0;font-size:18px;color:var(--navy)}
+  .prod .badge{font-size:11.5px;padding:2px 9px;border-radius:20px;font-weight:700;letter-spacing:.3px;background:#f6ead2;color:var(--roof-deep)}
+  .prod.alt .badge{background:#fdecd8;color:var(--rust)}
+  .prod.depot .badge{background:var(--roof-deep);color:#f6ead2}
+  .prod .specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:10px 0 8px;font-size:12px}
+  .prod .spec{background:#f7f3ea;border-radius:6px;padding:6px 9px}
+  .prod .spec .l{display:block;font-size:10.5px;letter-spacing:.5px;color:var(--roof-deep);font-weight:700;text-transform:uppercase}
+  .prod .spec .v{display:block;font-weight:600;color:var(--navy);font-size:12.5px;margin-top:2px}
+  .stepcard{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;box-shadow:var(--shadow);margin:10px 0;border-left:4px solid var(--roof)}
+  .stepcard .num{display:inline-block;background:var(--roof);color:#fff;font-weight:700;border-radius:50%;width:26px;height:26px;line-height:26px;text-align:center;font-size:13px;margin-right:8px;vertical-align:middle}
+  .stepcard h4{display:inline;color:var(--navy);font-size:15px;margin:0;vertical-align:middle}
+  .stepcard p{margin:8px 0 4px;font-size:13.5px}
+  .stepcard .meta{font-size:12px;color:var(--muted);margin-top:4px}
+  .layercard{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;box-shadow:var(--shadow);margin:10px 0}
+  .layercard.l1{border-left:4px solid var(--green)}
+  .layercard.l2{border-left:4px solid var(--roof)}
+  .layercard.l3{border-left:4px solid var(--purple)}
+  .layercard .lbl{font-size:11px;letter-spacing:.5px;font-weight:700;text-transform:uppercase;margin-bottom:4px}
+  .layercard.l1 .lbl{color:var(--green)}
+  .layercard.l2 .lbl{color:var(--roof)}
+  .layercard.l3 .lbl{color:var(--purple)}
+  .layercard h4{margin:0 0 6px;color:var(--navy);font-size:15px}
+  .aidcard{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px;box-shadow:var(--shadow);margin:10px 0;border-left:4px solid var(--roof2)}
+  .aidcard h4{margin:0 0 4px;color:var(--navy);font-size:14.5px}
+  .aidcard .arrow{font-weight:700;color:var(--roof);font-size:13px;letter-spacing:.5px}
+  blockquote{border-left:4px solid var(--roof);background:var(--roof-cream);margin:10px 0;padding:10px 16px;border-radius:0 8px 8px 0;color:var(--ink);font-size:14.5px;font-style:italic}
+  .pillrow{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+  .pill{font-size:11.5px;background:#eef3f7;color:var(--navy2);padding:2px 9px;border-radius:20px;font-weight:600}
+  .pill.roof{background:#f6ead2;color:var(--roof-deep)}
+  .pill.warn{background:#fdf3e3;color:var(--amber)}
+  .pill.green{background:#e6efe7;color:var(--mag)}
+  footer{padding:26px 0 50px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);margin-top:20px}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+  .version-tag{font-variant-numeric:tabular-nums}
+  @media(max-width:860px){.twocol,.threecol{grid-template-columns:1fr}thead th{position:static}
+    table{display:block;overflow-x:auto;white-space:nowrap}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="../">&larr; hub</a>&middot;<a href="../landscape/">landscape</a>&middot;<a href="../the-partnership/">partnership</a>&middot;<a href="../the-brotherhood/">brotherhood</a>&middot;<a href="../the-corps/">the corps</a>&middot;<a href="../magnolia-wildcard/">magnolia wildcard</a>&middot;<a href="../discovery/">discovery</a></div>
+    <div class="stamp">THE ROADMAP &middot; CORPS VERTICAL #2</div>
+    <h1>The Roofing Vertical</h1>
+    <p class="lede">If Joey resonates with the corps creed (that conversation lives on the <a href="../magnolia-wildcard/" style="color:#f0d9b4">Magnolia Wildcard</a> page), this is what we ship together. Seven product lines, three layers of smoothing against the worst seasonality in residential trades, and one shingle-recycling depot that could outlive any one shop. The Lowcountry expansion is greenfield. Greenfield is the unlock.</p>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button class="active" data-p="premise">The Premise</button>
+  <button data-p="products">&starf; Seven Products</button>
+  <button data-p="depot">&starf;&starf; Shingle Depot</button>
+  <button data-p="smoothing">Smoothing &amp; Cyclicality</button>
+  <button data-p="mutual">Mutual Aid</button>
+  <button data-p="sequence">Sequencing &amp; Read</button>
+</nav>
+
+<div class="wrap">
+
+<!-- PREMISE -->
+<section class="panel active" id="p-premise">
+  <h2>Why a roofing vertical inside the corps</h2>
+  <p class="sub">This page is downstream of <a href="../magnolia-wildcard/">The Magnolia Wildcard</a>, not parallel to it. The Wildcard page asks &ldquo;is Joey the right cousin to bring in, and in what structure.&rdquo; This page asks &ldquo;if yes in any structure beyond Ally, what do we ship together.&rdquo; If Joey says no to the corps, the roadmap below collapses to whatever subset he&#39;d still pay us to build, which is mostly the Drone Assessment and Roof Claim Kit pieces.</p>
+
+  <div class="callout green">
+    <h3>The greenfield argument, said plainly</h3>
+    <p>Joey&#39;s Magnolia Roofing in Columbia has 8 years of momentum: established crew, established 1099 culture, established disposal contracts, established brand. None of that exists in the Lowcountry. He hasn&#39;t hired a single roofer there yet. He hasn&#39;t signed a landfill account. He hasn&#39;t chosen a market position.</p>
+    <p style="margin-top:8px">That means every ethics-by-default decision the corps would want to make about how roofing should be run is <i>cheap in greenfield and expensive in retrofit</i>. Starting a Lowcountry crew as W-2 is a hiring decision. Converting an existing 1099 crew to W-2 is a tax, legal, and payroll-system migration that costs months of operations chaos. Same applies to recycling logistics, brand voice, RE-agent positioning, and crew benefits. The Lowcountry expansion is the one chance to bake the corps&#39;s principles into a working business <i>without</i> tearing up something that already exists.</p>
+  </div>
+
+  <h3>What this page is</h3>
+  <ul class="clean">
+    <li>The seven product lines a corps roofing vertical could ship in the Lowcountry over 36 months</li>
+    <li>One of those products (the shingle recycling depot) gets a full deep-dive because Justin&#39;s vision for it is specific and the economics are non-obvious</li>
+    <li>The three-layer cyclicality answer (counter-cyclical trades + recurring revenue + ledger smoothing) for why &ldquo;roofing is the worst-cycle residential trade&rdquo; isn&#39;t the disqualifier it looks like</li>
+    <li>The cross-vertical mutual aid pattern: Joey to Jeremy on business ops, Jeremy to Joey on Lowcountry geography, Justin to all on tech and product</li>
+    <li>An honest sequencing plan: who has what conversation, in what order, contingent on which yes</li>
+  </ul>
+
+  <h3>What this page is not</h3>
+  <div class="cream">
+    <p style="margin-top:0">This is not a deal sheet. Two contingencies have to clear before any of it ships: Jeremy says yes to building the corps (Saturday conversation, see <a href="../the-corps/">The Corps</a>) and Joey says yes to participating in some structure (later conversation, see <a href="../magnolia-wildcard/">Magnolia Wildcard</a>). If either no, this page is hypothetical. If both yes, this page is the next 36 months of execution. That&#39;s a real difference, and I&#39;m treating it as one.</p>
+    <p style="margin-top:8px">The seven products are also not a portfolio commitment. They&#39;re a menu. Realistic outcome is 3 to 5 of them ship, plus or minus the depot, over 24 to 36 months. Which 3 to 5 depends on Joey&#39;s actual operational profile, his capital appetite, and what the corps&#39;s first 90 days of revenue tell us about which lines have demand.</p>
+  </div>
+
+  <h3>Why now</h3>
+  <p class="sub">Joey&#39;s Lowcountry push is already in motion. If we don&#39;t bring this conversation to him before he&#39;s 12 months into the expansion (hired the crew the normal way, signed the disposal contracts the normal way, built the brand the normal way), the greenfield window closes. We&#39;re not racing him; we&#39;re racing the fact that decisions get made and become permanent. Best window is the next 60 to 120 days, after Jeremy has said yes to the corps and we have something real to show Joey.</p>
+</section>
+
+<!-- PRODUCTS -->
+<section class="panel" id="p-products">
+  <h2>Seven product lines a Lowcountry roofing vertical could ship</h2>
+  <p class="sub">Listed roughly in order of capital required to start, lowest first. Each card names the product, the revenue model, the cycle profile, who&#39;s contributing what, and whether it clears the corps ethics filters. Some are labor-shaped (the corps employs people who do the work). Some are product-shaped (digital kits, depot infrastructure, drone service) that earn whether or not labor is happening that week.</p>
+
+  <div class="prod">
+    <div class="head"><h3>1. Livable-wage roofing</h3><span class="badge">LABOR &middot; NO NEW CAPITAL</span></div>
+    <div class="specs">
+      <div class="spec"><span class="l">Revenue</span><span class="v">Per-roof, one-off</span></div>
+      <div class="spec"><span class="l">Cycle</span><span class="v">Heavily seasonal</span></div>
+      <div class="spec"><span class="l">Owner</span><span class="v">Joey (operator)</span></div>
+      <div class="spec"><span class="l">Ethics</span><span class="v">Aligned with [[don&#39;t exploit]]</span></div>
+    </div>
+    <p>W-2 employees at $25-35/hr with benefits and PTO, vs. the Lowcountry 1099 floor of ~$18/hr with nothing. ~15-25% pricing premium passed through transparently to the customer. Unlocks bid types most outfits can&#39;t touch: prevailing-wage public work, school districts, HOA boards that care, churches, contracts that require E-Verify. The premium customer base is also the lowest-haggle and the highest-recurring-referral, so the pricing math survives.</p>
+    <p><b>Why this is the foundation:</b> every other product on this page lives on top of livable-wage labor being the brand promise. If the foundation isn&#39;t W-2 from Day 1, the &ldquo;ethical roofing&rdquo; positioning is marketing not infrastructure, and the corps&#39;s [[don&#39;t exploit]] rule fails internally. No backdoor, no &ldquo;just this once,&rdquo; no contractor-of-contractor shell games.</p>
+  </div>
+
+  <div class="prod alt">
+    <div class="head"><h3>2. Drone-based honest assessment</h3><span class="badge">PRODUCT &middot; LOW CAPITAL</span></div>
+    <div class="specs">
+      <div class="spec"><span class="l">Revenue</span><span class="v">Per-assessment, B2C + B2B</span></div>
+      <div class="spec"><span class="l">Cycle</span><span class="v">Year-round, counter-seasonal</span></div>
+      <div class="spec"><span class="l">Owner</span><span class="v">Corps Infrastructure (Justin tech, Joey calibration)</span></div>
+      <div class="spec"><span class="l">Ethics</span><span class="v">Clean. No upsell incentive.</span></div>
+    </div>
+    <p>Replace the &ldquo;free inspection that&#39;s really a sales pitch&rdquo; with a paid drone scan, AI damage analysis, standardized condition report the homeowner owns and can show to any roofer for honest competing quotes. Sold to homeowners pre-listing, to insurance adjusters, to property managers, to real estate agents at the inspection cycle. ~$50-200 per assessment depending on roof complexity.</p>
+    <p><b>The structural insight:</b> roofing assessments today are subsidized by upsell incentive. Drone + AI lets us decouple assessment from sale. That&#39;s a thing nobody offers because nobody in the trade wants to offer it. The corps does, because the corps doesn&#39;t need a roof sale to come out of the assessment to break even. Capital required: drone (~$2-5k), software (Justin builds), licensing (FAA Part 107, weekend course).</p>
+  </div>
+
+  <div class="prod alt">
+    <div class="head"><h3>3. Roof claim navigation kit</h3><span class="badge">KIT &middot; DIGITAL &middot; ZERO SEASONALITY</span></div>
+    <div class="specs">
+      <div class="spec"><span class="l">Revenue</span><span class="v">$29-49 per kit, one-off</span></div>
+      <div class="spec"><span class="l">Cycle</span><span class="v">Flat. Spikes post-hurricane.</span></div>
+      <div class="spec"><span class="l">Owner</span><span class="v">Justin (Kit Machine)</span></div>
+      <div class="spec"><span class="l">Ethics</span><span class="v">FightAClaim shape. No UPL exposure.</span></div>
+    </div>
+    <p>Direct parallel to <i>FightAClaim</i> in the Kit Machine portfolio, applied to roof insurance claims. Customer asserts their own rights against their carrier; demand-letter pattern; safe kit shape per the cron prompt&#39;s disqualifier #7. Roof insurance claims are routinely under-scoped, denied, or assigned wrong scope by carrier-friendly adjusters. Homeowners typically lose because they don&#39;t know what to ask for. Kit gives them the language, the supplements, and the appeal scripts.</p>
+    <p><b>Two distribution paths:</b> standalone kit sold on shinypsyduck.com via the Kit Machine, AND bundled free with every Magnolia replacement (&ldquo;we just replaced your roof; here&#39;s the kit so your next claim doesn&#39;t get short-paid&rdquo;). Bundling creates the brand-on-brand loyalty loop that pure kit-sales doesn&#39;t generate.</p>
+  </div>
+
+  <div class="prod">
+    <div class="head"><h3>4. Maintenance subscriptions</h3><span class="badge">RECURRING &middot; LOW CAPITAL</span></div>
+    <div class="specs">
+      <div class="spec"><span class="l">Revenue</span><span class="v">Monthly recurring, ~$25-75/mo</span></div>
+      <div class="spec"><span class="l">Cycle</span><span class="v">Flat &mdash; same in Feb as July</span></div>
+      <div class="spec"><span class="l">Owner</span><span class="v">Joey (sales), Justin (tech), Crew (delivery)</span></div>
+      <div class="spec"><span class="l">Ethics</span><span class="v">Clean.</span></div>
+    </div>
+    <p>Annual inspection plus minor repair contracts sold to HOAs, churches, commercial property owners, high-end residential. Monthly recurring revenue, real labor obligations (visit on schedule, photograph everything, log all repairs to the ledger). This is the single biggest cyclicality smoother on the labor side. A vertical with 200 maintenance subs at $40/mo is $96k/yr that doesn&#39;t care what month it is or what rates are doing.</p>
+    <p><b>Why it works for the corps specifically:</b> ledger pays the assigned crew member on the sub for as long as the sub renews. So the roofer who originally sold the sub and did the first 3 inspections keeps earning on it even after they move on to other corps work. Solo roofers don&#39;t build this revenue because they can&#39;t price-in their future absence. The corps can.</p>
+  </div>
+
+  <div class="prod alt">
+    <div class="head"><h3>5. Counter-cyclical trades bundle</h3><span class="badge">LABOR &middot; OFF-SEASON</span></div>
+    <div class="specs">
+      <div class="spec"><span class="l">Revenue</span><span class="v">Per-job, off-season</span></div>
+      <div class="spec"><span class="l">Cycle</span><span class="v">Peaks Dec-Feb (winter)</span></div>
+      <div class="spec"><span class="l">Owner</span><span class="v">Joey (operator), Corps (training)</span></div>
+      <div class="spec"><span class="l">Ethics</span><span class="v">Clean. Federal grant alignment.</span></div>
+    </div>
+    <p>Insulation, weatherization, gutter and soffit work, attic ventilation, ice and water shield retrofits. Same crew, same trucks, different work order. SC has a state-administered Weatherization Assistance Program (WAP) funded by DOE; the federal IRA also expanded weatherization tax credits through 2032. Winter is when this work peaks (homeowners feel the cold bills, federal disbursements land Q1). Direct counter-cycle to roof replacement.</p>
+    <p><b>The crew utilization argument:</b> a roofer who&#39;s also a certified weatherization installer hits ~85% calendar utilization vs. the ~55% pure-roofer norm. That&#39;s the difference between a crew member taking home $52k/yr and $78k/yr at the same hourly rate. Crew loyalty solves at $78k that doesn&#39;t solve at $52k.</p>
+  </div>
+
+  <div class="prod alt">
+    <div class="head"><h3>6. Solar + roof bundle</h3><span class="badge">LABOR + PARTNER &middot; MID CAPITAL</span></div>
+    <div class="specs">
+      <div class="spec"><span class="l">Revenue</span><span class="v">Per-bundle, ITC-driven</span></div>
+      <div class="spec"><span class="l">Cycle</span><span class="v">Q4 spike (ITC), less rate-sensitive</span></div>
+      <div class="spec"><span class="l">Owner</span><span class="v">Joey + solar partner / NABCEP install</span></div>
+      <div class="spec"><span class="l">Ethics</span><span class="v">Clean. Customer saves money.</span></div>
+    </div>
+    <p>Most roofers don&#39;t do solar; most solar installers don&#39;t do roof prep. Customers end up paying for two trips, two coordination overheads, two warranties that argue with each other when a leak shows up around an array mount. A single-contractor bundle saves the homeowner 15-30% on combined cost and eliminates the warranty-fingerpointing. Federal ITC (30% through 2032) creates Q4 demand spike from homeowners chasing the tax credit before year-end. Less housing-rate-sensitive than re-roof because the payback math survives.</p>
+    <p><b>Two paths to capability:</b> NABCEP-certified hire on the roofing crew (12-18 month skill ramp, ~$5-8k training), OR a referral partnership with a local solar installer where Magnolia does roof prep + structural and the partner does PV install. Path 2 ships faster and is less capital-intensive; Path 1 captures more margin and is the right end-state.</p>
+  </div>
+
+  <div class="prod depot">
+    <div class="head"><h3>7. Shingle recycling depot</h3><span class="badge">&starf;&starf; INFRASTRUCTURE &middot; HIGH CAPITAL</span></div>
+    <div class="specs">
+      <div class="spec"><span class="l">Revenue</span><span class="v">Tipping fees + RAS sales + scrap</span></div>
+      <div class="spec"><span class="l">Cycle</span><span class="v">Year-round, counter-cyclical buffer</span></div>
+      <div class="spec"><span class="l">Owner</span><span class="v">Corps Infrastructure (founders + capital)</span></div>
+      <div class="spec"><span class="l">Ethics</span><span class="v">Aligned with [[don&#39;t exploit]] and the corps&#39;s public ethos</span></div>
+    </div>
+    <p>The single largest swing on this page. A Lowcountry land-based depot that accepts asphalt shingle waste from any roofer in the region (Magnolia, competitors, DIY homeowners, commercial demo), sorts and processes it, sells the recycled material as RAS (Recycled Asphalt Shingles) to paving companies and SC DOT, and ships only the residual non-recyclable material to actual landfill.</p>
+    <p>This product gets its own deep-dive tab. <a href="#" onclick="document.querySelector('[data-p=depot]').click();return false;" style="color:var(--roof-deep);font-weight:700">&rarr; Open the Shingle Depot deep dive.</a></p>
+  </div>
+
+  <h3 style="margin-top:30px">What the seven products do together</h3>
+  <div class="callout green">
+    <h3>The portfolio shape matters more than any single product</h3>
+    <p>Seven products with different cycle profiles, different capital requirements, and different owners means the vertical isn&#39;t betting on any one of them. Three could underperform and the other four still carry the vertical. The depot could face a 2-year permit fight and the other six still generate revenue. The 2026 housing market could go sideways and the maintenance subs, drone service, and weatherization work still keep the lights on. This is what &ldquo;corps vertical&rdquo; means structurally: a portfolio held together by an ethics floor and a shared ledger, not a single shop&#39;s P&amp;L.</p>
+  </div>
+</section>
+
+<!-- DEPOT -->
+<section class="panel" id="p-depot">
+  <h2>The shingle recycling depot, the real version</h2>
+  <p class="sub">This is the product Justin specifically wants. The progression he named (get land, start as a dump, charge by the load, gather equipment, recycle, ship residuals) is the right one and the economics work. Below is the full sequence with capital, timeline, and risk for each step. Treat this as the spec for a corps Infrastructure-axis asset that, if built, could outlast every single labor-side product on this page.</p>
+
+  <div class="callout dark">
+    <h3>The one-line pitch</h3>
+    <p>11 million tons per year of asphalt shingle waste goes to US landfills. Roofers pay $300 to $500 per job in disposal fees. SC DOT uses Recycled Asphalt Shingles in road paving and pays for them. The asymmetry is real and uncaptured at the Lowcountry regional level. Build a depot. Charge roofers to dump. Sell the output to DOT. Ship only the residual material to landfill. Every roof we replace literally becomes a road.</p>
+  </div>
+
+  <h3>The progression, step by step</h3>
+
+  <div class="stepcard">
+    <span class="num">1</span><h4>Acquire land</h4>
+    <p>1 to 3 acres of industrial-zoned land within 30 minutes of the Beaufort-Bluffton-HHI corridor. Truck access is non-negotiable; rail spur is a bonus but unnecessary. Look at Jasper County and the Hardeeville industrial belt off I-95 first (cheap land, light industrial zoning, truck routes already wired). Budget: $50k-$150k for raw land; could be less in Jasper, more in Beaufort County proper.</p>
+    <p class="meta"><b>Risk:</b> wrong site means truck access becomes a 7-day-a-week headache and the depot loses to the landfill on convenience. Site selection is the single most expensive mistake to make. <b>Capital:</b> $50k-$150k. <b>Timeline:</b> 3-6 months.</p>
+  </div>
+
+  <div class="stepcard">
+    <span class="num">2</span><h4>Permits and zoning</h4>
+    <p>SC DHEC permit for C&amp;D (Construction &amp; Demolition) waste recycling. County zoning approval for waste handling at the selected parcel. SCDOT supplier qualification once recycled material is being produced. Stormwater management plan. Possible NPDES permit. This is the slow step; SC DHEC C&amp;D permits commonly take 6-18 months depending on county and site complexity.</p>
+    <p class="meta"><b>Risk:</b> permits stall in a county we picked badly. Mitigation: pre-permit conversations with DHEC and the county before we commit to the land purchase. <b>Capital:</b> $5k-$20k in permit fees and legal. <b>Timeline:</b> 6-18 months, overlapping with steps 1 and 3.</p>
+  </div>
+
+  <div class="stepcard">
+    <span class="num">3</span><h4>Open as a tipping facility</h4>
+    <p>Once permits clear, the depot can operate as a simple paid drop-off: roofers drive up, weighbridge logs the load, they pay by the ton, they leave. $50-100/ton tipping fee (vs. $80-150/ton at the regional landfill). At this stage there&#39;s no processing happening; we&#39;re just stockpiling shingles in a permitted yard and selling convenience. This is profitable on Day 1 of operation: a depot that does 5 loads/day at $400/load is $500k+ revenue with minimal opex.</p>
+    <p class="meta"><b>Risk:</b> volume doesn&#39;t materialize because we underprice landfill or oversell our convenience. Mitigation: pre-sign 3-5 Lowcountry roofers as anchor accounts before we open. <b>Capital:</b> weighbridge ($30-60k installed), small office trailer, perimeter fencing, first-90-days operating cost. ~$150k. <b>Timeline:</b> 60 days from permit approval.</p>
+  </div>
+
+  <div class="stepcard">
+    <span class="num">4</span><h4>Acquire processing equipment</h4>
+    <p>Used asphalt shingle grinder/shredder (~$80-150k used, $200-300k new). Magnetic nail separator (~$30-50k). Conveyor system, shaker screen for sizing (~$30-60k). Loader (~$50-80k used). This phase is &ldquo;buy slowly as cash from tipping fees and tax-strategic financing allow.&rdquo; The depot stays open as a tipping facility during equipment build-out; equipment comes online as it&#39;s purchased. Probably 12-24 months of progressive acquisition.</p>
+    <p class="meta"><b>Risk:</b> equipment underperforms on Lowcountry shingles (organic content, coastal moisture). Mitigation: bench-test with one used grinder before committing to the production fleet. <b>Capital:</b> $200-400k phased over 18-24 months. <b>Timeline:</b> overlaps with tipping operation.</p>
+  </div>
+
+  <div class="stepcard">
+    <span class="num">5</span><h4>Begin RAS production and sales</h4>
+    <p>Once the production line is operational, shingles in the yard become Recycled Asphalt Shingles (RAS) sold to paving companies and SC DOT. SC DOT specs RAS use up to 5% by weight in asphalt mixes; some states allow up to 20%. SC DOT&#39;s District 5 (Lowcountry) and District 6 (Charleston) are the natural buyers. Pricing: ~$10-40/ton sold (variable), at ~30-40% margin after processing energy. Layered on top of the existing tipping revenue, RAS sales double or triple revenue per ton received.</p>
+    <p class="meta"><b>Risk:</b> SC DOT spec changes or competing supplier undercuts. Mitigation: qualify with multiple private paving companies in parallel with DOT. <b>Capital:</b> minimal incremental; just sales+logistics labor. <b>Timeline:</b> 6 months from equipment online.</p>
+  </div>
+
+  <div class="stepcard">
+    <span class="num">6</span><h4>Ship only the residuals</h4>
+    <p>Underlayment, debris, contaminated material, and material that fails the processing line still has to go to landfill. Real number is typically 10-15% of incoming weight ships out as actual residual waste. We pay landfill tipping fees on that small fraction only. That&#39;s the move: convert &ldquo;100% of incoming material is landfill cost&rdquo; (the roofer&#39;s current situation) to &ldquo;10-15% of incoming material is landfill cost, the other 85-90% is RAS revenue&rdquo; (our situation).</p>
+    <p class="meta"><b>Risk:</b> residual percentage creeps higher than projected. Mitigation: incoming-load inspection and tipping-fee differential for high-debris loads. <b>Capital:</b> rolling op cost. <b>Timeline:</b> steady-state by month 24-36.</p>
+  </div>
+
+  <h3>Revenue layers, stacked</h3>
+  <table>
+    <thead><tr><th>Layer</th><th>Source</th><th>Margin profile</th><th>Starts when</th></tr></thead>
+    <tbody>
+      <tr><td class="term">Tipping fees</td><td>Roofers, demo contractors, DIY homeowners</td><td>$50-100/ton received, low cost-of-service</td><td>Day 1 of operations</td></tr>
+      <tr><td class="term">RAS sales</td><td>Paving companies + SC DOT</td><td>$10-40/ton sold, 30-40% margin after processing</td><td>~Month 18-24 (post-equipment)</td></tr>
+      <tr><td class="term">Scrap metal (nails)</td><td>Scrap yards</td><td>Small but real. ~1-2% of incoming weight at scrap-steel pricing.</td><td>Month 18-24</td></tr>
+      <tr><td class="term">Marketing premium</td><td>Roofers (incl. Magnolia) who can advertise &ldquo;100% recycling&rdquo;</td><td>Indirect; supports 5-10% pricing premium at the roofer level</td><td>Day 1 (Magnolia uses it immediately)</td></tr>
+      <tr><td class="term">Carbon credit eligibility</td><td>Voluntary carbon markets, possibly</td><td>Speculative. Worth investigating once steady-state.</td><td>Month 36+, maybe</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Total capital and timeline to steady state</h3>
+  <div class="cream">
+    <p style="margin-top:0"><b>All-in capital, conservative:</b> ~$350-550k spread over 24 months. Land $50-150k, weighbridge + first-stage opex $150k, processing equipment $200-400k phased. Real cash exposure is lower because tipping revenue starts at month ~12-18 and offsets ongoing equipment buys.</p>
+    <p style="margin-top:8px"><b>Funding stack:</b> founder capital (Joey + Justin&#39;s portfolio + possibly Jeremy as a corps capital contribution), traditional small-business loan, possible USDA Rural Development loan (Jasper County may qualify, Beaufort doesn&#39;t), possible SC industrial development grant or DHEC matching grant for C&amp;D recycling. Nothing on this list requires VC.</p>
+    <p style="margin-top:8px"><b>Timeline to steady-state revenue:</b> 30-36 months from first land purchase to fully operational RAS production. Tipping revenue starts ~month 12-18. Mature run-rate ~year 4-5.</p>
+  </div>
+
+  <h3>Why this is the corps&#39;s first real Infrastructure-axis asset</h3>
+  <ul class="clean">
+    <li><b>It outlives any one shop.</b> If Magnolia disappeared tomorrow, the depot still serves every other roofer in the Lowcountry. The asset isn&#39;t tied to one operator&#39;s execution.</li>
+    <li><b>It pays passively once steady-state.</b> The corps ledger position on the depot earns even when Magnolia&#39;s residential install volume is down. Real Infrastructure-axis income for founding members.</li>
+    <li><b>It serves competitors as customers.</b> Every Lowcountry roofer is a potential tipping customer regardless of relationship with Magnolia. The depot is a neutral utility.</li>
+    <li><b>It&#39;s the literal embodiment of the corps&#39;s public ethos.</b> &ldquo;Every roof we replace becomes a road&rdquo; isn&#39;t marketing if we actually built the depot that does it. That&#39;s the kind of receipt that makes the corps recruiting moat real.</li>
+    <li><b>It&#39;s counter-cyclical to roofing labor.</b> Commercial demo, storm cleanup, and other roofers&#39; waste keep the depot fed during residential off-season. Smooths labor-side variance at the corps level.</li>
+  </ul>
+
+  <div class="red" style="margin-top:18px"><b>The risk I&#39;m not soft-pedaling:</b> this is the most capital-intensive thing on the entire coastal-boat-works hub. A 24-month permit fight that ends in denial would lose ~$100-200k in pre-construction costs without a revenue offset. We should not commit to land purchase until the DHEC pre-permit conversation is positive and the county zoning department says &ldquo;yes, this is permittable here&rdquo; in writing. That&#39;s the single dependency the whole product hangs on.</div>
+
+  <blockquote>The depot is what makes &ldquo;ethical roofing&rdquo; structural instead of marketing. Without it, the corps is roofers who say nice things. With it, the corps is the company that built the asset that makes the Lowcountry&#39;s shingle waste a road.</blockquote>
+</section>
+
+<!-- SMOOTHING -->
+<section class="panel" id="p-smoothing">
+  <h2>How the corps absorbs roofing&#39;s seasonality and housing dependency</h2>
+  <p class="sub">Justin&#39;s concern is real and important. Roofing is one of the most cyclical residential trades there is. Two cycles stacked: seasonal (Dec-Feb dead, summer peaks but heat caps it) and macro (re-roof correlates with home equity, refi activity, and rates). 2022-2023 hammered a lot of Carolina roofers when rates spiked. A solo shop eats both cycles. A corps vertical absorbs them through three structural layers.</p>
+
+  <div class="layercard l1">
+    <div class="lbl">Layer 1 &middot; Counter-cyclical labor</div>
+    <h4>Trades the same crew can run when roofs aren&#39;t happening</h4>
+    <p style="font-size:14px"><b>Insulation and weatherization:</b> winter peaks. SC has a Weatherization Assistance Program; federal IRA expanded weatherization credits through 2032. Same crew, same trucks. Direct counter-cycle.</p>
+    <p style="font-size:14px"><b>Gutter and soffit work:</b> quicker, lower weather dependence than tear-off. Winter-friendly.</p>
+    <p style="font-size:14px"><b>Solar bundle:</b> Q4 demand spike from homeowners chasing the ITC tax credit before year-end. Less weather-sensitive than roof replacement, and the payback math survives rate environments that kill discretionary home spend.</p>
+    <p style="font-size:14px"><b>Commercial roofing:</b> different bid cycle, off-season scheduling (work happens when tenants are out), municipal and school district RFPs hit in fall.</p>
+  </div>
+
+  <div class="layercard l2">
+    <div class="lbl">Layer 2 &middot; Recurring or asset-tied revenue</div>
+    <h4>Revenue layered on the labor work that pays regardless of install cycle</h4>
+    <p style="font-size:14px"><b>Maintenance subscriptions:</b> monthly recurring. Same in Feb as July. 200 subs at $40/mo = $96k/yr smoothed.</p>
+    <p style="font-size:14px"><b>Shingle recycling depot:</b> runs year-round even when Magnolia&#39;s own installs slow. Other roofers&#39; demo waste, commercial tear-offs, storm cleanup keep the depot fed off-cycle.</p>
+    <p style="font-size:14px"><b>Drone assessment service:</b> sold to insurance adjusters, property managers, real estate inspectors. Year-round demand.</p>
+    <p style="font-size:14px"><b>Roof claim kit:</b> digital. Zero seasonality. Spikes post-hurricane.</p>
+  </div>
+
+  <div class="layercard l3">
+    <div class="lbl">Layer 3 &middot; The corps ledger</div>
+    <h4>Personal income smoothing through paid-on-past-products</h4>
+    <p style="font-size:14px">This is the structural answer most people miss. The corps ledger pays members on past products for as long as the products sell. Someone who shipped 10 maintenance contracts in October keeps earning from them in February even when they aren&#39;t actively installing. Someone who built the depot in year 1 earns on it in year 5 when residential installs are down 40%.</p>
+    <p style="font-size:14px">A solo roofer can&#39;t do this; their income is exactly their current labor. A corps vertical can, because the products outlive the labor cycle. That&#39;s why &ldquo;corps vertical&rdquo; isn&#39;t just &ldquo;multi-product LLC&rdquo;: the ledger structure converts cyclical labor income into smoother product income at the member level.</p>
+  </div>
+
+  <h3>The cross-vertical bonus with Jeremy</h3>
+  <div class="callout green">
+    <h3>Marine cools when roofing heats and vice versa for parts of the year</h3>
+    <p>Lowcountry hurricane season hits both verticals at the same time. There&#39;s a real cross-vertical product: pre-season boat haul-out and dock inspection (Jeremy&#39;s shop) bundled with roof inspection and tarp readiness (Joey&#39;s crew). Marketed once, sold to overlapping coastal customers. Cross-trained apprentices smooth labor utilization on both sides during the parts of the year that don&#39;t overlap.</p>
+    <p style="margin-top:8px">This is structurally only possible because both verticals share the corps ledger. Apprentices earn on whatever they actually shipped, regardless of which vertical issued the work order. A solo Jeremy and a solo Joey can&#39;t share a workforce for legal and tax reasons; a corps with two verticals can.</p>
+  </div>
+
+  <h3>The housing crash worst-case, said honestly</h3>
+  <table>
+    <thead><tr><th>Scenario</th><th>What happens to residential re-roof</th><th>What absorbs it</th></tr></thead>
+    <tbody>
+      <tr><td class="term">Rates to 8%+</td><td>Re-roof down 30-50%</td><td>Commercial roofing on separate cycle; insurance restoration doesn&#39;t care about rates; weatherization grants historically expand counter-cyclically in recessions; depot tipping volume from competitors&#39; storm cleanup continues</td></tr>
+      <tr><td class="term">Housing recession</td><td>Solar stalls (some), real-estate-agent referrals dry up</td><td>Maintenance subs intact; commercial work intact; kit and drone service are digital/asset; ledger payouts on past products continue</td></tr>
+      <tr><td class="term">Insurance carrier withdrawal from SC coastal</td><td>Storm-claim volume drops (lower per-claim payouts)</td><td>Direct-pay homeowners still need roofs; claim kit becomes more valuable in a market where carriers underpay; consumer awareness work</td></tr>
+      <tr><td class="term">2008-style multi-year housing freeze</td><td>Residential install volume down 50-60%</td><td>Depot is the safety net (it doesn&#39;t care who&#39;s installing); maintenance subs are the income floor; the vertical contracts but doesn&#39;t implode</td></tr>
+    </tbody>
+  </table>
+
+  <div class="cream">
+    <p style="margin-top:0"><b>Net read:</b> in a worst-case housing freeze where residential install volume drops 40%, the corps vertical&#39;s total revenue drops maybe 15-20% because Layer 2 (recurring) and Layer 3 (ledger) absorb most of the labor-side shrink. Solo expansion would eat the full cycle and break crews. Corps expansion ships products around it. That&#39;s the entire reason to do this through the vertical structure instead of letting Joey just expand his shop into the Lowcountry the way every other roofer expands.</p>
+  </div>
+
+  <blockquote>Seasonality and housing dependency are exactly the case <i>for</i> building the corps vertical instead of just expanding a shop. A solo expansion eats the full cycle. A corps-structured expansion ships products around it.</blockquote>
+</section>
+
+<!-- MUTUAL -->
+<section class="panel" id="p-mutual">
+  <h2>What each member brings to the others</h2>
+  <p class="sub">The three founders aren&#39;t fungible. Each one brings something the other two can&#39;t replace, and the corps&#39;s value is the multiplication of those contributions, not the sum. This page section is the explicit map. If we can&#39;t articulate why we need all three, we don&#39;t need all three.</p>
+
+  <h3>Joey to Jeremy: business operations</h3>
+  <div class="aidcard">
+    <h4><span class="arrow">JOEY &rarr; JEREMY</span></h4>
+    <p>Jeremy has the craft moat. Joey has the playbook for running a growing trade business: RE-agent referral networks, BBB+reputation playbook, post-job followup automation, hiring W-2 vs. 1099, insurance scope negotiation, quoting discipline, when to take a job and when to walk away. Eight years of trade ops. Jeremy is currently running his shop with none of that infrastructure, which is part of why he&#39;s underpriced and burning out.</p>
+    <p>The simplest version of this contribution is monthly mentor calls. The biggest version is Joey running a weekend ops review at Coastal Boat Works once a quarter and walking through &ldquo;here&#39;s what I&#39;d change.&rdquo; Either is real value, neither requires a partnership in either shop.</p>
+  </div>
+
+  <h3>Jeremy to Joey: Lowcountry geography and credibility</h3>
+  <div class="aidcard">
+    <h4><span class="arrow">JEREMY &rarr; JOEY</span></h4>
+    <p>Jeremy lives in Walterboro, 45-55 minutes from Beaufort, Bluffton, and HHI. He&#39;s known on the ground in that corridor in a way Joey isn&#39;t. Marine and craft credibility translates better than people think into &ldquo;the local who knows the contractor we trust.&rdquo; Jeremy can also offer Coastal Boat Works as a coordination point for Joey&#39;s Lowcountry crew (parking, staging on long jobs, weatherproof storage, after-hours bathroom). The CNC can fabricate any sheet-metal or custom-flashing piece Joey needs for high-end residential or commercial work.</p>
+    <p>This is the cross-vertical floor: whatever else happens with the corps, Jeremy and Joey both gain from being family-cooperative across the Walterboro-Beaufort corridor.</p>
+  </div>
+
+  <h3>Justin to all: tech, product, ads, kit machine</h3>
+  <div class="aidcard">
+    <h4><span class="arrow">JUSTIN &rarr; ALL</span></h4>
+    <p>Justin brings the software stack, the product instinct, the ad and distribution channels, the Kit Machine playbook, the corps infrastructure (ledger, smart contracts, member onboarding), and the AI ops layer that lets a corps with 5-10 members run lean. Every product on the Seven Products tab has a Justin-built component: the drone software, the kit, the maintenance sub billing system, the depot weighbridge integration, the ledger that pays everyone.</p>
+    <p>This is the contribution most likely to be underestimated because Justin is currently doing all of it solo. The corps frame is what lets Justin&#39;s tech contribution scale across two verticals (marine + roofing) instead of one. Without the corps, building all of this for both Jeremy and Joey is two separate software projects with two separate maintenance burdens. Inside the corps, it&#39;s one shared platform.</p>
+  </div>
+
+  <h3>Each member to the corps</h3>
+  <div class="twocol">
+    <div class="aidcard">
+      <h4><span class="arrow">JOEY &rarr; CORPS</span></h4>
+      <p>Operator playbook for a growing trade business, real-estate-agent partnership template, decade of operations expertise, Lowcountry expansion presence, capital appetite, second vertical (roofing) that makes the corps recognizable as a real builder collective and not a software-people-with-a-side-project. Plus the third Connolley cousin that makes the genealogy story land.</p>
+    </div>
+    <div class="aidcard">
+      <h4><span class="arrow">JEREMY &rarr; CORPS</span></h4>
+      <p>First vertical (marine), craft moat, EVA decking IP, CNC, Walterboro location as Lowcountry staging, family pre-existing trust, capital appetite, and the lived experience of being burnt out in a service business that the corps is structurally designed to relieve.</p>
+    </div>
+    <div class="aidcard">
+      <h4><span class="arrow">JUSTIN &rarr; CORPS</span></h4>
+      <p>Founder labor on Infrastructure axis, software stack and AI ops, Kit Machine portfolio (FightAClaim, IRSDecoder, etc. either absorb in as Infrastructure or stay separate, see Co-founders tab on The Corps), product design, distribution and ad channels, governance and the founder agreement, the ledger build.</p>
+    </div>
+    <div class="aidcard">
+      <h4><span class="arrow">CORPS &rarr; EACH MEMBER</span></h4>
+      <p>Recurring revenue from past products (the cliff mitigation), apprentice labor cross-trained across both verticals, shared compute and software platform, brand and trust accumulation, the four-rules ethics floor as a recruiting moat, and a structure that lets each member do less work over time rather than more.</p>
+    </div>
+  </div>
+
+  <h3>The hurricane prep cross-vertical product, as an example of what this enables</h3>
+  <div class="callout bloom">
+    <h3>Lowcountry Hurricane Prep, sold once, two crews</h3>
+    <p>Annual subscription. Late May through early June, the corps offers a Lowcountry Hurricane Prep package to coastal homeowners: <b>pre-season boat haul-out scheduling + dock inspection</b> (Jeremy&#39;s shop) bundled with <b>roof inspection + emergency tarp readiness</b> (Joey&#39;s crew). One bill, one customer relationship, two verticals working from the same customer record.</p>
+    <p style="margin-top:8px">If the storm hits, the corps already has the customer&#39;s roof photos, dock specs, and contact info. Post-storm response is a known sequence, not a panicked phone call to a storm chaser. Members of both verticals earn on the same customer over their lifetime. Solo Jeremy and solo Joey could never offer this because they don&#39;t share customer data, can&#39;t coordinate scheduling, and have no shared trust with the customer. The corps&#39;s ledger and CRM make it a one-product.</p>
+  </div>
+</section>
+
+<!-- SEQUENCE -->
+<section class="panel" id="p-sequence">
+  <h2>Sequencing the conversations and what has to be true</h2>
+  <p class="sub">Two contingencies, two conversations, in this order. The vertical doesn&#39;t exist until both yeses land. Below is the actual sequence with rough timing.</p>
+
+  <h3>The four-conversation sequence</h3>
+  <table>
+    <thead><tr><th>Step</th><th>Who</th><th>What we&#39;re asking</th><th>When</th></tr></thead>
+    <tbody>
+      <tr><td class="term">1. The Saturday conversation</td><td>Justin &amp; Jeremy</td><td>Does Jeremy say yes to the corps in some structure (member, co-founder)?</td><td>~Month 0 (the dinner)</td></tr>
+      <tr><td class="term">2. The corps build</td><td>Justin (+ Jeremy if co-founder)</td><td>Build the corps as real infrastructure. First product ships (Marine-Shop OS, EVA decking kit, or one of the Kit Machine entries absorbed in).</td><td>Month 1-6</td></tr>
+      <tr><td class="term">3. The Joey conversation</td><td>Justin (+ Jeremy if co-founder)</td><td>Does Joey want any role in the corps now that it exists? Ally, Customer-zero, Member, or Co-founder.</td><td>Month 6-9</td></tr>
+      <tr><td class="term">4. The roofing-vertical build</td><td>All who&#39;ve said yes</td><td>If Joey is in, start the seven product lines. If not, build a subset Justin and Jeremy can ship without him.</td><td>Month 9+</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Why this order and not faster</h3>
+  <div class="cream">
+    <p style="margin-top:0">The temptation is to have all the conversations at once and parallelize the build. That&#39;s the wrong move for two reasons. First, going to Joey before the corps exists puts the conversation in hypothetical-mode and the answer comes back in hypothetical-mode (&ldquo;maybe, send me what you build&rdquo;). Going to Joey after a working corps with a real first product puts the conversation in concrete-mode (&ldquo;here&#39;s the ledger, here&#39;s last month&#39;s payouts, here&#39;s the roofing-vertical roadmap&rdquo;). The answer-quality is dramatically different.</p>
+    <p style="margin-top:8px">Second, the greenfield window is real but not as tight as we might tell ourselves. Joey is &ldquo;expanding into the Lowcountry&rdquo; in the sense of marketing and intent, not in the sense of having signed a 100-employee lease and a $400k disposal contract. The actual operational commitments are probably still 90-180 days out. We have enough time to get the corps built, ship one product, and bring Joey a real story.</p>
+  </div>
+
+  <h3>Recommended product launch order, if Joey is in</h3>
+  <table>
+    <thead><tr><th>Order</th><th>Product</th><th>Why first</th><th>Capital</th></tr></thead>
+    <tbody>
+      <tr><td class="term">1</td><td>Livable-wage roofing</td><td>Foundation. No capital. Just a hiring decision before the Lowcountry crew exists.</td><td>None (operational)</td></tr>
+      <tr><td class="term">2</td><td>Roof claim kit</td><td>Justin can ship in 30-45 days through Kit Machine. Zero seasonality, fast first dollar, ethics-clean.</td><td>~$1k (kit content production)</td></tr>
+      <tr><td class="term">3</td><td>Drone assessment service</td><td>Low capital, year-round revenue, B2B + B2C, supports every other product.</td><td>~$5-10k</td></tr>
+      <tr><td class="term">4</td><td>Maintenance subscriptions</td><td>Recurring revenue, single biggest cyclicality smoother. Sales-heavy launch, no equipment.</td><td>~$3k (software + outreach)</td></tr>
+      <tr><td class="term">5</td><td>Counter-cyclical trades</td><td>Crew training and certifications. Real impact in the first winter.</td><td>~$10-25k (cert + tools)</td></tr>
+      <tr><td class="term">6</td><td>Solar + roof bundle</td><td>Partner-first to ship faster, NABCEP install later. Q4 timing matters.</td><td>~$15-30k (partner integration)</td></tr>
+      <tr><td class="term">7</td><td>Shingle recycling depot</td><td>Highest capital, longest timeline. Start the DHEC and land conversations in parallel with all of the above.</td><td>~$350-550k phased over 24 mo</td></tr>
+    </tbody>
+  </table>
+
+  <h3>What has to be true for each yes</h3>
+  <ul class="clean">
+    <li><b>Jeremy&#39;s yes</b> is mostly cleared at the Saturday dinner per the analysis on The Brotherhood and The Corps pages. Jeremy in some structure is the highest-probability outcome.</li>
+    <li><b>Joey&#39;s yes</b> is the harder one. Magnolia Wildcard puts the probability split at roughly 70/20/8/2 across Ally/Customer-zero/Member/Co-founder. Realistic expectation: Joey lands at Ally or Customer-zero, the roofing vertical exists in a thin version (Roof Claim Kit + Drone Service + maybe Maintenance Subs through a Magnolia partnership). The Depot and the full Seven require Joey at Member or Co-founder, which is the 10% case combined.</li>
+    <li><b>The depot specifically</b> requires not just Joey&#39;s yes, but also pre-permit DHEC conversation positive, land available in Jasper or Hardeeville at the right price, and capital ($350-550k) accessible without VC. Three independent gates, conjunctively.</li>
+  </ul>
+
+  <h2 style="margin-top:30px">Psyduck&#39;s honest read</h2>
+
+  <div class="callout">
+    <h3>This is the most ambitious section of the corps roadmap, and the highest upside</h3>
+    <p>Seven product lines, three layers of smoothing, a depot that could outlive every shop on this hub. The mutual aid pattern (Joey to Jeremy on ops, Jeremy to Joey on geography, Justin to all on tech) is itself a strong reason for the corps structure: none of these three could deliver this much value to each other through any normal LLC arrangement, and a corps with two verticals and three contributing founders is structurally much harder to dismiss than what the corps looked like a week ago.</p>
+  </div>
+
+  <h3>Probability-weighted outcomes for the full vertical</h3>
+  <div class="cream">
+    <ul class="clean" style="margin:6px 0 0">
+      <li><b>~30%</b> chance: all 7 lines ship within 36 months, depot operational at run-rate. This is the Joey-as-Co-founder world.</li>
+      <li><b>~50%</b> chance: 3-5 lines ship within 36 months, depot doesn&#39;t happen or is on a 5-year horizon. This is the Joey-as-Member world.</li>
+      <li><b>~15%</b> chance: 2-3 lines ship (kit, drone, maybe subs through a Magnolia partnership). This is the Joey-as-Customer-zero or Joey-as-Ally world.</li>
+      <li><b>~5%</b> chance: nothing in this page ships because Jeremy or Joey says no in a way that makes the corps not happen, or the corps forms but never goes beyond marine.</li>
+    </ul>
+  </div>
+
+  <h3>The risks I&#39;m naming, not soft-pedaling</h3>
+  <div class="twocol">
+    <div class="red"><b>The depot permitting risk</b> is real and asymmetric. $100-200k could go into pre-construction (land deposit, surveys, permit fees, legal) and come back as a denial. The mitigation is staging: don&#39;t close on land until DHEC says permittable in writing. We can spend $5-15k investigating without committing to the $50-150k land buy.</div>
+    <div class="red"><b>The Joey contingency</b> is the single most binary variable on this page. If Joey&#39;s answer is Ally, we lose access to ~80% of the upside on this page and the vertical is thin. We have to be okay with that thin version being the realistic outcome and design the corps to be viable on it.</div>
+    <div class="red"><b>The focus penalty</b> from building two verticals in parallel is real. Marine and roofing both need Justin&#39;s tech. The corps&#39;s ledger and member-onboarding infrastructure has to ship for either vertical to be a real corps product. We&#39;re committing Justin to a multi-year build, which is the kind of commitment burnt-out people don&#39;t make safely.</div>
+    <div class="red"><b>The greenfield window</b> isn&#39;t infinite. If we wait more than 9-12 months from now to bring Joey the conversation, his Lowcountry expansion has happened the normal way and we&#39;re back to retrofitting an existing operation, which is the wrong shape.</div>
+  </div>
+
+  <h3>What the vertical does for the three founders, said plainly</h3>
+  <div class="callout green">
+    <h3>This is what pays our retirement, if it works</h3>
+    <p>Justin is 46, Jeremy is 43, Joey is presumably in the same band. The Harsh Reality tab on The Corps page lays out the cliff. Roofing labor income alone doesn&#39;t solve it for Joey any more than boat refit labor solves it for Jeremy or AI desk work solves it for Justin. The depot, the maintenance sub book, the kit, the drone service: these are products that pay out on past work for as long as the products sell. They&#39;re the structural answer to the cliff.</p>
+    <p style="margin-top:8px">A solo Joey reaching age 60 has a Magnolia worth $1-3M to sell to a competitor, plus whatever he&#39;s saved. A corps-member Joey at age 60 has his ledger position on every product he helped ship, paying him without him being on a roof, plus his Magnolia equity if he kept it separate. Two income streams, one of them passive. Same person, different structural outcome.</p>
+  </div>
+
+  <blockquote>Every roof we replace becomes a road. Every shingle we don&#39;t ship to a landfill is a Connolley promise honored. The corps was supposed to be a 1933 echo. It might also be the thing that pays our retirement.</blockquote>
+</section>
+
+</div>
+
+<footer><div class="wrap">
+  <span>The Roofing Vertical &middot; private project &middot; compiled June 2026 &middot; <span class="version-tag">v&mdash;</span></span>
+  <span><a href="../" style="color:var(--roof)">&larr; back to hub</a></span>
+</div></footer>
+
+<script>
+const tabs = document.querySelectorAll('nav.tabs button');
+const panels = document.querySelectorAll('section.panel');
+tabs.forEach(btn => btn.addEventListener('click', () => {
+  const id = 'p-' + btn.dataset.p;
+  tabs.forEach(b => b.classList.toggle('active', b === btn));
+  panels.forEach(p => p.classList.toggle('active', p.id === id));
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+</script>
+<script src="/script.js"></script>
+</body>
+</html>
