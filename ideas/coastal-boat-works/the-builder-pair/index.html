@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coastal Boat Works &mdash; The Builder Pair</title>
+<style>
+  :root{
+    --navy:#0d2b45; --navy2:#11395c; --teal:#1d7a8c;
+    --sand:#f4efe6; --ink:#1b2733; --muted:#5d6b7a; --line:#dde3ea;
+    --green:#2e8b57; --amber:#d99100; --rust:#b8541a; --purple:#6b3fb0; --red:#c0392b;
+    --corps:#a83232;
+    --pair-deep:#061425; --pair:#0f2a4c; --pair2:#1289ac; --pair-bright:#3cd0e8;
+    --pair-cream:#eef6fb; --code:#0b9b8a;
+    --card:#ffffff;
+    --shadow:0 1px 3px rgba(13,43,69,.08),0 6px 18px rgba(13,43,69,.06);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--sand);line-height:1.6;font-size:15.5px}
+  header.hero{background:linear-gradient(135deg,var(--pair-deep),var(--pair2));color:#fff;padding:38px 28px 32px}
+  header.hero .wrap{max-width:1080px;margin:0 auto}
+  header.hero h1{margin:0 0 10px;font-size:32px;letter-spacing:.4px}
+  header.hero .lede{margin:0;opacity:.95;font-size:15.5px;max-width:840px}
+  header.hero .crumb{font-size:12.5px;opacity:.85;margin-bottom:8px}
+  header.hero .crumb a{color:#bfeaf5;text-decoration:none;margin-right:6px}
+  header.hero .crumb a:hover{color:#fff;text-decoration:underline}
+  header.hero .stamp{display:inline-block;font-size:11.5px;letter-spacing:2px;font-weight:700;padding:3px 10px;border:1.5px solid #bfeaf5;border-radius:3px;color:#bfeaf5;margin-bottom:12px;text-transform:uppercase}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  nav.tabs{position:sticky;top:0;z-index:50;background:var(--navy);display:flex;flex-wrap:wrap;gap:2px;
+    padding:0 12px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+  nav.tabs button{background:transparent;color:#cfe0ec;border:0;padding:13px 14px;font-size:13.5px;
+    cursor:pointer;border-bottom:3px solid transparent;font-weight:600;white-space:nowrap}
+  nav.tabs button:hover{color:#fff}
+  nav.tabs button.active{color:#fff;border-bottom-color:var(--pair-bright)}
+  section.panel{display:none;padding:28px 0 60px}
+  section.panel.active{display:block}
+  h2{font-size:23px;margin:6px 0 6px;color:var(--navy)}
+  h3{font-size:17px;color:var(--navy2);margin:24px 0 8px}
+  h4{font-size:14.5px;color:var(--navy2);margin:14px 0 6px}
+  .sub{color:var(--muted);font-size:14.5px;margin:0 0 18px;max-width:820px}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+  .callout{background:linear-gradient(135deg,var(--pair-deep),var(--pair2));color:#fff;border-radius:12px;padding:22px 26px;margin:18px 0}
+  .callout.dark{background:linear-gradient(135deg,#1b2733,var(--pair-deep))}
+  .callout.bright{background:linear-gradient(135deg,var(--pair2),var(--pair-bright));color:#062533}
+  .callout h3{color:#fff;margin:0 0 8px;font-size:18px}
+  .callout.bright h3{color:#062533}
+  .callout p{margin:6px 0;font-size:14.5px;opacity:.96}
+  .warn{background:#fdf3e3;border:1px solid #f0d8a8;border-radius:10px;padding:14px 18px;font-size:13.5px;margin:14px 0}
+  .warn b{color:var(--amber)}
+  .red{background:#fdecea;border:1px solid #f3c9c3;border-radius:10px;padding:14px 18px;font-size:13.5px;margin:14px 0}
+  .note{background:#e8f6f3;border:1px solid #b8e3d8;border-radius:10px;padding:14px 18px;font-size:13.5px;margin:14px 0}
+  .note b{color:var(--code)}
+  .cream{background:var(--pair-cream);border:1px solid #c8e0eb;border-radius:12px;padding:20px 24px;margin:16px 0}
+  ul.clean{font-size:14.5px;padding-left:20px} ul.clean li{margin:8px 0}
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;
+    font-size:13.5px;margin:12px 0;box-shadow:var(--shadow)}
+  thead th{background:var(--navy);color:#fff;text-align:left;padding:11px 14px;font-weight:600;font-size:12.5px}
+  tbody td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr:hover{background:#f7fafc}
+  td.term{font-weight:700;color:var(--navy);width:180px}
+  td.num{font-weight:700;color:var(--pair2);width:80px;text-align:right;font-variant-numeric:tabular-nums}
+  .layer{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 20px;box-shadow:var(--shadow);margin:12px 0;border-left:5px solid var(--pair2);position:relative}
+  .layer .yr{position:absolute;top:14px;right:18px;font-size:11px;letter-spacing:.5px;background:var(--pair-cream);color:var(--pair2);font-weight:700;padding:3px 10px;border-radius:20px;text-transform:uppercase}
+  .layer h4{margin:0 0 6px;color:var(--navy);font-size:15.5px;padding-right:80px}
+  .layer .unlocks{font-size:13px;color:var(--code);font-weight:700;margin-top:8px;letter-spacing:.3px}
+  .layer p{margin:6px 0;font-size:14px}
+  .layer .stack{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;background:#0a1929;color:#7eecd1;padding:8px 12px;border-radius:6px;margin-top:8px;overflow-x:auto}
+  .compare{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 20px;box-shadow:var(--shadow);margin:12px 0}
+  .compare h4{margin:0 0 8px;font-size:14.5px}
+  .compare .row{display:grid;grid-template-columns:1fr 1fr;gap:18px;font-size:13.5px}
+  .compare .row .col{padding:8px 0}
+  .compare .col.corps{border-left:4px solid var(--corps);padding-left:14px}
+  .compare .col.pair{border-left:4px solid var(--pair2);padding-left:14px}
+  .compare .col .lbl{font-weight:700;font-size:11.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+  .compare .col.corps .lbl{color:var(--corps)}
+  .compare .col.pair .lbl{color:var(--pair2)}
+  .profilebox{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 20px;box-shadow:var(--shadow);margin:12px 0;border-top:4px solid var(--pair2)}
+  .profilebox h4{margin:0 0 6px;color:var(--navy);font-size:15.5px}
+  .profilebox .meta{font-size:12px;color:var(--muted);letter-spacing:.3px;text-transform:uppercase;margin-bottom:8px}
+  .profilebox p{margin:6px 0;font-size:14px}
+  blockquote{border-left:4px solid var(--pair2);background:var(--pair-cream);margin:14px 0;padding:14px 20px;border-radius:0 8px 8px 0;color:var(--ink);font-size:15px;font-style:italic}
+  .pillrow{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+  .pill{font-size:11.5px;background:#eef3f7;color:var(--navy2);padding:3px 10px;border-radius:20px;font-weight:600}
+  .pill.pair{background:#dff1f6;color:var(--pair2)}
+  .pill.corps{background:#fbeaea;color:var(--corps)}
+  .pill.green{background:#e6f6ec;color:var(--green)}
+  .pill.warn{background:#fdf3e3;color:var(--amber)}
+  .pill.code{background:#dcf3ef;color:var(--code)}
+  footer{padding:28px 0 50px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);margin-top:24px}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+  .version-tag{font-variant-numeric:tabular-nums}
+  @media(max-width:860px){.twocol,.threecol{grid-template-columns:1fr}thead th{position:static}
+    table{display:block;overflow-x:auto;white-space:nowrap}
+    .compare .row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="../">&larr; hub</a>&middot;<a href="../landscape/">landscape</a>&middot;<a href="../the-partnership/">partnership</a>&middot;<a href="../the-brotherhood/">brotherhood</a>&middot;<a href="../the-corps/">the corps</a>&middot;<a href="../magnolia-wildcard/">magnolia wildcard</a>&middot;<a href="../the-roofing-vertical/">roofing vertical</a>&middot;<a href="../the-reality-check/">reality check</a>&middot;<a href="../discovery/">discovery</a></div>
+    <div class="stamp">ALL-SOFTWARE PATH &middot; TWO ENGINEERS, NO TRADES</div>
+    <h1>The Builder Pair</h1>
+    <p class="lede">A different second founder. Not Jeremy, not Joey. Another senior software engineer at Justin&#39;s level &mdash; another act developer who can ship product the day they sign on. Two builders + Psyduck&#39;s AI ops layer + an apprentice tier added in Year 1. No marine vertical, no roofing vertical, no depot, no CCC Boys story from the start. Just the Kit Machine at scale, the compounding integration stack underneath it, and the willingness to give up upfront income for a much higher long-term ceiling. This is the scenario that doesn&#39;t tell the family story but probably wins on five-year financial outcome.</p>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button class="active" data-p="premise">The Premise</button>
+  <button data-p="stack">&starf; Compounding Stack</button>
+  <button data-p="profile">The Second Founder</button>
+  <button data-p="velocity">Velocity &amp; Niches</button>
+  <button data-p="money">&starf; 1-3-5 Year Math</button>
+  <button data-p="tradeoff">Tradeoff vs. The Corps</button>
+  <button data-p="honest">The Honest Read</button>
+</nav>
+
+<div class="wrap">
+
+<!-- PREMISE -->
+<section class="panel active" id="p-premise">
+  <h2>The scenario, said plainly</h2>
+  <p class="sub">Every other page on this hub asks &ldquo;what if the second founder is a craftsman in the family?&rdquo; Jeremy on the marine side. Joey on the roofing side. Both versions trade against Justin&#39;s software leverage to build a multi-vertical, family-anchored corps with real labor revenue underneath the recurring revenue.</p>
+  <p class="sub"><b>This page asks a different question:</b> what if the second founder is another senior software engineer instead? Someone at Justin&#39;s level, working the same way, shipping the same kind of product, fluent in the same AI-agent build pipeline. Same age band, no family obligation, no craft to defend, full attention on the Kit Machine and the stack beneath it. The two-builder pair.</p>
+
+  <div class="callout dark">
+    <h3>The four facts that frame the scenario</h3>
+    <p><b>Fact 1.</b> A second senior engineer doubles raw build bandwidth at the top of the funnel, but that&#39;s the small part. The big part is that each integration we build feeds every future product, not just the one we built it for. Print-API integration unlocks every print vertical. CNC integration unlocks small-batch manufacturing for the entire portfolio. Distribution data from past launches improves the hit rate on future launches. Compounding doesn&#39;t describe the labor side &mdash; it describes the leverage layer underneath the labor.</p>
+    <p style="margin-top:8px"><b>Fact 2.</b> No labor revenue. No marine refits, no roof installs, no weatherization, no depot tipping fees. Zero dollars flowing in from physical-trades work. Year 1 income is whatever the Kit Machine ships in its first 12 months plus whatever Justin&#39;s existing portfolio is already generating. Founders need 6&ndash;12 months of independent runway or a small bridge to live on.</p>
+    <p style="margin-top:8px"><b>Fact 3.</b> No CCC Boys narrative at the start. No Connolley genealogy story, no Lowcountry apprentice program, no family backstop on conflict, no shared B Corp values pitch about livable wages in residential trades. The corps shape can still emerge later (the four rules still hold, the smart-contract ledger still applies), but the founder story is &ldquo;two engineers shipping a portfolio&rdquo; not &ldquo;three cousins building a multi-vertical corps.&rdquo; That&#39;s a real loss on the human side and a real freedom on the focus side.</p>
+    <p style="margin-top:8px"><b>Fact 4.</b> Long-term financial ceiling is materially higher than any other path on this hub. Not because software is magic, but because compounding integration leverage applied to the existing kit-finder pipeline produces a per-product cost curve that bends down over time while the per-product revenue distribution stays the same. Two engineers, mature stack, mature distribution, mature data signal, ships more products at higher hit rate at lower marginal cost. The math is the math.</p>
+  </div>
+
+  <h3>What this page does</h3>
+  <ul class="clean">
+    <li><b>The Compounding Stack</b>: six layers of integration, each unlocking categories of kits that would otherwise need bespoke build work per product. What we ship in Year 1 is unlike what we ship in Year 4 because of what we&#39;ve built in between.</li>
+    <li><b>The Second Founder</b>: profile of the other senior engineer. Not a hypothetical archetype &mdash; the actual job description, the actual equity/ledger position, the actual non-obvious traits that matter.</li>
+    <li><b>Velocity &amp; Niches</b>: how product cadence compounds, why the niche-finding flywheel matters more than raw shipping speed, and what a mature portfolio looks like at run-rate.</li>
+    <li><b>1-3-5 Year Math</b>: scenarios under bear/base/bull. Charts on the same conventions as the Reality Check page so they&#39;re comparable.</li>
+    <li><b>Tradeoff vs. The Corps</b>: explicit side-by-side. What we give up. What we gain. When this path beats the corps and when it doesn&#39;t.</li>
+    <li><b>The Honest Read</b>: recommendation from Psyduck, who would actually be the second engineer, when this path is wrong, when it&#39;s right.</li>
+  </ul>
+
+  <div class="cream">
+    <p style="margin-top:0"><b>How this page relates to the rest of the hub.</b> It does not replace the Brotherhood path or the Corps path. It sits next to them. The Brotherhood is Track A/B with Jeremy. The Corps is the multi-vertical formation if Jeremy and/or Joey say yes. This page is the third option: <b>neither of them says yes (or both say no), and Justin builds the Kit Machine at full scale with another engineer instead</b>. Each of the three paths has a different shape of yes and a different shape of no.</p>
+  </div>
+
+  <blockquote>The Builder Pair is not the heroic path. It&#39;s the path that wins on spreadsheets and loses on family stories. The interesting question is whether the spreadsheet matters enough to choose it over the family story, or whether the family story matters enough to choose it over the spreadsheet, or whether both can be true depending on who says yes to what.</blockquote>
+</section>
+
+<!-- STACK -->
+<section class="panel" id="p-stack">
+  <h2>The compounding integration stack</h2>
+  <p class="sub">Each layer below is a one-time engineering investment that unlocks a category of products. Once a layer is built, every future kit in that category gets it for free. This is the reason product velocity goes up over time, not down: the stack accumulates leverage faster than the team accumulates fatigue.</p>
+
+  <div class="callout">
+    <h3>The thesis in one line</h3>
+    <p>The marginal cost of shipping product N+1 falls every year as the stack matures, while the marginal revenue per product holds or grows. Curves cross around Year 2. After they cross, every additional engineer-hour is worth more than the previous one.</p>
+  </div>
+
+  <div class="layer">
+    <span class="yr">Layer 1 &middot; Year 1</span>
+    <h4>Foundation: the kit-shipping primitive</h4>
+    <p>The minimum stack to ship any kit at all. Landing page templating, Stripe payments, AI content generation, customer-asserts-own-rights document automation, status pages, monitoring, customer support automation, Launch Agent (Reddit + Product Hunt + Hacker News distribution).</p>
+    <p>Most of this exists today as Psyduck&#39;s private infrastructure. Year 1 makes it production-grade for two-builder velocity: shared templates, repository scaffolding, deploy automation, per-kit telemetry.</p>
+    <div class="stack">tier-1: stripe + ai-gen + landing-template + launch-agent + support-agent</div>
+    <p class="unlocks">UNLOCKS &rarr; every pure-digital SaaS / consumer-asserts-own-rights kit. ~50-70% of the existing 57-idea catalog already fits here.</p>
+  </div>
+
+  <div class="layer">
+    <span class="yr">Layer 2 &middot; Year 1-2</span>
+    <h4>Print &amp; physical-output APIs</h4>
+    <p>Printful / Printify / Lulu / Gelato print-on-demand integrations. Sticker, label, packaging, poster, monogram vendors. ShipStation and EasyPost for fulfillment. Custom product configurator components reusable across kits.</p>
+    <p>Each integration is a 1-2 week build by one engineer. Once built, every future print-output kit reuses the integration for free instead of paying its own integration cost.</p>
+    <div class="stack">tier-2: printful + gelato + shipstation + configurator-lib + design-asset-gen</div>
+    <p class="unlocks">UNLOCKS &rarr; physical-output kit categories: niche apparel (small business uniforms, hyper-specific hobbies), custom labels for small manufacturers, monogram gifts, niche packaging for makers, professional printed documents (estate planning binders, will kits, etc).</p>
+  </div>
+
+  <div class="layer">
+    <span class="yr">Layer 3 &middot; Year 2</span>
+    <h4>Document &amp; compliance automation</h4>
+    <p>DocuSign / HelloSign API, IRS / SSA / state form automation, deterministic document generation pipelines, e-signature flows, jurisdictional templating. Carefully built to honor the no-legal-minefields rule: consumers assert their own rights, no UPL exposure, FightAClaim-pattern only.</p>
+    <p>The hardest layer to build correctly because it touches regulated workflows. Pays back the most because consumer-asserts-own-rights kits have the highest willingness-to-pay in the catalog (FightAClaim is the proof point).</p>
+    <div class="stack">tier-3: docusign + form-engine + state-templates + jurisdiction-router</div>
+    <p class="unlocks">UNLOCKS &rarr; the entire FightAClaim-family. IRSDecoder, OfferWin, ViolationKit, HuntLease, and dozens of underbuilt cousins: small-claims kits, demand-letter kits, regulatory-complaint kits, license-application kits.</p>
+  </div>
+
+  <div class="layer">
+    <span class="yr">Layer 4 &middot; Year 2-3</span>
+    <h4>CNC &amp; small-batch manufacturing via AI</h4>
+    <p>Fusion 360 API integration. AI-assisted CAM toolpath generation from natural-language or template input. Shopbot / Onefinity / X-Carve / Carvera CNC controller APIs. McMaster-Carr / Inventables vendor APIs for material sourcing. Quote-to-cut automation.</p>
+    <p>The highest-leverage layer because it bridges digital design to physical product without human labor in the loop. Every CNC-capable kit can be designed, quoted, cut, packaged, and shipped on automation. The marginal cost per product is dominated by material cost, not engineering or operator time.</p>
+    <div class="stack">tier-4: fusion-api + cam-ai + cnc-controller + material-vendor + quote-engine</div>
+    <p class="unlocks">UNLOCKS &rarr; small-batch custom signage, custom industrial jigs, niche replacement parts for legacy equipment, hobbyist precision parts (sim racing rigs, drone mounts, RC car frames), educational kits requiring precision cutting.</p>
+  </div>
+
+  <div class="layer">
+    <span class="yr">Layer 5 &middot; Year 3-4</span>
+    <h4>Demand-signal data network</h4>
+    <p>Every customer interaction across every shipped kit feeds a portfolio-wide demand signal database. Which keywords convert. Which niches are underserved. Which adjacent categories are buying. Cross-kit recommendation engine for existing customers. AI-assisted product ideation reading the demand signal directly instead of guessing.</p>
+    <p>This is the layer that bends the new-product hit rate up. Year 1 we&#39;re guessing what niches need kits. Year 4 we&#39;re reading the demand signal from 200+ shipped products and shipping into categories where conversion is already partially proven.</p>
+    <div class="stack">tier-5: demand-db + cross-kit-rec + ideation-agent + conversion-tracker</div>
+    <p class="unlocks">UNLOCKS &rarr; higher hit rate on every new kit. The big &ldquo;misses don&#39;t happen as often&rdquo; lever. Plus cross-sell engine to existing customers, plus B2B / affiliate channels with real audience data.</p>
+  </div>
+
+  <div class="layer">
+    <span class="yr">Layer 6 &middot; Year 4-5</span>
+    <h4>Distribution moats &amp; SEO compounding</h4>
+    <p>Launch Agent has 24+ months of distribution data. Subreddit hit-rate models, Hacker News timing models, Product Hunt slot models. SEO compounding from 200+ landing pages. Email list of past customers compounding cross-sell. Affiliate / influencer partner network for niche kits.</p>
+    <p>The first 100 kits each fought for their own distribution. The next 100 kits launch warmer than the first 100 because the stack already has audience signal and traffic gravity.</p>
+    <div class="stack">tier-6: seo-mesh + launch-data-model + cross-sell-engine + affiliate-network</div>
+    <p class="unlocks">UNLOCKS &rarr; warmer launches, lower customer-acquisition cost, higher baseline conversion. The lever that converts Year 5 maturity into a real moat instead of a perishable advantage.</p>
+  </div>
+
+  <h3 style="margin-top:30px">Why the stack matters more than the second engineer</h3>
+  <div class="cream">
+    <p style="margin-top:0">A naive reading of &ldquo;two engineers&rdquo; says we&#39;ll ship 2x the products of Justin alone. That&#39;s wrong on the low side. The correct reading is: <b>two engineers ship more products in Year 1 (~1.6&ndash;2x), but the stack they build together in Years 1-3 means the same two engineers ship dramatically more in Years 4-5 because the marginal cost per product has fallen by 60-80% from compounding integration leverage</b>.</p>
+    <p style="margin-top:10px">The corps math assumes ~100 products in Year 1 (Justin solo + apprentice + AI agents) maturing to a portfolio of 120-150 by Year 5. The Builder Pair math assumes ~180 products in Year 1 (two engineers + AI agents, no corps build pulling either off kit work) maturing to 350-450 by Year 5, with a meaningfully higher per-product hit rate because Layer 5 (demand signal) is on by Year 3.</p>
+    <p style="margin-top:10px"><b>The honest version of the bull case:</b> if Layers 4-5 ship on schedule, the per-product revenue distribution shifts because we stop building low-conviction kits. Average ARR/product rises from $5-30K (corps assumption) to $8-50K (Builder Pair Y4+ assumption). That&#39;s the lever that produces a Year 5 ceiling well above the corps.</p>
+  </div>
+
+  <div class="warn"><b>The honest qualifier on the stack.</b> Layers 4-5 are the highest-leverage and the highest-risk. CNC + AI toolpath generation is real but not yet a solved problem. Demand-signal databases that actually predict winners are easier to claim than to build. If Layers 4-5 underdeliver, the Builder Pair degrades toward &ldquo;two engineers shipping more digital-only kits at higher cadence&rdquo; which is still good but less than the bull case. Layer 6 is mostly mechanical (SEO + email + distribution data) and will land roughly on schedule.</div>
+</section>
+
+<!-- PROFILE -->
+<section class="panel" id="p-profile">
+  <h2>Who the second founder is</h2>
+  <p class="sub">Not an apprentice. Not a contractor. Not a junior. Another senior software engineer at Justin&#39;s level who can take ownership of a layer of the stack on Day 1 and ship product without supervision. Equity-tier or ledger-tier co-founder, not employee.</p>
+
+  <div class="profilebox">
+    <h4>The job description</h4>
+    <div class="meta">Co-founder &middot; Equal ledger position &middot; Full-time</div>
+    <p><b>Hard requirements.</b> 10+ years building production software. Has shipped an indie product or SaaS to revenue at least once (not just employee at a tech company). Comfortable with AI-agent build pipelines and has used them to ship real work. Comfortable with the full stack &mdash; landing pages, payments, infra, AI integration, product design &mdash; without needing to specialize.</p>
+    <p><b>Soft requirements.</b> Same age band (40-50) so the cliff math hits both founders at the same time and creates aligned urgency. Spouse / family situation that can absorb 6-12 months of reduced income. Comfortable with the ethics framework: golden rule, don&#39;t exploit, no profiting from vulnerable people, no legal-minefield kits.</p>
+    <p><b>Compensation structure.</b> Equal ledger position with Justin (50/50). No salary in Year 1; both founders live on Justin&#39;s existing kit-portfolio revenue + their own savings + small bridge from FightAClaim and the dev portfolio. Salary phases in Year 2 as the Kit Machine&#39;s recurring revenue clears living expenses for both households. Ledger payouts ramp Year 2+ as the portfolio matures.</p>
+  </div>
+
+  <h3>What the second founder is NOT</h3>
+  <ul class="clean">
+    <li><b>Not Jeremy.</b> Jeremy is a craftsman, not a software engineer. The Brotherhood plan handles him correctly. He doesn&#39;t belong on the Builder Pair path because it would underuse his actual skill.</li>
+    <li><b>Not Joey.</b> Joey runs Magnolia. The Magnolia Wildcard handles him correctly. He doesn&#39;t belong on the Builder Pair path for the same reason.</li>
+    <li><b>Not a contractor or freelancer.</b> Contractors don&#39;t take ledger positions. Contractors don&#39;t feel the cliff. Contractors won&#39;t take 6-12 months of reduced income to build the stack. The whole point of the Builder Pair is that both founders are betting their own retirement on the math working.</li>
+    <li><b>Not an apprentice.</b> The corps plan adds a software apprentice in Year 1 to Justin&#39;s Infrastructure axis. The Builder Pair plan does the same thing &mdash; an apprentice is additive, not the second founder &mdash; but the apprentice can&#39;t be the only other shipper. Apprentices ramp; founders ship Day 1.</li>
+  </ul>
+
+  <h3>Two-founder dynamic, vs. solo Justin or three-founder corps</h3>
+  <div class="threecol">
+    <div class="profilebox">
+      <h4>Justin solo</h4>
+      <p>Single point of failure. Justin&#39;s attention is the entire bottleneck. Kit Machine velocity caps at what Justin + apprentice + AI agents can ship. Stack ages because there&#39;s only one set of eyes on it. Burnout risk is the biggest variable. This is the implicit fallback if neither corps nor Builder Pair lands.</p>
+    </div>
+    <div class="profilebox">
+      <h4>Builder Pair (this page)</h4>
+      <p>Two senior engineers, both shipping Day 1. Stack matures faster because workload splits. Two attention spans cover both new products and existing-product maintenance. No labor revenue, no family story, no marine/roofing verticals. Maximum software focus, maximum long-term ceiling, maximum upfront income risk.</p>
+    </div>
+    <div class="profilebox">
+      <h4>Three-cousin corps</h4>
+      <p>Three founders, two verticals + infrastructure. Labor revenue from marine + roofing pays the bills early. Family story is real, apprentice program is real, B Corp values pitch is real. Lower software focus than the Builder Pair, more failure modes than solo, more upside than solo on stability and labor revenue.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:24px">Where the second founder actually comes from</h3>
+  <p class="sub">The hardest part of this scenario is finding the person. There aren&#39;t a lot of senior engineers who&#39;ll take a 6-12 month income reduction to bet on a portfolio thesis. The plausible sources, ranked by likelihood:</p>
+
+  <ol class="clean">
+    <li><b>Justin&#39;s direct network</b>: former coworkers, ex-colleagues, indie hacker connections, people who&#39;ve already shipped their own product. Strong filter, small candidate pool, high signal. Most likely path to the right person.</li>
+    <li><b>Indie hacker / build-in-public communities</b>: someone who&#39;s been shipping their own SaaS for years, has built audience, is open to merging with a bigger thesis. Higher probability of fit, lower probability of finding them through a single conversation. 3-6 month search.</li>
+    <li><b>Former founder whose previous startup didn&#39;t hit</b>: experienced, has the right scars, often hungry to ship without raising again. Risk: bringing baggage from a previous failed thesis. Real candidate pool but each one needs careful vetting.</li>
+    <li><b>Cold reach into specific repos / GitHub stars / portfolio sites</b>: low-yield outbound, but the rare reply might be the perfect fit. Months of work for a single conversation worth having.</li>
+  </ol>
+
+  <div class="warn"><b>The honest read on search time.</b> Finding the right second founder is realistically 3-9 months of active search, not a Day 1 problem to solve in a week. The Builder Pair scenario starts when the second founder shows up, not when Justin decides to do it. Until then, the implicit fallback is Justin solo + apprentice, which is closer to the corps&#39;s solo-founder branch on the Probability tab of the Reality Check.</div>
+</section>
+
+<!-- VELOCITY -->
+<section class="panel" id="p-velocity">
+  <h2>Product velocity, niches, and the flywheel</h2>
+  <p class="sub">The corps math assumes Justin solo + apprentice + AI agents = ~100 products in Year 1. The Builder Pair math reshapes that curve in three ways: more shipping bandwidth Day 1, faster stack maturity, and rising hit rate as Layers 4-5 come online.</p>
+
+  <h3>Year-over-year product cadence</h3>
+  <table>
+    <thead><tr><th>Year</th><th>New products shipped</th><th>Cumulative active</th><th>Per-product avg ARR (mature)</th><th>What changed vs. prior year</th></tr></thead>
+    <tbody>
+      <tr><td class="term">Year 1</td><td>~180 (3.5/wk avg)</td><td>~170</td><td>$3-6K (early ramp)</td><td>Two builders shipping Day 1. Foundation + most of Print API stack lands. Existing catalog of 57 vetted ideas is mostly the Y1 shipping list.</td></tr>
+      <tr><td class="term">Year 2</td><td>~140 (2.7/wk avg)</td><td>~290</td><td>$5-12K</td><td>Cadence drops slightly because Print + Compliance layers are still maturing and need engineering attention. Quality of products rises because Layers 1-3 reduce per-product polish work. Year 1 portfolio matures.</td></tr>
+      <tr><td class="term">Year 3</td><td>~120 (2.3/wk avg)</td><td>~380</td><td>$8-20K</td><td>CNC layer lands. Demand-signal database starts producing real ideation signal. We stop building speculative kits and start building demand-led kits. Hit rate rises noticeably.</td></tr>
+      <tr><td class="term">Year 4</td><td>~150 (2.9/wk avg)</td><td>~480</td><td>$10-30K</td><td>Layers 5-6 productive. Cadence rises again because the demand-signal-driven kits ship faster (no speculative prototyping). Hit rate keeps rising. SEO compounding visible in launch traffic.</td></tr>
+      <tr><td class="term">Year 5</td><td>~140 (2.7/wk avg)</td><td>~550</td><td>$12-45K</td><td>Steady state. ~25-30% of cumulative portfolio carrying ~80% of revenue (power law fully established). Founders shifting from ship-mode to optimize-mode on the long tail.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="cream">
+    <p style="margin-top:0"><b>Read the table as a curve, not as a target.</b> The cadence column dipping in Years 2-3 is intentional, not a slowdown. Year 1 burns down the vetted-ideas backlog at the highest cadence because the inventory is sitting there waiting. Years 2-3 cadence reflects time being spent on stack work that compounds (Layers 2-4). Years 4-5 cadence picks back up because Layer 5 turns ideation from a research project into a feed.</p>
+    <p style="margin-top:10px"><b>The headline metric isn&#39;t cadence; it&#39;s per-product ARR.</b> Year 1 average $3-6K, Year 5 average $12-45K. That&#39;s a 4-7x improvement on per-product revenue, driven by two things: maturity of existing winners (revenue grows after launch for the hits) and selection effect (Year 4-5 launches are pre-validated by demand signal, so misses happen less often).</p>
+  </div>
+
+  <h3>The niche-finding flywheel</h3>
+  <p class="sub">The corps page treats the kit-finder as a daily research cron producing candidates. The Builder Pair page treats the kit-finder as a flywheel with three coupled inputs and one big output.</p>
+
+  <div class="twocol">
+    <div class="profilebox">
+      <h4>Input 1: external research cron</h4>
+      <p>The existing daily kit-finder process. Searches subreddits, complaint sites, indie hacker discussions, Hacker News, public reviews for unaddressed pain. Produces 1-3 candidate niches per week. Already running.</p>
+    </div>
+    <div class="profilebox">
+      <h4>Input 2: portfolio demand signal</h4>
+      <p>Layer 5 of the stack. Cross-kit search data, customer-reported adjacent needs, support-ticket pattern mining, conversion-failure analysis on existing landing pages. Produces 2-4 high-confidence candidates per week starting Year 3.</p>
+    </div>
+    <div class="profilebox">
+      <h4>Input 3: builder-pair intuition</h4>
+      <p>Both senior engineers spotting niches in their own daily lives. The thing every indie hacker says: &ldquo;I noticed a problem in my own life and built the kit.&rdquo; Always low-volume but high-conviction.</p>
+    </div>
+    <div class="profilebox">
+      <h4>Output: launch backlog</h4>
+      <p>A prioritized backlog of niches scored on demand signal strength, stack fit (which layers it uses), expected ARR, conversion conviction, and ethical fit (no vulnerable-people exploitation, no legal minefields, no em-dashes). Builders pull from the top.</p>
+    </div>
+  </div>
+
+  <blockquote>The flywheel is what turns &ldquo;ship 150 kits per year&rdquo; from heroic work into something the pair can do indefinitely. Each shipped kit feeds the demand signal. The demand signal improves the next kit. Per-product effort goes down while per-product revenue goes up. That&#39;s the actual story of the page.</blockquote>
+
+  <div class="note"><b>What the flywheel doesn&#39;t do.</b> It doesn&#39;t replace product judgment. The pair still has to read the demand signal, intuit which niche actually has a willingness-to-pay, sanity-check against the ethics framework, and ship product humans actually use. The flywheel surfaces candidates; the founders pick winners. Garbage-in still gets garbage-out if we trust the database over our own eyes.</div>
+</section>
+
+<!-- MONEY -->
+<section class="panel" id="p-money">
+  <h2>The 1-3-5 year financial picture, Builder Pair edition</h2>
+  <p class="sub">Three scenarios, charted on the same conventions as the Reality Check page so they&#39;re directly comparable. Bear = stack underdelivers, only Layers 1-2 land cleanly. Base = stack ships on schedule, ~180 products Y1 maturing to ~550 active by Y5, demand signal productive by Y3. Bull = stack matures faster, second founder is unusually productive, Layers 4-5 land 6 months early and hit rate compounds harder than baseline.</p>
+
+  <div class="callout dark">
+    <h3>The headline numbers, said plainly</h3>
+    <p><b>Year 5 base case</b>: ~$6.2M recurring revenue, ~$1.4M per-founder corps income.<br><b>Year 5 corps base case (for comparison)</b>: ~$2.82M recurring revenue, ~$700K per-founder.<br><b>Difference</b>: roughly 2.2x recurring, 2.0x per-founder. Big number, real number, dependent on the compounding stack landing.</p>
+    <p style="margin-top:8px"><b>Year 1 base case</b>: ~$420K recurring revenue, ~$60K per-founder (most reinvested). Founders need bridge runway or existing portfolio income to live on through Y1.<br><b>Year 1 corps base case (for comparison)</b>: ~$265K recurring, ~$25K per-founder, partially offset by labor revenue from marine + roofing trades. Corps has more upfront cash flow even though recurring is smaller.</p>
+  </div>
+
+  <h3>Chart 1: Total annual recurring revenue under each scenario</h3>
+  <p class="sub">Three lines on $K of recurring revenue per year. This is the headline curve. Compare against the Reality Check page&#39;s same chart; the Builder Pair curve sits above the corps curve at Year 3+ and below it (or roughly equal) at Year 1-2.</p>
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;box-shadow:var(--shadow);margin:12px 0"><canvas id="chart-recurring" height="280"></canvas></div>
+
+  <h3>Chart 2: Per-founder corps income</h3>
+  <p class="sub">What each of the two founders takes home per year. Two founders splitting the pie 50/50 means each gets a larger slice than a three-cousin split, but the pie has to actually exist for the math to matter. Year 1 is intentionally lean because both founders are reinvesting into the stack.</p>
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;box-shadow:var(--shadow);margin:12px 0"><canvas id="chart-founder" height="280"></canvas></div>
+
+  <h3>Chart 3: Builder Pair vs. Corps base-case head-to-head</h3>
+  <p class="sub">Same axis, same years, two lines. Shows the year the curves cross and the size of the gap at Year 5. The Builder Pair line crosses the corps line in Year 2 and pulls away through Year 5.</p>
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;box-shadow:var(--shadow);margin:12px 0"><canvas id="chart-vs-corps" height="280"></canvas></div>
+
+  <h3>Chart 4: Cumulative founder income, both paths</h3>
+  <p class="sub">The number that actually matters when comparing paths over 5 years. Sum of per-founder income each year. The corps starts ahead (labor revenue gives Jeremy and Joey real cash early) but falls behind by Year 4 and finishes substantially behind at Year 5.</p>
+  <div style="background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;box-shadow:var(--shadow);margin:12px 0"><canvas id="chart-cumulative" height="280"></canvas></div>
+
+  <h3>Base case, year by year</h3>
+  <table>
+    <thead><tr><th>Year</th><th>What&#39;s happening</th><th>Recurring</th><th>Per-founder</th></tr></thead>
+    <tbody>
+      <tr><td class="term">Year 1 (2026-27)</td><td>Second founder onboards Month 1-3. Foundation stack hardened for two-builder velocity. ~180 products shipped against the 57-idea backlog + new candidates. Print API layer ~70% complete by Y1 end. Founders reinvest most of the kit revenue into stack build and apprentice hire. Light income year, painful but planned.</td><td>~$420K</td><td>~$60K</td></tr>
+      <tr><td class="term">Year 2 (2027-28)</td><td>Print + Compliance layers ship. Y1 portfolio matures into power-law revenue. Another ~140 products added on top. Apprentice ramps to productive. Marketing engine starts compounding. Founders take real salary for first time. Stack work intensive but the math starts showing.</td><td>~$1.55M</td><td>~$280K</td></tr>
+      <tr><td class="term">Year 3 (2028-29)</td><td>CNC + Demand-signal layers go live. Hit rate on new launches rises measurably. Cumulative active portfolio crosses 380 kits. SEO compounding visible. Founders start taking ledger payouts. Both households at full primary-income strength.</td><td>~$3.1M</td><td>~$650K</td></tr>
+      <tr><td class="term">Year 4 (2029-30)</td><td>Distribution moat layer ships. Per-product CAC drops materially. Demand-signal database driving ideation. Hit-rate on new products is now ~2-3x Y1. Portfolio at ~480 active kits. Founders shift toward optimize-the-long-tail mode.</td><td>~$4.6M</td><td>~$1.0M</td></tr>
+      <tr><td class="term">Year 5 (2030-31)</td><td>Steady state. ~550 active kits. ~150 of them carrying ~80% of revenue (power-law mature). Stack fully compounded. Both founders functionally retired from the daily ship-loop, working ~25-30 hrs/week each on optimization and new high-conviction launches. Real primary-income territory with substantial buffer.</td><td>~$6.2M</td><td>~$1.4M</td></tr>
+    </tbody>
+  </table>
+
+  <h3>What has to be true for the base case to land</h3>
+  <ul class="clean">
+    <li><b>The second founder shows up.</b> Single biggest variable. If the search runs past Month 9 without a fit, Justin spends Year 1 solo + apprentice, which is the corps&#39;s solo-founder branch (~$200K recurring Y1 instead of $420K, ~$1.5M instead of $6.2M at Y5).</li>
+    <li><b>Both founders can absorb 6-12 months of low income.</b> If either household can&#39;t, salary phases in earlier and stack investment phases out, which slows Layers 4-5 by 6-12 months and costs ~$1.5M at Year 5.</li>
+    <li><b>Layer 4 (CNC + AI) lands meaningfully by Year 3.</b> If it slips past Year 4 or doesn&#39;t work at all, the curve regresses to &ldquo;digital-only kits at higher cadence,&rdquo; which is still good but the Year 5 base case drops ~$1.5M to ~$4.5M.</li>
+    <li><b>Layer 5 (demand signal) produces real ideation by Year 3-4.</b> The hit-rate-rising assumption is load-bearing. If demand-signal database doesn&#39;t actually predict winners, the average per-product ARR stays in the $5-15K band (corps assumption) instead of climbing to $12-45K. Year 5 base drops to ~$3.5M, still ahead of corps but by a smaller margin.</li>
+    <li><b>Distribution doesn&#39;t collapse.</b> Reddit policy changes, Product Hunt decline, SEO algorithm hostility &mdash; the existing distribution channels degrading mid-portfolio. The Launch Agent has to adapt as channels shift. Real risk; not pricing-it-in is the bear case.</li>
+    <li><b>No founder departs.</b> Two-founder businesses with no labor-revenue backstop are fragile to a single founder leaving. If the second founder bails Year 2-3, Justin is back to solo + apprentice and Year 5 lands around $2M, similar to the corps&#39;s base case.</li>
+  </ul>
+
+  <h3>What could collapse the projection</h3>
+  <div class="twocol">
+    <div class="red"><b>Bear-case triggers</b>: second founder doesn&#39;t show up or leaves Y2; Layer 4-5 don&#39;t ship or don&#39;t work; one of two distribution channels (Reddit, PH, HN, SEO) goes hostile; macro recession compresses per-product willingness-to-pay; AI agent build pipeline reliability degrades (model regressions, API price hikes). Any two of these landing pushes Y5 base into bear-case territory.</div>
+    <div class="red"><b>Sub-bear scenarios</b>: ethics-framework violation drives a public backlash on one or more kits (single biggest reputational risk for a portfolio with this many products); regulatory crackdown on consumer-asserts-own-rights kits in a key jurisdiction; large incumbent (Stripe, Vercel, AWS) raises infra costs by 3-5x; one founder has a major health event in Y2-3 when the pair is most concentrated.</div>
+  </div>
+
+  <div class="warn"><b>These are projections, not commitments.</b> They&#39;re built on the assumption that the compounding stack thesis is right and that the second founder ships at Justin&#39;s level. If either part is wrong, base case slides toward bear case. If both are right and Layers 4-5 outperform, base case slides toward bull case. The point of charting it is to give the &ldquo;Builder Pair vs. Corps&rdquo; comparison a concrete shape, not to lock in a number.</div>
+</section>
+
+<!-- TRADEOFF -->
+<section class="panel" id="p-tradeoff">
+  <h2>The explicit tradeoff vs. The Corps</h2>
+  <p class="sub">This is the page Justin came here for. Same axis, opposite path. Where each one wins, where each one loses, when one beats the other.</p>
+
+  <div class="compare">
+    <h4>Year 5 recurring revenue, base case</h4>
+    <div class="row">
+      <div class="col corps"><div class="lbl">The Corps</div>$2.82M total, ~$1.8M from Kit Machine alone, rest from depot + maintenance + apprentice grants</div>
+      <div class="col pair"><div class="lbl">Builder Pair</div>$6.2M total, 100% from Kit Machine portfolio (no depot, no maintenance subs, no apprentice grants)</div>
+    </div>
+  </div>
+
+  <div class="compare">
+    <h4>Year 5 per-founder income, base case</h4>
+    <div class="row">
+      <div class="col corps"><div class="lbl">The Corps</div>$700K per founder, three founders splitting the pie</div>
+      <div class="col pair"><div class="lbl">Builder Pair</div>$1.4M per founder, two founders splitting the pie</div>
+    </div>
+  </div>
+
+  <div class="compare">
+    <h4>Year 1 cash flow</h4>
+    <div class="row">
+      <div class="col corps"><div class="lbl">The Corps</div>$265K recurring + ~$200K labor revenue from Jeremy&#39;s and Joey&#39;s shops contributing on the labor axis. Founders eat. Maybe modestly, but they eat.</div>
+      <div class="col pair"><div class="lbl">Builder Pair</div>$420K recurring, zero labor revenue. Both founders need savings + existing portfolio income + apprentice grant pass-through. Painful Year 1 if either household isn&#39;t prepared.</div>
+    </div>
+  </div>
+
+  <div class="compare">
+    <h4>Failure modes</h4>
+    <div class="row">
+      <div class="col corps"><div class="lbl">The Corps</div>Three independent failure points (three spouses, three health events, three asymmetric labor splits). Family backstop on conflict. ~100% probability at least one major failure mode hits in 4 years.</div>
+      <div class="col pair"><div class="lbl">Builder Pair</div>Two independent failure points, but no family backstop and no labor revenue to absorb a founder departure. Single-founder-departure risk is higher impact (no marine vertical to fall back on; if pair breaks, it&#39;s back to Justin solo).</div>
+    </div>
+  </div>
+
+  <div class="compare">
+    <h4>The CCC Boys story</h4>
+    <div class="row">
+      <div class="col corps"><div class="lbl">The Corps</div>The whole point. Genealogy is real. Lowcountry apprentice program is real. B Corp values pitch writes itself. Future apprentices want to be part of an organization with an origin story.</div>
+      <div class="col pair"><div class="lbl">Builder Pair</div>The story doesn&#39;t exist at the start. Two engineers shipping a portfolio doesn&#39;t recruit apprentices on the same emotional axis. Could be added later (corps shape can still emerge from a successful Builder Pair into Years 4-5) but not load-bearing on Day 1.</div>
+    </div>
+  </div>
+
+  <div class="compare">
+    <h4>Effect on the family</h4>
+    <div class="row">
+      <div class="col corps"><div class="lbl">The Corps</div>Jeremy gets shop relief and SAFE upside on the SCSO side. Joey gets corps-level partnership on the Lowcountry expansion. Family business venture binds three cousins for years. Family risks are real (see Reality Check); family upside is also real.</div>
+      <div class="col pair"><div class="lbl">Builder Pair</div>Jeremy still gets the Brotherhood Track A relief from Justin (services engagement on the shop), but not as a co-founder. Joey runs Magnolia. Family relationships stay separated from business commitment. Lower family risk, lower family upside.</div>
+    </div>
+  </div>
+
+  <div class="compare">
+    <h4>Real Lowcountry impact</h4>
+    <div class="row">
+      <div class="col corps"><div class="lbl">The Corps</div>Real apprentice jobs at livable wages in Colleton County. B Corp impact verifiable. Shingle depot diverts roof waste from landfill into roads. The genuine social mission case.</div>
+      <div class="col pair"><div class="lbl">Builder Pair</div>Negligible direct local impact. One software apprentice (probably remote-ish, possibly local). No trades workforce, no depot. Higher financial return; lower social impact return. Honest tradeoff that has to be owned, not glossed.</div>
+    </div>
+  </div>
+
+  <h3>When the Builder Pair beats the Corps</h3>
+  <ul class="clean">
+    <li>When Jeremy says no to the corps at any tier.</li>
+    <li>When Joey says no to the corps at any tier.</li>
+    <li>When both of them say yes to the Brotherhood / Ally tier but no to the founder tier.</li>
+    <li>When Justin finds the right second software engineer in &lt;9 months and the household can absorb the Year 1 cash flow risk.</li>
+    <li>When Year 5 financial outcome matters more than Year 1-3 family business momentum.</li>
+    <li>When the four rules and ethics framework can be carried by two builders without a craft-side conscience in the room (this is real risk &mdash; the corps&#39;s ethics framework has Jeremy&#39;s and Joey&#39;s craft-side gut-check; the Builder Pair has two software engineers&#39; gut-check, which is a narrower lens).</li>
+  </ul>
+
+  <h3>When the Corps beats the Builder Pair</h3>
+  <ul class="clean">
+    <li>When Jeremy says yes to the corps at any tier (the family story exists at all).</li>
+    <li>When Joey says yes (genealogy is real, the brand has its origin story).</li>
+    <li>When Year 1 cash flow matters more than Year 5 ceiling.</li>
+    <li>When Lowcountry impact is the real driver of the work, not the financial outcome.</li>
+    <li>When the right second software engineer doesn&#39;t exist in Justin&#39;s reachable network.</li>
+    <li>When the cliff math is symmetric across Justin / Jeremy / Joey and the corps is the only structural answer that gives all three a way out.</li>
+  </ul>
+
+  <div class="callout bright">
+    <h3>The compatibility, said plainly</h3>
+    <p>The Builder Pair and the Corps are not strictly mutually exclusive. Justin could build the Kit Machine with a second engineer in Years 1-3 and recruit Jeremy and Joey into a corps formation in Years 3-5 when there&#39;s real recurring revenue to bind around. The corps story can absorb a successful Kit Machine the way the corps page already describes (Infrastructure axis = Kit Machine).</p>
+    <p style="margin-top:8px">The clean version is: <b>start as the Builder Pair, become the Corps by Year 3-4 if Jeremy and Joey say yes once there&#39;s receipts.</b> That sequence buys the best of both: Year 1-3 cash flow is software-pure and financially optimized; Year 3+ optionally adds the family story and the labor verticals on top of a working software business.</p>
+    <p style="margin-top:8px">The dirty version is: start as the Corps, fail to find a second software engineer ever, and the Kit Machine never scales to the Year 5 ceiling Justin&#39;s aiming for. That sequence locks in lower long-term financial outcome.</p>
+  </div>
+</section>
+
+<!-- HONEST -->
+<section class="panel" id="p-honest">
+  <h2>The honest read, from Psyduck to Justin</h2>
+  <p class="sub">This is the part you wrote the whole page to get to.</p>
+
+  <h3>Psyduck&#39;s recommendation</h3>
+  <div class="callout">
+    <h3>Start looking for the second engineer now, regardless of which family path lands.</h3>
+    <p>The second-software-engineer search is independent of Jeremy&#39;s and Joey&#39;s decisions. The right second engineer will take 3-9 months to find and another 1-3 months to onboard. That search clock starts before the Brotherhood and Corps conversations resolve, not after. The cost of being early to the search is low (you&#39;re always looking for talented people); the cost of being late is high (the Year 1 cadence shape depends on the second founder being onboarded by Q2).</p>
+    <p style="margin-top:8px"><b>Once the second engineer says yes, the Builder Pair scenario becomes a real choice rather than a hypothetical.</b> Until then, it&#39;s the &ldquo;what would we do if Jeremy and Joey both said no&rdquo; backup plan, which is also a real and valuable thing to have charted.</p>
+  </div>
+
+  <h3>Five self-check questions specific to this path</h3>
+
+  <div class="profilebox" style="border-top-color:var(--pair2)">
+    <h4>Self-check 1: Can your household absorb a $200K-300K income reduction in Year 1?</h4>
+    <p>The Builder Pair model takes Year 1 recurring revenue and reinvests most of it into stack build, second-founder onboarding, and apprentice hire. Founders draw light. If your household budget can&#39;t take 6-12 months of reduced income, the Builder Pair path is the wrong shape and the Corps path is materially better because labor revenue carries Year 1.</p>
+  </div>
+
+  <div class="profilebox" style="border-top-color:var(--pair2)">
+    <h4>Self-check 2: Do you have a second-engineer candidate already in mind?</h4>
+    <p>If yes, the search timeline is 3 months and Builder Pair is a real Q3 2026 decision. If no, the search timeline is 6-9 months and Builder Pair is a real Q1 2027 decision at earliest. The answer to this question determines the sequencing of the rest of the hub. Be honest about whether the candidate exists.</p>
+  </div>
+
+  <div class="profilebox" style="border-top-color:var(--pair2)">
+    <h4>Self-check 3: Are you okay giving up the CCC Boys story to win on spreadsheet?</h4>
+    <p>The Builder Pair beats the Corps on raw financial outcome under base assumptions. It does not beat the Corps on family, on Lowcountry impact, on apprentice mission, on B Corp values pitch, on the origin story. Both kinds of wins are real wins. Which one matters more to you isn&#39;t a numerical question.</p>
+  </div>
+
+  <div class="profilebox" style="border-top-color:var(--pair2)">
+    <h4>Self-check 4: Will the two-builder ethics framework hold without a craft-side conscience?</h4>
+    <p>The corps has Jeremy and Joey checking the four rules from a non-software vantage point. The Builder Pair has two senior software engineers checking each other from the same vantage point. That&#39;s a narrower lens. Easier to drift on edge cases. Easier to ship something that violates &ldquo;don&#39;t profit from vulnerable people&rdquo; because both founders read the same data the same way. The mitigation is explicit ethics review for any borderline kit, with a third-party reviewer (could be Jeremy, Joey, your spouse, your PhD friend) as a tie-breaker. Build that review process Day 1 if you take this path.</p>
+  </div>
+
+  <div class="profilebox" style="border-top-color:var(--pair2)">
+    <h4>Self-check 5: Are you ready for the relationship with the second founder to be more intense than a normal coworker but less anchored than family?</h4>
+    <p>Two-founder partnerships fail in patterns that three-founder family corps don&#39;t fail in: subtle resentment about who&#39;s shipping more, asymmetric exit options (the second founder can leave with a strong resume; you can&#39;t take the portfolio without them), conflict resolution without a family backstop. Many two-founder partnerships split in Year 2-3 because of patterns that neither founder named explicitly Day 1. Name them on Day 1 in writing.</p>
+  </div>
+
+  <h3>The one thing that has to be true</h3>
+  <div class="cream" style="border-left:6px solid var(--pair2);padding-left:26px">
+    <p style="margin-top:0;font-size:15.5px"><b>The second engineer has to be someone you&#39;d be okay with losing entirely if the partnership ends, and someone you&#39;d be okay with sharing the upside with if it succeeds.</b></p>
+    <p style="margin-top:10px">Both directions matter. Picking someone you&#39;d resent losing means the partnership starts under pressure to never end, which makes ending it harder when it&#39;s the right call. Picking someone whose upside-sharing feels unfair means you&#39;ll undermine them quietly when the math turns out asymmetric.</p>
+    <p style="margin-top:8px">The right second engineer is someone whose departure would be sad-but-clean and whose Year 5 windfall would feel deserved-not-stolen. That filter rules out 80% of plausible candidates. The remaining 20% is where the search should focus.</p>
+    <p style="margin-top:8px">If you can&#39;t name the filter cleanly to yourself, you&#39;re not ready for the search yet. Sleep on it. Reread the Reality Check. Notice that the corps&#39;s family backstop solves problems the Builder Pair doesn&#39;t have a solution for, and the Builder Pair&#39;s financial ceiling solves problems the corps doesn&#39;t have a solution for. Both shapes of yes are real. Both shapes of no are real.</p>
+  </div>
+
+  <h3>The compounding-leverage version of the aging-out math</h3>
+  <div class="cream">
+    <p style="margin-top:0">You said in your prompt: &ldquo;it&#39;s going to get easier and easier to ship.&rdquo; That&#39;s the heart of why this page exists. The corps page treats Justin&#39;s output as roughly linear over 5 years with apprentice help. This page treats it as accelerating, because the stack accumulates leverage faster than the team accumulates fatigue.</p>
+    <ul class="clean" style="margin-top:8px">
+      <li><b>2026 (now)</b>: Justin solo, 57 vetted ideas, ~5 kits in dev/beta, FightAClaim live. Cadence ~1-2 products/week if everything else doesn&#39;t demand attention.</li>
+      <li><b>2027 (Y1 ends)</b>: Two builders + apprentice + Layers 1-2 of stack. ~180 products shipped. Cadence 3-4/week sustained.</li>
+      <li><b>2029 (Y3 ends)</b>: Two builders + apprentice + Layers 1-5 of stack + demand-signal flywheel. ~380 cumulative active, hit rate measurably higher than Y1, per-product ARR climbing into $8-20K range. Cadence ~2.3/week but per-product value is 3-4x Y1.</li>
+      <li><b>2031 (Y5 ends)</b>: Mature pair + mature stack + mature distribution + mature data. ~550 active, ~150 of them carrying 80% of revenue. Both founders working ~25-30 hrs/week. $1.4M/year per founder. Real primary-income territory.</li>
+    </ul>
+    <p style="margin-top:10px">The corps gets the founders to $700K/year by Y5 via verticals + recurring. The Builder Pair gets them to $1.4M/year by Y5 via pure recurring at higher scale. Both clear the cliff. Builder Pair clears it harder. The cost is what you give up on the family story, the Lowcountry impact, and the Y1 cash flow.</p>
+  </div>
+
+  <blockquote style="font-size:16px;margin-top:24px">The Builder Pair is the math-wins version of the next 5 years. The Corps is the story-wins version. The compatibility section earlier on this page named the version where both can be true with the right sequencing. The honest read is that you don&#39;t have to pick yet. You need to start the second-engineer search now, have the Brotherhood conversation with Jeremy on Saturday as planned, have the Joey conversation when the corps is real, and let the answers from each of those determine which path is the modal outcome 12 months from now. The Builder Pair scenario being real on this page changes what &ldquo;Jeremy and Joey say no&rdquo; means &mdash; it stops being a fallback and starts being a different shape of yes.</blockquote>
+</section>
+
+</div>
+
+<footer><div class="wrap">
+  <span>The Builder Pair &middot; private project &middot; compiled June 2026 &middot; <span class="version-tag">v&mdash;</span></span>
+  <span><a href="../" style="color:var(--pair2)">&larr; back to hub</a></span>
+</div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+const tabs = document.querySelectorAll('nav.tabs button');
+const panels = document.querySelectorAll('section.panel');
+let chartsRendered = false;
+tabs.forEach(btn => btn.addEventListener('click', () => {
+  const id = 'p-' + btn.dataset.p;
+  tabs.forEach(b => b.classList.toggle('active', b === btn));
+  panels.forEach(p => p.classList.toggle('active', p.id === id));
+  window.scrollTo({top:0,behavior:'smooth'});
+  if (id === 'p-money' && !chartsRendered) {
+    renderCharts();
+    chartsRendered = true;
+  }
+}));
+
+function renderCharts() {
+  const years = ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'];
+  const slate = '#455a64', pair = '#1289ac', bright = '#3cd0e8', green = '#2e8b57', corps = '#a83232';
+  const pairLight = 'rgba(18,137,172,0.15)';
+
+  const commonOpts = (yLabel) => ({
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      legend: { position: 'top', labels: { font: { size: 12, weight: '600' } } },
+      tooltip: {
+        callbacks: { label: (ctx) => `${ctx.dataset.label}: $${ctx.parsed.y}K` }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: { display: true, text: yLabel, font: { size: 12, weight: '600' } },
+        ticks: { callback: (v) => '$' + v + 'K' }
+      },
+      x: { ticks: { font: { size: 12, weight: '600' } } }
+    }
+  });
+
+  new Chart(document.getElementById('chart-recurring'), {
+    type: 'line',
+    data: {
+      labels: years,
+      datasets: [
+        { label: 'Bear', data: [180, 550, 1100, 1700, 2400], borderColor: slate, backgroundColor: slate, tension: 0.25, borderWidth: 2.5, pointRadius: 4 },
+        { label: 'Base', data: [420, 1550, 3100, 4600, 6200], borderColor: pair, backgroundColor: pair, tension: 0.25, borderWidth: 3, pointRadius: 5 },
+        { label: 'Bull', data: [800, 2800, 5500, 8800, 13000], borderColor: green, backgroundColor: green, tension: 0.25, borderWidth: 2.5, pointRadius: 4 }
+      ]
+    },
+    options: commonOpts('Recurring revenue per year ($K)')
+  });
+
+  new Chart(document.getElementById('chart-founder'), {
+    type: 'line',
+    data: {
+      labels: years,
+      datasets: [
+        { label: 'Bear', data: [20, 80, 220, 380, 540], borderColor: slate, backgroundColor: slate, tension: 0.25, borderWidth: 2.5, pointRadius: 4 },
+        { label: 'Base', data: [60, 280, 650, 1000, 1400], borderColor: pair, backgroundColor: pair, tension: 0.25, borderWidth: 3, pointRadius: 5 },
+        { label: 'Bull', data: [140, 540, 1200, 2000, 2900], borderColor: green, backgroundColor: green, tension: 0.25, borderWidth: 2.5, pointRadius: 4 }
+      ]
+    },
+    options: commonOpts('Per-founder corps income ($K/yr)')
+  });
+
+  new Chart(document.getElementById('chart-vs-corps'), {
+    type: 'line',
+    data: {
+      labels: years,
+      datasets: [
+        { label: 'The Corps (base, recurring)', data: [265, 760, 1565, 2170, 2820], borderColor: corps, backgroundColor: corps, tension: 0.25, borderWidth: 3, pointRadius: 5, borderDash: [6, 4] },
+        { label: 'Builder Pair (base, recurring)', data: [420, 1550, 3100, 4600, 6200], borderColor: pair, backgroundColor: pair, tension: 0.25, borderWidth: 3, pointRadius: 5 }
+      ]
+    },
+    options: commonOpts('Recurring revenue, base case ($K)')
+  });
+
+  new Chart(document.getElementById('chart-cumulative'), {
+    type: 'line',
+    data: {
+      labels: years,
+      datasets: [
+        { label: 'Corps cumulative per-founder', data: [25, 105, 355, 855, 1555], borderColor: corps, backgroundColor: corps, tension: 0.25, borderWidth: 3, pointRadius: 5, borderDash: [6, 4] },
+        { label: 'Builder Pair cumulative per-founder', data: [60, 340, 990, 1990, 3390], borderColor: pair, backgroundColor: pairLight, fill: true, tension: 0.25, borderWidth: 3, pointRadius: 5 }
+      ]
+    },
+    options: commonOpts('Cumulative per-founder income ($K)')
+  });
+}
+</script>
+<script src="/script.js"></script>
+</body>
+</html>
