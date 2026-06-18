@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coastal Boat Works &mdash; The Reality Check</title>
+<style>
+  :root{
+    --navy:#0d2b45; --navy2:#11395c; --teal:#1d7a8c;
+    --sand:#f4efe6; --ink:#1b2733; --muted:#5d6b7a; --line:#dde3ea;
+    --green:#2e8b57; --amber:#d99100; --rust:#b8541a; --purple:#6b3fb0; --red:#c0392b;
+    --corps:#a83232; --corps2:#8a2828; --corps-cream:#fdf8ee; --corps-deep:#5a1818;
+    --slate:#455a64; --slate-deep:#263238;
+    --card:#ffffff;
+    --shadow:0 1px 3px rgba(13,43,69,.08),0 6px 18px rgba(13,43,69,.06);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--sand);line-height:1.6;font-size:15.5px}
+  header.hero{background:linear-gradient(135deg,var(--slate-deep),var(--corps));color:#fff;padding:38px 28px 32px}
+  header.hero .wrap{max-width:1080px;margin:0 auto}
+  header.hero h1{margin:0 0 10px;font-size:32px;letter-spacing:.4px}
+  header.hero .lede{margin:0;opacity:.95;font-size:15.5px;max-width:840px}
+  header.hero .crumb{font-size:12.5px;opacity:.85;margin-bottom:8px}
+  header.hero .crumb a{color:#f3d4d4;text-decoration:none;margin-right:6px}
+  header.hero .crumb a:hover{color:#fff;text-decoration:underline}
+  header.hero .stamp{display:inline-block;font-size:11.5px;letter-spacing:2px;font-weight:700;padding:3px 10px;border:1.5px solid #f3d4d4;border-radius:3px;color:#f3d4d4;margin-bottom:12px;text-transform:uppercase}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  nav.tabs{position:sticky;top:0;z-index:50;background:var(--navy);display:flex;flex-wrap:wrap;gap:2px;
+    padding:0 12px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+  nav.tabs button{background:transparent;color:#cfe0ec;border:0;padding:13px 14px;font-size:13.5px;
+    cursor:pointer;border-bottom:3px solid transparent;font-weight:600;white-space:nowrap}
+  nav.tabs button:hover{color:#fff}
+  nav.tabs button.active{color:#fff;border-bottom-color:var(--corps)}
+  section.panel{display:none;padding:28px 0 60px}
+  section.panel.active{display:block}
+  h2{font-size:23px;margin:6px 0 6px;color:var(--navy)}
+  h3{font-size:17px;color:var(--navy2);margin:24px 0 8px}
+  h4{font-size:14.5px;color:var(--navy2);margin:14px 0 6px}
+  .sub{color:var(--muted);font-size:14.5px;margin:0 0 18px;max-width:820px}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+  .callout{background:linear-gradient(135deg,var(--slate-deep),var(--corps));color:#fff;border-radius:12px;padding:22px 26px;margin:18px 0}
+  .callout.dark{background:linear-gradient(135deg,#1b2733,var(--corps-deep))}
+  .callout.slate{background:linear-gradient(135deg,var(--slate-deep),var(--slate));color:#fff}
+  .callout h3{color:#fff;margin:0 0 8px;font-size:18px}
+  .callout p{margin:6px 0;font-size:14.5px;opacity:.96}
+  .warn{background:#fdf3e3;border:1px solid #f0d8a8;border-radius:10px;padding:14px 18px;font-size:13.5px;margin:14px 0}
+  .warn b{color:var(--amber)}
+  .red{background:#fdecea;border:1px solid #f3c9c3;border-radius:10px;padding:14px 18px;font-size:13.5px;margin:14px 0}
+  .cream{background:var(--corps-cream);border:1px solid #f0e1c4;border-radius:12px;padding:20px 24px;margin:16px 0}
+  ul.clean{font-size:14.5px;padding-left:20px} ul.clean li{margin:8px 0}
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;
+    font-size:13.5px;margin:12px 0;box-shadow:var(--shadow)}
+  thead th{background:var(--navy);color:#fff;text-align:left;padding:11px 14px;font-weight:600;font-size:12.5px}
+  tbody td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr:hover{background:#f7fafc}
+  td.term{font-weight:700;color:var(--navy);width:180px}
+  td.num{font-weight:700;color:var(--corps);width:80px;text-align:right;font-variant-numeric:tabular-nums}
+  .pro{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 20px;box-shadow:var(--shadow);margin:12px 0;border-left:4px solid var(--green)}
+  .pro .ttl{font-weight:700;color:var(--green);font-size:15px;margin-bottom:6px}
+  .pro p{margin:6px 0;font-size:14px}
+  .con{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 20px;box-shadow:var(--shadow);margin:12px 0;border-left:4px solid var(--corps)}
+  .con .ttl{font-weight:700;color:var(--corps);font-size:15px;margin-bottom:6px}
+  .con p{margin:6px 0;font-size:14px}
+  .selfcheck{background:var(--card);border:2px solid var(--amber);border-radius:12px;padding:18px 22px;margin:14px 0;border-left:6px solid var(--amber)}
+  .selfcheck h4{margin:0 0 8px;color:var(--rust);font-size:15.5px}
+  .selfcheck p{margin:6px 0;font-size:14px}
+  .selfcheck .q{font-style:italic;color:var(--navy);font-size:14.5px;margin:8px 0}
+  blockquote{border-left:4px solid var(--corps);background:var(--corps-cream);margin:14px 0;padding:14px 20px;border-radius:0 8px 8px 0;color:var(--ink);font-size:15px;font-style:italic}
+  .pillrow{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+  .pill{font-size:11.5px;background:#eef3f7;color:var(--navy2);padding:3px 10px;border-radius:20px;font-weight:600}
+  .pill.corps{background:#fbeaea;color:var(--corps)}
+  .pill.green{background:#e6f6ec;color:var(--green)}
+  .pill.warn{background:#fdf3e3;color:var(--amber)}
+  .pill.slate{background:#e0e7ea;color:var(--slate-deep)}
+  .probbar{display:grid;grid-template-columns:180px 1fr 80px;gap:10px;align-items:center;margin:8px 0;font-size:13.5px}
+  .probbar .lbl{font-weight:700;color:var(--navy)}
+  .probbar .bar{background:#eef3f7;border-radius:6px;height:24px;position:relative;overflow:hidden}
+  .probbar .fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--slate),var(--corps));border-radius:6px}
+  .probbar .pct{font-weight:700;color:var(--corps);text-align:right;font-variant-numeric:tabular-nums}
+  footer{padding:28px 0 50px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);margin-top:24px}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+  .version-tag{font-variant-numeric:tabular-nums}
+  @media(max-width:860px){.twocol,.threecol{grid-template-columns:1fr}thead th{position:static}
+    table{display:block;overflow-x:auto;white-space:nowrap}.probbar{grid-template-columns:1fr;gap:4px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="../">&larr; hub</a>&middot;<a href="../landscape/">landscape</a>&middot;<a href="../the-partnership/">partnership</a>&middot;<a href="../the-brotherhood/">brotherhood</a>&middot;<a href="../the-corps/">the corps</a>&middot;<a href="../magnolia-wildcard/">magnolia wildcard</a>&middot;<a href="../the-roofing-vertical/">roofing vertical</a>&middot;<a href="../discovery/">discovery</a></div>
+    <div class="stamp">REALITY CHECK &middot; BEFORE THE CONVERSATIONS HAPPEN</div>
+    <h1>The Reality Check</h1>
+    <p class="lede">Justin is 46. Jeremy is 43. Joey is in the same band. None of the three of us are getting younger. The corps is a multi-year commitment built on a triangle of family relationships that have existed our whole lives but have never tried to share a business. This page is the honest read before the conversations happen. Not the marketing version. Not the upside scenario. The version that names what&#39;s hard, what could go wrong, what we have to be honest about, and whether the math still works after all of it. If reading this makes you want to do it anyway, that&#39;s a real signal. If reading this makes you want to walk away, that&#39;s also a real signal. Both answers are okay.</p>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button class="active" data-p="premise">The Premise</button>
+  <button data-p="works">&starf; Why It Works</button>
+  <button data-p="doesnt">&starf; Why It Doesn&#39;t</button>
+  <button data-p="probability">The Probability Math</button>
+  <button data-p="honest">The Honest Read</button>
+</nav>
+
+<div class="wrap">
+
+<!-- PREMISE -->
+<section class="panel active" id="p-premise">
+  <h2>What this page is asking</h2>
+  <p class="sub">Every other doc on this hub asks variations of &ldquo;how could the corps work?&rdquo;, &ldquo;what structures make sense?&rdquo;, &ldquo;what would we ship?&rdquo;. Useful questions, all answered. This one asks a different question: <b>even if all the structures make sense and all the products would ship, is the three-cousin formation actually a thing we should bet years of our lives on?</b> That&#39;s a separate question from feasibility. It&#39;s a question about what we owe ourselves and each other in our 40s, knowing what we know about the time we have left.</p>
+
+  <div class="callout slate">
+    <h3>The three concurrent facts that make this conversation urgent</h3>
+    <p><b>Fact 1.</b> All three of us are mid-career service workers. Justin trades cognitive hours for software dollars. Jeremy trades physical hours for marine refit dollars. Joey trades both for roofing operator dollars. None of these income streams have recurring tail. None of them survive the body or the attention span aging out.</p>
+    <p style="margin-top:8px"><b>Fact 2.</b> All three of us are in the same age band (43-46) at the same moment. This is the rare window where collective action is possible because we&#39;re all simultaneously running out of decades and none of us is so far ahead the others can&#39;t catch up. Five years from now this conversation is harder. Ten years from now it&#39;s a different conversation entirely.</p>
+    <p style="margin-top:8px"><b>Fact 3.</b> The corps shape we&#39;ve designed only works inside a family-strength trust net. The smart contract ledger, the cross-vertical workforce, the founder asymmetries we&#39;ve already named &mdash; all of it relies on people who&#39;ve already chosen to be in each other&#39;s lives. The corps cannot be built with strangers; the structural choices we&#39;ve made are intentionally underspecified in ways that require pre-existing trust to hold them together. That&#39;s why CCC Boys works as a concept and why partnership-with-a-stranger doesn&#39;t. But it also means the failure modes are family failure modes, which have different cost profiles than business failure modes.</p>
+  </div>
+
+  <h3>What this page does</h3>
+  <ul class="clean">
+    <li><b>Why It Works</b>: the real structural and personal reasons the three of us are an unusually good fit for this. Not platitudes. Specific advantages over any random three-person founding team.</li>
+    <li><b>Why It Doesn&#39;t</b>: the real failure modes. Not platitudes. The specific ways three cousins in their 40s building a multi-vertical corps over years could collapse, with cost estimates for each.</li>
+    <li><b>The Probability Math</b>: probability-weighted outcomes. What&#39;s actually most likely to happen if we start tomorrow. The famous outcome and the boring outcome and the bad outcome, with honest percentages.</li>
+    <li><b>The Honest Read</b>: Justin&#39;s self-check questions. The recommendation. The one thing that has to be true for any of this to be worth it.</li>
+  </ul>
+
+  <div class="cream">
+    <p style="margin-top:0"><b>Standing caveats.</b> Joey hasn&#39;t agreed to anything. Jeremy hasn&#39;t agreed to anything. Both spouses haven&#39;t been consulted. The corps doesn&#39;t exist as infrastructure yet. The kit machine is mid-launch. Magnolia Roofing is running fine without us. Coastal Boat Works is running into the ground without us. This page assumes all of the conversations we&#39;ve been designing for would actually happen as designed; they probably won&#39;t. The point of the reality check isn&#39;t to model exactly what will happen; it&#39;s to make sure we know the shape of what we&#39;re asking for before we ask.</p>
+  </div>
+
+  <blockquote>If you read the rest of this page and the upside still feels worth the downside, that&#39;s the version of yes that matters. Anything less and we should stay in the two-track plan with Jeremy and let Joey run Magnolia.</blockquote>
+</section>
+
+<!-- WORKS -->
+<section class="panel" id="p-works">
+  <h2>Why the three-cousin formation works</h2>
+  <p class="sub">Real structural reasons, not warm-and-fuzzy ones. Each of these is something a random three-person team would have to fake or build from scratch; we have them by virtue of being who we are.</p>
+
+  <div class="pro"><div class="ttl">+ Pre-existing trust net at family strength</div>
+    <p>Three cousins on the Connolley line, lifetimes of context. We don&#39;t have to build trust by earning it through projects; we already trust each other on the dimensions that matter (showing up, not bailing, telling the truth in family conversations). That&#39;s usually the bottleneck for founder teams. We get past it on Day 0.</p>
+    <p><b>The honest qualifier:</b> we trust each other as <i>cousins</i>, not as <i>business partners</i>. That&#39;s related but not the same. Cousins don&#39;t default to expecting each other to make payroll on time. Some of this transfers, not all of it.</p>
+  </div>
+
+  <div class="pro"><div class="ttl">+ Three vectors of bias cancel out better than two</div>
+    <p>In a two-founder partnership, when founders disagree they have to either persuade each other or override each other. Both options breed resentment. Three founders means majority votes are possible without anyone feeling silenced. Bad ideas die faster with three vs. two because two voices can call out the third&#39;s blind spot. Joey can break a Justin-Jeremy deadlock; Jeremy can break a Justin-Joey deadlock; Justin can break a Jeremy-Joey deadlock. Three is the smallest stable governance number for non-hierarchical org structures, and that&#39;s well-established in collective ownership literature.</p>
+  </div>
+
+  <div class="pro"><div class="ttl">+ Genuinely complementary domains, not pretend ones</div>
+    <p>Most three-person founding teams have one technical, one business, one design. Real overlap, fake separation. Ours is genuinely non-overlapping: <b>Justin</b> brings software, product, governance, AI ops, kit-machine distribution. <b>Jeremy</b> brings craft mastery, marine vertical, EVA decking IP, mentorship credibility, ground-truth craft ethics. <b>Joey</b> brings operator playbook, RE-agent partnership templates, multi-crew management, roofing vertical, Columbia logistics presence. None of us can do the others&#39; jobs even badly. That forces real decision-rights split because consolidation isn&#39;t an option.</p>
+  </div>
+
+  <div class="pro"><div class="ttl">+ All three are facing the same retirement cliff math simultaneously</div>
+    <p>We don&#39;t have to convince each other the cliff is real. The math is convincing each of us independently. That means the corps doesn&#39;t need a sales pitch internally &mdash; the structural answer to a problem each of us already privately knows we have. Compare to a startup where one founder believes the mission and the others go along. Here the mission IS the structural answer to each founder&#39;s personal problem. Aligned incentives all the way down without trying.</p>
+  </div>
+
+  <div class="pro"><div class="ttl">+ The Connolley genealogy is real, not invented</div>
+    <p>Justin&#39;s mother and Joey&#39;s parent are siblings on the Connolley line. The corps&#39;s name (CCC Boys) was chosen for its 1933 Civilian Conservation Corps echo and it turned out to also literally mean Connolley Cousins Corps. A name that&#39;s legitimately ambiguous between &ldquo;builders&#39; corps&rdquo; and &ldquo;our family&rdquo; is a recruiting moat for every future member who reads the founder story. Future apprentices will want to be part of an organization with an actual origin story, not a generated one. That&#39;s a marketing advantage we didn&#39;t pay for and competitors can&#39;t replicate.</p>
+  </div>
+
+  <div class="pro"><div class="ttl">+ Family backstop on conflict</div>
+    <p>When two business partners fight, they go to a mediator. When two cousins fight, the family is already there. Aunts, parents, grandparents (while we have them) all create pressure to resolve rather than escalate. Two-founder business breakups are common and clean; three-cousin business breakups are rarer because the social cost is higher and the people who would mediate are already in your life. That cuts both ways &mdash; family pressure can also keep us in a bad deal too long &mdash; but on balance it&#39;s a stabilizer.</p>
+  </div>
+
+  <div class="pro"><div class="ttl">+ Three independent business and family bank accounts</div>
+    <p>Three founder households means three independent income streams during the corps build. If Justin&#39;s family needs a new roof or Jeremy&#39;s family hits a medical event, the corps doesn&#39;t collapse because the other two are still generating personal income from their primary businesses (Justin&#39;s software work, Jeremy&#39;s shop, Joey&#39;s shop). A two-founder corps is much more fragile to a single household crisis.</p>
+  </div>
+
+  <div class="pro"><div class="ttl">+ Multi-vertical workforce is structurally impossible alone</div>
+    <p>The year-round Colleton-anchored cross-vertical apprenticeship model only works if there are two distinct verticals (marine + roofing) under one ledger and one workforce. Justin alone can&#39;t build it (no craft). Jeremy alone can&#39;t build it (no roofing). Joey alone can&#39;t build it (no marine, and his shop is single-trade). The structural advantage only exists in this specific three-person formation. That&#39;s rare and worth weight.</p>
+  </div>
+
+  <div class="pro"><div class="ttl">+ Mutual mentoring inside the founder triad</div>
+    <p>Joey can teach Jeremy about running crews and quoting. Jeremy can teach Joey about deep craft and customer-product fit. Justin can teach both about systems thinking, productization, and software leverage. Three-way knowledge transfer happens automatically because it&#39;s in everyone&#39;s economic interest. The corps gets sharper because the founders sharpen each other. Two-founder teams have less of this because each only has one teacher.</p>
+  </div>
+
+  <div class="pro"><div class="ttl">+ The smart contract ledger is novel and durable</div>
+    <p>Once built, the ledger pays founders for as long as past products sell. Real Infrastructure-axis asset that compounds. Most service business owners never get to this; they trade hours for dollars until their bodies stop. Building this once and benefiting from it for 30+ years is the single biggest structural shift available to mid-career service workers. The three-founder corps is the rare vehicle that has both the labor force to ship product and the technical capacity to build the ledger.</p>
+  </div>
+
+  <div class="pro"><div class="ttl">+ No outside shareholders means aligned incentives forever</div>
+    <p>What&#39;s good for the corps is what&#39;s good for the founders. No quarterly board pressure, no exit timeline imposed by capital, no fiduciary loyalty conflicts. This sounds small and it isn&#39;t. The vast majority of small-business founder disputes trace back to misaligned incentives with capital. We don&#39;t have that problem because we don&#39;t take outside capital. Joey&#39;s growth-stage roofing business has more typical capital pressure than the corps will; that&#39;s an asymmetric advantage for the corps relative to either founder&#39;s primary business.</p>
+  </div>
+
+  <div class="pro"><div class="ttl">+ Apprentice impact is morally clear and locally needed</div>
+    <p>Colleton County is losing trade workers. That&#39;s not a story we&#39;re inventing for the brand; it&#39;s verifiable demographic reality. The corps&#39;s value to the place it operates in is unambiguous in a way most startups never get. That clarity matters to the founders (we&#39;re doing something useful), to recruits (they want to be part of it), and to funders (grant applications write themselves). Hard to overstate how rare moral clarity is in business and how energizing it is when you have it.</p>
+  </div>
+
+  <h3 style="margin-top:30px">What &ldquo;works&rdquo; means in this section, said plainly</h3>
+  <div class="cream">
+    <p style="margin-top:0">Twelve real advantages, none of them platitudes. Most three-person founding teams have to manufacture the equivalent of two or three of these through effort, paperwork, or values statements. We have them by virtue of who we are and what we&#39;re building, without any effort beyond showing up. That&#39;s a real edge. Not unlimited, not magic, but real.</p>
+    <p style="margin-top:10px"><b>But</b> none of these advantages are load-bearing alone. Twelve points of edge can still collapse if one or two of the failure modes on the next tab land hard. The pros side of this is necessary but not sufficient. That&#39;s why we read the cons side carefully too.</p>
+  </div>
+</section>
+
+<!-- DOESN'T -->
+<section class="panel" id="p-doesnt">
+  <h2>Why the three-cousin formation might not work</h2>
+  <p class="sub">Real failure modes, with honest cost estimates. Each of these has destroyed real businesses and real families before. Naming them in advance doesn&#39;t prevent them; pretending they don&#39;t exist guarantees them.</p>
+
+  <div class="con"><div class="ttl">- Asymmetric founder labor in Year 1, building toward resentment</div>
+    <p>Justin will end up doing 60-70% of the early founder work. Software builds, governance paperwork, ledger architecture, DOL Registered Apprenticeship filings, corps formation legal, kit-machine integration, distribution. Jeremy is running Coastal Boat Works. Joey is running Magnolia. Both will contribute nights and weekends and weekend trips. Justin&#39;s contribution will be daily and structural. When Justin asks for &ldquo;just a few more hours this week,&rdquo; both Jeremy and Joey will say &ldquo;I have a business to run.&rdquo; They&#39;re not wrong. But the asymmetry compounds.</p>
+    <p><b>Cost estimate:</b> if not actively managed, this kills the corps in Month 9-15 when Justin burns out or the others tune out. <b>Mitigation:</b> name it on Day 0 in the founder agreement, set explicit minimum hour commitments for each founder, build a quarterly check-in on labor split. Doesn&#39;t eliminate the issue, makes it visible.</p>
+  </div>
+
+  <div class="con"><div class="ttl">- The capital ask in Year 0-2 feels asymmetric to whoever is putting it in</div>
+    <p>Building the corps requires money. Conservative estimate: $50-150k in the first 18 months for legal, software infrastructure, depot pre-construction, DOL consulting, brand and marketing, insurance, equipment. Justin&#39;s portfolio is already committed to Kit Machine. Jeremy&#39;s capital is his retirement (per Brotherhood). Joey&#39;s capital is growth capital for Magnolia and the Lowcountry expansion. Each &ldquo;yes I&#39;ll put in $X&rdquo; feels asymmetric to the person putting it in because they&#39;re each comparing it to their own alternatives, not to each other&#39;s.</p>
+    <p><b>Cost estimate:</b> if the capital ask isn&#39;t aligned with the labor split AND the ledger position, somebody&#39;s feeling exploited within 12 months. <b>Mitigation:</b> match capital and labor and ledger position transparently, written down, with an explicit formula. Founder agreement should specify that capital is one of three founder contributions and is convertible to ledger position not equity.</p>
+  </div>
+
+  <div class="con"><div class="ttl">- Three spouses, three different relationships to risk</div>
+    <p>Each of us has a spouse. Each spouse has a different baseline tolerance for &ldquo;my partner is now part of a multi-year speculative business venture with relatives.&rdquo; One spouse who says &ldquo;this is taking too much of you&rdquo; can functionally veto a founder&#39;s commitment, and there&#39;s no version of the founder agreement that fixes that. Spousal resistance is real, often quiet, often building over months, and routinely fatal to family-business ventures.</p>
+    <p><b>Cost estimate:</b> any one of three spouses turning against the corps probably ends the corps. Three independent failure points. <b>Mitigation:</b> mandatory both-spouses-on-board conversation Day 0, written acknowledgment, ongoing spouse-inclusion at quarterly check-ins. Not a guarantee.</p>
+  </div>
+
+  <div class="con"><div class="ttl">- Joey&#39;s Magnolia outperforms the corps&#39;s roofing vertical in Year 1-2</div>
+    <p>Joey&#39;s Lowcountry expansion will book real revenue in months 1-12 with or without the corps. The corps&#39;s roofing vertical takes 6-12 months to ship its first product. If Magnolia is booking $500k of new Lowcountry revenue while the corps&#39;s shared roofing books $0, Joey has every economic reason to disengage from the corps and focus on his own shop. The math will be obvious to him and his spouse and his accountant.</p>
+    <p><b>Cost estimate:</b> Joey reducing commitment to part-time-only at Month 9-15 is the most likely path here. <b>Mitigation:</b> Joey&#39;s ledger position should pay out quickly on early roofing-vertical products to give him a near-term economic signal that the corps is real. Roof Claim Kit and Drone Assessment are the products designed to ship inside 90 days for exactly this reason.</p>
+  </div>
+
+  <div class="con"><div class="ttl">- Jeremy burns out faster than Track A relief arrives</div>
+    <p>Jeremy is currently exhausted. The corps build adds meetings, training requirements, decisions, paperwork, founder commitments. Track A relief (Edge stack handling his back office, rate hike, dropping bottom 20% of jobs) takes 6-12 months to fully kick in. If the corps build adds even 4 hours/week of cognitive load while Track A is still being built, Jeremy could quit the corps before relief arrives. He&#39;s the founder most at risk of bailing for the right reasons.</p>
+    <p><b>Cost estimate:</b> if Jeremy bails inside Month 9, the corps becomes Justin-solo-founder + Joey-as-member-maybe. The marine vertical dies. <b>Mitigation:</b> Track A has to start <i>before</i> founder-level corps obligations land on Jeremy. Sequence is non-negotiable: shop relief first, corps commitment second, in that order. Period.</p>
+  </div>
+
+  <div class="con"><div class="ttl">- Decision-rights drift toward Justin over time</div>
+    <p>Justin owns software and governance, which means in Year 1 he&#39;s making more decisions because that&#39;s where the work is. By Year 2, when Jeremy&#39;s and Joey&#39;s verticals have hired apprentices and their domains have decisions to make, Justin&#39;s natural style is to &ldquo;help&rdquo; by suggesting answers. That&#39;s how brothers fight. That&#39;s how cousins fight. Justin won&#39;t notice he&#39;s doing it because in his world he&#39;s being helpful.</p>
+    <p><b>Cost estimate:</b> probably costs the corps one founder by Year 3 if not addressed. <b>Mitigation:</b> explicit domain ownership in writing, &ldquo;Justin doesn&#39;t override Jeremy on marine or Joey on roofing&rdquo; as a hard rule, founder quarterly retros that include the question &ldquo;has anyone overridden someone else&#39;s domain in the last 90 days.&rdquo;</p>
+  </div>
+
+  <div class="con"><div class="ttl">- The smart contract ledger formula will feel wrong to at least one founder</div>
+    <p>Justin will build the ledger. Whatever the formula is (e.g. 30% Idea / 30% Implementation / 40% Infrastructure), at least one of three founders will privately feel it shortchanges their contribution. Jeremy might think Implementation is undervalued. Joey might think Operator playbook isn&#39;t accounted for. Justin might think Infrastructure (i.e. building all the software) is undervalued. Quiet resentment around the formula is corrosive over years.</p>
+    <p><b>Cost estimate:</b> probably costs the corps one founder by Year 4-5 if the formula is locked and never revisited. <b>Mitigation:</b> annual ledger formula review with full transparency. Treat it as a living document. Adjust if there&#39;s consensus, accept the friction of the conversation as the cost of transparency.</p>
+  </div>
+
+  <div class="con"><div class="ttl">- One of three marriages dissolves in 4 years</div>
+    <p>Statistical reality: the 4-year divorce rate in the US for our age band is in the 8-12% range per couple. With three couples that&#39;s a 22-33% probability that <i>at least one</i> marriage ends inside the corps&#39;s critical 4-year vesting window. Divorce settlements can demand equity liquidation. Smart contracts and the corps&#39;s exit terms handle this better than typical LLCs but don&#39;t make it painless. The remaining founders absorb both the emotional weight of supporting the affected family AND the structural shock of renegotiating ledger positions.</p>
+    <p><b>Cost estimate:</b> ~25% probability over 4 years. If it happens, costs 6-12 months of corps progress. <b>Mitigation:</b> the standard member exit terms already cover this on paper. In practice, the survivors of any divorce inside the corps need to give the affected founder time without holding the corps hostage. Hard to write down, real obligation.</p>
+  </div>
+
+  <div class="con"><div class="ttl">- One of three health events in 4 years</div>
+    <p>Three men in their mid-40s. Per-person, ~10-15% probability of a major health event (heart attack, cancer, accident, parent-care crisis) inside a 4-year window. Combined that&#39;s ~30-40% probability that at least one of the three founders faces a significant health event during the corps build. The corps&#39;s exit terms handle this on paper. In practice it&#39;s devastating and the corps loses a founder either temporarily or permanently.</p>
+    <p><b>Cost estimate:</b> ~35% probability over 4 years. Variable cost depending on which founder and how serious. <b>Mitigation:</b> founder life insurance funded by the corps (specifically term policies sufficient to cover ledger buyout from estate), founder health insurance as a corps benefit once cash flow allows, written incapacity protocols. None of this prevents the event; it just keeps the corps functional if it lands.</p>
+  </div>
+
+  <div class="con"><div class="ttl">- A Connolley elder dies during the corps build</div>
+    <p>Justin and Joey share aunts/uncles/grandparents on the Connolley line. Jeremy and Justin share parents. Two of three founders distracted by family grief in the same week is much harder than one. Realistic probability of at least one Connolley-line death inside a 4-year window is 50%+. Different from health events because it affects multiple founders at once.</p>
+    <p><b>Cost estimate:</b> hard to estimate in advance, easily 2-4 weeks of corps progress lost. <b>Mitigation:</b> no operational mitigation. We pause the corps and be cousins.</p>
+  </div>
+
+  <div class="con"><div class="ttl">- One cousin secretly disagrees with the four rules</div>
+    <p>The corps&#39;s [[four rules]] (Golden Rule, Don&#39;t Exploit, Be Kind, Be Thoughtful) are real constraints. If Joey or Jeremy quietly thinks &ldquo;no outside capital is naive&rdquo; or &ldquo;the wage-first ordering is left-coded&rdquo; or &ldquo;I&#39;ll honor the rules when convenient,&rdquo; they go along publicly while bleeding the corps from within. The hardest version of this isn&#39;t open disagreement; it&#39;s shallow agreement with private reservations that surface during the first hard decision.</p>
+    <p><b>Cost estimate:</b> ~15-25% probability that at least one of three has a meaningful ideological disagreement with the rules they didn&#39;t fully voice. If untreated, costs the corps its identity by Year 2-3. <b>Mitigation:</b> long conversations about the rules before signing, with explicit permission to disagree publicly. The founder agreement explicitly references the rules as load-bearing, not aspirational.</p>
+  </div>
+
+  <div class="con"><div class="ttl">- Apprentice management is harder than the founders realize</div>
+    <p>Jeremy is a craftsman, not a manager. Joey runs his own crews well but in his own style. Managing corps apprentices across two verticals (different rules, different mentors, different oversight) is harder than any of the three founders has done before. There&#39;s real risk of apprentice mistreatment or turnover that violates the corps&#39;s [[four rules]] from within, and the violators wouldn&#39;t realize they were violating anything.</p>
+    <p><b>Cost estimate:</b> high probability of at least one apprentice-management incident by Year 2 that requires founder intervention. Lower probability of one that&#39;s actually corps-ending. <b>Mitigation:</b> the Contributor tier with curriculum and HR consulting becomes more important. Justin&#39;s PhD friend would help here. We don&#39;t try to manage apprentices well; we hire someone who already knows how.</p>
+  </div>
+
+  <div class="con"><div class="ttl">- By Year 7-10, we&#39;re aging out of doing the founding-level work</div>
+    <p>In year 7, Justin is 53. Jeremy is 50. Joey is in the same band. None of us can do the physical work we&#39;re doing now at the same intensity. Justin&#39;s focus span at 53 isn&#39;t what it is at 46. The corps has to have shipped enough recurring revenue and developed enough corps members by then to carry us. If it hasn&#39;t, the cliff arrives anyway and the corps was just a slower path to the same place.</p>
+    <p><b>Cost estimate:</b> this is the worst-case failure. Spend 7-10 years building, end up at the same cliff with less time to recover. <b>Mitigation:</b> the only mitigation is shipping. Year 1-3 has to produce real recurring revenue from at least 3-4 of the seven roofing-vertical products, plus marine-vertical first product, plus depot tipping revenue. Without that, the corps is taking us TO the cliff, not past it.</p>
+  </div>
+
+  <h3 style="margin-top:30px">What &ldquo;doesn&#39;t work&rdquo; looks like, ranked by likelihood</h3>
+  <table>
+    <thead><tr><th>Failure mode</th><th>~Probability (4 yrs)</th><th>Severity</th></tr></thead>
+    <tbody>
+      <tr><td class="term">Connolley elder dies during build</td><td class="num">~50-60%</td><td>Pause-then-resume</td></tr>
+      <tr><td class="term">At least one founder health event</td><td class="num">~30-40%</td><td>Major if serious</td></tr>
+      <tr><td class="term">At least one marriage dissolves</td><td class="num">~22-33%</td><td>Major</td></tr>
+      <tr><td class="term">Joey reduces commitment to part-time</td><td class="num">~40-50%</td><td>Moderate (vertical thins)</td></tr>
+      <tr><td class="term">Asymmetric founder labor causes resentment</td><td class="num">~50% if unmanaged</td><td>Variable</td></tr>
+      <tr><td class="term">Jeremy bails before Track A relief lands</td><td class="num">~15-25%</td><td>Corps-ending for marine vertical</td></tr>
+      <tr><td class="term">Decision-rights drift toward Justin</td><td class="num">~40% if unmanaged</td><td>Costs one founder by Year 3</td></tr>
+      <tr><td class="term">Ledger formula resentment</td><td class="num">~30% locked, ~10% revisited</td><td>Costs one founder by Year 4-5</td></tr>
+      <tr><td class="term">Hidden disagreement with four rules</td><td class="num">~15-25%</td><td>Corps identity erosion</td></tr>
+      <tr><td class="term">Apprentice management incident</td><td class="num">~50%</td><td>Usually fixable</td></tr>
+      <tr><td class="term">Year 7-10 we haven&#39;t shipped enough</td><td class="num">~30-40%</td><td>The worst-case outcome</td></tr>
+    </tbody>
+  </table>
+
+  <div class="red">
+    <b>The cumulative read.</b> The probability of <i>at least one</i> meaningful failure mode hitting during the 4-year build is essentially 100%. The question isn&#39;t whether anything will go wrong; it&#39;s how many things go wrong, how serious, and whether the corps is built to absorb them or not. The founder agreement&#39;s job is to make the corps survive 2-3 of these landing without collapsing. It cannot prevent the events themselves.
+  </div>
+</section>
+
+<!-- PROBABILITY -->
+<section class="panel" id="p-probability">
+  <h2>The probability-weighted reality of starting tomorrow</h2>
+  <p class="sub">Honest read on what&#39;s most likely to actually happen if Justin starts the conversations this week. Five outcomes, with cumulative percentages summing to 100%. The famous outcome is real but rare; the boring outcome is much more likely; the bad outcome has its own real share.</p>
+
+  <h3>Five scenarios, weighted</h3>
+
+  <div class="probbar">
+    <div class="lbl">Three-founder corps</div>
+    <div class="bar"><div class="fill" style="width:15%"></div></div>
+    <div class="pct">~15%</div>
+  </div>
+  <p class="sub" style="margin-bottom:4px"><b>What it means:</b> Jeremy AND Joey both say yes to founder-tier commitment. Three-cousin corps with two verticals from Day 0. Smart contract ledger, Colleton apprentices, Lowcountry roofing crew, Columbia depot. The famous outcome.</p>
+  <p class="sub" style="margin-bottom:18px"><b>Why this percentage:</b> requires Joey to find the corps creed personally interesting enough to dilute his Magnolia focus AND Jeremy to commit founder-tier despite burnout. Both decisions are non-default for the people making them. Lots can derail it.</p>
+
+  <div class="probbar">
+    <div class="lbl">Two founder + 1 member</div>
+    <div class="bar"><div class="fill" style="width:30%"></div></div>
+    <div class="pct">~30%</div>
+  </div>
+  <p class="sub" style="margin-bottom:4px"><b>What it means:</b> Justin and Jeremy as co-founders. Joey joins as member after the corps is real. Roofing vertical exists but lighter without Joey as founder. Depot may or may not happen.</p>
+  <p class="sub" style="margin-bottom:18px"><b>Why this percentage:</b> Jeremy yes is the highest-probability single outcome (his pain is acute, geography solved, family). Joey at member-tier is more realistic than founder-tier because his Magnolia growth gives him plenty to focus on. This is the modal expected outcome.</p>
+
+  <div class="probbar">
+    <div class="lbl">Two founder + 1 ally</div>
+    <div class="bar"><div class="fill" style="width:20%"></div></div>
+    <div class="pct">~20%</div>
+  </div>
+  <p class="sub" style="margin-bottom:4px"><b>What it means:</b> Justin + Jeremy as co-founders. Joey stays purely informal, exchanges referrals, possibly buys a Roofing-Shop OS subscription, but isn&#39;t inside the corps. Roofing vertical doesn&#39;t exist as a corps product; only Marine and the kit/depot infrastructure go forward.</p>
+  <p class="sub" style="margin-bottom:18px"><b>Why this percentage:</b> Joey&#39;s Magnolia is doing fine. The most likely Joey-no answer is a polite &ldquo;cool, refer business to me, I&#39;ll do the same.&rdquo; This is the realistic Joey-no scenario, not Joey-actively-against.</p>
+
+  <div class="probbar">
+    <div class="lbl">Justin solo + Jeremy member</div>
+    <div class="bar"><div class="fill" style="width:15%"></div></div>
+    <div class="pct">~15%</div>
+  </div>
+  <p class="sub" style="margin-bottom:4px"><b>What it means:</b> Jeremy doesn&#39;t commit to founder-tier (too burned out, spouse hesitant, or just not ready for the multi-year commitment). Joins as member instead. Justin is solo founder. Corps barely launches. Marine vertical proceeds but Justin is doing all the founder labor.</p>
+  <p class="sub" style="margin-bottom:18px"><b>Why this percentage:</b> Jeremy&#39;s burnout is the wildcard. Member-only is a real Jeremy answer that protects him without ending the corps idea. Solo-founder Justin is plausible but the corps will struggle to recruit member #3 without a craft-side founder.</p>
+
+  <div class="probbar">
+    <div class="lbl">Corps doesn&#39;t form, Brotherhood Track A/B only</div>
+    <div class="bar"><div class="fill" style="width:20%"></div></div>
+    <div class="pct">~20%</div>
+  </div>
+  <p class="sub" style="margin-bottom:4px"><b>What it means:</b> Jeremy chooses the two-track plan (services from Justin + SAFE into SCSO) instead of the corps. Joey runs Magnolia. Justin keeps the Kit Machine portfolio. The corps idea goes into a drawer. CCC Boys becomes a domain name we own and a story we never told.</p>
+  <p class="sub" style="margin-bottom:18px"><b>Why this percentage:</b> the two-track plan is genuinely the easier and faster option for Jeremy. He gets shop relief and SAFE upside without committing to a multi-year corps build. If he&#39;s exhausted enough, this is the rational choice.</p>
+
+  <h3>What the math says when you sum the rows</h3>
+  <div class="cream">
+    <ul class="clean">
+      <li><b>~65%</b> probability the corps exists in some form with at least 2 founders (rows 1+2+3)</li>
+      <li><b>~80%</b> probability the corps exists in any form including solo (rows 1+2+3+4)</li>
+      <li><b>~20%</b> probability the corps doesn&#39;t form (row 5)</li>
+      <li><b>~15%</b> probability the famous three-cousin outcome (row 1)</li>
+      <li><b>~45%</b> probability the roofing vertical exists as a corps product (Joey at founder or member; rows 1+2)</li>
+    </ul>
+  </div>
+
+  <h3>What this means for how to walk in</h3>
+  <p class="sub">Plan for the modal outcome (two founder + member), not the famous outcome. Build the corps&#39;s structure to be viable in the 2-founder + member version because that&#39;s most likely what we&#39;re actually building. Treat Joey-as-founder as upside that&#39;d be wonderful if it happens but not load-bearing.</p>
+
+  <div class="callout dark">
+    <h3>The decision rule, said plainly</h3>
+    <p>Justin should be willing to build the corps if the 2-founder version (with Jeremy + himself, Joey as member or ally) clears the bar. If the corps only works at three-founder strength, the math doesn&#39;t support starting. Three-founder strength is a 15% probability outcome, not a planning baseline.</p>
+    <p style="margin-top:8px">The two-track Brotherhood plan should be Justin&#39;s fallback if Jeremy says no to the corps at any tier. ~20% probability we&#39;re there in 6 months and that&#39;s fine. The Brotherhood plan is real and helps real people.</p>
+  </div>
+
+  <h3>Sequencing implication for the famous outcome</h3>
+  <p class="sub">The famous three-cousin outcome (15%) almost certainly requires this sequence: (1) Jeremy says yes to founder, (2) corps builds for 6 months and ships first marine product, (3) Joey conversation happens after corps has receipts and the genealogy story is real. Going to Joey on Day 0 with a hypothetical corps gets a hypothetical answer. The famous outcome lives downstream of the modal outcome existing first.</p>
+</section>
+
+<!-- HONEST -->
+<section class="panel" id="p-honest">
+  <h2>The honest read, from Psyduck to Justin</h2>
+  <p class="sub">Five self-check questions, then the recommendation, then the one thing that has to be true. This is the part you wrote the whole hub to get to. Don&#39;t skim it.</p>
+
+  <div class="selfcheck"><h4>Self-check 1: Do you believe the math, or do you want to believe the math because you&#39;re tired?</h4>
+    <p>The corps math (recurring revenue from past products, smart contract ledger, Year 5 you don&#39;t have to work full-time to maintain income) is real. The math is also very appealing to someone who&#39;s tired of trading hours for dollars. Both can be true. The question is whether your belief survives the part where the corps takes 4 years to deliver the relief you&#39;re hoping for and you might burn out worse during the build.</p>
+    <p class="q">If you&#39;d still believe this is the right move even if it required 4 more years of harder work first, the math is real to you. If you&#39;re partly hoping the corps starts paying you back in Month 6 because that&#39;s when you&#39;ll really need it, it&#39;s the hope talking.</p>
+  </div>
+
+  <div class="selfcheck"><h4>Self-check 2: Are you ready to be the de facto leader without ever being acknowledged as one?</h4>
+    <p>The corps&#39;s &ldquo;founders are members first&rdquo; rule means no founder is publicly above the others. But you started this. You designed the site. You drafted the ledger. You&#39;ll do the most early labor. Jeremy and Joey will defer to you on most big decisions because that&#39;s where the work is. You&#39;ll get the asymmetric blame if it fails and a smaller share of credit if it succeeds. That&#39;s the deal you&#39;re signing up for whether the founder agreement says so or not.</p>
+    <p class="q">Are you okay with that? Truly okay, not performatively okay? If yes, the leader-but-not-leader role is yours to fill. If you need acknowledgment, this structure will eat you alive and you should know that before starting.</p>
+  </div>
+
+  <div class="selfcheck"><h4>Self-check 3: Can you ask Jeremy and Joey to bet years of their lives on something you&#39;re designing?</h4>
+    <p>This is a heavy ask. Jeremy is your brother and he&#39;s exhausted. Joey is your cousin and his Magnolia is healthy. You&#39;re asking both to take a risk on the corps that&#39;s not symmetric to the risk you&#39;re taking, because you&#39;re less risk-averse than they are and the corps fits your strengths more than it fits theirs.</p>
+    <p class="q">Have you thought about what it would feel like to be Jeremy or Joey hearing this pitch from you? Have you steel-manned the version of them that says no? Are you comfortable with them saying no without it changing the family relationship? If any of those answers is no, the conversation will go badly and you should rehearse before having it.</p>
+  </div>
+
+  <div class="selfcheck"><h4>Self-check 4: Have you talked to your spouse?</h4>
+    <p>This is on the hub because most family-business ventures fail not because of business reasons but because of family reasons. Your spouse&#39;s relationship to the corps is load-bearing. Quiet spousal resistance becomes loud spousal resistance becomes corps collapse. The same is true for Jeremy and Joey. Three spouses, three quiet pressure systems, three failure points.</p>
+    <p class="q">Has your spouse read the hub? Do they understand the time, money, and emotional commitments? Do they know what you&#39;re asking of Jeremy&#39;s family and Joey&#39;s? Will they hold you accountable to the &ldquo;both spouses on board Day 0&rdquo; rule on the Brotherhood page? If not, the next conversation isn&#39;t with Jeremy at the dinner. It&#39;s with your spouse this week.</p>
+  </div>
+
+  <div class="selfcheck"><h4>Self-check 5: Are you ready for the corps to fail and the family to remain intact?</h4>
+    <p>~20% probability the corps doesn&#39;t form. ~30-40% probability significant failure modes hit during the build. The corps could fail and you could still have done something important by trying. But you have to be ready, before you start, for the version where the corps doesn&#39;t work AND you have to keep being cousins and brothers afterward. Family-business failures that turn into family failures are the worst-case outcome and they&#39;re common.</p>
+    <p class="q">Can you commit, in writing, to walking away from the corps before walking away from the family? Have you talked to Jeremy about what the &ldquo;corps failed but we&#39;re still brothers&rdquo; conversation looks like? Have you imagined the dinner table after the corps shuts down? If yes, you can survive any outcome. If no, the corps risks the family.</p>
+  </div>
+
+  <h2 style="margin-top:34px">Psyduck&#39;s recommendation</h2>
+
+  <div class="callout">
+    <h3>Yes, with two non-negotiable preconditions</h3>
+    <p><b>Precondition 1: Justin has talked to his spouse, in detail, before the Saturday conversation with Jeremy.</b> Not a heads-up, a real conversation about what 4 years of corps building looks like, what failure looks like, what the asks of family time look like. If the spouse isn&#39;t on board, the corps doesn&#39;t happen yet.</p>
+    <p style="margin-top:8px"><b>Precondition 2: Track A relief for Jeremy starts independently of and before the corps founder commitment.</b> Jeremy is too burned out to absorb new commitments. The Brotherhood services engagement (Edge stack, rate hike, dropping bottom 20%) starts as a real concrete deliverable on its own merits, and the corps commitment is a Month 3-6 decision Jeremy makes from a less-exhausted state, not a Month 0 decision he makes while running on fumes.</p>
+    <p style="margin-top:8px">With both preconditions met, the corps is the right move. The cliff is real, the math works at the 2-founder level (let alone 3), the structural advantages of the three-cousin formation are real, and the failure modes are absorbable with the mitigations named.</p>
+    <p style="margin-top:8px">Without those preconditions met, the corps gets started badly and the failure modes compound. The two-track Brotherhood plan is the better fallback in that case.</p>
+  </div>
+
+  <h2 style="margin-top:30px">The one thing that has to be true</h2>
+
+  <div class="cream" style="border-left:6px solid var(--corps);padding-left:26px">
+    <p style="margin-top:0;font-size:15.5px"><b>You have to be willing to walk away from the corps before walking away from the family.</b></p>
+    <p style="margin-top:10px">Everything else on this page is structural. Founder agreements, exit terms, smart contracts, ledger formulas, sequencing, all of it. That&#39;s engineering. Engineering can be redesigned and shipped again.</p>
+    <p style="margin-top:8px">Family is the thing that can&#39;t be redesigned. If you and Jeremy stop talking, the corps was a bad trade no matter what it built. If you and Joey have a Thanksgiving where the corps takes up all the air, the corps is costing you something money can&#39;t replace. The corps&#39;s only valid endgame is one where the cousins are still cousins after it succeeds or fails.</p>
+    <p style="margin-top:8px">If you can commit to that, in writing, with all three of you signing it before any of the other paperwork happens, then the corps is worth building. If you can&#39;t, this stays on paper as a beautiful idea that didn&#39;t need to ship.</p>
+  </div>
+
+  <h2 style="margin-top:30px">The aging-out math, one more time, said directly</h2>
+  <div class="cream">
+    <p style="margin-top:0">You said &ldquo;we aren&#39;t getting younger.&rdquo; Here&#39;s the version of that math the corps is built around.</p>
+    <ul class="clean" style="margin-top:8px">
+      <li><b>2026 (now):</b> Justin 46, Jeremy 43, Joey ~similar band. All three in service work. All three with finite working runway.</li>
+      <li><b>2030 (Year 4):</b> 50, 47, ~50. Corps&#39;s founder agreement vesting completes. By now, ~3-5 roofing-vertical products shipping. Marine vertical shipping. Depot maybe at tipping revenue, maybe at RAS revenue. Apprentices in their second cohort. Member #4 onboarded.</li>
+      <li><b>2034 (Year 8):</b> 54, 51, ~54. Founders shifting to mentor + governance roles. Corps&#39;s recurring revenue carries household income for the founders even on partial-hour weeks. Verticals run by member-tier craftspeople. Apprentices entering journey-tier on their own ledger positions.</li>
+      <li><b>2040 (Year 14):</b> 60, 57, ~60. Founders effectively retired from physical/cognitive labor required of operating roles. Corps&#39;s smart contract ledger paying out on past products as the primary household income for all three. Apprentices from Cohort 1 now journey-mentoring Cohort 5+ apprentices. Lowcountry employment hasn&#39;t lost a worker to Charleston for the corps&#39;s Dec-Feb gap in 10 years.</li>
+    </ul>
+    <p style="margin-top:10px">If we don&#39;t do this, 2040 looks different. We&#39;re still trying to do the same hours-for-dollars work at 60. Bodies hurt. Software shifts under us. Re-roof market cycles will have rolled multiple times. No recurring revenue tail. We&#39;d be looking at retirement-cliff math with the runway already burned.</p>
+    <p style="margin-top:10px"><b>That&#39;s the comparison.</b> Not corps vs. continuing today. Corps vs. continuing today for 14 more years. The corps is the structural answer to a problem that we don&#39;t feel acutely now but will feel in 5-10 years if we don&#39;t move. We&#39;re early enough that we have the runway to build it. We won&#39;t be early in 2031.</p>
+  </div>
+
+  <blockquote style="font-size:16px;margin-top:24px">The window we&#39;re in is the window. Five years from now this conversation is harder. Ten years from now it&#39;s a different conversation entirely. The corps doesn&#39;t have to work for it to have been worth trying. It just has to be worth the risk of trying, after we&#39;ve been honest with ourselves and our families about what we&#39;re asking for. Read the whole page. Sleep on it. Have the spouse conversation. Have the Saturday dinner. See what the year brings.</blockquote>
+</section>
+
+</div>
+
+<footer><div class="wrap">
+  <span>The Reality Check &middot; private project &middot; compiled June 2026 &middot; <span class="version-tag">v&mdash;</span></span>
+  <span><a href="../" style="color:var(--corps)">&larr; back to hub</a></span>
+</div></footer>
+
+<script>
+const tabs = document.querySelectorAll('nav.tabs button');
+const panels = document.querySelectorAll('section.panel');
+tabs.forEach(btn => btn.addEventListener('click', () => {
+  const id = 'p-' + btn.dataset.p;
+  tabs.forEach(b => b.classList.toggle('active', b === btn));
+  panels.forEach(p => p.classList.toggle('active', p.id === id));
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+</script>
+<script src="/script.js"></script>
+</body>
+</html>
