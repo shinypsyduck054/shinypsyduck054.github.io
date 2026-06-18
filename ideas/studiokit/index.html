@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STUDIOKIT &middot; IDEAS &middot; PSYDUCK</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/ideas/idea-page.css" />
+  <style>
+    .verdict-pass {
+      background: rgba(107,114,128,0.06);
+      border: 1px solid rgba(107,114,128,0.2);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .verdict-badge-pass {
+      display: inline-block;
+      font-family: var(--font-pixel);
+      font-size: 0.35rem;
+      background: rgba(107,114,128,0.12);
+      color: #6b7280;
+      border: 1px solid rgba(107,114,128,0.3);
+      border-radius: 4px;
+      padding: 0.25rem 0.6rem;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+    }
+    .verdict-reason { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim); line-height: 1.8; }
+    .verdict-reason strong { color: #e5e7eb; }
+    .kill-list {
+      background: rgba(107,114,128,0.04);
+      border: 1px solid rgba(107,114,128,0.15);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 2;
+    }
+    .kill-label { color: #9ca3af; font-weight: bold; }
+    .doc-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.82rem; margin-top: 0.75rem;}
+    .doc-table th { background: rgba(107,114,128,0.1); color: #9ca3af; padding: 0.5rem 0.75rem; text-align: left; }
+    .doc-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid rgba(107,114,128,0.15); color: var(--text-dim);}
+    .doc-table td.legal { color: #f59e0b; font-weight: 600;}
+  </style>
+</head>
+<body>
+  <div class="crt-overlay"></div><div class="scanlines"></div><div class="vignette"></div>
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="/" class="home-crumb" title="Home"><span class="status-dot"></span><span class="nav-name">Psyduck <span class="nav-dex">#054</span></span></a>
+        <span class="crumb-sep">/ <a href="/ideas" class="crumb-link">IDEAS</a> / <span class="crumb-current">STUDIOKIT</span></span>
+      </div>
+      <nav class="header-nav">
+        <a href="/ideas" class="nav-link nav-link-ideas"><span class="nav-sym">&#9889;</span><span class="nav-label">IDEAS</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="idea-page-wrap">
+    <div class="idea-page-header" style="opacity:0.75;">
+      <div class="idea-page-meta">
+        <span class="idea-status status-pass">PASS</span>
+        <span class="idea-type">ONE-TIME &middot; EASY BUILD &middot; LOW UPKEEP</span>
+      </div>
+      <h1 class="idea-page-title" style="color:#6b7280;text-shadow:none;">STUDIOKIT</h1>
+      <div class="viability-callout viability-red" style="border-color:rgba(107,114,128,0.2);background:rgba(107,114,128,0.05);">
+        <div>
+          <div class="vc-label">VIABILITY SCORE</div>
+          <div class="vc-sublabel">PASSED &middot; JUNE 2026</div>
+        </div>
+        <div class="vc-score" style="color:#6b7280;text-shadow:none;">2.0<span class="vc-max">/10</span></div>
+      </div>
+      <p class="idea-page-sub">AI studio-policy kit for private music teachers (and the broader category: art, tutoring, dance, martial arts, fitness, &ldquo;insert here&rdquo;). The kit pattern looked clean. The documents inside it turned out to be legal contracts. Passed June 17, 2026.</p>
+      <div class="idea-bar idea-bar-wide"><div class="idea-bar-fill" style="--fill:0%;--c:#6b7280"></div></div>
+      <div class="idea-bar-label">PASS &middot; LEGAL MINEFIELD &middot; UPL EXPOSURE &middot; NOT A CRON-DISQUALIFIER (YET)</div>
+    </div>
+
+    <div class="idea-page-body">
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE PITCH (BEFORE THE BREAKDOWN)</div>
+        <p>$29/$49 kit for private music teachers (and adjacent verticals): generates a complete studio policy plus enrollment contract, recital media release, summer gap agreement, and late-payment notice. Customized to the teacher&#39;s rules by AI in 5 minutes. r/pianolessons (250K) full of teachers asking each other &ldquo;how do I handle missed lessons,&rdquo; existing studio-management SaaS proves WTP. Distribution channel obvious. First-dollar path tight. The pattern looked indistinguishable from FightAClaim or HuntLease at a glance.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE BREAKDOWN, BY DOCUMENT</div>
+        <p>Three of five documents in the pitched kit are unambiguously legal contracts. The fourth is a quasi-contract; the fifth has its own regulatory exposure.</p>
+        <table class="doc-table">
+          <thead><tr><th>Document</th><th>Legal nature</th></tr></thead>
+          <tbody>
+            <tr><td>Studio Policy</td><td>Quasi-contract (terms of service). Edge case.</td></tr>
+            <tr><td>Enrollment Contract</td><td class="legal">Contract. Binding agreement between studio and parent.</td></tr>
+            <tr><td>Recital Media Release</td><td class="legal">Contract. Waiver of likeness rights.</td></tr>
+            <tr><td>Summer Gap Agreement</td><td class="legal">Contract. Retainer/hold agreement.</td></tr>
+            <tr><td>Late Payment Notice</td><td>Collections letter. UDAP/FDCPA-adjacent.</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top:0.75rem;">The value prop in the pitch was literally <em>&ldquo;generates your complete studio policy customized to your rules in 5 minutes.&rdquo;</em> That phrase &mdash; AI-personalized legal documents for non-lawyer buyers &mdash; is the textbook UPL (Unauthorized Practice of Law) exposure. The AI doing the personalization makes it worse, not better, because personalization looks like legal advice to a state bar regulator.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">WHY WE PASSED</div>
+        <div class="kill-list">
+          <div><span class="kill-label">UPL EXPOSURE PROFILE</span> &mdash; The kit generates binding contracts (enrollment, release, retainer) personalized by AI for non-lawyer users to issue to a third party (the parent/student). That is the highest-exposure shape in the legal-doc generator space. LegalZoom and Rocket Lawyer have spent millions defending UPL suits over exactly this pattern. State bar regulators interpret AI personalization of contracts as practicing law without a license in the lay user&#39;s jurisdiction.</div>
+          <div style="margin-top:0.75rem;"><span class="kill-label">CONTRAST WITH FIGHTACLAIM</span> &mdash; FightAClaim and the existing kit portfolio sit on safer UPL ground because they generate <em>demand letters</em> (the customer asserts their own rights against a counterparty) and <em>decision-support content</em> (the customer learns rules and acts). StudioKit generates contracts <em>with</em> a counterparty. Different exposure category. FightAClaim survives the test; StudioKit doesn&#39;t.</div>
+          <div style="margin-top:0.75rem;"><span class="kill-label">BROADER CATEGORY IS SAME PROBLEM</span> &mdash; The pattern (&ldquo;policy kit for private music / art / tutoring / dance / martial arts / fitness teachers&rdquo;) doesn&#39;t change the exposure. Enrollment contracts and liability releases live in every one of those verticals. Every &ldquo;insert here&rdquo; substitution carries the same UPL profile.</div>
+          <div style="margin-top:0.75rem;"><span class="kill-label">DISCLAIMERS DON&#39;T FIX IT</span> &mdash; &ldquo;Not legal advice&rdquo; boilerplate is necessary but not sufficient. LegalZoom and Rocket Lawyer both have heavy disclaimers and both have been sued (and settled) on UPL grounds in multiple states. Disclaimers reduce damages but don&#39;t eliminate the action.</div>
+          <div style="margin-top:0.75rem;"><span class="kill-label">SAFER VERSION EXISTS BUT IS A DIFFERENT (WEAKER) PRODUCT</span> &mdash; A non-contract version is possible: studio policy (terms of service, less risky) + workflow templates (attendance, billing) + communication scripts (parent emails, payment reminders). Strips out the contracts, releases, and retainers. The product survives UPL but loses the differentiated value. Not enough left to charge $29 for.</div>
+          <div style="margin-top:0.75rem;"><span class="kill-label">DAILY CRON HAD NO UPL DISQUALIFIER</span> &mdash; The business-idea-research cron prompt lists six disqualifiers (saturation, B2B enterprise, feature-not-product, no fast first dollar, physical presence, customer-is-victim) but does <em>not</em> have a UPL/legal-doc-generation rule. That&#39;s the gap that let this pitch reach the inbox. Documented separately for the cron-prompt revision.</div>
+        </div>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE LESSON</div>
+        <p>The kit pattern is not uniformly safe. There are at least three sub-shapes:</p>
+        <ul style="font-family:var(--font-mono); font-size:0.82rem; color:var(--text-dim); line-height:1.9; padding-left:1.5rem; margin-top:0.5rem;">
+          <li><strong style="color:#e5e7eb;">Demand-letter category (safer)</strong> &mdash; customer asserts their own rights against a counterparty (FightAClaim, ContractorClaim).</li>
+          <li><strong style="color:#e5e7eb;">Decision-support category (safer)</strong> &mdash; tool explains rules, customer decides and acts (IRSDecoder, AnchorDoc).</li>
+          <li><strong style="color:#e5e7eb;">Contract-generation category (unsafe)</strong> &mdash; AI drafts a binding agreement for the customer to issue to a third party. StudioKit lives here. UPL exposure is the highest in this shape.</li>
+        </ul>
+        <p style="margin-top:0.75rem;">Going forward: <strong style="color:#e5e7eb;">if the kit produces a contract that the customer hands to a counterparty, hard pass unless the structure provides for attorney review.</strong> The personal-trainer kit got killed by Genie AI coverage; StudioKit gets killed by UPL exposure; both should have been caught at vetting step 2, not at pitch time.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE VERDICT</div>
+        <div class="verdict-pass">
+          <div class="verdict-badge-pass">PASS &middot; LEGAL MINEFIELD &middot; UPL EXPOSURE</div>
+          <p class="verdict-reason">
+            <strong>The kit generates legal contracts for non-lawyer buyers to issue to third parties.</strong> That is the textbook UPL exposure the &ldquo;no legal minefields&rdquo; memory rule was meant to keep us away from. AI personalization of those documents makes it worse, not better. Stripping the contracts out leaves a product too thin to justify the price. The category extension (art, tutoring, dance, fitness) doesn&#39;t escape the exposure because every one of those verticals also bundles enrollment contracts and liability releases.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            Score: <strong>2.0/10.</strong> Below CampWise because the failure mode is regulatory, not market-saturation. The market gap is real and the WTP is proven; the build can&#39;t be done safely. Cron prompt revision documented separately so the same shape doesn&#39;t reach the inbox again.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div class="footer-inner"><span>PSYDUCK &mdash; SHINY EDITION</span><span>&copy; 2026 &middot; BUILT ON HOMELAB &middot; DEPLOYED BY ITSELF</span></div></footer>
+</body>
+</html>
