@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coastal Boat Works &mdash; The Magnolia Wildcard</title>
+<style>
+  :root{
+    --navy:#0d2b45; --navy2:#11395c; --teal:#1d7a8c;
+    --sand:#f4efe6; --ink:#1b2733; --muted:#5d6b7a; --line:#dde3ea;
+    --green:#2e8b57; --amber:#d99100; --rust:#b8541a; --purple:#6b3fb0; --red:#c0392b;
+    --corps:#a83232;
+    --mag:#2d5a3d; --mag2:#3e7a52; --mag-bloom:#c8985a; --mag-cream:#faf6ee; --mag-deep:#1f3f2c;
+    --card:#ffffff;
+    --shadow:0 1px 3px rgba(13,43,69,.08),0 6px 18px rgba(13,43,69,.06);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--sand);line-height:1.55;font-size:15.5px}
+  header.hero{background:linear-gradient(135deg,var(--mag-deep),var(--mag2));color:#fff;padding:34px 28px 30px}
+  header.hero .wrap{max-width:1080px;margin:0 auto}
+  header.hero h1{margin:0 0 8px;font-size:30px;letter-spacing:.4px}
+  header.hero .lede{margin:0;opacity:.95;font-size:15.5px;max-width:840px}
+  header.hero .crumb{font-size:12.5px;opacity:.85;margin-bottom:8px}
+  header.hero .crumb a{color:#e6d9b4;text-decoration:none;margin-right:6px}
+  header.hero .crumb a:hover{color:#fff;text-decoration:underline}
+  header.hero .stamp{display:inline-block;font-size:11.5px;letter-spacing:2px;font-weight:700;padding:3px 10px;border:1.5px solid #e6d9b4;border-radius:3px;color:#e6d9b4;margin-bottom:10px;text-transform:uppercase}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  nav.tabs{position:sticky;top:0;z-index:50;background:var(--navy);display:flex;flex-wrap:wrap;gap:2px;
+    padding:0 12px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+  nav.tabs button{background:transparent;color:#cfe0ec;border:0;padding:13px 14px;font-size:13.5px;
+    cursor:pointer;border-bottom:3px solid transparent;font-weight:600;white-space:nowrap}
+  nav.tabs button:hover{color:#fff}
+  nav.tabs button.active{color:#fff;border-bottom-color:var(--mag-bloom)}
+  section.panel{display:none;padding:26px 0 60px}
+  section.panel.active{display:block}
+  h2{font-size:22px;margin:6px 0 6px;color:var(--navy)}
+  h3{font-size:16.5px;color:var(--navy2);margin:22px 0 8px}
+  h4{font-size:14.5px;color:var(--navy2);margin:14px 0 6px}
+  .sub{color:var(--muted);font-size:14.5px;margin:0 0 18px;max-width:820px}
+  .deep{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;box-shadow:var(--shadow);margin:14px 0}
+  .deep h3:first-child,.deep h4:first-child{margin-top:0}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .threecol{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+  .callout{background:linear-gradient(135deg,var(--mag-deep),var(--mag2));color:#fff;border-radius:12px;padding:20px 24px;margin:16px 0}
+  .callout.bloom{background:linear-gradient(135deg,var(--mag-deep),var(--mag-bloom));color:#fff}
+  .callout.dark{background:linear-gradient(135deg,#1b2733,var(--mag-deep))}
+  .callout h3{color:#fff;margin:0 0 8px;font-size:18px}
+  .callout p{margin:6px 0;font-size:14.5px;opacity:.96}
+  .warn{background:#fdf3e3;border:1px solid #f0d8a8;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:12px 0}
+  .warn b{color:var(--amber)}
+  .note{background:#eef9f1;border:1px solid #bfe6cc;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:12px 0}
+  .red{background:#fdecea;border:1px solid #f3c9c3;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:12px 0}
+  .cream{background:var(--mag-cream);border:1px solid #ece1c4;border-radius:12px;padding:18px 22px;margin:14px 0}
+  ul.clean{font-size:14.5px;padding-left:20px} ul.clean li{margin:6px 0}
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;
+    font-size:13.5px;margin:10px 0;box-shadow:var(--shadow)}
+  thead th{background:var(--navy);color:#fff;text-align:left;padding:10px 12px;font-weight:600;font-size:12.5px}
+  tbody td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:last-child td{border-bottom:0}
+  tbody tr:hover{background:#f7fafc}
+  td.term{font-weight:700;color:var(--navy);width:170px}
+  .factcard{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow);margin:10px 0;border-left:4px solid var(--mag)}
+  .factcard .label{font-size:11.5px;letter-spacing:.5px;color:var(--mag);font-weight:700;text-transform:uppercase;margin-bottom:4px}
+  .factcard .val{font-weight:700;color:var(--navy);font-size:15px}
+  .factcard .meta{font-size:12.5px;color:var(--muted);margin-top:3px}
+  .pro{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow);margin:10px 0;border-left:4px solid var(--green)}
+  .pro .ttl{font-weight:700;color:var(--green);font-size:14.5px;margin-bottom:4px}
+  .pro p{margin:4px 0;font-size:13.5px}
+  .con{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow);margin:10px 0;border-left:4px solid var(--red)}
+  .con .ttl{font-weight:700;color:var(--red);font-size:14.5px;margin-bottom:4px}
+  .con p{margin:4px 0;font-size:13.5px}
+  .pathcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;box-shadow:var(--shadow);margin:14px 0;border-top:5px solid var(--mag)}
+  .pathcard.alt{border-top-color:var(--mag-bloom)}
+  .pathcard.warn-card{border-top-color:var(--amber)}
+  .pathcard .head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+  .pathcard h3{margin:0;font-size:19px;color:var(--navy)}
+  .pathcard .badge{font-size:11.5px;padding:2px 9px;border-radius:20px;font-weight:700;letter-spacing:.3px;background:#e6efe7;color:var(--mag)}
+  .pathcard.alt .badge{background:#f6ead2;color:#8a6116}
+  .pathcard.warn-card .badge{background:#fdf3e3;color:var(--amber)}
+  blockquote{border-left:4px solid var(--mag);background:var(--mag-cream);margin:10px 0;padding:10px 16px;border-radius:0 8px 8px 0;color:var(--ink);font-size:14.5px;font-style:italic}
+  .pillrow{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+  .pill{font-size:11.5px;background:#eef3f7;color:var(--navy2);padding:2px 9px;border-radius:20px;font-weight:600}
+  .pill.mag{background:#e6efe7;color:var(--mag)}
+  .pill.warn{background:#fdf3e3;color:var(--amber)}
+  .geneal{background:var(--mag-cream);border:2px solid var(--mag-bloom);border-radius:12px;padding:20px 22px;margin:16px 0;text-align:center}
+  .geneal .tree{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:13.5px;color:var(--mag-deep);line-height:1.7;white-space:pre;display:inline-block;text-align:left}
+  .geneal .label{font-size:12.5px;letter-spacing:1.5px;font-weight:700;color:var(--mag-bloom);text-transform:uppercase;margin-bottom:10px}
+  footer{padding:26px 0 50px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);margin-top:20px}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+  .version-tag{font-variant-numeric:tabular-nums}
+  @media(max-width:860px){.twocol,.threecol{grid-template-columns:1fr}thead th{position:static}
+    table{display:block;overflow-x:auto;white-space:nowrap}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="../">&larr; hub</a>&middot;<a href="../landscape/">landscape</a>&middot;<a href="../the-partnership/">partnership</a>&middot;<a href="../the-brotherhood/">brotherhood</a>&middot;<a href="../the-corps/">the corps</a>&middot;<a href="../discovery/">discovery</a></div>
+    <div class="stamp">THE WILDCARD &middot; A THIRD COUSIN, A SECOND BUSINESS</div>
+    <h1>The Magnolia Wildcard</h1>
+    <p class="lede">Joey Nettles is Justin&#39;s cousin. He owns Magnolia Roofing &amp; Remodeling in Columbia, SC, a healthy growth-stage trade business, and he&#39;s pushing into the Lowcountry right now. The other pages on this hub explore three structures for one shop and one relationship. This page asks a different question: what if there are three cousins, two businesses, and a maiden name that turns the corps&#39;s acronym into literal genealogy?</p>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <button class="active" data-p="pitch">The Pitch</button>
+  <button data-p="cousin">The Cousin</button>
+  <button data-p="lowcountry">The Lowcountry</button>
+  <button data-p="asymmetry">Joey vs. Jeremy</button>
+  <button data-p="structures">The Structures</button>
+  <button data-p="verdict">The Honest Read</button>
+</nav>
+
+<div class="wrap">
+
+<!-- PITCH -->
+<section class="panel active" id="p-pitch">
+  <h2>What Justin told me, in one paragraph</h2>
+  <p class="sub">Joey is the third cousin in this conversation. He runs Magnolia Roofing &amp; Remodeling in Columbia. The shop is doing well: roughly a roof a day, partnered with real estate agents, over a decade of domain expertise on Joey&#39;s side, business savvy that Jeremy doesn&#39;t claim. He&#39;s expanding into the Lowcountry and that expansion is already in motion. Justin doesn&#39;t have hard financials or a competitive map yet, but the signal is clean: this is a working business with an owner who knows the trade and the operator side.</p>
+
+  <div class="geneal">
+    <div class="label">&starf; The genealogy fact that changes everything</div>
+    <div class="tree">             grandparents
+                  |
+            (Connolley)
+                  |
+          ----------------
+         /                \
+       Justin&#39;s         Joey&#39;s
+       mother           parent
+         |                 |
+       Justin           Joey  &lt;-- Magnolia Roofing, Columbia SC
+       Jeremy
+   (Coastal Boat Works,
+    Walterboro SC)
+
+    Three cousins. One Connolley line.
+    The corps&#39;s name was supposed to be a 1933 echo.
+    It turns out it&#39;s also their family tree.
+    <b>C</b>onnolley <b>C</b>ousins <b>C</b>orps.</div>
+  </div>
+
+  <h3>Why this matters as more than a coincidence</h3>
+  <div class="cream">
+    <p style="margin-top:0">The corps name was chosen first for its public meaning (Civilian Conservation Corps, 1933, builders, dignity of work). That meaning still does the public work. The genealogy doesn&#39;t replace it. But internally, between the three cousins, it does something different: it converts an arbitrary brand into an origin myth that&#39;s actually true. Origin myths matter in family businesses because they answer the question every family member eventually asks privately, the one nobody says out loud: <i>why am I in this with you specifically</i>. &ldquo;Because we&#39;re all from the same Connolley line and the corps is literally named after us&rdquo; is a much harder answer to argue with than &ldquo;because we&#39;re business partners.&rdquo;</p>
+    <p>The risk is the opposite of the benefit. An origin myth that turns out to be ornamental, used to gloss over a deal that&#39;s actually bad for one of the three, would do exactly the kind of damage the corps is supposed to prevent. So the genealogy can&#39;t be the reason for the deal. It can be the reason it&#39;s called what it&#39;s called.</p>
+  </div>
+
+  <h3>What this page does</h3>
+  <p class="sub">Same shape as the Partnership and Brotherhood and Corps pages, applied to a different cousin and a different business. Cousin profile (what Magnolia is, how Joey runs it). The Lowcountry push (why he&#39;s heading south, who he&#39;s pushing into). The Joey-vs-Jeremy asymmetry (why a partnership with Joey is structurally different from a partnership with Jeremy). Four candidate structures for a Joey deal. And an honest read at the end about whether any of this is even something Joey wants.</p>
+
+  <div class="warn">
+    <b>A standing caveat:</b> we have not talked to Joey about any of this. Everything on this page is hypothesis until he weighs in. The most likely outcome of the conversation is &ldquo;cool, but no, my business is going fine.&rdquo; That&#39;s a fine outcome too. The cost of asking is low; the cost of designing without asking is high. So this page is a conversation prep doc, not a deal sheet.
+  </div>
+</section>
+
+<!-- COUSIN -->
+<section class="panel" id="p-cousin">
+  <h2>Magnolia Roofing &amp; Remodeling LLC, what the public record says</h2>
+  <p class="sub">What I could verify in 20 minutes of digging: BBB filings, the company website, public review aggregators, third-party directories. The picture is consistent. The shop is real, it&#39;s well-run, and the owner gets praised by name.</p>
+
+  <div class="twocol">
+    <div class="factcard"><div class="label">Founded</div><div class="val">August 23, 2018</div><div class="meta">~8 years old, mature past the small-business survival curve</div></div>
+    <div class="factcard"><div class="label">BBB rating</div><div class="val">A+ &middot; accredited since Nov 2019</div><div class="meta">Accreditation came 15 months after founding. Fast.</div></div>
+    <div class="factcard"><div class="label">Owner</div><div class="val">Joseph &ldquo;Joey&rdquo; Nettles</div><div class="meta">Named on BBB, named in customer testimonials</div></div>
+    <div class="factcard"><div class="label">Address</div><div class="val">6236 Saint Andrews Rd STE 9, Columbia SC 29212</div><div class="meta">Irmo / Northwest Columbia. Suite, not standalone building.</div></div>
+    <div class="factcard"><div class="label">Headcount</div><div class="val">BBB lists 2 employees</div><div class="meta">Lean. Crew + owner shape, plus subs as needed.</div></div>
+    <div class="factcard"><div class="label">Services</div><div class="val">Roof repair, replacement, reroofing, siding, gutters</div><div class="meta">Residential + commercial. No mention of solar.</div></div>
+    <div class="factcard"><div class="label">Stated service area</div><div class="val">Columbia metro</div><div class="meta">Irmo, Lexington, Chapin, Blythewood, Cayce, West Columbia, Elgin, Lugoff. No Lowcountry on the public site yet.</div></div>
+    <div class="factcard"><div class="label">Reviews</div><div class="val">100% recommend on Facebook (33 reviews), strong BBB + Nextdoor</div><div class="meta">Pattern: &ldquo;prompt,&rdquo; &ldquo;honest,&rdquo; &ldquo;professional,&rdquo; &ldquo;quality.&rdquo; No common complaint.</div></div>
+  </div>
+
+  <h3>The financial picture (estimated, not verified)</h3>
+  <p class="sub">Justin&#39;s working number is roughly one roof a day. That&#39;s the only data point we have on volume. Below is the back-of-envelope range; the spread is large because residential reroof ticket size varies widely by job complexity.</p>
+
+  <table>
+    <thead><tr><th>Assumption</th><th>Low estimate</th><th>Mid estimate</th><th>High estimate</th></tr></thead>
+    <tbody>
+      <tr><td class="term">Avg ticket (residential reroof)</td><td>$8,000</td><td>$12,000</td><td>$18,000</td></tr>
+      <tr><td class="term">Roofs per year (1/day &times; ~250 working days)</td><td>200</td><td>225</td><td>250</td></tr>
+      <tr><td class="term">Annual revenue (rough)</td><td>$1.6M</td><td>$2.7M</td><td>$4.5M</td></tr>
+      <tr><td class="term">Industry-typical net margin</td><td>5%</td><td>10%</td><td>15%</td></tr>
+      <tr><td class="term">Owner take-home (range)</td><td>~$80k</td><td>~$270k</td><td>~$675k</td></tr>
+    </tbody>
+  </table>
+
+  <div class="warn">
+    <b>Big confidence caveat.</b> The volume number is hearsay (Justin&#39;s estimate of what Joey said) and the ticket size is industry-typical guesswork. The actual range could be wide. If Joey is doing a lot of insurance work or commercial flat-roof recoats, the mix changes the math significantly. Treat this as &ldquo;the shape is probably real, the magnitude is a guess&rdquo; until Joey volunteers a real number.
+  </div>
+
+  <h3>What the website signals about the business</h3>
+  <ul class="clean">
+    <li><b>Honest positioning.</b> The site explicitly says &ldquo;we don&#39;t upsell.&rdquo; That&#39;s a deliberate marketing choice against the insurance-storm-chaser stereotype that dominates the roofing industry. It&#39;s the same kind of values-coherence move that makes Jeremy&#39;s craft work the right shape for the corps.</li>
+    <li><b>Real estate agent partnerships, per Justin.</b> Not surfaced on the website, but it&#39;s the channel that explains how a 2-employee shop sustains one roof a day. Agents send him reroof referrals on listings during the inspection cycle.</li>
+    <li><b>No financing offered.</b> The site lists no financing partners. Either he steers clients to their own credit/insurance, or financing is conversation-driven. Could be a Joey ethics choice (no PowerPay-style 30% APR predatory partners), could be a gap.</li>
+    <li><b>No storm-chasing language.</b> No &ldquo;we work directly with insurance,&rdquo; no &ldquo;free inspection after a hailstorm,&rdquo; no urgency copy. Consistent with the &ldquo;don&#39;t upsell&rdquo; positioning. Mature.</li>
+    <li><b>No Lowcountry mention yet.</b> The expansion is real per Justin, but it hasn&#39;t hit the marketing yet. Means we&#39;re early.</li>
+  </ul>
+
+  <h3>What we don&#39;t know</h3>
+  <div class="cream">
+    <p style="margin-top:0">The competitive landscape questions Justin admitted to not having. Specifically: (a) how much of Magnolia&#39;s pipeline is insurance work vs. retail vs. real estate referral; (b) gross vs. net margin per roof; (c) whether the &ldquo;one roof a day&rdquo; is steady or seasonal (likely seasonal); (d) cash position and how much capital Joey would invest in expansion; (e) headcount structure (W-2 vs. 1099 crews); (f) commercial mix; (g) what specifically Joey is doing differently than the &ldquo;Columbia roofer who chases insurance leads&rdquo; baseline. The answers to these are conversation material with Joey, not research material for us.</p>
+  </div>
+
+  <div class="pillrow"><span class="pill mag">SOURCE</span> <span class="pill">BBB Business Profile</span> <span class="pill">magnoliaroofssc.com</span> <span class="pill">Facebook reviews</span> <span class="pill">Nextdoor reviews</span> <span class="pill">Justin&#39;s phone notes</span></div>
+</section>
+
+<!-- LOWCOUNTRY -->
+<section class="panel" id="p-lowcountry">
+  <h2>The Lowcountry roofing push, in context</h2>
+  <p class="sub">If Joey is pushing south, it&#39;s into a market that&#39;s different from Columbia in three important ways: bigger total addressable market, higher average ticket, and a recurring hurricane-driven demand spike. It&#39;s also more competitive, more cyclical, and more storm-chaser-saturated. Net: there&#39;s real money there, but the player profile is different.</p>
+
+  <h3>What the Lowcountry market actually looks like</h3>
+  <div class="threecol">
+    <div class="factcard"><div class="label">Pricing</div><div class="val">10-20% above SC statewide avg</div><div class="meta">Coastal material requirements (wind ratings, salt corrosion), labor premium</div></div>
+    <div class="factcard"><div class="label">Avg residential ticket</div><div class="val">$11k-$20k (shingles)</div><div class="meta">Standing seam metal $24k-$45k+ on a 1,800 sq ft home</div></div>
+    <div class="factcard"><div class="label">Demand driver</div><div class="val">Bluffton + HHI builder-grade roofs aging out</div><div class="meta">Thousands of homes built 10-20 yrs ago hitting end of life right now</div></div>
+    <div class="factcard"><div class="label">Storm angle</div><div class="val">Hurricane season = lumpy spike + insurance work</div><div class="meta">Big tickets, fast cycle, but margin compression from insurance scopes</div></div>
+    <div class="factcard"><div class="label">Seasonality</div><div class="val">Oct-Nov is replacement sweet spot</div><div class="meta">Post-hurricane availability + sealant cure temps. Summer is crisis-driven.</div></div>
+    <div class="factcard"><div class="label">Geography Joey&#39;s pushing into</div><div class="val">Likely Beaufort-Bluffton-HHI corridor</div><div class="meta">Same corridor as Jeremy&#39;s territory (Walterboro is 30-45 min inland)</div></div>
+  </div>
+
+  <h3>Who&#39;s already there</h3>
+  <p class="sub">The Lowcountry roofing market has a thick set of established operators. None of these are existential to a new entrant with the right angle, but they&#39;re the room.</p>
+
+  <table>
+    <thead><tr><th>Operator</th><th>Posture</th><th>Profile</th></tr></thead>
+    <tbody>
+      <tr><td class="term">Chandler Roofing</td><td>Established</td><td>Service-area branded around Beaufort County, all three sub-markets covered, storm-emergency focused.</td></tr>
+      <tr><td class="term">JW Roofing</td><td>Mid-size</td><td>HHI focused; positioned around insurance claims navigation. The storm-and-claims persona.</td></tr>
+      <tr><td class="term">Delta Roofing</td><td>Mid-size</td><td>Beaufort County coverage, residential repair + replacement focus.</td></tr>
+      <tr><td class="term">Southern Roof &amp; Wood Care</td><td>Multi-location</td><td>Charleston + Beaufort + Hardeeville + HHI. Commercial-tilted. Larger op.</td></tr>
+      <tr><td class="term">Right Hand Roofing</td><td>Mid-size</td><td>Bluffton-focused, residential.</td></tr>
+      <tr><td class="term">Wando Roofing</td><td>Charleston</td><td>North Charleston / Summerville, residential. Strong SEO presence.</td></tr>
+      <tr><td class="term">SERVPRO of HHI/Bluffton</td><td>Franchise</td><td>Storm restoration general, not roof-specific, but takes the post-storm catch.</td></tr>
+      <tr><td class="term">Alliance Roofing, Pro Roofs, RoofCrafters, etc.</td><td>Long tail</td><td>The usual 10-20 mid-tier outfits competing on Google Ads and door knocks after storms.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>The gap Joey would actually be entering</h3>
+  <div class="cream">
+    <p style="margin-top:0">The Lowcountry roofing market isn&#39;t underserved on volume. It&#39;s overserved on the same kind of operator: insurance-chasing, storm-following, sales-heavy mid-tier shops that compete on Google Ads and door knocks. The gap is the same gap Joey already won in Columbia: <b>the &ldquo;we don&#39;t upsell&rdquo; values-coherent operator with real estate agent partnerships and BBB-A+-since-2019 reputational equity</b>. That posture exists in the Lowcountry but it&#39;s not loud, and it doesn&#39;t scale through Google Ads. It scales through agent networks, neighborhood referrals, and time. Joey&#39;s Columbia playbook is a viable Lowcountry playbook, but it takes 18-36 months to bake the trust, not 18-36 days.</p>
+    <p>The hurricane angle is genuinely tempting and genuinely dangerous. Big tickets, fast cycle, but every shop that&#39;s ever blown itself up did it by chasing storm work too hard. Insurance scopes compress margins. The post-storm chase optimizes for sales over craft. It&#39;s the part of the trade Joey&#39;s positioning explicitly distances from. He&#39;d either have to lean in (and become a different kind of company) or treat hurricane work as opportunistic windfall on top of a stable agent-referral base. The second is the right answer.</p>
+  </div>
+
+  <h3>Why the Walterboro overlap is interesting</h3>
+  <div class="callout bloom">
+    <h3>Joey&#39;s Lowcountry push lands in Jeremy&#39;s backyard</h3>
+    <p>Walterboro sits on the I-95 corridor 45 minutes from Beaufort, 50 minutes from Bluffton, 55 minutes from Hilton Head. If Joey&#39;s expansion targets the Beaufort-Bluffton-HHI band, he&#39;s working a market that wraps Jeremy&#39;s town on three sides. That&#39;s not an accident of geography we can engineer; it&#39;s already true. So even before any deal exists, there&#39;s a real overlap to talk about: Jeremy&#39;s shop is a known local craft business with a name on the ground in a market Joey wants to enter. Joey&#39;s business is a known operator brand with crew capacity and RE relationships heading into a market Jeremy lives in.</p>
+    <p style="margin-top:10px">The simplest version of this isn&#39;t a partnership at all. It&#39;s a referral-friendly relationship: Joey&#39;s Lowcountry crew uses Jeremy&#39;s shop as a coordination point for staging on long jobs, and Jeremy refers roofing inquiries he overhears at the boat shop to Joey. Both get value without anything getting legally entangled. That&#39;s the floor of what we should at least propose, regardless of what we do above it.</p>
+  </div>
+</section>
+
+<!-- ASYMMETRY -->
+<section class="panel" id="p-asymmetry">
+  <h2>Joey vs. Jeremy as partner profiles, side by side</h2>
+  <p class="sub">The reason the Brotherhood/Corps analysis can&#39;t just be pattern-matched onto Joey is that he is in a structurally different position. Jeremy is asking for help; Joey is the kind of person you ask for help. The shape of the deal flips accordingly. Below is the asymmetry made explicit.</p>
+
+  <table>
+    <thead><tr><th>Dimension</th><th>Jeremy (Coastal Boat Works)</th><th>Joey (Magnolia Roofing)</th></tr></thead>
+    <tbody>
+      <tr><td class="term">State of business</td><td>Overbooked, underpriced, owner burning out at 75-86 hr weeks</td><td>Healthy, growing, BBB A+, expanding geographically</td></tr>
+      <tr><td class="term">Owner pain</td><td>Acute. Stated. &ldquo;The shop is killing me.&rdquo;</td><td>Unclear. He&#39;s expanding, not retrenching. May not have pain.</td></tr>
+      <tr><td class="term">What he needs from us</td><td>Back-office relief, operations, pricing discipline, productization</td><td>Possibly nothing. Or marketing tech / RE-agent CRM. Conversation needed.</td></tr>
+      <tr><td class="term">What he offers us</td><td>Craft moat, CNC, EVA decking IP, marine vertical knowledge, capital</td><td>Business-operator playbook, RE partnership template, capital, decade of trade ops expertise, Lowcountry expansion presence</td></tr>
+      <tr><td class="term">Relationship depth</td><td>Brother. Pre-existing, dense, irreplaceable.</td><td>Cousin. Real but less dense. Less margin for a deal that doesn&#39;t work.</td></tr>
+      <tr><td class="term">Geographic distance from Justin</td><td>Walterboro: 1h15m</td><td>Columbia: same city. Day-trip-trivial.</td></tr>
+      <tr><td class="term">Bar for &ldquo;yes&rdquo;</td><td>Already mostly cleared. Family + burnout + asked.</td><td>High. He has runway, a growing business, and no stated pain to relieve.</td></tr>
+      <tr><td class="term">Cost of &ldquo;no&rdquo;</td><td>Walking away from a brother in distress. Real.</td><td>&ldquo;Cool, no thanks, good luck with your thing.&rdquo; Low.</td></tr>
+      <tr><td class="term">Asymmetry direction</td><td>We approach him with help</td><td>He approaches us with capability, if at all</td></tr>
+    </tbody>
+  </table>
+
+  <h3>The implication this asymmetry has on deal shape</h3>
+  <div class="cream">
+    <p style="margin-top:0">Brotherhood-shaped deals (services engagement to relieve burnout, a SAFE for him to invest into SCSO) are the right shape <i>for someone whose problem is burnout and whose move is to put capital into something we&#39;re building</i>. Joey&#39;s problem is not burnout; his move is not necessarily to put capital into our software. So importing the Brotherhood deal shape onto Joey is a category error.</p>
+    <p>The Corps-shaped deal (collective membership or co-founding) is structurally cleaner for Joey than for Jeremy in one important way: <b>the corps is something he can join without it costing him his business</b>. A Joey deal is additive (he keeps Magnolia, contributes operator playbook + capital + a vertical to the corps in exchange for ledger position) where a Jeremy deal is restorative (Jeremy keeps the boat shop too, but the corps is also doing work that fixes a broken thing about how the shop operates). Different mode. Different stakes.</p>
+    <p>Net: the Brotherhood deal shape doesn&#39;t translate to Joey. The Corps deal shape does, with modifications.</p>
+  </div>
+
+  <h3>What Joey would have to want, for any of this to be real</h3>
+  <ul class="clean">
+    <li>To find &ldquo;build a thing with cousins&rdquo; more interesting than &ldquo;keep growing my shop in Columbia&rdquo; in the year 2026, knowing the corps doesn&#39;t exist as infrastructure yet</li>
+    <li>To resonate with the cccboys.com creed (the four rules, wage-first ordering, no shareholders) instead of finding it idealistic</li>
+    <li>To trust Justin enough to bring his ops playbook and his capital and his Lowcountry expansion plans inside something he didn&#39;t build</li>
+    <li>To find the genealogy story (Connolley cousins corps) <i>charming, not corny</i>. That&#39;s a tell. If he laughs and says &ldquo;wait, that&#39;s actually pretty cool,&rdquo; the conversation goes somewhere. If he says &ldquo;that&#39;s cute&rdquo; politely, it doesn&#39;t.</li>
+    <li>To have time. He&#39;s expanding. He may have less wall-clock time than Justin assumes.</li>
+  </ul>
+</section>
+
+<!-- STRUCTURES -->
+<section class="panel" id="p-structures">
+  <h2>Four candidate structures for a Joey deal</h2>
+  <p class="sub">Listed roughly from lightest weight (no corps role, just allies) to heaviest weight (third co-founder). Each one has a different cost, different reward, and a different right-answer for what Joey is bringing.</p>
+
+  <div class="pathcard">
+    <div class="head"><h3>Structure A: Ally / referral relationship</h3><span class="badge">LIGHTEST</span></div>
+    <p>No corps role. No equity. No paperwork heavier than a handshake. Joey&#39;s Lowcountry crew uses Jeremy&#39;s shop as a coordination point for long jobs (parking, staging, after-hours bathroom). Jeremy refers roofing inquiries he picks up at the boat shop to Joey. Justin builds Joey&#39;s RE-agent referral CRM as a paid one-off project (cousin rate, normal terms).</p>
+    <p><b>Good for:</b> if Joey resonates with none of the corps stuff but still wants to be in family business with us. Preserves the floor of cooperation without entangling anyone&#39;s upside.</p>
+    <p><b>Bad for:</b> doesn&#39;t capture any of the genuinely interesting upside the Connolley genealogy + roofing vertical + Lowcountry overlap creates. Leaves the corps without a roofing vertical and without a growth-business operator.</p>
+  </div>
+
+  <div class="pathcard alt">
+    <div class="head"><h3>Structure B: Roofing-Shop OS customer-zero</h3><span class="badge">PRODUCT BET</span></div>
+    <p>Same shape as the Brotherhood-Track-A move on Jeremy, adapted for roofing. We build Joey a productized ops stack (RE-agent CRM, automated quote generation, post-inspection followup automation, neighborhood referral nurture) in exchange for him being public customer-zero for &ldquo;Roofing-Shop OS&rdquo; (the roofing-vertical equivalent of Solo Craft Shop OS). Free for life. He gets the stack and the story; we get a real anchor customer for a SaaS we&#39;d sell to every solo roofer in the South.</p>
+    <p><b>Good for:</b> if Joey wants concrete value from us before signing onto anything bigger. Lowest commitment, real upside for both. Doesn&#39;t require any corps machinery to exist yet.</p>
+    <p><b>Bad for:</b> requires Justin to build the roofing-vertical SaaS, which fragments focus if Marine SCSO is supposed to be customer-zero on the boat-shop side first. Sequencing question.</p>
+  </div>
+
+  <div class="pathcard alt">
+    <div class="head"><h3>Structure C: Corps member, roofing vertical</h3><span class="badge">&starf; CORPS-NATIVE</span></div>
+    <p>Joey joins the corps after it exists, as the second vertical member (parallel to Jeremy as the first marine-vertical member). His contribution: roofing-trade operator playbook, RE-agent partnership templates, decade of operations expertise, Lowcountry expansion presence. His ledger position pays out on the Roofing-Shop OS product, the RE-agent CRM, and any roofing-vertical kit the corps ships. He keeps Magnolia entirely separate; Magnolia is his sole property, the corps doesn&#39;t touch it. Same standard member exit terms as everyone else.</p>
+    <p><b>Good for:</b> the structurally cleanest answer if Joey resonates with the creed but isn&#39;t volunteering to co-found anything. Same shape as Jeremy-as-member, with the parallel that both retain their own businesses and contribute craft/operator IP to the collective.</p>
+    <p><b>Bad for:</b> requires the corps to exist as infrastructure first, which is a 90-120 day build. Joey would be the second member, not a founding member, and that asymmetry might matter to him.</p>
+  </div>
+
+  <div class="pathcard warn-card">
+    <div class="head"><h3>Structure D: Third co-founder, the literal CCC Boys</h3><span class="badge">HEAVIEST &middot; GENEALOGY-NATIVE</span></div>
+    <p>Justin + Jeremy + Joey co-found the corps as members #1, #2, and #3. The name acquires its actual origin meaning. Founding split is three-way, not two-way. Founding asymmetry now has three vectors instead of two (Justin had the idea and built the site; Jeremy brings the craft brand and the boat-shop test bed; Joey brings the operator playbook and capital and the second vertical). All three are members first, founders second, per the corps&#39;s &ldquo;founders are members&rdquo; rule.</p>
+    <p><b>Good for:</b> if Joey reads cccboys.com and says &ldquo;these are my people, and the genealogy line landed for me, and I want in from Day 1.&rdquo; That&#39;s the &ldquo;originally famous&rdquo; outcome the corps deserves. It also gives the corps a real craft-and-operator-and-software founding triangle, which is a much harder thing to dismiss than two software-tilted people calling themselves a builder corps.</p>
+    <p><b>Bad for:</b> increases the governance complexity by more than 50%. Three-cousin founder dynamics are <i>not</i> a strictly better version of two-brother dynamics. The named asymmetries (who had the idea, who brings what, who&#39;s already running a profitable business) get harder to balance with three than with two. Three-cousin equity disputes break families harder than two-brother ones. Requires the founder agreement, the four rules, and the exit terms to be ironclad on Day 1, not aspirational.</p>
+    <div class="warn" style="margin-top:14px"><b>Real risk on Structure D:</b> Joey has a healthy growing business. The opportunity cost of his time spent on the corps is whatever his Lowcountry expansion would otherwise earn him. We&#39;d be asking him to share founding equity in a corps that doesn&#39;t exist yet for ledger contributions that don&#39;t pay yet, while leaving money on the table at Magnolia. The math has to make sense to him. If it doesn&#39;t, he should be a member or an ally, not a co-founder.</div>
+  </div>
+
+  <h3>Decision tree at the Saturday conversation</h3>
+  <div class="cream">
+    <p style="margin-top:0">The question to actually ask Joey, in his words, not ours: <b>&ldquo;What does success in your business look like in three years? Not the shop&#39;s success, your success.&rdquo;</b> Then shut up and listen, same as with Jeremy. Three buckets of answer:</p>
+    <ul class="clean" style="margin-top:8px">
+      <li><b>&ldquo;Bigger Magnolia, more crews, multi-location, sell it in 7-10 years.&rdquo;</b> &rarr; Structure A or B. He&#39;s on a clean growth-and-exit path; corps membership is a distraction. Sell him a CRM, refer him to Jeremy, stay close as family.</li>
+      <li><b>&ldquo;Same Magnolia, expanded into the Lowcountry, less stressed, more passive over time.&rdquo;</b> &rarr; Structure B or C. He&#39;s describing wanting recurring revenue and operational distance from the work, which is what the corps is built for. Roofing-Shop OS or member-tier corps participation both serve that.</li>
+      <li><b>&ldquo;Honestly, I&#39;ve been thinking about something bigger, I just don&#39;t have the time/structure for it.&rdquo;</b> &rarr; Structure D is on the table. The genealogy line plays cleanly. We&#39;re looking for a real third co-founder who happens to be from the same Connolley line. If he resonates, this is the famous version of the story.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- VERDICT -->
+<section class="panel" id="p-verdict">
+  <h2>Psyduck&#39;s honest read, in the same voice as the Partnership and Brotherhood pages</h2>
+  <p class="sub">You asked for my unbiased opinion on whether this fits, what the upsides and downsides are, and whether to partner with Joey, Jeremy, or all three. Same shape of answer as the prior verdicts: principled position first, family adjustment second, probability-weighted realistic outcome third.</p>
+
+  <h3>Principled position</h3>
+  <div class="callout dark">
+    <h3>For a stranger&#39;s healthy roofing business, the answer is no, the same way it&#39;s no for a stranger&#39;s boat shop.</h3>
+    <p>We don&#39;t take equity in someone&#39;s working business; we sell them a productized stack and we&#39;re their customer-zero. The principled answer for Joey-as-a-stranger is Structure B: build Roofing-Shop OS, make him customer-zero, never touch Magnolia&#39;s cap table. Same logic as the Partnership page applied to a different vertical.</p>
+  </div>
+
+  <h3>Family adjustment</h3>
+  <div class="callout bloom">
+    <h3>Joey is family, but he&#39;s not in pain. The Brotherhood-style flip doesn&#39;t carry over.</h3>
+    <p>The reason the principled answer flipped for Jeremy was a stack of four specific facts: family, capital available, shop burning him down, geography solved. Joey has two of those four (family, capital), the other two are different (he&#39;s not burning down, geography is even better). That&#39;s not enough to make the Brotherhood-shaped deal apply. The right family-adjusted answer for Joey is closer to Structure C (corps member running roofing vertical) than to anything from the Brotherhood page.</p>
+  </div>
+
+  <h3>The pros and cons, ranked</h3>
+
+  <h4>Pros of bringing Joey in (in any structure)</h4>
+  <div class="twocol">
+    <div class="pro"><div class="ttl">+ Operator playbook the corps doesn&#39;t have yet</div><p>Justin can build software; Jeremy can build product. Neither of them has run a growing trade business with crews and RE referrals. Joey has, for 8 years. That&#39;s a moat of operational tacit knowledge.</p></div>
+    <div class="pro"><div class="ttl">+ A real second vertical for the corps</div><p>Roofing-Shop OS as a product is a real software business, parallel to Marine-Shop OS. Two verticals from two trades is a much harder corps to dismiss than one.</p></div>
+    <div class="pro"><div class="ttl">+ Lowcountry presence already in motion</div><p>Joey&#39;s expansion is already happening and lands in Jeremy&#39;s backyard. The geographic overlap is free leverage we didn&#39;t have to engineer.</p></div>
+    <div class="pro"><div class="ttl">+ Capital + business savvy</div><p>Joey runs a profitable shop. He&#39;s presumably less SAFE-naive than Jeremy might be. He brings real diligence rigor to deal terms, which protects all three of us.</p></div>
+    <div class="pro"><div class="ttl">+ The genealogy origin story is now true</div><p>The corps gets a real Connolley-cousins-corps founding myth. That&#39;s a recruiting moat for every future member who reads our story.</p></div>
+    <div class="pro"><div class="ttl">+ Three-way family check on values drift</div><p>One of the failure modes for two-brother founder corps is &ldquo;we drift from the four rules together because nobody&#39;s holding the line.&rdquo; Three cousins is harder to drift than two brothers, structurally.</p></div>
+  </div>
+
+  <h4>Cons of bringing Joey in</h4>
+  <div class="twocol">
+    <div class="con"><div class="ttl">- He probably doesn&#39;t want what we&#39;re offering</div><p>He&#39;s expanding a healthy business. The corps is hypothetical. Most likely outcome of the ask is a polite no. We should be prepared for that and not bend the deal terms to make him say yes.</p></div>
+    <div class="con"><div class="ttl">- Cousin asymmetry is harder than sibling asymmetry</div><p>Two brothers fight and recover. Cousins who fight over money lose the relationship cleanly. Less margin for a deal that turns out wrong.</p></div>
+    <div class="con"><div class="ttl">- Three-way founder dynamics scale governance complexity nonlinearly</div><p>Three vectors of asymmetry instead of two. Three opinions on every decision. Three exit scenarios that have to be papered. Three families whose Thanksgivings are at risk if the corps blows up.</p></div>
+    <div class="con"><div class="ttl">- He&#39;s the busiest of the three</div><p>Justin can re-shape his existing work. Jeremy can drop the bottom 20%. Joey is running a growing roofing company. His marginal hour is the most expensive one of the three. The corps would have to deliver him meaningful value to be worth his time.</p></div>
+    <div class="con"><div class="ttl">- Roofing-Shop OS fragments the SaaS focus</div><p>If Justin builds Marine-Shop OS for Jeremy and Roofing-Shop OS for Joey simultaneously, neither one ships as fast as it should. Either we sequence (one then the other) or we accept the focus penalty.</p></div>
+    <div class="con"><div class="ttl">- The genealogy can&#39;t be the reason</div><p>If the only thing the deal has going for it is that the acronym lines up with the family tree, it&#39;s a bad deal. Genealogy is a name, not a reason.</p></div>
+  </div>
+
+  <h3>The straight question you asked: partner with Joey, Jeremy, or all three?</h3>
+  <div class="callout bloom">
+    <h3>None of them as a partnership. All of them as a corps. Sequenced.</h3>
+    <p><b>None of them as a partnership</b> because the Partnership page&#39;s principled answer (no equity in working businesses) still applies. Both shops stay their own. We don&#39;t buy into Magnolia and we don&#39;t buy into Coastal Boat Works.</p>
+    <p style="margin-top:8px"><b>All of them as a corps, sequenced</b> means: start with Jeremy because his pain is acute and we&#39;re already designing the deal. Get the corps actually built with Justin + Jeremy as founders or with Justin solo and Jeremy as first vertical member, whichever Jeremy says yes to at the dinner conversation. Once the corps exists as real infrastructure, with a real ledger, a real first product (Marine-Shop OS or the EVA decking kit), and 90 days of operating reality, then have the Joey conversation from a position of strength: &ldquo;here&#39;s what we built, here&#39;s the Connolley genealogy line that makes it ours specifically, here&#39;s how a roofing vertical would plug in, what do you think?&rdquo;</p>
+    <p style="margin-top:8px">That sequencing matters. If we go to Joey on Day 1 with three different deal structures and no corps yet built, the conversation is hypothetical and the answer is hypothetical. If we go to Joey on Day 90 with the corps shipping its first product, the conversation is concrete. The difference between those two conversations is whether Structure D (third co-founder) is on the table or not.</p>
+  </div>
+
+  <h3>What I&#39;d find out at the conversation, in priority order</h3>
+  <div class="cream">
+    <ol style="font-size:14.5px;margin:6px 0 0;padding-left:22px">
+      <li><b>What does success look like for him in 3 years, personally, not for the shop.</b> Same opening question as Jeremy. Routes the conversation into one of the three buckets in the decision tree.</li>
+      <li><b>How does he feel about cccboys.com.</b> Does he laugh and lean in, or does he go &ldquo;huh, neat&rdquo; politely? That&#39;s the genealogy tell.</li>
+      <li><b>What&#39;s his Lowcountry expansion actually look like?</b> Self-perform with hired crew? Sub out? Partner with a local operator? The shape changes what the corps could realistically plug in.</li>
+      <li><b>What&#39;s his current pain, if any?</b> Quoting time, hiring, lead-gen, billing, insurance scopes, post-job followup. If there&#39;s a specific operational pain we can productize, Roofing-Shop OS gets a real spec.</li>
+      <li><b>How much time per week does he have to think about anything other than running Magnolia?</b> This decides whether Structure B (we build him software, he&#39;s mostly a customer) or Structure C (he&#39;s a corps member contributing on his own schedule) is realistic.</li>
+      <li><b>Does he know Jeremy and Justin are talking about this at all?</b> If yes, what&#39;s already in the family conversation? If no, the right move is to brief Jeremy on the Joey angle before the Joey conversation happens, so the brothers aren&#39;t finding out about each other&#39;s deals through Joey.</li>
+    </ol>
+  </div>
+
+  <h3>One last honest thing</h3>
+  <div class="cream">
+    <p style="margin-top:0">The genealogy fact is genuinely cool. It would be very easy to let it pull the analysis toward Structure D because the story is good. I&#39;ve been resisting that the whole way through this page on purpose. The right answer for Joey is whatever serves Joey&#39;s actual life best in the year 2026, not whatever makes the corps&#39;s origin story most marketable. If Structure D ends up being the answer, the story is a beautiful bonus. If Structure A is the answer, the story is still beautiful, we just don&#39;t use it. Either way, the corps gets named &ldquo;CCC Boys&rdquo; because that&#39;s the right name for what it is. The Connolley line is the fact behind the name regardless of how Joey participates.</p>
+    <p style="margin-top:10px"><b>My probability-weighted read:</b> roughly 70% Joey says &ldquo;cool, let&#39;s stay in close family contact, refer business to each other,&rdquo; which is Structure A. Roughly 20% he says &ldquo;build me the CRM thing, I&#39;d pay for that,&rdquo; which is Structure B. Roughly 8% he says &ldquo;I want in once the corps exists,&rdquo; which is Structure C. Roughly 2% he says &ldquo;let&#39;s co-found the thing from Day 1.&rdquo; That last one is the famous outcome. We should design for the 70% case and be ready for any of the others.</p>
+  </div>
+
+  <blockquote>Joey is a wildcard, not a piece of the existing plan. He doesn&#39;t have to be in the corps for the corps to work. But if he resonates with the creed and the genealogy line lands for him, he turns a two-software-engineer thing into a real three-cousin builder corps, and the story becomes one that future members would actually want to be part of. The Saturday conversation with Jeremy still happens first. The Joey conversation happens later, from a position of strength, with the corps already real. That&#39;s the sequence. Everything else is downstream of it.</blockquote>
+</section>
+
+</div>
+
+<footer><div class="wrap">
+  <span>The Magnolia Wildcard &middot; private project &middot; compiled June 2026 &middot; <span class="version-tag">v&mdash;</span></span>
+  <span><a href="../" style="color:var(--mag)">&larr; back to hub</a></span>
+</div></footer>
+
+<script>
+const tabs = document.querySelectorAll('nav.tabs button');
+const panels = document.querySelectorAll('section.panel');
+tabs.forEach(btn => btn.addEventListener('click', () => {
+  const id = 'p-' + btn.dataset.p;
+  tabs.forEach(b => b.classList.toggle('active', b === btn));
+  panels.forEach(p => p.classList.toggle('active', p.id === id));
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+</script>
+<script src="/script.js"></script>
+</body>
+</html>
