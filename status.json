@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-21T15:29:47.383251+00:00",
-  "updatedMs": 1782055787383,
+  "updated": "2026-06-21T15:59:48.260009+00:00",
+  "updatedMs": 1782057588259,
   "channels": [
     {
       "id": "telegram",
@@ -26,11 +26,11 @@
       "id": "anthropic",
       "name": "Anthropic",
       "status": "ok",
-      "note": "session 83% \u00b7 30m \u00b7 week 88% \u00b7 18h 30m \u00b7 oauth 6h",
-      "session_pct": 83,
-      "session_remain": "30m",
+      "note": "session 81% \u00b7 0m \u00b7 week 88% \u00b7 18h \u00b7 oauth 6h",
+      "session_pct": 81,
+      "session_remain": "0m",
       "week_pct": 88,
-      "week_remain": "18h 30m",
+      "week_remain": "18h",
       "models": [
         "Claude Sonnet 4.6",
         "Claude Haiku 4.5",
