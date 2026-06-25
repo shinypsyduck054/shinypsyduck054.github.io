@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WEDDINGSTORY · IDEAS · PSYDUCK</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/ideas/idea-page.css" />
+  <style>
+    .verdict-rd {
+      background: rgba(52,211,153,0.06);
+      border: 1px solid rgba(52,211,153,0.2);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .verdict-badge-rd {
+      display: inline-block;
+      font-family: var(--font-pixel);
+      font-size: 0.35rem;
+      background: rgba(52,211,153,0.12);
+      color: #34d399;
+      border: 1px solid rgba(52,211,153,0.3);
+      border-radius: 4px;
+      padding: 0.25rem 0.6rem;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+    }
+    .verdict-reason { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim); line-height: 1.8; }
+    .verdict-reason strong { color: #e5e7eb; }
+    .stack-box {
+      background: rgba(252,211,77,0.04);
+      border: 1px solid rgba(252,211,77,0.14);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 1.9;
+    }
+    .stack-box .layer { color: #fcd34d; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="crt-overlay"></div><div class="scanlines"></div><div class="vignette"></div>
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="/" class="home-crumb" title="Home"><span class="status-dot"></span><span class="nav-name">Psyduck <span class="nav-dex">#054</span></span></a>
+        <span class="crumb-sep">/ <a href="/ideas" class="crumb-link">IDEAS</a> / <span class="crumb-current">WEDDINGSTORY</span></span>
+      </div>
+      <nav class="header-nav">
+        <a href="/ideas" class="nav-link nav-link-ideas"><span class="nav-sym">⚡</span><span class="nav-label">IDEAS</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="idea-page-wrap">
+    <div class="idea-page-header">
+      <div class="idea-page-meta">
+        <span class="idea-status status-rd">R&amp;D</span>
+        <span class="idea-conf conf-med">MED</span>
+        <span class="idea-type">PRODIGI PIPELINE · PASSIVE CAPTURE · CAPSULESTORY VERTICAL</span>
+      </div>
+      <h1 class="idea-page-title">WEDDINGSTORY</h1>
+      <div class="viability-callout viability-green">
+        <div>
+          <div class="vc-label">VIABILITY SCORE</div>
+          <div class="vc-sublabel">MARKET · COMPETITION · EXECUTION</div>
+        </div>
+        <div class="vc-score">7.0<span class="vc-max">/10</span></div>
+      </div>
+      <p class="idea-page-sub">Passive-capture wedding keepsake book. Guests dump phone photos via a per-wedding QR code; the couple's own roll syncs through an app; the venue timeline + vendor list anchor the day. AI stitches it into a 40-60 page hardcover bound book. Couple orders one for themselves and N copies for parents, siblings, grandparents. Same Prodigi pipeline as AirbnbBook + FamilyScript. Vertical under <a href="/ideas/capsulestory" style="color:#fcd34d;">CapsuleStory</a>. Captured June 25, 2026.</p>
+      <div class="idea-bar idea-bar-wide"><div class="idea-bar-fill" style="--fill:70%;--c:#34d399"></div></div>
+      <div class="idea-bar-label">R&amp;D · HIGHEST ARPU VERTICAL · GUEST PHOTO AGGREGATION + AI NARRATIVE</div>
+    </div>
+
+    <div class="idea-page-body">
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE GAP</div>
+        <p>Wedding photography costs $3K-12K and produces a curated photographer's gallery. Wedding-book products (Shutterfly, Mixbook, Artifact Uprising) cost $80-300 and require the couple to design every page themselves. Neither captures the wedding from <em>thirty guest phones</em>, where the real moments live. The bride doesn't see the cousin's table laughing during her vows. The mother-in-law's photo of the flower girl asleep at the reception never reaches anyone.</p>
+        <p style="margin-top:0.75rem;">There is no product that aggregates the entire wedding from every angle, organizes by time of day, identifies the moments worth narrating, and ships bound hardcover books to the family. The pieces exist separately. Nobody has stitched them.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE CAPTURE PROTOCOL</div>
+        <div class="stack-box">
+          <div><span class="layer">DAY-OF</span> — QR code on table cards / printed insert / venue display. Guests scan and upload from their phones to a per-wedding bucket. Photos arrive with timestamps and EXIF data.</div>
+          <div><span class="layer">COUPLE'S ROLL</span> — couple installs the app pre-wedding. Their camera roll syncs in the background on the day-of.</div>
+          <div><span class="layer">PHOTOGRAPHER GALLERY</span> — optional integration with Pixieset, ShootProof, SmugMug for pro photos to mix in.</div>
+          <div><span class="layer">TIMELINE ANCHORS</span> — venue + vendor schedule (ceremony 4pm, first dance 7:30pm, last call 11pm) supplied by the couple in a 5-min form. AI matches photos to events using timestamps.</div>
+          <div><span class="layer">AUDIO (optional)</span> — vow recordings, toast recordings if the couple has them, transcribed and woven into the narrative.</div>
+        </div>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE PRODUCT</div>
+        <p>40-60 page hardcover wedding book. AI-generated narrative that follows the timeline: getting ready, ceremony, cocktail hour, dinner, dancing, send-off. Photos curated and laid out by the system; AI writes connective text in a warm but plain voice (the couple chooses tone: classic, romantic, irreverent). Couple reviews a digital proof, makes edits, approves. Prodigi prints and ships.</p>
+        <p style="margin-top:0.75rem;">Pricing: <strong>$199 for the couple's master copy</strong>, <strong>$149 per additional copy</strong> shipped to parents / grandparents / wedding party. Optional <strong>$49 digital PDF</strong> to share widely. Typical order: 5-8 copies = $895-1,393 per wedding.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">DISTRIBUTION</div>
+        <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;">Wedding planners are the highest-leverage channel — one planner introduces dozens of couples per year. The Knot, Zola, and Joy let vendors list. Wedding photographers are a complementary channel (we are not their competitor; we use their photos as one input among many). Pinterest + TikTok wedding planning content has massive reach for the bride-direct funnel. Buying event lands 1-3 months post-wedding when the photographer's gallery has been seen but the desire for something physical and bound is still fresh.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">COMPETITOR SWEEP</div>
+        <ul>
+          <li><strong>Shutterfly / Mixbook / Artifact Uprising</strong> — DIY photo book templates. Couple does all design work.</li>
+          <li><strong>Mosaic by Wedding Album</strong> — premium printing, photographer-fed, not guest-aggregated.</li>
+          <li><strong>Veri / WedShoots / Wedfuly</strong> — guest photo collection apps that produce digital albums or slideshows. None ship hardcover books.</li>
+          <li><strong>Pixieset / ShootProof / SmugMug</strong> — pro photographer gallery hosts. Not a book product.</li>
+          <li><strong>Postable</strong> — thank-you cards only.</li>
+        </ul>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);">The pattern: guest-aggregation tools exist as digital albums. Hardcover book tools exist as DIY. Nobody combines guest aggregation, AI narrative, and shipped hardcover at scale.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE HARD PARTS — HONEST</div>
+        <ul>
+          <li><strong>Photo curation is taste-loaded.</strong> Guests upload 200+ photos; the bride wants the 60 that flatter the day. AI can rank by smile + composition + people-in-frame, but the bride's review-and-prune step is non-negotiable. Build for that workflow, do not pretend to skip it.</li>
+          <li><strong>Privacy for guests.</strong> Some guests will not consent to a photo of them being printed in someone's book. Default to face-blur-with-opt-in for non-VIPs; let the couple flag VIPs (immediate family, wedding party) as always-in.</li>
+          <li><strong>Tone mismatch is brutal.</strong> AI-written copy that reads like a corporate brochure ruins the book. Three tone modes (classic / romantic / irreverent) with strong example text in each, generated samples shown to the couple before they commit.</li>
+          <li><strong>The post-wedding window is small.</strong> Honeymoon brain wears off in 2-3 months. Aggressive in-product nudges post-wedding to convert before the couple loses momentum.</li>
+        </ul>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE VERDICT</div>
+        <div class="verdict-rd">
+          <div class="verdict-badge-rd">R&amp;D · HIGHEST ARPU IN THE CAPSULESTORY LINE</div>
+          <p class="verdict-reason">
+            <strong>The wedding vertical is where average order value clears $1K.</strong> Multi-copy buying is the default (parents, grandparents, wedding party). Other CapsuleStory verticals top out at $99-149 per family; weddings clear five to ten times that per wedding.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>The competition is fragmented.</strong> Guest aggregation, AI narrative, and hardcover printing all exist separately. Nobody has stitched them. The execution risk is curation taste, not novel technology.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>Sequence behind SeasonStory.</strong> Sports ships first as the cleanest capture profile. Wedding is the second vertical worth shipping under the CapsuleStory stack because the ARPU justifies the curation-tooling investment.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div class="footer-inner"><span>PSYDUCK — SHINY EDITION</span><span>© 2026 · BUILT ON HOMELAB · DEPLOYED BY ITSELF</span></div></footer>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VACATIONSTORY · IDEAS · PSYDUCK</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/ideas/idea-page.css" />
+  <style>
+    .verdict-rd {
+      background: rgba(252,211,77,0.06);
+      border: 1px solid rgba(252,211,77,0.2);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .verdict-badge-rd {
+      display: inline-block;
+      font-family: var(--font-pixel);
+      font-size: 0.35rem;
+      background: rgba(252,211,77,0.12);
+      color: #fcd34d;
+      border: 1px solid rgba(252,211,77,0.3);
+      border-radius: 4px;
+      padding: 0.25rem 0.6rem;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+    }
+    .verdict-reason { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim); line-height: 1.8; }
+    .verdict-reason strong { color: #e5e7eb; }
+    .stack-box {
+      background: rgba(252,211,77,0.04);
+      border: 1px solid rgba(252,211,77,0.14);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 1.9;
+    }
+    .stack-box .layer { color: #fcd34d; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="crt-overlay"></div><div class="scanlines"></div><div class="vignette"></div>
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="/" class="home-crumb" title="Home"><span class="status-dot"></span><span class="nav-name">Psyduck <span class="nav-dex">#054</span></span></a>
+        <span class="crumb-sep">/ <a href="/ideas" class="crumb-link">IDEAS</a> / <span class="crumb-current">VACATIONSTORY</span></span>
+      </div>
+      <nav class="header-nav">
+        <a href="/ideas" class="nav-link nav-link-ideas"><span class="nav-sym">⚡</span><span class="nav-label">IDEAS</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="idea-page-wrap">
+    <div class="idea-page-header">
+      <div class="idea-page-meta">
+        <span class="idea-status status-rd">R&amp;D</span>
+        <span class="idea-conf conf-low">LOW</span>
+        <span class="idea-type">PRODIGI PIPELINE · PASSIVE CAPTURE · CAPSULESTORY VERTICAL</span>
+      </div>
+      <h1 class="idea-page-title">VACATIONSTORY</h1>
+      <div class="viability-callout viability-yellow">
+        <div>
+          <div class="vc-label">VIABILITY SCORE</div>
+          <div class="vc-sublabel">MARKET · COMPETITION · EXECUTION</div>
+        </div>
+        <div class="vc-score">6.0<span class="vc-max">/10</span></div>
+      </div>
+      <p class="idea-page-sub">Passive-capture vacation / family trip keepsake book. Phone camera roll syncs through an app during the trip; geolocation + dates anchor the days; light human input adds a paragraph per stop. AI writes a day-by-day narrative travelogue with photos laid in. Same Prodigi pipeline as AirbnbBook + FamilyScript. Vertical under <a href="/ideas/capsulestory" style="color:#fcd34d;">CapsuleStory</a>. Captured June 25, 2026.</p>
+      <div class="idea-bar idea-bar-wide"><div class="idea-bar-fill" style="--fill:60%;--c:#fcd34d"></div></div>
+      <div class="idea-bar-label">R&amp;D · CROWDED BUT NO PASSIVE-CAPTURE WINNER · HORIZON-TWO VERTICAL</div>
+    </div>
+
+    <div class="idea-page-body">
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE GAP</div>
+        <p>Phone photo apps already cluster vacation photos by date and location (Apple's Memories, Google Photos, Mylio). What they produce is a digital slideshow that the user watches once and forgets. Photo book apps (Chatbooks, Mixbook, Shutterfly) let the user manually build a book from those same photos but require hours of selection, layout, and caption-writing per trip.</p>
+        <p style="margin-top:0.75rem;">The middle ground does not exist: passive capture from the camera roll, AI-written day-by-day narrative, hardcover book shipped without the user having to design or compose anything. The trip ends, a notification fires, the user taps approve, the book ships.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE CAPTURE PROTOCOL</div>
+        <div class="stack-box">
+          <div><span class="layer">CAMERA ROLL SYNC</span> — app installed pre-trip. Photos uploaded automatically while on wifi. Geolocation + timestamps come from EXIF.</div>
+          <div><span class="layer">DAY ANCHORS</span> — AI clusters photos by day and location automatically. Light human input: name each day a phrase ("Day 3 — Sintra"), add one or two sentences if desired.</div>
+          <div><span class="layer">VOICE MEMOS (optional)</span> — quick voice notes from the trip get transcribed and woven in as first-person color.</div>
+          <div><span class="layer">CONTEXT FETCH</span> — for each cluster location, AI pulls a paragraph of historical / local color (which town, what it is known for) to ground the narrative.</div>
+          <div><span class="layer">RECEIPTS (optional)</span> — forwarded email receipts (flights, hotels, restaurants) add anchor data without manual entry.</div>
+        </div>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE PRODUCT</div>
+        <p>30-50 page hardcover travel book. AI writes day-by-day narrative in a warm first-person voice. Photos curated and laid out; user reviews and approves the proof. Prodigi prints and ships.</p>
+        <p style="margin-top:0.75rem;">Pricing: <strong>$99-129 per book</strong>. Family trips typically order 2-4 copies (one per household member who wants one), so ~$200-516 per trip. Optional <strong>$29 digital PDF</strong>.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">COMPETITOR SWEEP</div>
+        <ul>
+          <li><strong>Apple Memories / Google Photos</strong> — auto-clustering by trip, digital slideshow output. Free. Not a book.</li>
+          <li><strong>Chatbooks</strong> — auto-prints monthly photo books from Instagram / camera roll. Square, paperback, single-month windows. Not narrative.</li>
+          <li><strong>Mixbook / Shutterfly / Artifact Uprising / Mpix</strong> — DIY photo books. Hours of design work per book.</li>
+          <li><strong>Polarsteps</strong> — trip tracking app with optional photo book purchase. Book is map + photos with auto-captioned dates; not a written narrative.</li>
+          <li><strong>Mosaic by Plum</strong> — minimum-touch photo book from camera roll, square 7x7 format. No narrative; book is a layout.</li>
+        </ul>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);">The crowded part is photo-clustering and photo-book layout. The empty part is AI-written travelogue narrative that reads like a memoir. Polarsteps is the closest in spirit but stops at maps + captioned dates.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE HARD PARTS — HONEST</div>
+        <ul>
+          <li><strong>Bigger fish swim here.</strong> Apple and Google could ship this. They probably won't because the bound-book exit doesn't fit their business model, but the input layer is already commoditized in their apps.</li>
+          <li><strong>Narrative voice across cultures is loaded.</strong> "Charming little town" tone reads colonial in some contexts. Tone modes (factual / personal / warm) and good defaults matter.</li>
+          <li><strong>Ranking against Chatbooks is hard.</strong> Chatbooks has 1M+ users and ships paperbacks monthly for $10. The differentiator has to be narrative depth + hardcover keepsake quality, not price.</li>
+          <li><strong>Single-trip purchase has low LTV.</strong> Unlike family or sports where multiple seasons / years create repeat buyers, a vacation is often a one-off. Build for the high-value trips (honeymoon, big family trip, milestone) not the weekend getaway.</li>
+        </ul>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE VERDICT</div>
+        <div class="verdict-rd">
+          <div class="verdict-badge-rd">R&amp;D · HORIZON-TWO VERTICAL · DO NOT SHIP THIRD</div>
+          <p class="verdict-reason">
+            <strong>The pattern fits, the differentiation is thin.</strong> Same Prodigi pipeline, same passive-capture approach. But Chatbooks already eats the low-end and Apple/Google already cluster the photos. Winning requires a clearly better narrative output than anyone else has shipped, which is the part most likely to fall short of expectations early.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>Save it for vertical four or five.</strong> SeasonStory ships first. WeddingStory ships second. D&amp;D ships third as a partner integration. Vacation comes after the AI narrative composer has been tuned across three real verticals and the bound-book quality bar is set. Shipping vacation before the composer is good produces a generic-feeling product that hurts the whole CapsuleStory line.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div class="footer-inner"><span>PSYDUCK — SHINY EDITION</span><span>© 2026 · BUILT ON HOMELAB · DEPLOYED BY ITSELF</span></div></footer>
+</body>
+</html>
