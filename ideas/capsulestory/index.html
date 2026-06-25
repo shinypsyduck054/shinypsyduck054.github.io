@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CAPSULESTORY · IDEAS · PSYDUCK</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/ideas/idea-page.css" />
+  <style>
+    .verdict-rd {
+      background: rgba(52,211,153,0.06);
+      border: 1px solid rgba(52,211,153,0.2);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .verdict-badge-rd {
+      display: inline-block;
+      font-family: var(--font-pixel);
+      font-size: 0.35rem;
+      background: rgba(52,211,153,0.12);
+      color: #34d399;
+      border: 1px solid rgba(52,211,153,0.3);
+      border-radius: 4px;
+      padding: 0.25rem 0.6rem;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+    }
+    .verdict-reason { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-dim); line-height: 1.8; }
+    .verdict-reason strong { color: #e5e7eb; }
+    .vertical-box {
+      background: rgba(0,212,255,0.04);
+      border: 1px solid rgba(0,212,255,0.12);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 2;
+    }
+    .vertical-box .vertical { color: #00d4ff; font-weight: bold; }
+    .stack-box {
+      background: rgba(252,211,77,0.04);
+      border: 1px solid rgba(252,211,77,0.14);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 1.9;
+    }
+    .stack-box .layer { color: #fcd34d; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="crt-overlay"></div><div class="scanlines"></div><div class="vignette"></div>
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="/" class="home-crumb" title="Home"><span class="status-dot"></span><span class="nav-name">Psyduck <span class="nav-dex">#054</span></span></a>
+        <span class="crumb-sep">/ <a href="/ideas" class="crumb-link">IDEAS</a> / <span class="crumb-current">CAPSULESTORY</span></span>
+      </div>
+      <nav class="header-nav">
+        <a href="/ideas" class="nav-link nav-link-ideas"><span class="nav-sym">⚡</span><span class="nav-label">IDEAS</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="idea-page-wrap">
+    <div class="idea-page-header">
+      <div class="idea-page-meta">
+        <span class="idea-status status-rd">R&amp;D</span>
+        <span class="idea-conf conf-med">MED</span>
+        <span class="idea-type">PLATFORM · MULTI-VERTICAL · PRODIGI PIPELINE</span>
+      </div>
+      <h1 class="idea-page-title">CAPSULESTORY</h1>
+      <div class="viability-callout viability-green">
+        <div>
+          <div class="vc-label">VIABILITY SCORE</div>
+          <div class="vc-sublabel">MARKET · COMPETITION · EXECUTION</div>
+        </div>
+        <div class="vc-score">7.0<span class="vc-max">/10</span></div>
+      </div>
+      <p class="idea-page-sub">A platform pattern, not one product. Passive capture (photos, audio, scores, timestamps) gets stitched by AI into a printed hardcover keepsake book and shipped via Prodigi. Same back-end, vertical front-ends: sports teams, D&amp;D campaigns, weddings, vacations, baby's first year, more. Reuses the AirbnbBook + FamilyScript pipeline. Captured June 25, 2026.</p>
+      <div class="idea-bar idea-bar-wide"><div class="idea-bar-fill" style="--fill:70%;--c:#34d399"></div></div>
+      <div class="idea-bar-label">R&amp;D · PLATFORM PATTERN · SHARED PRODIGI STACK · VERTICALS REUSE 70% OF CODE</div>
+    </div>
+
+    <div class="idea-page-body">
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE PATTERN</div>
+        <p>Every keepsake-worthy life chapter has the same three ingredients: a window of time, a stream of passive media, and a moment afterward when someone wants it bound up and shipped. Wedding photos. End-of-season team highlights. The campaign your D&amp;D group played for two years. The kid's first year. The week the family roadtripped.</p>
+        <p style="margin-top:0.75rem;">All of them have the same input shape (photos with timestamps, audio with speakers, scores or milestones, plus a few human notes), the same AI synthesis stage (narrative composer plus optional illustration), and the same fulfillment exit (Prodigi prints the hardcover and ships to N families). The verticals differ only in capture protocol and tone of voice.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE STACK</div>
+        <div class="stack-box">
+          <div><span class="layer">CAPTURE</span> — photos + timestamps + light human input (form, voice memo, score). Vertical-specific intake (sports parents upload photos all season, D&amp;D table records sessions, wedding guests dump shots from one day).</div>
+          <div><span class="layer">SYNTHESIS</span> — shared LLM composer that takes structured intake and writes a 20-40 page narrative. Optional AI illustration layer (scenes, not portraits).</div>
+          <div><span class="layer">FULFILLMENT</span> — Prodigi API. Same pipeline already greenlit for AirbnbBook and FamilyScript. One-off hardcover, optional PDF, ships direct to family addresses.</div>
+          <div><span class="layer">BUYING EVENT</span> — one organizer (coach, DM, bride, dad) creates the project. N families pay $99-149 each for their own copy. School-picture-day economics.</div>
+        </div>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">VERTICAL ROADMAP</div>
+        <div class="vertical-box">
+          <div><span class="vertical">CAPSULESTORY: SPORTS</span> — youth sports team season book. Easiest capture (photo timestamps + game scores). Distribution via TeamSnap, MaxPreps, coach Facebook groups. Spring + fall buying spikes. <strong>Ships first.</strong></div>
+          <div><span class="vertical">CAPSULESTORY: D&amp;D</span> — campaign session book with AI scene art. Capture layer already commoditized (Archivist AI, SessionKeeper, CharGen, Tabletop Arc). Integrate as their output partner; do not compete on recording. <strong>Ships second.</strong></div>
+          <div><span class="vertical">CAPSULESTORY: WEDDINGS</span> — guest photo dump + day-of timeline = bound wedding book per family. Highest ARPU. Existing wedding-book market is DIY-only.</div>
+          <div><span class="vertical">CAPSULESTORY: VACATION</span> — family roadtrip or trip-of-a-lifetime, photo dump + geolocation + dates.</div>
+          <div><span class="vertical">CAPSULESTORY: BABY'S YEAR</span> — first year photos + monthly milestones. Recurring annual buyer.</div>
+          <div><span class="vertical">CAPSULESTORY: SENIOR YEAR</span> — high school senior's year captured by parents, gift at graduation.</div>
+          <div><span class="vertical">CAPSULESTORY: REUNION</span> — class reunion or family reunion, multi-perspective same-day capture.</div>
+        </div>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);">Ship one vertical, validate the rails, fork the front-end for vertical two. Two verticals justifies real abstraction. Eight imagined verticals does not.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">COMPETITOR SWEEP</div>
+        <p style="font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);line-height:1.8;">For each vertical, two layers to check: the <em>capture rails</em> and the <em>keepsake artifact</em>.</p>
+        <ul style="margin-top:0.75rem;">
+          <li><strong>D&amp;D capture</strong>: SATURATED. Archivist AI, SessionKeeper, CharGen, Tabletop Arc, RoleForge, The DM's ARK all do session-recording + AI recap + campaign wiki. Some include AI portraits.</li>
+          <li><strong>D&amp;D printed keepsake</strong>: EMPTY. None of the above ship a hardcover bound novel to the players.</li>
+          <li><strong>Sports capture</strong>: PARTIAL. Waldo Photos does AI-sorted parent photo uploads for athletic departments. Imagen-AI does sports volume photo editing. TeamSnap has photo sharing.</li>
+          <li><strong>Sports printed keepsake</strong>: EMPTY. Shutterfly has DIY sports templates. Jostens does school yearbooks (not team-specific). No purpose-built AI sports team season book.</li>
+          <li><strong>Wedding capture</strong>: PARTIAL. Many wedding photo apps; few do passive guest aggregation with AI synthesis.</li>
+          <li><strong>Wedding printed keepsake</strong>: PARTIAL. Big DIY wedding book market (Shutterfly, Mixbook) but no ambient-capture + AI-synthesized version.</li>
+        </ul>
+        <p style="margin-top:0.75rem;font-family:var(--font-mono);font-size:0.82rem;color:var(--text-dim);">The pattern: capture rails are getting built per-vertical by separate companies. The keepsake-output layer (bound hardcover, shipped to N families) is wide open in every vertical.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">WHY THIS IS NOT JUST SEASONSTORY</div>
+        <p>SeasonStory is a vertical. CapsuleStory is the pattern that produces SeasonStory plus six other SKUs from the same back-end. The platform insight matters because: (1) the Prodigi + AI composer stack is 70% of the build effort, and shipping it once unlocks every subsequent vertical in roughly a month of front-end work, (2) the buying-event mechanics (one organizer unlocks N family buyers) repeat across every vertical, (3) the brand can be a parent label or each SKU can ship as a standalone site with shared infra, customer's choice.</p>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE HARD PARTS — HONEST</div>
+        <ul>
+          <li><strong>Audio diarization is hard.</strong> Distinguishing five players' table talk from their character voices in a noisy D&amp;D room with snacks and music is real engineering. Whisper-large + pyannote get to roughly 80%; the last 20% is brutal. Sports vertical avoids this entirely.</li>
+          <li><strong>Recording consent.</strong> All-friends D&amp;D table is trivial. Sports games are fine for own-team parents; opposing-team kids in frame is a content moderation problem.</li>
+          <li><strong>AI art is socially loaded.</strong> D&amp;D players are protective of character portraits commissioned elsewhere. Default to "we generate scene art, not character portraits" until norms are clear.</li>
+          <li><strong>Premature abstraction kills speed.</strong> Build SeasonStory standalone with the common stack factored cleanly enough that vertical two shares 70%. Do not build a "platform for ten verticals" before you have two real ones.</li>
+        </ul>
+      </div>
+
+      <div class="idea-section">
+        <div class="idea-section-title">THE VERDICT</div>
+        <div class="verdict-rd">
+          <div class="verdict-badge-rd">R&amp;D · PLATFORM PATTERN · SEASONSTORY SHIPS FIRST</div>
+          <p class="verdict-reason">
+            <strong>The capture layer is saturated, the keepsake artifact layer is empty.</strong> Every vertical has the same structure: someone built the photo or audio pipes, nobody built the hardcover book that comes out the other end and ships to twenty families.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>The Prodigi pipeline is already greenlit.</strong> AirbnbBook and FamilyScript pay for the back-end. Each new CapsuleStory vertical is essentially a new front-end on a pipeline that already works.
+          </p>
+          <p class="verdict-reason" style="margin-top:0.75rem;">
+            <strong>Sequence: SeasonStory v1, then D&amp;D as output partner to the existing recording tools, then weddings.</strong> Do not preemptively build verticals three through seven. Two shipped verticals earn the right to abstract.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer><div class="footer-inner"><span>PSYDUCK — SHINY EDITION</span><span>© 2026 · BUILT ON HOMELAB · DEPLOYED BY ITSELF</span></div></footer>
+</body>
+</html>
