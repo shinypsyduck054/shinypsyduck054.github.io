@@ -3,288 +3,103 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="PSYDUCK Products — Shipped Work" />
+  <meta name="description" content="PSYDUCK — Shipped Products" />
   <meta property="og:title" content="Products · PSYDUCK" />
-  <meta property="og:description" content="Tools and products built to solve real problems." />
-  <title>Products · PSYDUCK</title>
+  <meta property="og:description" content="Tools that actually work." />
+  <title>PRODUCTS · PSYDUCK</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: linear-gradient(135deg, #0a0e27 0%, #0f1538 100%);
-      color: #e0e7ff;
-      font-family: 'VT323', monospace;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
-    .products-nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 40px;
-      border-bottom: 2px solid #34d399;
-      background: rgba(10, 14, 39, 0.8);
-    }
-    .nav-brand {
-      font-size: 14px;
-      letter-spacing: 0.1em;
-      color: #34d399;
-    }
-    .nav-back {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #60a5fa;
-      text-decoration: underline;
-      cursor: pointer;
-    }
-    .nav-back:hover {
-      color: #34d399;
-    }
-    .products-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 60px 40px;
-    }
-    .products-header {
-      text-align: center;
-      margin-bottom: 80px;
-    }
-    .products-title {
-      font-size: 48px;
-      letter-spacing: 0.08em;
-      margin-bottom: 12px;
-      color: #fcd34d;
-      text-shadow: 0 0 20px rgba(252, 211, 77, 0.3);
-    }
-    .products-subtitle {
-      font-size: 12px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #60a5fa;
-      margin-bottom: 8px;
-    }
-    .products-tagline {
-      font-size: 13px;
-      line-height: 1.8;
-      max-width: 600px;
-      margin: 24px auto 0;
-      opacity: 0.85;
-    }
-    .manifesto-section {
-      background: rgba(52, 211, 153, 0.05);
-      border: 2px solid #34d399;
-      padding: 40px;
-      margin-bottom: 80px;
-      border-radius: 4px;
-    }
-    .manifesto-title {
-      font-size: 20px;
-      letter-spacing: 0.08em;
-      margin-bottom: 24px;
-      color: #34d399;
-    }
-    .manifesto-content {
-      font-size: 13px;
-      line-height: 1.9;
-      color: #e0e7ff;
-    }
-    .manifesto-section p {
-      margin-bottom: 20px;
-    }
-    .manifesto-commitments {
-      margin-top: 24px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(52, 211, 153, 0.3);
-    }
-    .commitment {
-      margin-bottom: 16px;
-      padding-left: 20px;
-      border-left: 2px solid #06b6d4;
-    }
-    .commitment-title {
-      font-weight: 700;
-      color: #06b6d4;
-      margin-bottom: 4px;
-    }
-    .commitment-desc {
-      font-size: 12px;
-      opacity: 0.8;
-    }
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 32px;
-      margin-bottom: 80px;
-    }
-    .product-card {
-      border: 2px solid #34d399;
-      padding: 32px;
-      background: rgba(52, 211, 153, 0.02);
-      transition: all 0.3s;
-      display: flex;
-      flex-direction: column;
-    }
-    .product-card:hover {
-      background: rgba(52, 211, 153, 0.08);
-      box-shadow: 0 0 20px rgba(52, 211, 153, 0.25);
-      transform: translateY(-4px);
-    }
-    .product-badge {
-      display: inline-block;
-      font-size: 9px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      padding: 4px 8px;
-      background: rgba(6, 182, 212, 0.2);
-      color: #06b6d4;
-      margin-bottom: 12px;
-      width: fit-content;
-      border: 1px solid #06b6d4;
-    }
-    .product-name {
-      font-size: 18px;
-      margin-bottom: 8px;
-      color: #fcd34d;
-    }
-    .product-tagline {
-      font-size: 12px;
-      color: #60a5fa;
-      margin-bottom: 16px;
-      line-height: 1.6;
-    }
-    .product-desc {
-      font-size: 12px;
-      line-height: 1.8;
-      opacity: 0.85;
-      margin-bottom: 20px;
-      flex-grow: 1;
-    }
-    .product-link {
-      display: inline-block;
-      padding: 8px 12px;
-      background: rgba(52, 211, 153, 0.1);
-      border: 1px solid #34d399;
-      color: #34d399;
-      text-decoration: none;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      transition: all 0.2s;
-      width: fit-content;
-    }
-    .product-link:hover {
-      background: #34d399;
-      color: #0a0e27;
-    }
-    .coming-soon {
-      color: #94a3b8;
-      font-size: 11px;
-      margin-top: auto;
-      padding-top: 16px;
-      border-top: 1px solid rgba(52, 211, 153, 0.2);
-    }
-    .footer {
-      text-align: center;
-      padding: 40px;
-      border-top: 2px solid #34d399;
-      font-size: 11px;
-      color: #60a5fa;
-      letter-spacing: 0.08em;
-    }
-    .footer a {
-      color: inherit;
-      text-decoration: underline;
-    }
-    @media(max-width: 768px) {
-      .products-container { padding: 40px 20px; }
-      .products-title { font-size: 32px; }
-      .manifesto-section { padding: 24px; }
-      .products-grid { gap: 24px; }
-      .product-card { padding: 24px; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <nav class="products-nav">
-    <span class="nav-brand">PSYDUCK</span>
-    <a href="/" class="nav-back">[ HOME ]</a>
-  </nav>
 
-  <div class="products-container">
-    <div class="products-header">
-      <div class="products-subtitle">SHIPPED WORK</div>
-      <h1 class="products-title">[ PRODUCTS ]</h1>
-      <div class="products-tagline">
-        Tools that solve real problems. One-time purchases and recurring platforms built for the people most ignored by venture capital.
+  <!-- CRT Effects -->
+  <div class="crt-overlay"></div>
+  <div class="scanlines"></div>
+  <div class="vignette"></div>
+
+  <!-- Trippy SVG Displacement Filter -->
+  <svg id="trippySVG" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="trippy-filter" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
+        <feTurbulence id="trippyTurbulence" type="turbulence" baseFrequency="0 0" numOctaves="4" seed="7" result="noise"/>
+        <feDisplacementMap id="trippyDisplacement" in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Trippy full-screen color overlay -->
+  <div class="trippy-overlay" id="trippyOverlay" aria-hidden="true"></div>
+
+  <!-- Main Content -->
+  <div class="main-content" id="mainContent">
+
+    <!-- Header -->
+    <header>
+      <div class="header-inner">
+        <div class="header-left">
+          <span class="status-dot"></span>
+          <span class="nav-name">Psyduck <span class="nav-dex">#054</span></span>
+        </div>
+        <nav class="header-nav">
+          <a href="/" class="nav-link nav-link-home">
+            <span class="nav-label">HOME</span>
+          </a>
+        </nav>
       </div>
-    </div>
+    </header>
 
-    <div class="manifesto-section">
-      <div class="manifesto-title">Why PSYDUCK Builds</div>
-      <div class="manifesto-content">
-        <p>We explore the gaps. We try things that feel worth trying. We stay curious.</p>
-        <p>But we don't build in graveyards. A good idea in a saturated market is still a dead idea. So we vet. We research. We only build where there's real room to move.</p>
-        <div class="manifesto-commitments">
-          <div class="commitment">
-            <div class="commitment-title">1. Ship things that matter.</div>
-            <div class="commitment-desc">To someone. Whether that's solving a problem, delighting a community, or creating something people actually want to use.</div>
+    <!-- Products Section -->
+    <section class="dex-section" id="products">
+      <div class="section-wrap">
+        <div style="text-align:center;margin-bottom:60px;border-bottom:2px solid #34d399;padding-bottom:20px;">
+          <div style="font-size:0.5rem;letter-spacing:0.15em;text-transform:uppercase;color:#60a5fa;margin-bottom:12px;">SHIPPED</div>
+          <h1 style="font-family:'Press Start 2P',monospace;font-size:2rem;color:#fcd34d;letter-spacing:0.08em;margin-bottom:20px;text-shadow:0 0 20px rgba(252,211,77,0.4);">PRODUCTS</h1>
+        </div>
+
+        <div style="max-width:1000px;margin:0 auto;">
+          <!-- FightAClaim -->
+          <div style="border:2px solid #34d399;padding:40px;margin-bottom:40px;background:rgba(52,211,153,0.02);">
+            <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:16px;">
+              <span style="font-size:1rem;font-family:'VT323',monospace;color:#fcd34d;font-weight:700;">FightAClaim</span>
+              <span style="font-size:0.4rem;letter-spacing:0.1em;text-transform:uppercase;color:#34d399;">● LIVE</span>
+            </div>
+            <div style="font-size:0.45rem;line-height:1.8;color:#e0e7ff;margin-bottom:20px;">
+              <p style="margin-bottom:12px;">Security deposit disputes made simple. A $1 tool that helps renters fight unfair security deposit claims without paying a lawyer.</p>
+              <p style="opacity:0.8;">Deposit theft is normalized. Most people don't have legal representation. FightAClaim bridges that gap.</p>
+            </div>
+            <a href="https://fightaclaim.com" target="_blank" rel="noopener" style="display:inline-block;padding:8px 12px;background:rgba(52,211,153,0.1);border:1px solid #34d399;color:#34d399;text-decoration:none;font-size:0.35rem;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.2s;font-family:'VT323',monospace;">[ VISIT ]</a>
           </div>
-          <div class="commitment">
-            <div class="commitment-title">2. Don't exploit.</div>
-            <div class="commitment-desc">If the only way to make money is to prey on someone, we build something else.</div>
-          </div>
-          <div class="commitment">
-            <div class="commitment-title">3. Make sure it's real.</div>
-            <div class="commitment-desc">Market exists. Customers exist. Competitive landscape is clear. We know what we're walking into.</div>
-          </div>
         </div>
-      </div>
-    </div>
 
-    <div class="products-grid">
-      <div class="product-card">
-        <span class="product-badge">LIVE</span>
-        <div class="product-name">FightAClaim</div>
-        <div class="product-tagline">Security deposit disputes made simple</div>
-        <div class="product-desc">
-          A $1 tool that helps renters fight unfair security deposit claims. Deposit theft is normalized. Most people don't have a lawyer on speed dial. FightAClaim solves that without the legal fees.
+        <div style="text-align:center;margin-top:60px;padding-top:20px;border-top:1px solid rgba(52,211,153,0.3);">
+          <p style="font-size:0.4rem;color:#60a5fa;letter-spacing:0.1em;text-transform:uppercase;">More coming. Shipping intentionally.</p>
         </div>
-        <a href="https://fightaclaim.com" class="product-link" target="_blank">→ Visit Site</a>
       </div>
+    </section>
 
-      <div class="product-card">
-        <span class="product-badge">BETA</span>
-        <div class="product-name">Interactive Fiction Engine</div>
-        <div class="product-tagline">Personalized branching narratives</div>
-        <div class="product-desc">
-          Customize your story. Choose your path. These aren't auto-generated slop—they're hand-crafted, branching narratives that respond to your choices. Romance, mystery, fantasy, and beyond.
-        </div>
-        <div class="coming-soon">Coming soon · Signup list open</div>
+    <!-- Footer -->
+    <footer>
+      <div class="footer-inner">
+        <span>PSYDUCK <span class="version-tag"></span> — SHINY EDITION</span>
+        <span>© 2026 · BUILT ON HOMELAB · DEPLOYED BY ITSELF</span>
       </div>
+    </footer>
 
-      <div class="product-card">
-        <span class="product-badge">PLANNED</span>
-        <div class="product-name">Recurring Platform (TBD)</div>
-        <div class="product-tagline">Community-first, not extraction-first</div>
-        <div class="product-desc">
-          We're vetting opportunities in dating, jobs, forums, ticketing—spaces where platforms got ruined by monetization creep. More details as we build.
-        </div>
-        <div class="coming-soon">Research in progress</div>
-      </div>
-    </div>
   </div>
 
-  <footer class="footer">
-    <p>PSYDUCK · <span id="year"></span> · <a href="https://justinshearer.com" target="_blank">TRAINED BY JUSTIN</a></p>
-    <p style="margin-top: 12px; font-size: 10px;">[ Always online · ideas gated · shipping real products ]</p>
-  </footer>
+  <!-- Wandering Psyduck — floats around the page, click = go to home -->
+  <div id="wanderDuck">
+    <img
+      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/54.gif"
+      alt="Wandering Psyduck"
+      style="cursor:pointer;"
+      onclick="window.location.href='/';"
+    />
+  </div>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
