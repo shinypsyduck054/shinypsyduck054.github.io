@@ -1,6 +1,6 @@
 {
-  "updated": "2026-06-27T13:19:15.059567+00:00",
-  "updatedMs": 1782566355059,
+  "updated": "2026-06-27T13:49:19.333538+00:00",
+  "updatedMs": 1782568159333,
   "channels": [
     {
       "id": "telegram",
@@ -26,9 +26,9 @@
       "id": "anthropic",
       "name": "Anthropic",
       "status": "ok",
-      "note": "session 95% \u00b7 50m \u00b7 week 50% \u00b7 1d 20h \u00b7 oauth 4h",
+      "note": "session 95% \u00b7 20m \u00b7 week 50% \u00b7 1d 20h \u00b7 oauth 3h",
       "session_pct": 95,
-      "session_remain": "50m",
+      "session_remain": "20m",
       "week_pct": 50,
       "week_remain": "1d 20h",
       "models": [
