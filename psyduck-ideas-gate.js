@@ -1,7 +1,7 @@
 // PSYDUCK ideas access gate. Client-side PIN. Retro 4-box entry.
 // Session-scoped: PIN asked once per browser session.
 (function () {
-  if (sessionStorage.getItem('psyduck-ideas-access') === '0045') return;
+  if (sessionStorage.getItem('psyduck-ideas-access') === '0054') return;
 
   var style = document.createElement('style');
   style.textContent =
@@ -68,8 +68,8 @@
     function tryUnlock() {
       var pin = getValue();
       if (pin.length !== 4) return;
-      if (pin === '0045') {
-        sessionStorage.setItem('psyduck-ideas-access', '0045');
+      if (pin === '0054') {
+        sessionStorage.setItem('psyduck-ideas-access', '0054');
         overlay.remove();
       } else {
         for (var k = 0; k < inputs.length; k++) inputs[k].classList.add('wrong');
