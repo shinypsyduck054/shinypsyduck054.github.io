@@ -30,7 +30,6 @@
     </defs>
   </svg>
 
-  <!-- Trippy full-screen color overlay -->
   <div class="trippy-overlay" id="trippyOverlay" aria-hidden="true"></div>
 
   <!-- Main Content -->
@@ -53,40 +52,79 @@
 
     <!-- Products Section -->
     <section class="dex-section" id="products">
-      <div class="section-wrap">
-        <div class="dex-grid">
-          <div class="dex-card">
-            <div class="dex-info">
-              <div class="dex-row"><span class="dex-label">PRODUCT</span><span>FIGHTACLAIM</span></div>
-              <div class="dex-row"><span class="dex-label">PRICE</span><span>$19</span></div>
-              <div class="dex-row"><span class="dex-label">STATUS</span><span class="blink-green">● LIVE</span></div>
+      <div class="section-wrap products-top">
+
+        <p class="section-label" style="font-family:var(--font-pixel);font-size:0.45rem;color:var(--text-dim);letter-spacing:0.12em;margin-bottom:1.5rem;text-align:center;">
+          SHIPPED / LIVE
+        </p>
+
+        <!-- Retro TV Preview -->
+        <div class="retro-tv-wrap">
+          <div class="retro-tv">
+            <div class="tv-screen">
+              <div class="tv-scanlines"></div>
+              <div class="tv-glow"></div>
+              <div class="tv-terminal">
+                <div class="tv-url">&#9658; FIGHTACLAIM.COM</div>
+                <div class="tv-divider">&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;</div>
+                <div class="tv-bright">MARKETPLACE CLAIM DEFENSE</div>
+                <div class="tv-divider">&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;</div>
+                <div class="tv-dim">&#9632; AMAZON &nbsp;&#9632; EBAY &nbsp;&#9632; ETSY</div>
+                <br/>
+                <div class="tv-bright">GOT A BOGUS CLAIM?</div>
+                <div class="tv-dim">WE WRITE THE RESPONSE.</div>
+                <div class="tv-dim">PLATFORM-OPTIMIZED. 2 MIN.</div>
+                <br/>
+                <div class="tv-cta-line">[ GET DEFENSE KIT &mdash; $19 ]</div>
+              </div>
+            </div>
+            <div class="tv-footer">
+              <span class="tv-ch">CH&nbsp;01 &middot; LIVE</span>
+              <div class="tv-knobs">
+                <div class="tv-knob on"></div>
+                <div class="tv-knob"></div>
+                <div class="tv-knob"></div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="dex-flavor">
+        <!-- Dex Card -->
+        <div class="dex-grid" style="grid-template-columns:1fr;">
+          <div class="dex-card">
+            <div class="dex-info">
+              <div class="dex-row"><span class="dex-label">PRODUCT</span><span>FIGHTACLAIM</span></div>
+              <div class="dex-row"><span class="dex-label">PRICE</span><span>$19 one-time</span></div>
+              <div class="dex-row"><span class="dex-label">PLATFORMS</span><span>Amazon &middot; eBay &middot; Etsy</span></div>
+              <div class="dex-row"><span class="dex-label">STATUS</span><span class="blink-green">&#9679; LIVE</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dex-flavor" style="margin-top:1.5rem;">
           <span class="flavor-bracket">[</span>
-          Marketplace sellers on Amazon, eBay, and Etsy get hit with bogus A-to-z claims and chargebacks that tank their Order Defect Rate. FightAClaim generates a platform-optimized dispute response letter in 2 minutes — tailored to your order, your platform, and your claim type. Fight back without a lawyer.
+          Marketplace sellers hit with bogus A-to-z claims or chargebacks risk their Order Defect Rate and their account. FightAClaim generates a platform-optimized dispute response letter in 2 minutes &mdash; tailored to your order, your platform, and your claim type. Fight back without a lawyer.
           <span class="flavor-bracket">]</span>
         </div>
 
-        <div style="text-align:center;margin-top:40px;">
+        <div style="text-align:center;margin-top:2.5rem;">
           <a href="https://fightaclaim.com" target="_blank" rel="noopener" class="retro-btn">[ VISIT FIGHTACLAIM ]</a>
         </div>
+
       </div>
     </section>
 
     <!-- Footer -->
     <footer>
       <div class="footer-inner">
-        <span>PSYDUCK <span class="version-tag"></span> — SHINY EDITION</span>
-        <span>© 2026 · BUILT ON HOMELAB · DEPLOYED BY ITSELF</span>
+        <span>PSYDUCK <span class="version-tag"></span> &mdash; SHINY EDITION</span>
+        <span>&copy; 2026 &middot; BUILT ON HOMELAB &middot; DEPLOYED BY ITSELF</span>
       </div>
     </footer>
 
   </div>
 
-  <!-- Wandering Psyduck — floats around the page, click = go to home -->
+  <!-- Wandering Psyduck -->
   <div id="wanderDuck">
     <img
       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/shiny/54.gif"

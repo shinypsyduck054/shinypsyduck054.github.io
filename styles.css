@@ -1545,6 +1545,123 @@ a.idea-card-link:hover {
 /* wander-bob removed — rotation + float handled by JS physics */
 
 /* ===========================
+   RETRO TV PREVIEW
+   =========================== */
+.retro-tv-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0 2.5rem;
+}
+
+.retro-tv {
+  width: 100%;
+  max-width: 440px;
+  background: #0d1117;
+  border: 3px solid var(--border-bright);
+  border-radius: 6px;
+  padding: 10px 10px 14px;
+  box-shadow:
+    0 0 0 1px rgba(0,212,255,0.08),
+    0 0 28px rgba(0,212,255,0.1),
+    5px 5px 0 #000;
+}
+
+.tv-screen {
+  position: relative;
+  background: #000;
+  border: 2px solid rgba(0,212,255,0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  padding: 1.1rem 1rem 1rem;
+}
+
+.tv-scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0,0,0,0.22) 3px,
+    rgba(0,0,0,0.22) 4px
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.tv-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, rgba(0,255,136,0.05) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.tv-terminal {
+  font-family: var(--font-vt);
+  color: #00ff88;
+  font-size: 1.15rem;
+  line-height: 1.55;
+  position: relative;
+  z-index: 3;
+}
+
+.tv-url {
+  font-family: var(--font-silk);
+  font-size: 0.52rem;
+  color: rgba(0,255,136,0.7);
+  letter-spacing: 0.08em;
+}
+
+.tv-divider { color: rgba(0,255,136,0.3); user-select: none; }
+.tv-dim     { color: rgba(0,255,136,0.55); }
+.tv-bright  { color: #00ff88; }
+
+.tv-cta-line {
+  display: inline-block;
+  border: 1px solid rgba(252,211,77,0.5);
+  color: var(--yellow);
+  padding: 0.1rem 0.6rem;
+  margin-top: 0.4rem;
+  font-size: 1rem;
+}
+
+.tv-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  padding: 0 2px;
+}
+
+.tv-ch {
+  font-family: var(--font-silk);
+  font-size: 0.42rem;
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+}
+
+.tv-knobs { display: flex; gap: 5px; align-items: center; }
+
+.tv-knob {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #1a2430;
+  border: 1px solid rgba(0,212,255,0.25);
+}
+
+.tv-knob.on {
+  background: #00ff88;
+  box-shadow: 0 0 5px #00ff88;
+}
+
+/* products page header offset */
+.products-top {
+  padding-top: calc(var(--nav-h) + 2rem);
+}
+
+/* ===========================
    RESPONSIVE
    =========================== */
 @media (max-width: 768px) {
