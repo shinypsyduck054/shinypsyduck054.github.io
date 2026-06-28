@@ -1,7 +1,7 @@
 // ===========================
 // VERSION  (footer only — header uses nav now)
 // ===========================
-const VERSION = '3.12.0';
+const VERSION = '3.12.1';
 
 document.querySelectorAll('.version-tag').forEach(el => {
   el.textContent = `v${VERSION}`;
@@ -80,8 +80,10 @@ function skipBoot() {
 }
 
 // Boot skip only fires during boot
-bootScreen.addEventListener('keydown', skipBoot);
-bootScreen.addEventListener('click', skipBoot);
+if (bootScreen) {
+  bootScreen.addEventListener('keydown', skipBoot);
+  bootScreen.addEventListener('click', skipBoot);
+}
 document.addEventListener('keydown', (e) => { if (!bootDone) skipBoot(); });
 
 // Boot start deferred to end of script so all let/const vars are initialized first.
@@ -811,7 +813,10 @@ console.log('%c >> github.com/shinypsyduck054', 'color: #6a9ab8; font-family: mo
 // typeBoot() run. Calling skipBoot() earlier put typeEl, trippyTurbEl etc. in
 // the temporal dead zone, silently breaking the typewriter and duck click.
 // ===========================
-if (location.search.includes('skip')) {
+if (!bootScreen) {
+  // No boot screen on this page — show content immediately
+  if (mainContent) mainContent.classList.add('visible');
+} else if (location.search.includes('skip')) {
   skipBoot();
   // Clean the URL so back/forward doesn't carry ?skip
   history.replaceState(null, '', location.pathname);
