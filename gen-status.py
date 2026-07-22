@@ -104,6 +104,13 @@ if ant_session_pct is not None:
         ant_note = f'session {ant_session_pct}% · {ant_session_remain} · week {ant_week_pct}% · {ant_week_remain}'
     if ant_oauth_remain:
         ant_note += f' · oauth {ant_oauth_remain}'
+elif re.search(r'anthropic via claude-cli.*status=usable', oc_text):
+    # OpenClaw 2026.7.x dropped the "anthropic usage: 5h ..." line; fall back
+    # to auth state when the provider is usable via Claude CLI OAuth.
+    ant_status = 'ok'
+    ant_note = 'auth ok via Claude CLI'
+    if ant_oauth_remain:
+        ant_note += f' · oauth {ant_oauth_remain}'
 else:
     ant_status = 'unknown'
     ant_note = 'could not read usage'
