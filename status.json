@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-24T06:49:35.503437+00:00",
-  "updatedMs": 1784875775503,
+  "updated": "2026-07-24T07:19:34.478836+00:00",
+  "updatedMs": 1784877574478,
   "channels": [
     {
       "id": "telegram",
@@ -26,7 +26,7 @@
       "id": "anthropic",
       "name": "Anthropic",
       "status": "ok",
-      "note": "auth ok via Claude CLI \u00b7 oauth 1h",
+      "note": "auth ok via Claude CLI \u00b7 oauth 30m",
       "session_pct": null,
       "session_remain": null,
       "week_pct": null,
