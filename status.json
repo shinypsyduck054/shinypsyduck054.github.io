@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-27T18:23:26.627137+00:00",
-  "updatedMs": 1785176606627,
+  "updated": "2026-07-27T18:53:29.120568+00:00",
+  "updatedMs": 1785178409120,
   "channels": [
     {
       "id": "telegram",
@@ -50,14 +50,9 @@
     {
       "id": "ollama",
       "name": "Ollama (Local)",
-      "status": "ok",
-      "note": "4 models \u00b7 192.168.32.1",
-      "models": [
-        "qwen3:4b",
-        "psyduck-qwen:latest",
-        "gemma3:12b",
-        "qwen2.5-coder:7b"
-      ]
+      "status": "down",
+      "note": "host unreachable",
+      "models": []
     }
   ]
 }
